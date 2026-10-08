@@ -1,0 +1,194 @@
+components:
+  radiobutton:
+    title: Radiobutton
+    anatomy:
+      root:
+        type: container
+      Rectangle 39622:
+        type: rectangle
+      Rectangle 39623:
+        type: rectangle
+        detectedIn: State=Disabled
+    props:
+      State:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
+          - Disabled
+          - Active
+          - Active-hover
+        nullable: false
+    default:
+      layout:
+        - root:
+            - Rectangle 39622
+      elements:
+        root:
+          styles:
+            width: 16
+            height: 16
+        Rectangle 39622:
+          styles:
+            position: ABSOLUTE
+            top: 0%
+            bottom: 0%
+            start: 0%
+            end: 0%
+            strokes: "#1F2C2A"
+            strokeWeight: 1
+        Rectangle 39623:
+          styles:
+            opacity: 0.5
+            width: 10
+            height: 10
+            position: ABSOLUTE
+            centerHorizontalOffset: 0
+            centerVerticalOffset: 0
+            backgroundColor: "#AAE2C8"
+    variants:
+      - configuration:
+          State: Hover
+        elements:
+          Rectangle 39622:
+            styles:
+              strokes: "#AAE2C8"
+              backgroundColor: "#1F2C2A"
+      - configuration:
+          State: Disabled
+        layout:
+          - root:
+              - Rectangle 39622
+              - Rectangle 39623
+        elements:
+          Rectangle 39622:
+            styles:
+              strokes: "#35423F"
+      - configuration:
+          State: Active
+        layout:
+          - root:
+              - Rectangle 39623
+              - Rectangle 39622
+        elements:
+          Rectangle 39623:
+            styles:
+              opacity: 1
+              width: null
+              height: null
+              top: 0%
+              bottom: 0%
+              start: 0%
+              end: 0%
+              centerHorizontalOffset: null
+              centerVerticalOffset: null
+              strokes: "#AAE2C8"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              backgroundColor: "#35423F"
+          Rectangle 39622:
+            styles:
+              width: 10
+              height: 10
+              top: null
+              bottom: null
+              start: null
+              end: null
+              centerHorizontalOffset: 0
+              centerVerticalOffset: 0
+              strokes: null
+              strokeAlign: null
+              strokeWeight: null
+              backgroundColor: "#AAE2C8"
+      - configuration:
+          State: Active-hover
+        layout:
+          - root:
+              - Rectangle 39623
+              - Rectangle 39622
+        elements:
+          root:
+            styles:
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 3
+                    spread: 0
+                    color: "#B7FFF3"
+          Rectangle 39623:
+            styles:
+              opacity: 1
+              width: null
+              height: null
+              top: 0%
+              bottom: 0%
+              start: 0%
+              end: 0%
+              centerHorizontalOffset: null
+              centerVerticalOffset: null
+              strokes: "#D5FFF5"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              backgroundColor: "#35423F"
+          Rectangle 39622:
+            styles:
+              width: 10
+              height: 10
+              top: null
+              bottom: null
+              start: null
+              end: null
+              centerHorizontalOffset: 0
+              centerVerticalOffset: 0
+              strokes: null
+              strokeAlign: null
+              strokeWeight: null
+              backgroundColor: "#D5FFF5"
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T21:26:29.015Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 5:5487
+        nodeId: 5:5544
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
