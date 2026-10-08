@@ -1,0 +1,243 @@
+components:
+  oneTab:
+    title: One tab
+    anatomy:
+      root:
+        type: container
+      Tab:
+        type: text
+    props:
+      State:
+        type: string
+        default: Active
+        enum:
+          - Active
+          - Non-active
+        nullable: false
+      Size:
+        type: string
+        default: 2XL
+        enum:
+          - 2XL
+          - XL
+          - L
+          - M
+          - S
+        nullable: false
+      Interaction:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
+        nullable: false
+    default:
+      layout:
+        - root:
+            - Tab
+      elements:
+        root:
+          styles:
+            cornerRadius: 8
+            crossAxisAlignment: END
+            layoutMode: HORIZONTAL
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            itemSpacing: 10
+            padding:
+              top: 18
+              bottom: 18
+              start: 24
+              end: 24
+            backgroundColor: "#576762"
+        Tab:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#E8F4F0"
+            typography:
+              fontSize: 18
+              fontFamily: Chirp
+              fontStyle: Medium
+              lineHeight: 20
+          content: Tab
+    variants:
+      - configuration:
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor: "#D5FFF5"
+          Tab:
+            styles:
+              textColor: "#171818"
+      - configuration:
+          Size: XL
+        elements:
+          root:
+            styles:
+              padding:
+                top: 14
+                bottom: 14
+          Tab:
+            styles:
+              typography:
+                fontSize: 16
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 18
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          Size: L
+        elements:
+          root:
+            styles:
+              padding:
+                top: 12
+                end: 16
+                bottom: 12
+                start: 16
+          Tab:
+            styles:
+              typography:
+                fontSize: 16
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 18
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          Size: M
+        elements:
+          root:
+            styles:
+              padding:
+                top: 8
+                end: 16
+                bottom: 8
+                start: 16
+          Tab:
+            styles:
+              typography:
+                fontSize: 14
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 16
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          Size: S
+        elements:
+          root:
+            styles:
+              padding:
+                top: 5
+                end: 16
+                bottom: 5
+                start: 16
+          Tab:
+            styles:
+              typography:
+                fontSize: 12
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 14
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          State: Non-active
+        elements:
+          root:
+            styles:
+              mainAxisAlignment: CENTER
+              crossAxisAlignment: CENTER
+              layoutMode: VERTICAL
+              itemSpacing: 0
+              backgroundColor: "#35423F"
+          Tab:
+            styles:
+              textColor: "#C2D4CD"
+      - configuration:
+          State: Non-active
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor: "#A5D4C9"
+          Tab:
+            styles:
+              textColor: "#171818"
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T22:20:05.562Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 8:8835
+        nodeId: 12:9659
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
