@@ -1,0 +1,122 @@
+components:
+  blockHeader:
+    title: Block header
+    anatomy:
+      root:
+        type: container
+      Button:
+        type: instance
+        instanceOf: Button
+      Heading:
+        type: text
+    props:
+      Property 1:
+        type: string
+        default: Center
+        enum:
+          - Center
+          - Left
+        nullable: false
+    default:
+      layout:
+        - root:
+            - Button
+            - Heading
+            - Button
+      elements:
+        root:
+          styles:
+            cornerRadius:
+              topStart: 20
+              topEnd: 20
+              bottomEnd: 0
+              bottomStart: 0
+            width: 1200
+            primaryAxisSizingMode: FIXED
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            layoutSizingVertical: HUG
+            itemSpacing: 8
+            padding:
+              top: 6
+              bottom: 6
+              start: 24
+              end: 24
+            backgroundColor: "#0B1819"
+        Button:
+          styles:
+            width: 48
+            height: 48
+          propConfigurations:
+            Instance: close
+            State: Icon
+            Size: medium
+          instanceOf: Button
+        Heading:
+          styles:
+            layoutSizingHorizontal: FILL
+            layoutSizingVertical: HUG
+            textColor: "#D1DEDF"
+            typography:
+              fontSize: 24
+              fontFamily: Chirp
+              fontStyle: Bold
+              lineHeight: 28
+            textAlignHorizontal: CENTER
+          content: Heading
+    variants:
+      - configuration:
+          Property 1: Left
+        layout:
+          - root:
+              - Heading
+              - Button
+        elements:
+          Heading:
+            styles:
+              textAlignHorizontal: START
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T22:20:52.698Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 25:9682
+        nodeId: 65:10327
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
