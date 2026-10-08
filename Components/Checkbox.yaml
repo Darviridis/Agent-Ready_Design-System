@@ -1,0 +1,164 @@
+components:
+  checkbox:
+    title: Checkbox
+    anatomy:
+      root:
+        type: container
+      Rectangle 39622:
+        type: rectangle
+      check:
+        type: instance
+        detectedIn: State=On
+        instanceOf: check
+    props:
+      State:
+        type: string
+        default: Disabled off
+        enum:
+          - Default
+          - Disabled off
+          - Hover
+          - On
+          - Disabled on
+          - On - Hover
+        nullable: false
+      Instance:
+        type: string
+        examples:
+          - check
+    default:
+      layout:
+        - root:
+            - Rectangle 39622
+      elements:
+        root:
+          styles:
+            width: 24
+            height: 24
+        Rectangle 39622:
+          styles:
+            position: ABSOLUTE
+            top: 0%
+            bottom: 0%
+            start: 0%
+            end: 0%
+            strokes: "#1F2C2A"
+            strokeWeight: 1
+        check:
+          styles:
+            position: ABSOLUTE
+            top: 0
+            start: 0
+            width: 24
+            height: 24
+          instanceOf: check
+    variants:
+      - configuration:
+          State: Default
+        elements:
+          Rectangle 39622:
+            styles:
+              strokes: "#35423F"
+              backgroundColor: "#1F2C2A"
+      - configuration:
+          State: Hover
+        elements:
+          Rectangle 39622:
+            styles:
+              strokes: "#AAE2C8"
+              backgroundColor: "#1F2C2A"
+      - configuration:
+          State: On
+        layout:
+          - root:
+              - Rectangle 39622
+              - check
+        elements:
+          Rectangle 39622:
+            styles:
+              strokes: null
+              strokeAlign: null
+              strokeWeight: null
+              backgroundColor: "#AAE2C8"
+      - configuration:
+          State: Disabled on
+        layout:
+          - root:
+              - Rectangle 39622
+              - check
+        elements:
+          root:
+            styles:
+              opacity: 0.5
+          Rectangle 39622:
+            styles:
+              strokes: null
+              strokeAlign: null
+              strokeWeight: null
+              backgroundColor: "#AAE2C8"
+      - configuration:
+          State: On - Hover
+        layout:
+          - root:
+              - Rectangle 39622
+              - check
+        elements:
+          Rectangle 39622:
+            styles:
+              strokes: null
+              strokeAlign: null
+              strokeWeight: null
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 8
+                    spread: 0
+                    color: "#89A1A4"
+              backgroundColor: "#D5FFF5"
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T22:13:08.258Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 5:5545
+        nodeId: 5:5659
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
