@@ -1,0 +1,333 @@
+components:
+  input:
+    title: Input
+    anatomy:
+      root:
+        type: container
+      Heading:
+        type: text
+      Frame 1:
+        type: container
+      Text:
+        type: text
+      Error text:
+        type: text
+      Entered text:
+        type: text
+        detectedIn: State=Filled
+      Caret:
+        type: rectangle
+        detectedIn: State=Active
+      Please check this value:
+        type: text
+        detectedIn: State=Warning
+      Enter a valid value:
+        type: text
+        detectedIn: State=Error
+    props:
+      State:
+        type: string
+        default: Empty
+        enum:
+          - Empty
+          - Hover
+          - Filled
+          - Disabled
+          - Active
+          - Read-only
+          - Warning
+          - Filled-hover
+          - Error
+        nullable: false
+      Show Error text:
+        type: boolean
+        default: false
+    default:
+      layout:
+        - root:
+            - Heading
+            - Frame 1:
+                - Text
+            - Error text
+      elements:
+        root:
+          styles:
+            width: 420
+            layoutMode: VERTICAL
+            layoutSizingVertical: HUG
+            itemSpacing: 4
+        Heading:
+          styles:
+            layoutSizingHorizontal: FILL
+            layoutSizingVertical: HUG
+            textColor: "#C2D4CD"
+            typography:
+              fontFamily: Chirp
+              fontStyle: Bold
+              lineHeight: 18
+          content: Heading
+        Frame 1:
+          styles:
+            clipsContent: true
+            cornerRadius: 12
+            primaryAxisSizingMode: FIXED
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            layoutSizingHorizontal: FILL
+            layoutSizingVertical: HUG
+            itemSpacing: 10
+            padding:
+              top: 14
+              bottom: 14
+              start: 20
+              end: 20
+            backgroundColor: "#1F2C2A"
+        Text:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#697976"
+            typography:
+              fontFamily: Chirp
+              fontStyle: Regular
+              lineHeight: 18
+          content: Text
+        Error text:
+          styles:
+            visible: false
+            width: 55
+            height: 16
+            textColor: "#D38585"
+            typography:
+              fontSize: 12
+              fontFamily: Golos Text
+              fontStyle: Regular
+              lineHeight: 16
+          content: Error text
+        Entered text:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#E8F4F0"
+            typography:
+              fontFamily: Chirp
+              fontStyle: Regular
+              lineHeight: 18
+          content: Entered text
+        Caret:
+          styles:
+            width: 1
+            height: 18
+            position: ABSOLUTE
+            top: 14
+            start: 20
+            backgroundColor: "#AAE2C8"
+        Please check this value:
+          styles:
+            visible: false
+            width: 139
+            height: 16
+            textColor: "#D3B685"
+            typography:
+              fontSize: 12
+              fontFamily: Golos Text
+              fontStyle: Regular
+              lineHeight: 16
+          content: Please check this value.
+        Enter a valid value:
+          styles:
+            visible: false
+            width: 109
+            height: 16
+            textColor: "#D38585"
+            typography:
+              fontSize: 12
+              fontFamily: Golos Text
+              fontStyle: Regular
+              lineHeight: 16
+          content: Enter a valid value.
+    variants:
+      - configuration:
+          State: Hover
+        elements:
+          Frame 1:
+            styles:
+              strokes: "#A5D4C9"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 4
+                    spread: 3
+                    color: "#ACFFEE"
+              backgroundColor: "#35423F"
+      - configuration:
+          State: Filled
+        layout:
+          - root:
+              - Heading
+              - Frame 1:
+                  - Entered text
+              - Error text
+      - configuration:
+          State: Disabled
+        elements:
+          Heading:
+            styles:
+              textColor: "#697976"
+          Frame 1:
+            styles:
+              opacity: 0.5
+      - configuration:
+          State: Active
+        layout:
+          - root:
+              - Heading
+              - Frame 1:
+                  - Text
+                  - Caret
+              - Error text
+        elements:
+          Frame 1:
+            styles:
+              strokes: "#AAE2C8"
+              strokeAlign: INSIDE
+              strokeWeight: 2
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 4
+                    spread: 3
+                    color: "#ACFFEE"
+      - configuration:
+          State: Read-only
+        layout:
+          - root:
+              - Heading
+              - Frame 1:
+                  - Entered text
+              - Error text
+        elements:
+          Frame 1:
+            styles:
+              strokes: "#35423F"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              backgroundColor: "#0B1819"
+      - configuration:
+          State: Warning
+        layout:
+          - root:
+              - Heading
+              - Frame 1:
+                  - Entered text
+              - Please check this value
+        elements:
+          Frame 1:
+            styles:
+              strokes: "#D3B685"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 4
+                    spread: 3
+                    color: "#F9FFAC"
+      - configuration:
+          State: Filled-hover
+        layout:
+          - root:
+              - Heading
+              - Frame 1:
+                  - Entered text
+              - Error text
+        elements:
+          Frame 1:
+            styles:
+              strokes: "#A5D4C9"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 4
+                    spread: 3
+                    color: "#ACFFEE"
+              backgroundColor: "#35423F"
+      - configuration:
+          State: Error
+        layout:
+          - root:
+              - Heading
+              - Frame 1:
+                  - Entered text
+              - Enter a valid value
+        elements:
+          Frame 1:
+            styles:
+              strokes: "#D38585"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 4
+                    spread: 3
+                    color: "#FFACAC"
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T22:19:10.461Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 8:5807
+        nodeId: 11:61
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
