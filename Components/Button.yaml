@@ -1,0 +1,230 @@
+components:
+  button:
+    title: Button
+    anatomy:
+      root:
+        type: container
+      Connect wallet:
+        type: text
+      loading:
+        type: instance
+        detectedIn: State=Loading, Size=big
+        instanceOf: loading
+      waiting:
+        type: instance
+        detectedIn: State=Waiting, Size=big
+        instanceOf: waiting
+    props:
+      State:
+        type: string
+        default: Disabled
+        enum:
+          - Default
+          - Disabled
+          - Hover
+          - Loading
+          - Waiting
+          - Icon
+        nullable: false
+      Size:
+        type: string
+        default: big
+        enum:
+          - medium
+          - big
+        nullable: false
+      Instance:
+        type: string
+        examples:
+          - loading
+    default:
+      layout:
+        - root:
+            - Connect wallet
+      elements:
+        root:
+          styles:
+            cornerRadius: 12
+            width: 200
+            mainAxisAlignment: CENTER
+            primaryAxisSizingMode: FIXED
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            layoutSizingVertical: HUG
+            itemSpacing: 8
+            padding:
+              top: 20
+              bottom: 20
+              start: 24
+              end: 24
+            backgroundColor: "#35423F"
+        Connect wallet:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#697976"
+            typography:
+              fontSize: 18
+              fontFamily: Chirp
+              fontStyle: Medium
+              lineHeight: 20
+            textAlignHorizontal: CENTER
+          content: Connect wallet
+        loading:
+          styles:
+            width: 24
+            height: 24
+          instanceOf: loading
+        waiting:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+          instanceOf: waiting
+    variants:
+      - configuration:
+          Size: medium
+        elements:
+          root:
+            styles:
+              padding:
+                top: 14
+                bottom: 14
+      - configuration:
+          State: Default
+        elements:
+          root:
+            styles:
+              backgroundColor: "#AAE2C8"
+          Connect wallet:
+            styles:
+              textColor: "#171818"
+      - configuration:
+          State: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor: "#D5FFF5"
+          Connect wallet:
+            styles:
+              textColor: "#171818"
+      - configuration:
+          State: Loading
+        layout:
+          - root:
+              - Connect wallet
+              - loading
+        elements:
+          root:
+            styles:
+              opacity: 0.5
+              padding:
+                top: 18
+                end: 20
+                bottom: 18
+              backgroundColor: "#AAE2C8"
+          Connect wallet:
+            styles:
+              textColor: "#0F0F0F"
+      - configuration:
+          State: Waiting
+        layout:
+          - root:
+              - waiting
+        elements:
+          root:
+            styles:
+              opacity: 0.5
+              padding:
+                top: 26
+                end: 20
+                bottom: 26
+                start: 20
+              backgroundColor: "#1F2C2A"
+      - configuration:
+          State: Icon
+        layout:
+          - root:
+              - loading
+        elements:
+          root:
+            styles:
+              width: 60
+              height: 60
+              layoutSizingVertical: FIXED
+              backgroundColor: null
+              aspectRatio:
+                x: 48
+                y: 48
+      - configuration:
+          State: Loading
+          Size: medium
+        elements:
+          root:
+            styles:
+              padding:
+                top: 12
+                bottom: 12
+      - configuration:
+          State: Waiting
+          Size: medium
+        elements:
+          root:
+            styles:
+              padding: 20
+      - configuration:
+          State: Icon
+          Size: medium
+        elements:
+          root:
+            styles:
+              width: 48
+              height: 48
+              padding:
+                top: 20
+                bottom: 20
+              aspectRatio: null
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T21:25:08.375Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 0:1
+        nodeId: 4:5431
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
