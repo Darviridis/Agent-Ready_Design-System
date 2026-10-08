@@ -1,0 +1,175 @@
+components:
+  frame1:
+    title: Links
+    anatomy:
+      root:
+        type: container
+      Link:
+        type: text
+    props:
+      Property 1:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
+          - Variant3
+          - Variant4
+          - Variant5
+          - Variant6
+        nullable: false
+    default:
+      layout:
+        - root:
+            - Link
+      elements:
+        root:
+          styles:
+            mainAxisAlignment: CENTER
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            itemSpacing: 10
+        Link:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#AAE2C8"
+            typography:
+              fontSize: 12
+              fontFamily: Chirp
+              fontStyle: Medium
+              lineHeight: 14
+              textDecoration: UNDERLINE
+          content: Link
+    variants:
+      - configuration:
+          Property 1: Hover
+        elements:
+          Link:
+            styles:
+              textColor: "#D5FFF5"
+      - configuration:
+          Property 1: Variant3
+        elements:
+          Link:
+            styles:
+              typography:
+                fontSize: 14
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 16
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: UNDERLINE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          Property 1: Variant4
+        elements:
+          Link:
+            styles:
+              typography:
+                fontSize: 16
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 18
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: UNDERLINE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          Property 1: Variant5
+        elements:
+          Link:
+            styles:
+              textColor: "#D5FFF5"
+              typography:
+                fontSize: 14
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 16
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: UNDERLINE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+      - configuration:
+          Property 1: Variant6
+        elements:
+          Link:
+            styles:
+              textColor: "#D5FFF5"
+              typography:
+                fontSize: 16
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 18
+                letterSpacing: 0
+                textCase: ORIGINAL
+                textDecoration: UNDERLINE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-08T22:17:41.939Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 8:5798
+        nodeId: 12:9641
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
