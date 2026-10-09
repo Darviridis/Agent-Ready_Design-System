@@ -1,0 +1,155 @@
+components:
+  tags:
+    title: "Tags "
+    anatomy:
+      root:
+        type: container
+      Native:
+        type: text
+      Verified:
+        type: text
+        detectedIn: Size=small, Type=oval
+    props:
+      Size:
+        type: string
+        default: small
+        enum:
+          - small
+          - big
+        nullable: false
+      Type:
+        type: string
+        default: square
+        enum:
+          - oval
+          - square
+        nullable: false
+    default:
+      layout:
+        - root:
+            - Native
+      elements:
+        root:
+          styles:
+            cornerRadius: 6
+            mainAxisAlignment: CENTER
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            itemSpacing: 10
+            padding:
+              top: 4
+              bottom: 4
+              start: 8
+              end: 8
+            backgroundColor: "#1F2C2A"
+        Native:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#697976"
+            typography:
+              fontSize: 12
+              fontFamily: Chirp
+              fontStyle: Regular
+              lineHeight: 14
+            textAlignHorizontal: END
+          content: Native
+        Verified:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: "#AAE2C8"
+            typography:
+              fontSize: 12
+              fontFamily: Chirp
+              fontStyle: Regular
+              lineHeight: 14
+          content: Verified
+    variants:
+      - configuration:
+          Type: oval
+        layout:
+          - root:
+              - Verified
+        elements:
+          root:
+            styles:
+              cornerRadius: 999
+              mainAxisAlignment: START
+              crossAxisAlignment: START
+              layoutMode: VERTICAL
+              strokes: "#465C52"
+              strokeAlign: INSIDE
+              strokeWeight: 0.8
+              itemSpacing: 0
+              padding:
+                top: 2
+                bottom: 2
+      - configuration:
+          Size: big
+        elements:
+          root:
+            styles:
+              padding:
+                top: 6
+                end: 12
+                bottom: 6
+                start: 12
+      - configuration:
+          Size: big
+          Type: oval
+        elements:
+          root:
+            styles:
+              padding:
+                top: 4
+                end: 13
+                bottom: 4
+                start: 13
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-09T18:58:42.491Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.21.0
+        name: Specs 2
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
+        version: 0.34.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 145:12598
+        nodeId: 150:12613
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: JSON
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: HEX
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
