@@ -8,13 +8,21 @@ components:
         type: text
       loading:
         type: instance
-        detectedIn: State=Loading, Size=big
+        detectedIn: Type=Primary, State=Loading, Size=big
         instanceOf: loading
       waiting:
         type: instance
-        detectedIn: State=Waiting, Size=big
+        detectedIn: Type=Primary, State=Waiting, Size=big
         instanceOf: waiting
     props:
+      Type:
+        type: string
+        default: Primary
+        enum:
+          - Type
+          - Primary
+          - Secomdary
+        nullable: false
       State:
         type: string
         default: Disabled
@@ -141,21 +149,6 @@ components:
                 start: 20
               backgroundColor: "#1F2C2A"
       - configuration:
-          State: Icon
-        layout:
-          - root:
-              - loading
-        elements:
-          root:
-            styles:
-              width: 60
-              height: 60
-              layoutSizingVertical: FIXED
-              backgroundColor: null
-              aspectRatio:
-                x: 48
-                y: 48
-      - configuration:
           State: Loading
           Size: medium
         elements:
@@ -172,6 +165,53 @@ components:
             styles:
               padding: 20
       - configuration:
+          Type: Type
+          State: Icon
+        layout:
+          - root:
+              - loading
+        elements:
+          root:
+            styles:
+              width: 60
+              height: 60
+              layoutSizingVertical: FIXED
+              backgroundColor: null
+              aspectRatio:
+                x: 48
+                y: 48
+      - configuration:
+          Type: Secomdary
+          State: Default
+        elements:
+          root:
+            styles:
+              backgroundColor: "#465C52"
+          Connect wallet:
+            styles:
+              textColor: "#E8F4F0"
+      - configuration:
+          Type: Secomdary
+          State: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor: "#738F82"
+          Connect wallet:
+            styles:
+              textColor: "#E8F4F0"
+      - configuration:
+          Type: Secomdary
+          State: Loading
+        elements:
+          root:
+            styles:
+              backgroundColor: "#465C52"
+          Connect wallet:
+            styles:
+              textColor: "#E8F4F0"
+      - configuration:
+          Type: Type
           State: Icon
           Size: medium
         elements:
@@ -186,7 +226,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-08T22:34:07.054Z
+      lastUpdated: 2026-10-09T18:43:24.467Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
