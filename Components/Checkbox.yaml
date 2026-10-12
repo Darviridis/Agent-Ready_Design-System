@@ -4,46 +4,35 @@ components:
     anatomy:
       root:
         type: container
-      Rectangle 39622:
-        type: rectangle
       check:
         type: instance
-        detectedIn: State=On
+        detectedIn: State=Active
         instanceOf: check
     props:
       State:
         type: string
-        default: Disabled off
+        default: Default
         enum:
           - Default
-          - Disabled off
           - Hover
-          - On
-          - Disabled on
-          - On - Hover
+          - Active
+          - Active-disabled
+          - Active-hover
+          - Disabled
         nullable: false
-      Instance:
-        type: string
-        examples:
-          - check
     default:
       layout:
-        - root:
-            - Rectangle 39622
+        - root
       elements:
         root:
           styles:
+            clipsContent: true
+            cornerRadius: 8
             width: 24
             height: 24
-        Rectangle 39622:
-          styles:
-            position: ABSOLUTE
-            top: 0%
-            bottom: 0%
-            start: 0%
-            end: 0%
-            strokes: "#1F2C2A"
+            strokes: "#35423F"
             strokeWeight: 1
+            backgroundColor: "#1F2C2A"
         check:
           styles:
             position: ABSOLUTE
@@ -54,56 +43,44 @@ components:
           instanceOf: check
     variants:
       - configuration:
-          State: Default
-        elements:
-          Rectangle 39622:
-            styles:
-              strokes: "#35423F"
-              backgroundColor: "#1F2C2A"
-      - configuration:
           State: Hover
         elements:
-          Rectangle 39622:
+          root:
             styles:
               strokes: "#AAE2C8"
-              backgroundColor: "#1F2C2A"
+              backgroundColor: "#35423F"
       - configuration:
-          State: On
+          State: Active
         layout:
           - root:
-              - Rectangle 39622
               - check
         elements:
-          Rectangle 39622:
+          root:
             styles:
               strokes: null
               strokeAlign: null
               strokeWeight: null
               backgroundColor: "#AAE2C8"
       - configuration:
-          State: Disabled on
+          State: Active-disabled
         layout:
           - root:
-              - Rectangle 39622
               - check
         elements:
           root:
             styles:
               opacity: 0.5
-          Rectangle 39622:
-            styles:
               strokes: null
               strokeAlign: null
               strokeWeight: null
               backgroundColor: "#AAE2C8"
       - configuration:
-          State: On - Hover
+          State: Active-hover
         layout:
           - root:
-              - Rectangle 39622
               - check
         elements:
-          Rectangle 39622:
+          root:
             styles:
               strokes: null
               strokeAlign: null
@@ -113,14 +90,20 @@ components:
                   - visible: true
                     offsetX: 0
                     offsetY: 0
-                    blur: 8
+                    blur: 4
                     spread: 0
-                    color: "#89A1A4"
+                    color: "#9DFFE8"
               backgroundColor: "#D5FFF5"
+      - configuration:
+          State: Disabled
+        elements:
+          root:
+            styles:
+              backgroundColor: null
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-08T22:13:08.258Z
+      lastUpdated: 2026-10-12T21:59:11.733Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
@@ -134,7 +117,7 @@ components:
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 5:5545
-        nodeId: 5:5659
+        nodeId: 186:525
         nodeType: COMPONENT_SET
       conventions:
         platforms:
