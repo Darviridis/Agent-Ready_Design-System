@@ -85,8 +85,8 @@ components:
           instanceOf: loading
         waiting:
           styles:
-            layoutSizingHorizontal: HUG
-            layoutSizingVertical: HUG
+            width: 24
+            height: 24
           instanceOf: waiting
     variants:
       - configuration:
@@ -226,7 +226,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-09T19:13:00.169Z
+      lastUpdated: 2026-10-12T21:28:58.687Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
