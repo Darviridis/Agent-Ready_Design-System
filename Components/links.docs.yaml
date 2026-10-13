@@ -1,0 +1,150 @@
+component: links
+title: Links
+
+description: >
+A reusable text link component with three sizes and two visual states.
+It provides a consistent underlined appearance for navigation throughout
+the interface.
+
+purpose:
+
+* Navigate users to pages, sections, or external resources.
+* Maintain consistent link styling across the product.
+* Support different text sizes for different interface contexts.
+
+usage:
+use_when:
+- Users need to navigate to another page or resource.
+- A text link appears within a form, content section, or informational area.
+- The interface requires a consistent underlined link style.
+avoid_when:
+- The action changes application state rather than navigating; use a button.
+- The element submits a form; use a button.
+- The element is decorative and not interactive.
+
+props:
+State:
+type: string
+description: Controls the visual state of the link.
+default: Default
+enum:
+- Default
+- Hover
+required: true
+
+Size:
+type: string
+description: Controls the text size and line height of the link.
+default: S
+enum:
+- S
+- M
+- L
+required: true
+
+variants:
+State:
+Default:
+description: Normal link appearance.
+color: "#AAE2C8"
+Hover:
+description: Link appearance when the pointer hovers over it.
+color: "#D5FFF5"
+
+Size:
+S:
+description: Small link.
+font_family: Chirp
+font_style: Medium
+font_size: 12
+line_height: 14
+
+```
+M:
+  description: Medium link.
+  font_family: Chirp
+  font_style: Medium
+  font_size: 14
+  line_height: 16
+
+L:
+  description: Large link.
+  font_family: Chirp
+  font_style: Medium
+  font_size: 16
+  line_height: 18
+```
+
+composition:
+root:
+semantic_role: link_container
+direction: horizontal
+main_axis_alignment: center
+cross_axis_alignment: center
+width_behavior: hug
+height_behavior: hug
+item_spacing: 10
+
+Link:
+semantic_role: anchor
+description: Visible text of the link.
+default_content: Link
+text_decoration: underline
+default_color: "#AAE2C8"
+font_family: Chirp
+font_style: Medium
+
+behavior:
+
+* Use State to select the visual state and Size to select the typography size.
+* State and Size are independent properties and must work in combination.
+* Default uses text color #AAE2C8.
+* Hover uses text color #D5FFF5.
+* S uses 12px text with a 14px line height.
+* M uses 14px text with a 16px line height.
+* L uses 16px text with an 18px line height.
+* Keep the link text configurable rather than hardcoding the word Link.
+* The consuming interface must provide the destination URL.
+* Do not treat the visual State property as a replacement for actual pointer or keyboard interaction.
+* Hover styling must not be the only indication that the element is interactive.
+
+accessibility:
+
+* Use a semantic anchor element with a valid href for navigation.
+* Provide descriptive link text that communicates the destination or purpose.
+* Support keyboard navigation and activation.
+* Provide a visible keyboard focus indicator distinct from the hover appearance.
+* Maintain sufficient text and focus-indicator contrast.
+* Preserve the underline to distinguish links from surrounding text.
+* Do not use a link for an action that should be represented by a button.
+* Communicate unexpected new-tab behavior when applicable.
+
+implementation:
+
+* Read this file together with components/links.yaml.
+* Treat the Specs 2 YAML as the source of truth for visual anatomy, typography, colors, and variants.
+* Treat this file as additional semantic and behavioral guidance.
+* Implement navigation using a semantic anchor with a valid destination.
+* Keep State and Size as independent properties.
+* Support all six combinations of State and Size.
+* Apply the typography values defined for the selected Size.
+* Apply the color defined for the selected State.
+* Add keyboard focus styling according to the broader design system.
+* Do not invent visited, disabled, or active states unless they are defined by the design system.
+
+related_components:
+
+* Button
+
+design_tokens:
+link_default: "#AAE2C8"
+link_hover: "#D5FFF5"
+link_font_family: Chirp
+link_font_style: Medium
+link_size_s: 12
+link_line_height_s: 14
+link_size_m: 14
+link_line_height_m: 16
+link_size_l: 16
+link_line_height_l: 18
+link_text_decoration: underline
