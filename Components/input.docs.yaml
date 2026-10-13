@@ -1,0 +1,302 @@
+component: input
+
+description: >
+A text input component that allows users to enter, edit, or review a value.
+It supports empty, focused, filled, disabled, read-only, warning, and error
+visual states.
+
+purpose:
+
+* Collect text or other form values from users.
+* Display a label, current value, and optional validation feedback.
+* Communicate focus, disabled, read-only, warning, and error states.
+
+usage:
+use_when:
+- A user needs to enter a value into a form.
+- A user needs to edit an existing value.
+- A form field needs validation feedback.
+avoid_when:
+- The user must choose from a predefined list; consider a select.
+- The user must select or deselect a boolean option; use a checkbox or switch.
+- The user must enter long, multiline text; consider a textarea.
+
+props:
+State:
+type: string
+description: >
+Selects the visual state defined by the Figma component. Runtime behavior
+should be controlled by the field value, focus, disabled, read-only, and
+validation state.
+default: Empty
+enum:
+- Empty
+- Hover
+- Filled
+- Disabled
+- Active
+- Read-only
+- Warning
+- Filled-hover
+- Error
+required: true
+
+Show Error text:
+type: boolean
+description: >
+Controls whether the supplementary Error text element is displayed.
+The Warning and Error variants have their own dedicated feedback elements.
+default: false
+required: false
+
+states:
+Empty:
+description: Empty field in its normal state.
+value: ""
+editable: true
+focused: false
+appearance:
+background: "#1F2C2A"
+placeholder_color: "#697976"
+
+Hover:
+description: Empty field while the pointer hovers over it.
+editable: true
+focused: false
+appearance:
+background: "#35423F"
+border: "#A5D4C9"
+glow_color: "#ACFFEE"
+glow_blur: 4
+glow_spread: 3
+
+Filled:
+description: Field containing a user-provided value.
+editable: true
+value_display: Entered text
+appearance:
+text_color: "#E8F4F0"
+
+Disabled:
+description: Field that cannot currently be interacted with or edited.
+editable: false
+disabled: true
+appearance:
+opacity: 0.5
+heading_color: "#697976"
+
+Active:
+description: Field focused and ready for text entry.
+editable: true
+focused: true
+caret_visible: true
+appearance:
+border: "#AAE2C8"
+border_width: 2
+glow_color: "#ACFFEE"
+glow_blur: 4
+glow_spread: 3
+
+Read-only:
+description: Field displaying a value that cannot be edited.
+editable: false
+read_only: true
+value_display: Entered text
+appearance:
+background: "#0B1819"
+border: "#35423F"
+border_width: 1
+
+Warning:
+description: Field displaying a value that needs attention but is not necessarily invalid.
+value_display: Entered text
+feedback:
+message: Please check this value.
+color: "#D3B685"
+appearance:
+border: "#D3B685"
+border_width: 1
+glow_color: "#F9FFAC"
+glow_blur: 4
+glow_spread: 3
+
+Filled-hover:
+description: Field containing a value while the pointer hovers over it.
+value_display: Entered text
+editable: true
+appearance:
+background: "#35423F"
+border: "#A5D4C9"
+glow_color: "#ACFFEE"
+glow_blur: 4
+glow_spread: 3
+
+Error:
+description: Field whose value has failed validation.
+value_display: Entered text
+feedback:
+message: Enter a valid value.
+color: "#D38585"
+appearance:
+border: "#D38585"
+border_width: 1
+glow_color: "#FFACAC"
+glow_blur: 4
+glow_spread: 3
+
+composition:
+root:
+semantic_role: form_field
+direction: vertical
+spacing: 4
+source_width: 420
+
+Heading:
+semantic_role: label
+description: Visible label identifying the field.
+color: "#C2D4CD"
+font_family: Chirp
+font_style: Bold
+line_height: 18
+
+Frame 1:
+semantic_role: input_container
+description: Visual container for the input value, placeholder, and caret.
+direction: horizontal
+spacing: 10
+padding:
+top: 14
+bottom: 14
+start: 20
+end: 20
+corner_radius: 12
+background: "#1F2C2A"
+
+Text:
+semantic_role: placeholder
+description: Placeholder displayed when the field is empty.
+content: Text
+color: "#697976"
+font_family: Chirp
+font_style: Regular
+line_height: 18
+
+Entered text:
+semantic_role: input_value
+description: Displays the current value when the field is filled.
+color: "#E8F4F0"
+font_family: Chirp
+font_style: Regular
+line_height: 18
+
+Caret:
+semantic_role: text_caret
+description: Visual text cursor shown in the Active variant.
+width: 1
+height: 18
+color: "#AAE2C8"
+
+Error text:
+semantic_role: supplementary_feedback
+description: Optional supplementary error text.
+color: "#D38585"
+font_family: Golos Text
+font_style: Regular
+font_size: 12
+line_height: 16
+default_visible: false
+
+Please check this value:
+semantic_role: warning_message
+description: Warning message shown in the Warning variant.
+content: Please check this value.
+color: "#D3B685"
+font_family: Golos Text
+font_style: Regular
+font_size: 12
+line_height: 16
+
+Enter a valid value:
+semantic_role: error_message
+description: Error message shown in the Error variant.
+content: Enter a valid value.
+color: "#D38585"
+font_family: Golos Text
+font_style: Regular
+font_size: 12
+line_height: 16
+
+behavior:
+
+* The field value must be stored in application state.
+* The placeholder is displayed when the value is empty.
+* Entered text is displayed when the field contains a value.
+* Focusing an editable field activates the caret and focus appearance.
+* Disabled fields cannot be focused or edited through normal user interaction.
+* Read-only fields can be focused and their values can be selected or copied where supported, but their values cannot be edited.
+* Warning and Error states must be driven by validation or application feedback, not by hover.
+* The Warning state displays the warning message.
+* The Error state displays the error message.
+* Show Error text controls only the supplementary Error text element; it must not be assumed to control the dedicated Warning or Error messages.
+* Leaving the field should not automatically erase its value.
+* Do not replace a user's value with placeholder content.
+
+validation:
+warning:
+message: Please check this value.
+purpose: Inform the user that the value may need attention.
+error:
+message: Enter a valid value.
+purpose: Explain that the value does not satisfy a validation requirement.
+guidance:
+- Define validation rules in the consuming form or product requirements.
+- Preserve the user's entered value when validation fails.
+- Show clear feedback explaining how to correct an invalid value.
+- Avoid displaying an error before validation is appropriate, unless the product explicitly requires immediate validation.
+- Do not rely on color alone to communicate a warning or error.
+
+accessibility:
+
+* Use a native input element appropriate to the expected value, such as text, email, or password.
+* Associate Heading with the input as its accessible label.
+* Do not rely on placeholder text as the only label.
+* Use the native disabled attribute for Disabled and the readonly attribute for Read-only.
+* Expose validation feedback to assistive technologies and associate it with the input.
+* Set aria-invalid="true" when the field has a validation error.
+* Associate warning and error messages using aria-describedby or an equivalent accessible relationship.
+* Announce dynamically updated validation messages appropriately without unnecessarily interrupting users.
+* Provide a visible keyboard focus indicator.
+* Ensure text, borders, and focus indicators meet the product's required contrast standards.
+* Preserve keyboard navigation and text editing behavior provided by the native input.
+
+implementation:
+
+* Read this file together with components/input.yaml.
+* Treat the Specs 2 YAML as the source of truth for visual anatomy, dimensions, typography, colors, effects, and variants.
+* Treat this file as additional guidance for semantics, behavior, validation, and accessibility.
+* Implement the field using the appropriate native input element rather than recreating text editing from visual layers.
+* Keep the actual input value separate from the visual State property.
+* Derive the visual state from value, focus, disabled, read-only, and validation status.
+* Reuse the existing visual styles for focus, hover, warning, and error states.
+* Keep the field width responsive to its parent container; treat 420 as the source design width, not necessarily a fixed runtime width.
+* Ensure warning and error messages remain readable and are not clipped.
+* Use actual validation messages when product requirements provide them; the source messages are default design copy.
+* Do not implement unsupported input types, icons, clear buttons, or multiline behavior unless they are added to the design specification or product requirements.
+
+related_components:
+
+* checkbox
+* radiobutton
+
+design_tokens:
+input_background: "#1F2C2A"
+input_background_hover: "#35423F"
+input_background_read_only: "#0B1819"
+input_text: "#E8F4F0"
+input_placeholder: "#697976"
+input_label: "#C2D4CD"
+input_focus: "#AAE2C8"
+input_hover_border: "#A5D4C9"
+input_warning: "#D3B685"
+input_error: "#D38585"
+input_corner_radius: 12
