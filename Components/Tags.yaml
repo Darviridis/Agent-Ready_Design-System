@@ -76,6 +76,7 @@ components:
         elements:
           root:
             styles:
+              clipsContent: true
               cornerRadius: 300
               mainAxisAlignment: START
               crossAxisAlignment: START
@@ -103,15 +104,14 @@ components:
         elements:
           root:
             styles:
+              clipsContent: false
               padding:
                 top: 4
-                end: 13
                 bottom: 4
-                start: 13
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T21:28:19.280Z
+      lastUpdated: 2026-10-13T22:10:51.144Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
