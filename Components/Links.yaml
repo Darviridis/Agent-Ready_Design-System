@@ -7,16 +7,20 @@ components:
       Link:
         type: text
     props:
-      Property 1:
+      State:
         type: string
         default: Default
         enum:
           - Default
           - Hover
-          - Variant3
-          - Variant4
-          - Variant5
-          - Variant6
+        nullable: false
+      Size:
+        type: string
+        default: S
+        enum:
+          - S
+          - M
+          - L
         nullable: false
     default:
       layout:
@@ -45,13 +49,7 @@ components:
           content: Link
     variants:
       - configuration:
-          Property 1: Hover
-        elements:
-          Link:
-            styles:
-              textColor: "#D5FFF5"
-      - configuration:
-          Property 1: Variant3
+          Size: M
         elements:
           Link:
             styles:
@@ -70,7 +68,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Property 1: Variant4
+          Size: L
         elements:
           Link:
             styles:
@@ -89,49 +87,15 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Property 1: Variant5
+          State: Hover
         elements:
           Link:
             styles:
               textColor: "#D5FFF5"
-              typography:
-                fontSize: 14
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 16
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: UNDERLINE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          Property 1: Variant6
-        elements:
-          Link:
-            styles:
-              textColor: "#D5FFF5"
-              typography:
-                fontSize: 16
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 18
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: UNDERLINE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T21:51:10.781Z
+      lastUpdated: 2026-10-13T21:54:35.822Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
