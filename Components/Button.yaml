@@ -8,20 +8,20 @@ components:
         type: text
       loading:
         type: instance
-        detectedIn: Type=Primary, State=Loading, Size=big
+        detectedIn: Type=Primary, State=Loading, Size=L
         instanceOf: loading
       waiting:
         type: instance
-        detectedIn: Type=Primary, State=Waiting, Size=big
+        detectedIn: Type=Primary, State=Waiting, Size=L
         instanceOf: waiting
     props:
       Type:
         type: string
         default: Primary
         enum:
-          - Type
           - Primary
           - Secondary
+          - Icon
         nullable: false
       State:
         type: string
@@ -36,10 +36,10 @@ components:
         nullable: false
       Size:
         type: string
-        default: big
+        default: L
         enum:
-          - medium
-          - big
+          - M
+          - L
         nullable: false
       Instance:
         type: string
@@ -90,7 +90,7 @@ components:
           instanceOf: waiting
     variants:
       - configuration:
-          Size: medium
+          Size: M
         elements:
           root:
             styles:
@@ -150,7 +150,7 @@ components:
               backgroundColor: "#1F2C2A"
       - configuration:
           State: Loading
-          Size: medium
+          Size: M
         elements:
           root:
             styles:
@@ -159,27 +159,11 @@ components:
                 bottom: 12
       - configuration:
           State: Waiting
-          Size: medium
+          Size: M
         elements:
           root:
             styles:
               padding: 20
-      - configuration:
-          Type: Type
-          State: Icon
-        layout:
-          - root:
-              - loading
-        elements:
-          root:
-            styles:
-              width: 60
-              height: 60
-              layoutSizingVertical: FIXED
-              backgroundColor: null
-              aspectRatio:
-                x: 48
-                y: 48
       - configuration:
           Type: Secondary
           State: Default
@@ -211,9 +195,41 @@ components:
             styles:
               textColor: "#E8F4F0"
       - configuration:
-          Type: Type
-          State: Icon
-          Size: medium
+          Type: Icon
+          State: Default
+        layout:
+          - root:
+              - loading
+        elements:
+          root:
+            styles:
+              width: 60
+              height: 60
+              layoutSizingVertical: FIXED
+              backgroundColor: null
+              aspectRatio:
+                x: 48
+                y: 48
+      - configuration:
+          Type: Icon
+          State: Hover
+        layout:
+          - root:
+              - loading
+        elements:
+          root:
+            styles:
+              width: 60
+              height: 60
+              layoutSizingVertical: FIXED
+              backgroundColor: null
+              aspectRatio:
+                x: 48
+                y: 48
+      - configuration:
+          Type: Icon
+          State: Hover
+          Size: M
         elements:
           root:
             styles:
@@ -223,10 +239,27 @@ components:
                 top: 20
                 bottom: 20
               aspectRatio: null
+      - configuration:
+          Type: Icon
+          State: Icon
+          Size: M
+        layout:
+          - root:
+              - loading
+        elements:
+          root:
+            styles:
+              width: 48
+              height: 48
+              layoutSizingVertical: FIXED
+              padding:
+                top: 20
+                bottom: 20
+              backgroundColor: null
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T21:35:03.519Z
+      lastUpdated: 2026-10-13T21:41:30.465Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
