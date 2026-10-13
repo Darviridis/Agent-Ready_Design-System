@@ -31,7 +31,7 @@ components:
       elements:
         root:
           styles:
-            cornerRadius: 6
+            cornerRadius: 4
             mainAxisAlignment: CENTER
             crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
@@ -76,7 +76,7 @@ components:
         elements:
           root:
             styles:
-              cornerRadius: 999
+              cornerRadius: 300
               mainAxisAlignment: START
               crossAxisAlignment: START
               layoutMode: VERTICAL
@@ -111,7 +111,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-09T18:58:42.491Z
+      lastUpdated: 2026-10-13T21:28:19.280Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
