@@ -181,7 +181,6 @@ components:
         elements:
           root:
             styles:
-              layoutMode: VERTICAL
               itemSpacing: 0
               backgroundColor: "#35423F"
           Tab:
@@ -200,7 +199,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T22:00:05.056Z
+      lastUpdated: 2026-10-13T22:06:21.452Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
