@@ -21,7 +21,7 @@ components:
         enum:
           - Type
           - Primary
-          - Secomdary
+          - Secondary
         nullable: false
       State:
         type: string
@@ -181,7 +181,7 @@ components:
                 x: 48
                 y: 48
       - configuration:
-          Type: Secomdary
+          Type: Secondary
           State: Default
         elements:
           root:
@@ -191,7 +191,7 @@ components:
             styles:
               textColor: "#E8F4F0"
       - configuration:
-          Type: Secomdary
+          Type: Secondary
           State: Hover
         elements:
           root:
@@ -201,7 +201,7 @@ components:
             styles:
               textColor: "#E8F4F0"
       - configuration:
-          Type: Secomdary
+          Type: Secondary
           State: Loading
         elements:
           root:
@@ -226,7 +226,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-12T21:28:58.687Z
+      lastUpdated: 2026-10-13T21:35:03.519Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
