@@ -38,8 +38,8 @@ components:
             layoutSizingVertical: HUG
             itemSpacing: 8
             padding:
-              top: 6
-              bottom: 6
+              top: 8
+              bottom: 8
               start: 24
               end: 24
             backgroundColor: "#0B1819"
@@ -49,8 +49,9 @@ components:
             height: 48
           propConfigurations:
             Instance: close
+            Type: Icon
             State: Icon
-            Size: medium
+            Size: M
           instanceOf: Button
         Heading:
           styles:
@@ -61,7 +62,7 @@ components:
               fontSize: 24
               fontFamily: Chirp
               fontStyle: Bold
-              lineHeight: 28
+              lineHeight: 32
             textAlignHorizontal: CENTER
           content: Heading
     variants:
@@ -78,7 +79,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-08T22:20:52.698Z
+      lastUpdated: 2026-10-13T21:46:02.215Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
