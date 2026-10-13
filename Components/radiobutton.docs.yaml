@@ -1,0 +1,120 @@
+
+component: radiobutton
+
+description: >
+  A radio button is a form control that lets users select exactly
+  one option from a group of mutually exclusive options.
+  Use it when all available options should be visible and the user
+  must choose one option.
+
+purpose:
+  category: form-control
+  role: single-selection
+  interaction: select-one-option
+
+usage:
+  use_when:
+    - The user must choose one option from a visible list.
+    - All options should be visible without opening a menu.
+    - The options are mutually exclusive.
+
+  do_not_use_when:
+    - The user can select multiple options. Use checkboxes.
+    - The user needs to enable or disable a single setting. Consider a switch.
+    - There are many options and a dropdown is more appropriate.
+
+  constraints:
+    - Radio buttons must belong to a named radio group.
+    - All options in the same group must share the same group name.
+    - Only one option in a group can be selected at a time.
+    - Selecting another option deselects the previously selected option.
+    - The group should have a visible or programmatic label.
+    - Do not use a radio button as a standalone toggle.
+
+props:
+  State:
+    type: string
+    default: Default
+    enum:
+      - Default
+      - Hover
+      - Disabled
+      - Active
+      - Active-hover
+    description: >
+      Controls the visual state of the component.
+      Active represents the selected visual state.
+      Hover represents pointer hover.
+      Disabled represents a non-interactive state.
+    nullable: false
+
+states:
+  Default:
+    description: >
+      The option is not selected and is in its normal interactive state.
+    interactive: true
+    selected: false
+
+  Hover:
+    description: >
+      The pointer is hovering over an unselected option.
+    interactive: true
+    selected: false
+    trigger: pointer-hover
+
+  Disabled:
+    description: >
+      The option cannot be changed by the user.
+    interactive: false
+    selected: false
+
+  Active:
+    description: >
+      The option is selected.
+    interactive: true
+    selected: true
+
+  Active-hover:
+    description: >
+      The option is selected and the pointer is hovering over it.
+    interactive: true
+    selected: true
+    trigger: pointer-hover
+
+composition:
+  root:
+    type: container
+    contains:
+      - Rectangle 39622
+      - Rectangle 39623
+
+  rules:
+    - The root is the outer clickable control.
+    - The inner visual element indicates the selected state.
+    - Keep the indicator centered inside the outer circle.
+    - The component may be placed next to a text label.
+    - Place related radio buttons inside a shared radio group.
+
+related_components:
+  - checkbox
+  - switch
+  - select
+
+accessibility:
+  role: radio
+  requirements:
+    - Provide an accessible name for every option.
+    - Expose the selected state programmatically.
+    - Expose the disabled state programmatically.
+    - Support keyboard navigation according to radio-group conventions.
+    - Ensure the selected indicator has sufficient visual contrast.
+
+implementation:
+  semantic_element: input[type=radio]
+  group_required: true
+  single_selection: true
+  controlled_state: true
+  note: >
+    Use the visual specification for styling and the implementation
+    rules for behavior. Do not treat visual variants as separate
+    interactive controls.
