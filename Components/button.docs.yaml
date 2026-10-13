@@ -1,0 +1,339 @@
+
+component: button
+
+description: >
+  A button is an interactive control that triggers an action when
+  activated by the user. Use buttons for actions such as connecting
+  a wallet, submitting a form, confirming a choice, or starting
+  an operation.
+
+purpose:
+  category: action-control
+  role: trigger-action
+  interaction: click-or-keyboard-activation
+
+usage:
+  use_when:
+    - The user needs to trigger an action.
+    - The interface needs a clear primary or secondary action.
+    - The user needs to submit, confirm, connect, retry, or cancel an operation.
+
+  do_not_use_when:
+    - The user needs to navigate to another page. Prefer a link.
+    - The user needs to select an option. Use an appropriate selection control.
+    - The user needs to toggle a persistent setting. Consider a switch.
+    - The control only displays information and has no action.
+
+  constraints:
+    - Use a clear, action-oriented label.
+    - Use Primary for the main action in a section or workflow.
+    - Use Secondary for a supporting action.
+    - Use Icon for an icon-only action.
+    - Do not use color as the only way to communicate a state.
+    - Icon-only buttons must have an accessible name.
+    - Avoid multiple competing primary actions in the same action group.
+    - Follow the dimensions and styles defined by the technical specification.
+
+props:
+  Type:
+    type: string
+    default: Primary
+    enum:
+      - Primary
+      - Secondary
+      - Icon
+    description: >
+      Defines the visual type of the button.
+      Primary is used for the main action.
+      Secondary is used for supporting actions.
+      Icon is used for icon-only controls.
+    nullable: false
+
+  State:
+    type: string
+    default: Disabled
+    enum:
+      - Default
+      - Disabled
+      - Hover
+      - Loading
+      - Waiting
+      - Icon
+    description: >
+      Defines the visual state represented in the Figma component set.
+      Disabled is the default configuration in the source specification.
+      This default describes the Figma variant, not the required initial
+      runtime state of every button.
+    nullable: false
+
+  Size:
+    type: string
+    default: L
+    enum:
+      - M
+      - L
+    description: >
+      Defines the button size.
+      L is the larger size.
+      M is the more compact size.
+    nullable: false
+
+  Instance:
+    type: string
+    examples:
+      - loading
+      - waiting
+    description: >
+      Identifies an instance used by the component.
+      Use only instances defined in the technical specification.
+    nullable: true
+
+states:
+  Default:
+    description: >
+      The button is enabled and ready to trigger its action.
+    interactive: true
+    action_enabled: true
+
+  Disabled:
+    description: >
+      The button is unavailable and cannot be activated.
+    interactive: false
+    action_enabled: false
+    requirements:
+      - Prevent activation.
+      - Expose the disabled state programmatically.
+      - Do not rely only on reduced opacity to communicate the state.
+
+  Hover:
+    description: >
+      The pointer is hovering over an enabled button.
+    interactive: true
+    action_enabled: true
+    trigger: pointer-hover
+    note: >
+      Hover is a visual state. Touch and keyboard users must still
+      be able to understand and operate the button.
+
+  Loading:
+    description: >
+      An operation is in progress and a loading indicator is displayed.
+    interactive: false
+    action_enabled: false
+    requirements:
+      - Prevent duplicate actions when appropriate.
+      - Keep the action context understandable.
+      - Preserve button dimensions where possible.
+      - Communicate progress accessibly.
+      - Restore the appropriate state when the operation ends.
+
+  Waiting:
+    description: >
+      The button represents a pending operation or a wait for an
+      external response.
+    interactive: false
+    action_enabled: false
+    requirements:
+      - Prevent repeated activation when it could cause duplicate actions.
+      - Communicate the pending status.
+      - Restore an appropriate state after success or failure.
+
+  Icon:
+    description: >
+      An icon-only visual configuration represented in the source
+      component set.
+    interactive: true
+    action_enabled: true
+    requirements:
+      - Provide an accessible name for the action.
+      - Use a meaningful icon.
+      - Preserve a sufficient interactive target.
+    note: >
+      Confirm whether State=Icon is needed for production because
+      the source specification also defines Type=Icon.
+
+types:
+  Primary:
+    description: >
+      The main visual style for the most important action.
+    intended_use:
+      - Connecting a wallet.
+      - Submitting a form.
+      - Confirming an operation.
+    visual_reference:
+      background_default: "#AAE2C8"
+      text_default: "#171818"
+      background_hover: "#D5FFF5"
+      text_hover: "#171818"
+
+  Secondary:
+    description: >
+      A supporting action with less visual prominence than Primary.
+    intended_use:
+      - Supporting actions next to a primary action.
+      - Secondary actions in dialogs or workflows.
+    visual_reference:
+      background_default: "#465C52"
+      text_default: "#E8F4F0"
+      background_hover: "#738F82"
+      text_hover: "#E8F4F0"
+
+  Icon:
+    description: >
+      A compact icon-only button without a visible text label.
+    intended_use:
+      - Actions represented by a recognizable icon.
+      - Compact interface controls.
+    rules:
+      - Do not render the default text label.
+      - Provide an accessible name.
+      - Use the icon instance specified by the design.
+
+sizes:
+  L:
+    description: >
+      The larger button size, intended for prominent actions.
+    source_dimensions:
+      width: 200
+      horizontal_padding: 24
+      vertical_padding: 20
+    note: >
+      Values describe the default source configuration.
+      Specific states may override padding or layout.
+
+  M:
+    description: >
+      The more compact button size for denser layouts.
+    note: >
+      Use dimensions and padding from the technical specification.
+      State-specific variants may override these values.
+
+composition:
+  root:
+    type: container
+    contains:
+      - Connect wallet
+      - loading
+      - waiting
+    description: >
+      The root container defines the button layout, background,
+      dimensions, padding, alignment, and corner radius.
+
+  label:
+    source_layer: Connect wallet
+    type: text
+    description: >
+      The visible text describing the action.
+    rules:
+      - Use a concise and meaningful action label.
+      - Keep the label readable.
+      - Omit the visible label for icon-only buttons when appropriate.
+
+  loading:
+    type: instance
+    instance_of: loading
+    description: >
+      The loading indicator displayed during an operation.
+    rules:
+      - Use the existing loading instance.
+      - Follow the layout specified for the Loading state.
+      - Do not implement the indicator as a separate button.
+
+  waiting:
+    type: instance
+    instance_of: waiting
+    description: >
+      The waiting indicator displayed during a pending operation.
+    rules:
+      - Use the existing waiting instance.
+      - Follow the layout specified for the Waiting state.
+      - Do not implement the indicator as a separate button.
+
+  rules:
+    - The root must be the single interactive button element.
+    - Keep label and indicator alignment consistent.
+    - Follow the variant layout defined by the technical specification.
+    - Do not invent additional variants or visual elements.
+
+default_behavior:
+  source_specification:
+    State: Disabled
+    Type: Primary
+    Size: L
+
+  runtime:
+    rule: >
+      Do not automatically initialize every application button as disabled
+      simply because the Figma source specifies Disabled as its default.
+    initial_state: >
+      Determine the runtime state from the actual application requirements.
+    requirements:
+      - Use Default when the action is available.
+      - Use Disabled only when the action is genuinely unavailable.
+      - Use Loading or Waiting only while the corresponding operation is active.
+      - Do not infer application state from the Figma default alone.
+
+accessibility:
+  role: button
+  requirements:
+    - Use a semantic HTML button for actions.
+    - Provide an accessible name.
+    - Support keyboard activation.
+    - Provide a visible keyboard focus indicator.
+    - Expose disabled state programmatically.
+    - Communicate loading and waiting status accessibly.
+    - Maintain sufficient contrast for text and interactive states.
+    - Ensure icon-only buttons have accessible labels.
+
+implementation:
+  semantic_element: button
+  use_native_button: true
+  keyboard_accessible: true
+
+  behavior:
+    Default:
+      action_enabled: true
+    Disabled:
+      action_enabled: false
+    Hover:
+      action_enabled: true
+    Loading:
+      action_enabled: false
+    Waiting:
+      action_enabled: false
+    Icon:
+      action_enabled: true
+
+  rules:
+    - Separate visual styling from interaction logic.
+    - Use the technical specification as the source of truth for visual values.
+    - Use application state to determine disabled, loading, and waiting behavior.
+    - Do not simulate loading without an actual operation.
+    - Restore the appropriate state after success or failure.
+    - Prevent duplicate submissions when appropriate.
+    - Reuse existing design tokens for colors, spacing, and border radius.
+    - Map visual variants to semantic runtime properties where necessary.
+
+  recommended_runtime_properties:
+    disabled:
+      type: boolean
+      description: >
+        Whether the action is currently unavailable.
+    isLoading:
+      type: boolean
+      description: >
+        Whether an operation is in progress.
+    isWaiting:
+      type: boolean
+      description: >
+        Whether the operation is waiting for a response.
+    iconOnly:
+      type: boolean
+      description: >
+        Whether the button displays only an icon.
+
+related_components:
+  - radiobutton
+  - checkbox
+  - switch
+  - select
