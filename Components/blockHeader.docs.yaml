@@ -1,214 +1,118 @@
-
 component: blockHeader
 
 description: >
-  A block header is the top section of a content block, panel, or dialog.
-  It contains a heading and may include action buttons.
-  It visually separates the header from the content below it.
-  The component supports centered and left-aligned heading layouts.
+A header component for a content block or section. It can display a
+heading with navigation or action buttons.
 
 purpose:
-  category: layout
-  role: section-header
-  interaction: optional-actions
+
+* Identify the current content block or section.
+* Provide a consistent header layout.
+* Optionally provide an action such as closing the block.
 
 usage:
-  use_when:
-    - A content block needs a distinct header.
-    - A panel or dialog needs a heading and a close action.
-    - A section needs a consistent title area.
-    - Multiple blocks need a shared header style.
-
-  do_not_use_when:
-    - The content does not need a separate header area.
-    - A simple page heading is sufficient.
-    - A full navigation bar is required.
-    - The component is being used only to display a standalone title.
-
-  constraints:
-    - Use a concise and descriptive heading.
-    - Keep the heading visually associated with the content below it.
-    - Use Center for a centered heading layout.
-    - Use Left for a left-aligned heading layout.
-    - Use action buttons only when they have a clear purpose.
-    - Do not add decorative buttons without an action.
-    - Preserve the header's top-corner rounding.
-    - Do not invent additional alignment variants.
+use_when:
+- A content block needs a title and optional action button.
+- A section requires a consistent header across different screens.
+avoid_when:
+- The page requires a full application navigation bar.
+- The heading does not belong to a distinct content block.
 
 props:
-  Property 1:
-    type: string
-    default: Center
-    enum:
-      - Center
-      - Left
-    description: >
-      Controls the heading alignment and the arrangement of header elements.
-      Center uses a centered heading with action buttons on both sides.
-      Left places the heading before the trailing action button.
-    nullable: false
+Property 1:
+type: string
+description: Controls the horizontal alignment and arrangement of the header.
+default: Center
+enum:
+- Center
+- Left
+required: true
 
 variants:
-  Center:
-    description: >
-      The heading is centered within the header.
-      The layout includes a leading button, the heading, and a trailing button.
-    alignment: center
-    layout:
-      - leading-action
-      - heading
-      - trailing-action
-    rules:
-      - Keep the heading centered in the intended header layout.
-      - Preserve the positions of the leading and trailing actions.
-      - If the actions differ in width, verify that the heading remains visually centered.
+Center:
+description: Displays a button, a centered heading, and a button.
+layout:
+- Button
+- Heading
+- Button
+heading_alignment: center
 
-  Left:
-    description: >
-      The heading is aligned to the left.
-      The layout places the heading before the trailing action button.
-    alignment: left
-    layout:
-      - heading
-      - trailing-action
-    rules:
-      - Align the heading to the start of the header.
-      - Keep the trailing action accessible.
-      - Do not add the leading button unless the design is intentionally changed.
+Left:
+description: Displays the heading aligned to the start, followed by one button.
+layout:
+- Heading
+- Button
+heading_alignment: start
 
 composition:
-  root:
-    type: container
-    description: >
-      The root container defines the header dimensions, background,
-      spacing, padding, corner radius, and alignment.
-    contains:
-      - Button
-      - Heading
+root:
+semantic_role: header
+description: Container for the heading and its associated actions.
+Heading:
+semantic_role: heading
+default_level: 2
+content: Heading
+Button:
+component: Button
+purpose: Header action, such as closing the block.
 
-  Heading:
-    type: text
-    description: >
-      The title of the block, panel, or dialog.
-    default_content: Heading
-    rules:
-      - Replace the placeholder with a meaningful title.
-      - Use a short label that describes the associated content.
-      - Keep the heading readable at the specified typography.
-      - Allow the heading to fill the available horizontal space.
-      - Use centered text alignment in Center.
-      - Use start alignment in Left.
+behavior:
 
-  Button:
-    type: instance
-    instance_of: Button
-    description: >
-      An action button displayed in the header.
-      The source specification configures the button as an icon button
-      using the close instance.
-    prop_configurations:
-      Instance: close
-      State: Icon
-      Size: medium
-    rules:
-      - Reuse the existing Button component.
-      - Do not create a separate button implementation.
-      - Provide an accessible name describing the action.
-      - Use a close action only when the header can be dismissed.
-      - Do not show a close button if closing the block is not supported.
-      - Keep the icon button aligned with the heading.
+* The Center variant contains two Button instances according to the source specification.
+* The Left variant contains one Button instance according to the source specification.
+* The heading alignment changes according to Property 1.
+* Button actions must be defined by the consuming interface; the visual specification alone does not define their behavior.
 
 layout:
-  source_dimensions:
-    width: 1200
-    vertical_padding_top: 6
-    vertical_padding_bottom: 6
-    horizontal_padding: 24
-    item_spacing: 8
-
-  corner_radius:
-    top_start: 20
-    top_end: 20
-    bottom_start: 0
-    bottom_end: 0
-
-  background_color: "#0B1819"
-
-  rules:
-    - Use the dimensions from the technical specification.
-    - Preserve the 20px top corner radius.
-    - Keep the bottom corners square.
-    - Keep the heading vertically aligned with the action buttons.
-    - Allow the heading to use the remaining horizontal space.
-    - Do not assume the fixed source width is appropriate for every viewport.
-    - For responsive implementations, adapt the width to the parent container
-      while preserving the specified spacing and alignment.
+source_width: 1200
+width_behavior: >
+Treat 1200px as the source design width, not necessarily a fixed runtime
+width. The component should adapt to its parent container unless the
+product requirements explicitly require a fixed width.
+direction: horizontal
+item_spacing: 8
+padding:
+top: 6
+bottom: 6
+start: 24
+end: 24
+corner_radius:
+top_start: 20
+top_end: 20
+bottom_end: 0
+bottom_start: 0
 
 typography:
-  Heading:
-    font_family: Chirp
-    font_size: 24
-    font_weight: Bold
-    line_height: 28
-    color: "#D1DEDF"
-
-related_components:
-  - button
+Heading:
+font_family: Chirp
+font_style: Bold
+font_size: 24
+line_height: 28
+color: "#D1DEDF"
 
 accessibility:
-  requirements:
-    - Use an appropriate heading element for the content hierarchy.
-    - Give the heading a meaningful accessible text value.
-    - Give every icon-only button an accessible name.
-    - Ensure the close action is keyboard accessible.
-    - Provide a visible keyboard focus indicator.
-    - Maintain sufficient contrast between the heading and background.
-    - Do not communicate the header's purpose through color alone.
-    - If the header belongs to a dismissible dialog, ensure the close action
-      dismisses the dialog and that dialog focus behavior is implemented.
+
+* Use a semantic header element for the component container when appropriate.
+* Represent Heading as a real heading element, with its level determined by the page hierarchy.
+* Give each Button an accessible name that describes its action.
+* Preserve a visible keyboard focus indicator for interactive buttons.
+* Do not rely on alignment or visual appearance alone to communicate meaning.
 
 implementation:
-  semantic_structure:
-    root: header
-    heading: h2
-    action: button
 
-  rules:
-    - Use the technical specification as the source of truth for visual styles.
-    - Use Property 1 to select the appropriate layout.
-    - Reuse the existing Button implementation.
-    - Keep visual alignment separate from action behavior.
-    - Make the layout responsive when used inside narrower containers.
-    - Do not invent additional variants or styles.
-    - Ensure the close action performs a real action when present.
+* Read this file together with components/blockHeader.yaml.
+* Treat the Specs 2 YAML as the source of truth for visual anatomy, dimensions, and variants.
+* Treat this file as additional semantic and behavioral guidance.
+* Use the existing Button component rather than creating a separate button implementation.
+* Keep the heading and buttons responsive to the available container width.
+* Ensure the Center variant remains visually centered when the left and right button widths differ.
+* Implement actual button actions in the consuming interface.
 
-  note: >
-    The source specification uses Property 1 as the alignment property name.
-    Preserve this exact name when mapping the documentation to the source.
-    A more descriptive name such as alignment may be used in application code
-    if the mapping is explicit.
+related_components:
 
-responsive_behavior:
-  wide_layout:
-    description: >
-      Preserve the specified header spacing and alignment when sufficient
-      horizontal space is available.
-
-  narrow_layout:
-    description: >
-      Allow the header to fit its parent container.
-      Prevent the heading from overlapping the action button.
-    requirements:
-      - Keep the heading readable.
-      - Preserve the trailing action.
-      - Avoid horizontal overflow.
-      - Use a suitable text-wrapping or truncation strategy.
+* Button
 
 design_tokens:
-  background: "#0B1819"
-  text: "#D1DEDF"
-  corner_radius_top: 20
-  corner_radius_bottom: 0
-  horizontal_padding: 24
-  vertical_padding: 6
-  item_spacing: 8
+background: "#0B1819"
+heading_text: "#D1DEDF"
+corner_radius: 20
