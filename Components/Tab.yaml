@@ -1,5 +1,5 @@
 components:
-  Tab:
+  tab:
     title: Tab
     anatomy:
       root:
@@ -39,7 +39,8 @@ components:
         root:
           styles:
             cornerRadius: 8
-            crossAxisAlignment: END
+            mainAxisAlignment: CENTER
+            crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
@@ -47,8 +48,8 @@ components:
             padding:
               top: 18
               bottom: 18
-              start: 24
-              end: 24
+              start: 32
+              end: 32
             backgroundColor: "#576762"
         Tab:
           styles:
@@ -78,7 +79,9 @@ components:
             styles:
               padding:
                 top: 14
+                end: 24
                 bottom: 14
+                start: 24
           Tab:
             styles:
               typography:
@@ -178,8 +181,6 @@ components:
         elements:
           root:
             styles:
-              mainAxisAlignment: CENTER
-              crossAxisAlignment: CENTER
               layoutMode: VERTICAL
               itemSpacing: 0
               backgroundColor: "#35423F"
@@ -192,14 +193,14 @@ components:
         elements:
           root:
             styles:
-              backgroundColor: "#A5D4C9"
+              backgroundColor: "#738F82"
           Tab:
             styles:
               textColor: "#171818"
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-08T22:20:05.562Z
+      lastUpdated: 2026-10-13T22:00:05.056Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
