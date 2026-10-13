@@ -1,5 +1,5 @@
 components:
-  frame1:
+  links:
     title: Links
     anatomy:
       root:
@@ -131,7 +131,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-08T22:17:41.939Z
+      lastUpdated: 2026-10-13T21:51:10.781Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
