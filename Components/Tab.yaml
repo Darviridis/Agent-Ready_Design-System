@@ -1,6 +1,6 @@
 components:
-  oneTab:
-    title: One tab
+  Tab:
+    title: Tab
     anatomy:
       root:
         type: container
