@@ -42,7 +42,13 @@ components:
               bottom: 8
               start: 24
               end: 24
-            backgroundColor: "#0B1819"
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.0431
+                - 0.0941
+                - 0.098
+              hex: "#0B1819"
         Button:
           styles:
             width: 48
@@ -50,14 +56,20 @@ components:
           propConfigurations:
             Instance: close
             Type: Icon
-            State: Icon
+            State: Default
             Size: M
           instanceOf: Button
         Heading:
           styles:
             layoutSizingHorizontal: FILL
             layoutSizingVertical: HUG
-            textColor: "#D1DEDF"
+            textColor:
+              colorSpace: srgb
+              components:
+                - 0.8196
+                - 0.8706
+                - 0.8745
+              hex: "#D1DEDF"
             typography:
               fontSize: 24
               fontFamily: Chirp
@@ -79,17 +91,17 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T21:46:02.215Z
+      lastUpdated: 2026-10-14T17:21:48.902Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
-        version: 1.21.0
+        version: 1.22.0
         name: Specs 2
         license:
           status: none
           level: FREE
       schema:
-        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
-        version: 0.34.0
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.35.0/packages/schema/schema/component.schema.json
+        version: 0.35.0
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 25:9682
@@ -103,11 +115,11 @@ components:
             inferNumberProps: false
       settings:
         spec:
-          format: JSON
+          format: YAML
           keys: SAFE
           layout: LAYOUT
           tokens: TOKEN
-          color: HEX
+          color: OBJECT
           variantDepth: 9999
           details: LAYERED
           collapsePrimitiveWrapper: false
