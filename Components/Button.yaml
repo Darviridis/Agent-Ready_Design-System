@@ -25,7 +25,7 @@ components:
         nullable: false
       State:
         type: string
-        default: Disabled
+        default: Default
         enum:
           - Default
           - Disabled
