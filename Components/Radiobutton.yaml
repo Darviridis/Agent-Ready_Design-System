@@ -4,7 +4,7 @@ components:
     anatomy:
       root:
         type: container
-      "Frame ":
+      Frame:
         type: container
     props:
       State:
@@ -12,41 +12,65 @@ components:
         default: Active
         enum:
           - Active
-          - Active-hiver
-          - Disable
+          - Active-hover
+          - Disabled
           - Hover
           - Default
         nullable: false
     default:
       layout:
         - root:
-            - "Frame "
+            - Frame
       elements:
         root:
           styles:
             clipsContent: true
-            cornerRadius: 100
+            cornerRadius: 300
             width: 16
             height: 16
-            strokes: "#AAE2C8"
+            strokes:
+              colorSpace: srgb
+              components:
+                - 0.6667
+                - 0.8863
+                - 0.7843
+              hex: "#AAE2C8"
             strokeWeight: 1.2
-            backgroundColor: "#35423F"
-        "Frame ":
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.2078
+                - 0.2588
+                - 0.2471
+              hex: "#35423F"
+        Frame:
           styles:
-            cornerRadius: 100
+            cornerRadius: 300
             width: 10
             height: 10
             position: ABSOLUTE
             top: 3
             start: 3
-            backgroundColor: "#AAE2C8"
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.6667
+                - 0.8863
+                - 0.7843
+              hex: "#AAE2C8"
     variants:
       - configuration:
-          State: Active-hiver
+          State: Active-hover
         elements:
           root:
             styles:
-              strokes: "#D5FFF5"
+              strokes:
+                colorSpace: srgb
+                components:
+                  - 0.8346
+                  - 1
+                  - 0.9616
+                hex: "#D5FFF5"
               effects:
                 shadows:
                   - visible: true
@@ -54,13 +78,32 @@ components:
                     offsetY: 0
                     blur: 4
                     spread: 0
-                    color: "#9DFFE8"
-              backgroundColor: "#576762"
-          "Frame ":
+                    color:
+                      colorSpace: srgb
+                      components:
+                        - 0.6154
+                        - 1
+                        - 0.9103
+                      alpha: 0.800000011920929
+                      hex: "#9DFFE8"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.3398
+                  - 0.4038
+                  - 0.3857
+                hex: "#576762"
+          Frame:
             styles:
-              backgroundColor: "#D5FFF5"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.8346
+                  - 1
+                  - 0.9616
+                hex: "#D5FFF5"
       - configuration:
-          State: Disable
+          State: Disabled
         elements:
           root:
             styles:
@@ -76,22 +119,34 @@ components:
         elements:
           root:
             styles:
-              strokes: "#465C52"
-              backgroundColor: "#1F2C2A"
+              strokes:
+                colorSpace: srgb
+                components:
+                  - 0.2742
+                  - 0.3596
+                  - 0.32
+                hex: "#465C52"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.1216
+                  - 0.1725
+                  - 0.1647
+                hex: "#1F2C2A"
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-12T21:49:06.168Z
+      lastUpdated: 2026-10-14T17:17:53.920Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
-        version: 1.21.0
+        version: 1.22.0
         name: Specs 2
         license:
           status: none
           level: FREE
       schema:
-        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
-        version: 0.34.0
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.35.0/packages/schema/schema/component.schema.json
+        version: 0.35.0
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 5:5487
@@ -105,11 +160,11 @@ components:
             inferNumberProps: false
       settings:
         spec:
-          format: JSON
+          format: YAML
           keys: SAFE
           layout: LAYOUT
           tokens: TOKEN
-          color: HEX
+          color: OBJECT
           variantDepth: 9999
           details: LAYERED
           collapsePrimitiveWrapper: false
