@@ -350,6 +350,48 @@ components:
                 top: 20
                 bottom: 20
               aspectRatio: null
+      - configuration:
+          State: Disabled
+        elements:
+          root:
+            styles:
+              cornerRadius: 12
+              width: 200
+              mainAxisAlignment: CENTER
+              primaryAxisSizingMode: FIXED
+              crossAxisAlignment: CENTER
+              layoutMode: HORIZONTAL
+              layoutSizingVertical: HUG
+              itemSpacing: 8
+              padding:
+                top: 20
+                bottom: 20
+                start: 24
+                end: 24
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.2078
+                  - 0.2588
+                  - 0.2471
+                hex: "#35423F"
+          Connect wallet:
+            styles:
+              layoutSizingHorizontal: HUG
+              layoutSizingVertical: HUG
+              textColor:
+                colorSpace: srgb
+                components:
+                  - 0.4106
+                  - 0.475
+                  - 0.461
+                hex: "#697976"
+              typography:
+                fontSize: 18
+                fontFamily: Chirp
+                fontStyle: Medium
+                lineHeight: 20
+              textAlignHorizontal: CENTER
     invalidPropCombinations: []
     metadata:
       author: Mia
