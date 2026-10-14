@@ -32,7 +32,6 @@ components:
           - Hover
           - Loading
           - Waiting
-          - Icon
         nullable: false
       Size:
         type: string
@@ -228,7 +227,7 @@ components:
                 y: 48
       - configuration:
           Type: Icon
-          State: Hover
+          State: Default
           Size: M
         elements:
           root:
@@ -241,25 +240,21 @@ components:
               aspectRatio: null
       - configuration:
           Type: Icon
-          State: Icon
+          State: Hover
           Size: M
-        layout:
-          - root:
-              - loading
         elements:
           root:
             styles:
               width: 48
               height: 48
-              layoutSizingVertical: FIXED
               padding:
                 top: 20
                 bottom: 20
-              backgroundColor: null
+              aspectRatio: null
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T21:41:30.465Z
+      lastUpdated: 2026-10-14T14:56:36.095Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.21.0
