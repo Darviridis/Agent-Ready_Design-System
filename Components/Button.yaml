@@ -8,17 +8,27 @@ components:
         type: text
       loading:
         type: instance
-        detectedIn: Type=Primary, State=Loading, Size=L
+        detectedIn: State=Loading, Type=Primary, Size=60
         instanceOf: loading
       waiting:
         type: instance
-        detectedIn: Type=Primary, State=Waiting, Size=L
+        detectedIn: State=Waiting, Type=Primary, Size=60
         instanceOf: waiting
       close:
         type: instance
-        detectedIn: Type=Icon, State=Default, Size=L
+        detectedIn: State=Default, Type=Icon, Size=60
         instanceOf: close
     props:
+      State:
+        type: string
+        default: Disabled
+        enum:
+          - Default
+          - Hover
+          - Disabled
+          - Loading
+          - Waiting
+        nullable: false
       Type:
         type: string
         default: Primary
@@ -27,22 +37,12 @@ components:
           - Secondary
           - Icon
         nullable: false
-      State:
-        type: string
-        default: Disabled
-        enum:
-          - Default
-          - Disabled
-          - Hover
-          - Loading
-          - Waiting
-        nullable: false
       Size:
         type: string
-        default: L
+        default: "60"
         enum:
-          - M
-          - L
+          - "60"
+          - "48"
         nullable: false
       Instance:
         type: string
@@ -110,7 +110,7 @@ components:
           instanceOf: close
     variants:
       - configuration:
-          Size: M
+          Size: "48"
         elements:
           root:
             styles:
@@ -211,24 +211,8 @@ components:
                   - 0.1647
                 hex: "#1F2C2A"
       - configuration:
-          State: Loading
-          Size: M
-        elements:
-          root:
-            styles:
-              padding:
-                top: 12
-                bottom: 12
-      - configuration:
-          State: Waiting
-          Size: M
-        elements:
-          root:
-            styles:
-              padding: 20
-      - configuration:
-          Type: Secondary
           State: Default
+          Type: Secondary
         elements:
           root:
             styles:
@@ -249,8 +233,24 @@ components:
                   - 0.9425
                 hex: "#E8F4F0"
       - configuration:
-          Type: Secondary
+          State: Default
+          Type: Icon
+        layout:
+          - root:
+              - close
+        elements:
+          root:
+            styles:
+              width: 60
+              height: 60
+              layoutSizingVertical: FIXED
+              backgroundColor: null
+              aspectRatio:
+                x: 48
+                y: 48
+      - configuration:
           State: Hover
+          Type: Secondary
         elements:
           root:
             styles:
@@ -271,8 +271,33 @@ components:
                   - 0.9425
                 hex: "#E8F4F0"
       - configuration:
-          Type: Secondary
+          State: Hover
+          Type: Icon
+        layout:
+          - root:
+              - close
+        elements:
+          root:
+            styles:
+              width: 60
+              height: 60
+              layoutSizingVertical: FIXED
+              backgroundColor: null
+              aspectRatio:
+                x: 48
+                y: 48
+      - configuration:
           State: Loading
+          Size: "48"
+        elements:
+          root:
+            styles:
+              padding:
+                top: 12
+                bottom: 12
+      - configuration:
+          State: Loading
+          Type: Secondary
         elements:
           root:
             styles:
@@ -293,41 +318,16 @@ components:
                   - 0.9425
                 hex: "#E8F4F0"
       - configuration:
-          Type: Icon
-          State: Default
-        layout:
-          - root:
-              - close
+          State: Waiting
+          Size: "48"
         elements:
           root:
             styles:
-              width: 60
-              height: 60
-              layoutSizingVertical: FIXED
-              backgroundColor: null
-              aspectRatio:
-                x: 48
-                y: 48
+              padding: 20
       - configuration:
-          Type: Icon
-          State: Hover
-        layout:
-          - root:
-              - close
-        elements:
-          root:
-            styles:
-              width: 60
-              height: 60
-              layoutSizingVertical: FIXED
-              backgroundColor: null
-              aspectRatio:
-                x: 48
-                y: 48
-      - configuration:
-          Type: Icon
           State: Default
-          Size: M
+          Type: Icon
+          Size: "48"
         elements:
           root:
             styles:
@@ -338,9 +338,9 @@ components:
                 bottom: 20
               aspectRatio: null
       - configuration:
-          Type: Icon
           State: Hover
-          Size: M
+          Type: Icon
+          Size: "48"
         elements:
           root:
             styles:
@@ -353,7 +353,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-14T17:27:56.951Z
+      lastUpdated: 2026-10-14T17:43:38.397Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
@@ -367,7 +367,7 @@ components:
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 0:1
-        nodeId: 4:5431
+        nodeId: 258:1127
         nodeType: COMPONENT_SET
       conventions:
         platforms:
