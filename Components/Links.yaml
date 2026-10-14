@@ -39,7 +39,13 @@ components:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor: "#AAE2C8"
+            textColor:
+              colorSpace: srgb
+              components:
+                - 0.6667
+                - 0.8863
+                - 0.7843
+              hex: "#AAE2C8"
             typography:
               fontSize: 12
               fontFamily: Chirp
@@ -91,21 +97,27 @@ components:
         elements:
           Link:
             styles:
-              textColor: "#D5FFF5"
+              textColor:
+                colorSpace: srgb
+                components:
+                  - 0.8346
+                  - 1
+                  - 0.9616
+                hex: "#D5FFF5"
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T21:54:35.822Z
+      lastUpdated: 2026-10-14T17:19:24.232Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
-        version: 1.21.0
+        version: 1.22.0
         name: Specs 2
         license:
           status: none
           level: FREE
       schema:
-        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
-        version: 0.34.0
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.35.0/packages/schema/schema/component.schema.json
+        version: 0.35.0
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 8:5798
@@ -119,11 +131,11 @@ components:
             inferNumberProps: false
       settings:
         spec:
-          format: JSON
+          format: YAML
           keys: SAFE
           layout: LAYOUT
           tokens: TOKEN
-          color: HEX
+          color: OBJECT
           variantDepth: 9999
           details: LAYERED
           collapsePrimitiveWrapper: false
