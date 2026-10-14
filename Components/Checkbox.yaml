@@ -30,9 +30,21 @@ components:
             cornerRadius: 8
             width: 24
             height: 24
-            strokes: "#35423F"
+            strokes:
+              colorSpace: srgb
+              components:
+                - 0.2078
+                - 0.2588
+                - 0.2471
+              hex: "#35423F"
             strokeWeight: 1
-            backgroundColor: "#1F2C2A"
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.1216
+                - 0.1725
+                - 0.1647
+              hex: "#1F2C2A"
         check:
           styles:
             position: ABSOLUTE
@@ -47,8 +59,20 @@ components:
         elements:
           root:
             styles:
-              strokes: "#AAE2C8"
-              backgroundColor: "#35423F"
+              strokes:
+                colorSpace: srgb
+                components:
+                  - 0.6667
+                  - 0.8863
+                  - 0.7843
+                hex: "#AAE2C8"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.2078
+                  - 0.2588
+                  - 0.2471
+                hex: "#35423F"
       - configuration:
           State: Active
         layout:
@@ -60,7 +84,13 @@ components:
               strokes: null
               strokeAlign: null
               strokeWeight: null
-              backgroundColor: "#AAE2C8"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.6667
+                  - 0.8863
+                  - 0.7843
+                hex: "#AAE2C8"
       - configuration:
           State: Active-disabled
         layout:
@@ -73,7 +103,13 @@ components:
               strokes: null
               strokeAlign: null
               strokeWeight: null
-              backgroundColor: "#AAE2C8"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.6667
+                  - 0.8863
+                  - 0.7843
+                hex: "#AAE2C8"
       - configuration:
           State: Active-hover
         layout:
@@ -92,8 +128,21 @@ components:
                     offsetY: 0
                     blur: 4
                     spread: 0
-                    color: "#9DFFE8"
-              backgroundColor: "#D5FFF5"
+                    color:
+                      colorSpace: srgb
+                      components:
+                        - 0.6154
+                        - 1
+                        - 0.9103
+                      alpha: 0.800000011920929
+                      hex: "#9DFFE8"
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.8346
+                  - 1
+                  - 0.9616
+                hex: "#D5FFF5"
       - configuration:
           State: Disabled
         elements:
@@ -103,17 +152,17 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-12T21:59:11.733Z
+      lastUpdated: 2026-10-14T17:18:33.626Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
-        version: 1.21.0
+        version: 1.22.0
         name: Specs 2
         license:
           status: none
           level: FREE
       schema:
-        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
-        version: 0.34.0
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.35.0/packages/schema/schema/component.schema.json
+        version: 0.35.0
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 5:5545
@@ -127,11 +176,11 @@ components:
             inferNumberProps: false
       settings:
         spec:
-          format: JSON
+          format: YAML
           keys: SAFE
           layout: LAYOUT
           tokens: TOKEN
-          color: HEX
+          color: OBJECT
           variantDepth: 9999
           details: LAYERED
           collapsePrimitiveWrapper: false
