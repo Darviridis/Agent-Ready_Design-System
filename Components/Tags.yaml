@@ -43,12 +43,24 @@ components:
               bottom: 4
               start: 8
               end: 8
-            backgroundColor: "#1F2C2A"
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.1216
+                - 0.1725
+                - 0.1647
+              hex: "#1F2C2A"
         Native:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor: "#697976"
+            textColor:
+              colorSpace: srgb
+              components:
+                - 0.4106
+                - 0.475
+                - 0.461
+              hex: "#697976"
             typography:
               fontSize: 12
               fontFamily: Chirp
@@ -60,7 +72,13 @@ components:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor: "#AAE2C8"
+            textColor:
+              colorSpace: srgb
+              components:
+                - 0.6667
+                - 0.8863
+                - 0.7843
+              hex: "#AAE2C8"
             typography:
               fontSize: 12
               fontFamily: Chirp
@@ -81,7 +99,13 @@ components:
               mainAxisAlignment: START
               crossAxisAlignment: START
               layoutMode: VERTICAL
-              strokes: "#465C52"
+              strokes:
+                colorSpace: srgb
+                components:
+                  - 0.2742
+                  - 0.3596
+                  - 0.32
+                hex: "#465C52"
               strokeAlign: INSIDE
               strokeWeight: 0.8
               itemSpacing: 0
@@ -111,17 +135,17 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-13T22:10:51.144Z
+      lastUpdated: 2026-10-14T17:22:18.189Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
-        version: 1.21.0
+        version: 1.22.0
         name: Specs 2
         license:
           status: none
           level: FREE
       schema:
-        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.34.0/packages/schema/schema/component.schema.json
-        version: 0.34.0
+        url: https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.35.0/packages/schema/schema/component.schema.json
+        version: 0.35.0
         latest: https://raw.githubusercontent.com/DirectedEdges/specs/main/packages/schema/schema/component.schema.json
       source:
         pageId: 145:12598
@@ -135,11 +159,11 @@ components:
             inferNumberProps: false
       settings:
         spec:
-          format: JSON
+          format: YAML
           keys: SAFE
           layout: LAYOUT
           tokens: TOKEN
-          color: HEX
+          color: OBJECT
           variantDepth: 9999
           details: LAYERED
           collapsePrimitiveWrapper: false
