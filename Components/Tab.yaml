@@ -16,13 +16,13 @@ components:
         nullable: false
       Size:
         type: string
-        default: 2XL
+        default: 2xl
         enum:
-          - 2XL
-          - XL
-          - L
-          - M
-          - S
+          - 2xl
+          - xl
+          - lg
+          - md
+          - sm
         nullable: false
       State:
         type: string
@@ -97,7 +97,7 @@ components:
                   - 0.0948
                 hex: "#171818"
       - configuration:
-          Size: XL
+          Size: xl
         elements:
           root:
             styles:
@@ -123,7 +123,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Size: L
+          Size: lg
         elements:
           root:
             styles:
@@ -149,7 +149,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Size: M
+          Size: md
         elements:
           root:
             styles:
@@ -175,7 +175,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Size: S
+          Size: sm
         elements:
           root:
             styles:
@@ -247,7 +247,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-15T17:45:10.575Z
+      lastUpdated: 2026-10-15T18:03:05.737Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
