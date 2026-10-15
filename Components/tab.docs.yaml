@@ -1,207 +1,135 @@
-component: tab
-title: Tab
+# Tab
 
-description: >
-A reusable tab component with five sizes, two selection states, and two
-interaction appearances. It is intended to be used as part of a tab group
-that allows users to switch between related views or content panels.
+## Description
 
-purpose:
+A reusable tab component with five sizes, two tab types, and two interaction states. It is intended to be used in a tab group to switch between related views or content panels.
+
+## Purpose
 
 * Indicate which tab is currently selected.
 * Allow users to switch between related views or sections.
 * Provide consistent tab styling across different interface sizes.
 
-usage:
-use_when:
-- The user needs to switch between related views within the same context.
-- A tab is part of a group of tabs.
-- The interface needs to distinguish the selected tab from unselected tabs.
-avoid_when:
-- The element navigates to a separate page and should be a standard link.
-- The element performs an action unrelated to switching tabs.
-- The element is used as a standalone button without a tab context.
+## Usage
 
-props:
-State:
-type: string
-description: Indicates whether the tab is selected.
-default: Active
-enum:
-- Active
-- Non-active
-required: true
+### Use when
 
-Size:
-type: string
-description: Controls the tab's typography and padding.
-default: 2XL
-enum:
-- 2XL
-- XL
-- L
-- M
-- S
-required: true
+* Users need to switch between related views within the same context.
+* The interface contains a group of tabs.
+* The selected and unselected tabs need to look different.
 
-Interaction:
-type: string
-description: Controls the visual appearance when the pointer is or is not hovering over the tab.
-default: Default
-enum:
-- Default
-- Hover
-required: true
+### Avoid when
 
-variants:
-State:
-Active:
-description: Selected tab.
-background_color: "#576762"
-text_color: "#E8F4F0"
-Non-active:
-description: Unselected tab.
-background_color: "#35423F"
-text_color: "#C2D4CD"
+* The element navigates to a separate page. Use a link instead.
+* The element performs an action unrelated to switching tabs.
+* The element is used as a standalone button without a tab context.
 
-Interaction:
-Default:
-description: Normal appearance when the pointer is not hovering over the tab.
-Hover:
-description: Appearance while the pointer hovers over the tab.
-active_background_color: "#D5FFF5"
-active_text_color: "#171818"
-non_active_background_color: "#738F82"
-non_active_text_color: "#171818"
+## Props
 
-Size:
-2XL:
-description: Largest tab size.
-font_family: Chirp
-font_style: Medium
-font_size: 18
-line_height: 20
-padding:
-top: 18
-bottom: 18
-start: 32
-end: 32
-XL:
-description: Extra-large tab size.
-font_family: Chirp
-font_style: Medium
-font_size: 16
-line_height: 18
-padding:
-top: 14
-bottom: 14
-start: 24
-end: 24
-L:
-description: Large tab size.
-font_family: Chirp
-font_style: Medium
-font_size: 16
-line_height: 18
-padding:
-top: 12
-bottom: 12
-start: 16
-end: 16
-M:
-description: Medium tab size.
-font_family: Chirp
-font_style: Medium
-font_size: 14
-line_height: 16
-padding:
-top: 8
-bottom: 8
-start: 16
-end: 16
-S:
-description: Smallest tab size.
-font_family: Chirp
-font_style: Medium
-font_size: 12
-line_height: 14
-padding:
-top: 5
-bottom: 5
-start: 16
-end: 16
+### Type
 
-composition:
-root:
-semantic_role: tab
-description: Container that defines the tab's background, spacing, padding, and shape.
-direction: horizontal
-main_axis_alignment: center
-cross_axis_alignment: center
-width_behavior: hug
-height_behavior: hug
-corner_radius: 8
-item_spacing: 10
-Tab:
-semantic_role: tab_label
-description: Visible text label of the tab.
-default_content: Tab
-font_family: Chirp
-font_style: Medium
+Defines whether the tab is selected.
 
-behavior:
+* Type: `string`
+* Default: `Active`
+* Values: `Active`, `Non-active`
 
-* State, Size, and Interaction are independent properties.
-* Support all combinations of State, Size, and Interaction unless the product design defines restrictions.
-* Active indicates the currently selected tab.
-* Non-active indicates a tab that is available but not selected.
-* Interaction changes the visual appearance without changing the selected state.
-* Keep the tab label configurable rather than hardcoding the word Tab.
-* Selecting a tab must update the selected state of the tab group.
+### Size
+
+Controls the tab's typography and padding.
+
+* Type: `string`
+* Default: `2XL`
+* Values: `2XL`, `XL`, `L`, `M`, `S`
+
+### State
+
+Controls the tab's visual interaction state.
+
+* Type: `string`
+* Default: `Default`
+* Values: `Default`, `Hover`
+
+## Visual variants
+
+### Type
+
+**Active**
+
+* Background: `#576762`
+* Text: `#E8F4F0`
+
+**Non-active**
+
+* Background: `#35423F`
+* Text: `#C2D4CD`
+* Item spacing: `0`
+
+### State
+
+**Default**
+
+* Uses the default colors defined by `Type`.
+
+**Hover**
+
+* Active tab background: `#D5FFF5`
+* Non-active tab background: `#738F82`
+* Text color: `#171818`
+
+Hover changes the visual appearance but does not change the selected tab.
+
+## Sizes
+
+| Size | Font size | Line height | Padding (vertical) | Padding (horizontal) |
+| ---- | --------: | ----------: | -----------------: | -------------------: |
+| 2XL  |      18px |        20px |               18px |                 32px |
+| XL   |      16px |        18px |               14px |                 24px |
+| L    |      16px |        18px |               12px |                 16px |
+| M    |      14px |        16px |                8px |                 16px |
+| S    |      12px |        14px |                5px |                 16px |
+
+All sizes use the Chirp font family and Medium font style.
+
+## Anatomy
+
+* `root`: Container defining the background, padding, spacing, alignment, and corner radius.
+* `Tab`: Text label displayed inside the tab. The label should be configurable.
+
+## Behavior
+
+* `Type`, `Size`, and `State` are independent properties.
+* Support all combinations of the defined property values.
+* `Active` indicates the currently selected tab.
+* `Non-active` indicates a tab that is available but not selected.
+* `Hover` changes the appearance without changing the selected state.
+* Selecting a tab must update the selected state in the parent tab group.
 * A tab group should normally have one selected tab at a time.
-* Switching tabs must display the corresponding content panel.
-* Do not use the visual State property as a substitute for application selection logic.
-* Hover must not be the only indication that the element is interactive.
+* Switching tabs should display the corresponding content panel.
+* Do not use the visual `Type` property as a substitute for application selection logic.
 
-accessibility:
+## Accessibility
 
 * Use semantic tab markup when the component switches between tab panels.
-* Implement appropriate tablist, tab, and tabpanel relationships.
-* Expose the selected state using aria-selected when implementing the ARIA tabs pattern.
+* Implement appropriate `tablist`, `tab`, and `tabpanel` relationships.
+* Expose selection through `aria-selected` when using the ARIA tabs pattern.
 * Give each tab an accessible name based on its visible label.
 * Support keyboard navigation and activation according to the chosen tab pattern.
-* Provide a visible keyboard focus indicator distinct from the hover appearance.
+* Provide a visible keyboard focus indicator distinct from hover.
 * Ensure text and focus indicators have sufficient contrast.
 * Do not communicate selection through color alone.
-* Keep keyboard focus behavior consistent when switching between tabs.
-* If the component is not used as part of a tab interface, use semantics appropriate to its actual purpose.
 
-implementation:
+## Implementation
 
-* Read this file together with components/tab.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, colors, typography, padding, and variants.
-* Treat this file as additional semantic, behavioral, and accessibility guidance.
-* Implement tab selection in application logic.
-* Keep State, Size, and Interaction as independent properties.
-* Apply typography and padding from the selected Size.
-* Apply colors from the selected State and Interaction combination.
+* Read this file together with `components/tab.yaml`.
+* Treat the YAML as the source of truth for visual anatomy, colors, typography, padding, and variants.
+* Preserve the exact prop names and values defined in the YAML.
+* Use `Type` for selection appearance, `Size` for dimensions, and `State` for interaction appearance.
+* Keep tab selection and content switching in application logic.
 * Implement keyboard focus separately because the visual specification does not define a dedicated focus state.
-* Preserve the selected state when the pointer enters or leaves the tab.
-* Do not invent disabled, loading, or error states unless they are defined elsewhere in the design system.
+* Do not invent additional visual states or props.
 
-related_components:
+## Related components
 
 * Tab group
 * Tab panel
-
-design_tokens:
-tab_active_background: "#576762"
-tab_active_text: "#E8F4F0"
-tab_non_active_background: "#35423F"
-tab_non_active_text: "#C2D4CD"
-tab_active_hover_background: "#D5FFF5"
-tab_non_active_hover_background: "#738F82"
-tab_hover_text: "#171818"
-tab_corner_radius: 8
-tab_font_family: Chirp
-tab_font_style: Medium
