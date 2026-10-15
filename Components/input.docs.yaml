@@ -41,7 +41,7 @@ enum:
 - Error
 required: true
 
-Show Error text:
+showErrorText:
 type: boolean
 description: >
 Controls whether the supplementary Error text element is displayed.
@@ -237,7 +237,7 @@ behavior:
 * Warning and Error states must be driven by validation or application feedback, not by hover.
 * The Warning state displays the warning message.
 * The Error state displays the error message.
-* Show Error text controls only the supplementary Error text element; it must not be assumed to control the dedicated Warning or Error messages.
+* showErrorText controls only the supplementary Error text element; it must not be assumed to control the dedicated Warning or Error messages.
 * Leaving the field should not automatically erase its value.
 * Do not replace a user's value with placeholder content.
 
