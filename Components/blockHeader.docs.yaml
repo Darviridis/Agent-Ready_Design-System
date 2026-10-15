@@ -1,4 +1,9 @@
+# Semantic documentation for BlockHeader
+
+# Keep this file separate from the Specs 2 generated visual specification.
+
 component: blockHeader
+title: BlockHeader
 
 description: >
 A header component for a content block or section. It can display a
@@ -19,7 +24,7 @@ avoid_when:
 - The heading does not belong to a distinct content block.
 
 props:
-Property 1:
+Align:
 type: string
 description: Controls the horizontal alignment and arrangement of the header.
 default: Center
@@ -29,6 +34,7 @@ enum:
 required: true
 
 variants:
+Align:
 Center:
 description: Displays a button, a centered heading, and a button.
 layout:
@@ -37,21 +43,25 @@ layout:
 - Button
 heading_alignment: center
 
+```
 Left:
-description: Displays the heading aligned to the start, followed by one button.
-layout:
-- Heading
-- Button
-heading_alignment: start
+  description: Displays the heading aligned to the start, followed by one button.
+  layout:
+    - Heading
+    - Button
+  heading_alignment: start
+```
 
 composition:
 root:
 semantic_role: header
 description: Container for the heading and its associated actions.
+
 Heading:
 semantic_role: heading
 default_level: 2
 content: Heading
+
 Button:
 component: Button
 purpose: Header action, such as closing the block.
@@ -60,7 +70,7 @@ behavior:
 
 * The Center variant contains two Button instances according to the source specification.
 * The Left variant contains one Button instance according to the source specification.
-* The heading alignment changes according to Property 1.
+* The heading alignment and element arrangement change according to Align.
 * Button actions must be defined by the consuming interface; the visual specification alone does not define their behavior.
 
 layout:
@@ -72,8 +82,8 @@ product requirements explicitly require a fixed width.
 direction: horizontal
 item_spacing: 8
 padding:
-top: 6
-bottom: 6
+top: 8
+bottom: 8
 start: 24
 end: 24
 corner_radius:
@@ -87,7 +97,7 @@ Heading:
 font_family: Chirp
 font_style: Bold
 font_size: 24
-line_height: 28
+line_height: 32
 color: "#D1DEDF"
 
 accessibility:
@@ -107,6 +117,8 @@ implementation:
 * Keep the heading and buttons responsive to the available container width.
 * Ensure the Center variant remains visually centered when the left and right button widths differ.
 * Implement actual button actions in the consuming interface.
+* Use Align with the values Center and Left; do not use Type or Property 1 for this property.
+* Configure nested Button instances according to the source specification, using Variant="Icon", State="Default", Size="md", and Instance="close".
 
 related_components:
 
