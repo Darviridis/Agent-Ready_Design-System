@@ -6,7 +6,7 @@ description: >
   A reusable interactive component for triggering actions. It supports
   Primary, Secondary, and Icon types, five interaction states, and two
   sizes: lg and md. Loading and Waiting states can display dedicated
-  indicator instances. Icon buttons use the close instance.
+  indicator instances. Icon buttons use the icon instance.
 
 purpose:
   - Trigger an action in the interface.
@@ -66,7 +66,7 @@ props:
     examples:
       - loading
       - waiting
-      - close
+      - icon
     required: false
 
 variants:
@@ -84,7 +84,7 @@ variants:
     Icon:
       description: Icon-only button with no standard filled background.
       background: null
-      default_instance: close
+      default_instance: icon
 
   State:
     Default:
@@ -178,14 +178,14 @@ combinations:
     State: Default
     background: null
     includes:
-      - close
+      - icon
 
   Icon_Hover:
     Type: Icon
     State: Hover
     background: null
     includes:
-      - close
+      - icon
 
 composition:
   root:
@@ -228,12 +228,12 @@ composition:
     height: 24
     description: Nested waiting indicator used in the Waiting variant.
 
-  close:
+  icon:
     semantic_role: icon
-    instance_of: close
+    instance_of: icon
     width: 24
     height: 24
-    description: Close icon used in Icon button variants.
+    description: icon icon used in Icon button variants.
 
 size_overrides:
   "md":
@@ -268,7 +268,7 @@ behavior:
   - Restore the appropriate interactive state when the operation completes or fails.
   - Use the loading instance only in combinations defined by the visual specification.
   - Use the waiting instance in the Waiting variant.
-  - Use the close instance in Icon variants.
+  - Use the icon instance in Icon variants.
   - The Instance property is optional and must not replace explicit variant behavior.
   - Preserve the specified size-dependent padding and icon dimensions.
   - Do not infer unspecified visual combinations solely from the default styles.
@@ -292,7 +292,7 @@ implementation:
   - Implement the component using a semantic button for actions.
   - Apply Type, State, and Size according to the selected variant.
   - Preserve the explicit visual differences between Primary, Secondary, and Icon.
-  - Preserve the nested loading, waiting, and close instances where defined.
+  - Preserve the nested loading, waiting, and icon instances where defined.
   - Use "lg" and "md" as Size values; do not substitute M or L.
   - Implement keyboard focus separately because the supplied visual specification does not define a dedicated focus state.
   - Keep actual disabled, loading, and waiting behavior synchronized with application state.
@@ -304,7 +304,7 @@ related_components:
   - Tab
   - loading
   - waiting
-  - close
+  - icon
 
 design_tokens:
   button_default_background: "#35423F"
