@@ -32,7 +32,7 @@ Defines whether the tab is selected.
 
 * Type: `string`
 * Default: `Active`
-* Values: `Active`, `Non-active`
+* Values: `Active`, `Inactive`
 
 ### Size
 
@@ -59,7 +59,7 @@ Controls the tab's visual interaction state.
 * Background: `#576762`
 * Text: `#E8F4F0`
 
-**Non-active**
+**Inactive**
 
 * Background: `#35423F`
 * Text: `#C2D4CD`
@@ -74,7 +74,7 @@ Controls the tab's visual interaction state.
 **Hover**
 
 * Active tab background: `#D5FFF5`
-* Non-active tab background: `#738F82`
+* Inactive tab background: `#738F82`
 * Text color: `#171818`
 
 Hover changes the visual appearance but does not change the selected tab.
@@ -101,7 +101,7 @@ All sizes use the Chirp font family and Medium font style.
 * `Type`, `Size`, and `State` are independent properties.
 * Support all combinations of the defined property values.
 * `Active` indicates the currently selected tab.
-* `Non-active` indicates a tab that is available but not selected.
+* `Inactive` indicates a tab that is available but not selected.
 * `Hover` changes the appearance without changing the selected state.
 * Selecting a tab must update the selected state in the parent tab group.
 * A tab group should normally have one selected tab at a time.
