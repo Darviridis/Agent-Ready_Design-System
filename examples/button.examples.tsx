@@ -89,32 +89,32 @@ export function ButtonExamples() {
           Type="Icon"
           State="Default"
           Size="lg"
-          Instance="close"
-          aria-label="Close"
+          Instance="icon"
+          aria-label="icon"
         />
 
         <Button
           Type="Icon"
           State="Hover"
           Size="lg"
-          Instance="close"
-          aria-label="Close"
+          Instance="icon"
+          aria-label="icon"
         />
 
         <Button
           Type="Icon"
           State="Default"
           Size="md"
-          Instance="close"
-          aria-label="Close"
+          Instance="icon"
+          aria-label="icon"
         />
 
         <Button
           Type="Icon"
           State="Hover"
           Size="md"
-          Instance="close"
-          aria-label="Close"
+          Instance="icon"
+          aria-label="icon"
         />
       </section>
     </main>
@@ -175,10 +175,10 @@ export function ButtonInteractionExamples() {
         Type="Icon"
         State="Default"
         Size="lg"
-        Instance="close"
-        aria-label="Close dialog"
+        Instance="icon"
+        aria-label="icon dialog"
         onClick={() => {
-          // Replace with the real close-dialog action.
+          // Replace with the real icon-dialog action.
         }}
       />
     </section>
