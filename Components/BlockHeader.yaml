@@ -10,7 +10,7 @@ components:
       Heading:
         type: text
     props:
-      Type:
+      Align:
         type: string
         default: Center
         enum:
@@ -56,8 +56,8 @@ components:
           propConfigurations:
             Instance: close
             State: Default
-            Type: Icon
-            Size: "48"
+            Variant: Icon
+            Size: md
           instanceOf: Button
         Heading:
           styles:
@@ -79,7 +79,7 @@ components:
           content: Heading
     variants:
       - configuration:
-          Type: Left
+          Align: Left
         layout:
           - root:
               - Heading
@@ -91,7 +91,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-15T17:02:11.719Z
+      lastUpdated: 2026-10-15T19:17:23.758Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
