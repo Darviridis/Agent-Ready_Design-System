@@ -32,10 +32,10 @@ props:
 Size:
 type: string
 description: Controls the tag's padding and overall dimensions.
-default: small
+default: sm
 enum:
-- small
-- big
+- sm
+- md
 required: true
 
 Type:
@@ -49,14 +49,14 @@ required: true
 
 variants:
 Size:
-small:
+sm:
 description: Compact tag.
 padding:
 top: 4
 bottom: 4
 start: 8
 end: 8
-big:
+md:
 description: Larger tag.
 padding:
 top: 6
@@ -82,8 +82,8 @@ border_width: 0.8
 clips_content: true
 
 combinations:
-small_square:
-Size: small
+sm_square:
+Size: sm
 Type: square
 padding:
 top: 4
@@ -91,8 +91,8 @@ bottom: 4
 start: 8
 end: 8
 clips_content: false
-big_square:
-Size: big
+md_square:
+Size: md
 Type: square
 padding:
 top: 6
@@ -100,8 +100,8 @@ bottom: 6
 start: 12
 end: 12
 clips_content: false
-small_oval:
-Size: small
+sm_oval:
+Size: sm
 Type: oval
 padding:
 top: 2
@@ -109,8 +109,8 @@ bottom: 2
 start: 8
 end: 8
 clips_content: true
-big_oval:
-Size: big
+md_oval:
+Size: md
 Type: oval
 padding:
 top: 4
@@ -174,9 +174,9 @@ implementation:
 * Treat this file as additional semantic and behavioral guidance.
 * Keep Size and Type as independent properties.
 * Apply the combination-specific padding when both properties are selected.
-* For Size=small and Type=oval, use vertical padding of 2 and inherit horizontal padding of 8 from the base styles.
-* For Size=big and Type=oval, use vertical padding of 4 and inherit horizontal padding of 12 from the big-size variant.
-* The small oval variant clips content; the big oval variant does not.
+* For Size=sm and Type=oval, use vertical padding of 2 and inherit horizontal padding of 8 from the base styles.
+* For Size=md and Type=oval, use vertical padding of 4 and inherit horizontal padding of 12 from the md-size variant.
+* The sm oval variant clips content; the md oval variant does not.
 * Preserve the oval border and corner radius from the visual specification.
 * Do not invent additional states or interactions.
 
