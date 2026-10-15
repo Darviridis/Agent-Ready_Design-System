@@ -39,8 +39,8 @@ Defines whether the tab is selected.
 Controls the tab's typography and padding.
 
 * Type: `string`
-* Default: `2XL`
-* Values: `2XL`, `XL`, `L`, `M`, `S`
+* Default: `2xl`
+* Values: `2xl`, `xl`, `lg`, `md`, `sm`
 
 ### State
 
@@ -83,11 +83,11 @@ Hover changes the visual appearance but does not change the selected tab.
 
 | Size | Font size | Line height | Padding (vertical) | Padding (horizontal) |
 | ---- | --------: | ----------: | -----------------: | -------------------: |
-| 2XL  |      18px |        20px |               18px |                 32px |
-| XL   |      16px |        18px |               14px |                 24px |
-| L    |      16px |        18px |               12px |                 16px |
-| M    |      14px |        16px |                8px |                 16px |
-| S    |      12px |        14px |                5px |                 16px |
+| 2xl  |      18px |        20px |               18px |                 32px |
+| xl   |      16px |        18px |               14px |                 24px |
+| lg   |      16px |        18px |               12px |                 16px |
+| md   |      14px |        16px |                8px |                 16px |
+| sm   |      12px |        14px |                5px |                 16px |
 
 All sizes use the Chirp font family and Medium font style.
 
