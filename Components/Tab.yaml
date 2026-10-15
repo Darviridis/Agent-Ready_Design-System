@@ -7,7 +7,7 @@ components:
       Tab:
         type: text
     props:
-      State:
+      Type:
         type: string
         default: Active
         enum:
@@ -24,7 +24,7 @@ components:
           - M
           - S
         nullable: false
-      Interaction:
+      State:
         type: string
         default: Default
         enum:
@@ -76,7 +76,7 @@ components:
           content: Tab
     variants:
       - configuration:
-          Interaction: Hover
+          State: Hover
         elements:
           root:
             styles:
@@ -201,7 +201,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          State: Non-active
+          Type: Non-active
         elements:
           root:
             styles:
@@ -223,8 +223,8 @@ components:
                   - 0.8044
                 hex: "#C2D4CD"
       - configuration:
-          State: Non-active
-          Interaction: Hover
+          Type: Non-active
+          State: Hover
         elements:
           root:
             styles:
@@ -247,7 +247,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-14T17:20:33.192Z
+      lastUpdated: 2026-10-15T17:45:10.575Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
