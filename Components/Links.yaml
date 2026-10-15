@@ -16,11 +16,11 @@ components:
         nullable: false
       Size:
         type: string
-        default: S
+        default: sm
         enum:
-          - S
-          - M
-          - L
+          - sm
+          - md
+          - lg
         nullable: false
     default:
       layout:
@@ -55,7 +55,7 @@ components:
           content: Link
     variants:
       - configuration:
-          Size: M
+          Size: md
         elements:
           Link:
             styles:
@@ -74,7 +74,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Size: L
+          Size: lg
         elements:
           Link:
             styles:
