@@ -34,7 +34,7 @@ enum:
 - Hover
 - Filled
 - Disabled
-- Active
+- Focused
 - Read-only
 - Warning
 - Filled-hover
@@ -85,7 +85,7 @@ appearance:
 opacity: 0.5
 heading_color: "#697976"
 
-Active:
+Focused:
 description: Field focused and ready for text entry.
 editable: true
 focused: true
@@ -191,7 +191,7 @@ line_height: 18
 
 Caret:
 semantic_role: text_caret
-description: Visual text cursor shown in the Active variant.
+description: Visual text cursor shown in the Focused variant.
 width: 1
 height: 18
 color: "#AAE2C8"
