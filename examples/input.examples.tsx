@@ -8,11 +8,11 @@
  * Important:
  * - Replace the import path with the actual Input implementation in your project.
  * - Props from the YAML:
- *   - State: Default | Hover | Filled | Disabled | Active | Read-only |
+ *   - State: Default | Hover | Filled | Disabled | Focused | Read-only |
  *            Warning | Filled-hover | Error
  *   - showErrorText: boolean (default false)
  * - The component has a heading, an input frame, and optional helper/error text.
- * - Caret appears only in Active state.
+ * - Caret appears only in Focused state.
  * - Warning and Error states change the border color and show specific messages.
  */
 import { Input } from "../components/Input";
@@ -25,7 +25,7 @@ export function InputExamples() {
 
         <Input State="Default" heading="Heading" placeholder="Text" />
         <Input State="Hover" heading="Heading" placeholder="Text" />
-        <Input State="Active" heading="Heading" placeholder="Text" />
+        <Input State="Focused" heading="Heading" placeholder="Text" />
         <Input State="Filled" heading="Heading" value="Entered text" />
         <Input State="Filled-hover" heading="Heading" value="Entered text" />
         <Input State="Read-only" heading="Heading" value="Entered text" readOnly />
