@@ -8,7 +8,7 @@ components:
         type: text
       Verified:
         type: text
-        detectedIn: Size=sm, Type=oval
+        detectedIn: Size=sm, Shape=oval
     props:
       Size:
         type: string
@@ -17,7 +17,7 @@ components:
           - sm
           - md
         nullable: false
-      Type:
+      Shape:
         type: string
         default: square
         enum:
@@ -87,7 +87,7 @@ components:
           content: Verified
     variants:
       - configuration:
-          Type: oval
+          Shape: oval
         layout:
           - root:
               - Verified
@@ -124,7 +124,7 @@ components:
                 start: 12
       - configuration:
           Size: md
-          Type: oval
+          Shape: oval
         elements:
           root:
             styles:
@@ -135,7 +135,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-15T18:08:40.714Z
+      lastUpdated: 2026-10-15T19:12:43.837Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
