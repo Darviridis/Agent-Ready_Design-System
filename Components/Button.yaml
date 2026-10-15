@@ -8,15 +8,15 @@ components:
         type: text
       loading:
         type: instance
-        detectedIn: State=Loading, Type=Primary, Size=60
+        detectedIn: State=Loading, Type=Primary, Size=lg
         instanceOf: loading
       waiting:
         type: instance
-        detectedIn: State=Waiting, Type=Primary, Size=60
+        detectedIn: State=Waiting, Type=Primary, Size=lg
         instanceOf: waiting
       close:
         type: instance
-        detectedIn: State=Default, Type=Icon, Size=60
+        detectedIn: State=Default, Type=Icon, Size=lg
         instanceOf: close
     props:
       State:
@@ -39,10 +39,10 @@ components:
         nullable: false
       Size:
         type: string
-        default: "60"
+        default: "lg"
         enum:
-          - "60"
-          - "48"
+          - "lg"
+          - "md"
         nullable: false
       Instance:
         type: string
@@ -110,7 +110,7 @@ components:
           instanceOf: close
     variants:
       - configuration:
-          Size: "48"
+          Size: "md"
         elements:
           root:
             styles:
@@ -136,7 +136,7 @@ components:
                 components:
                   - 0.0894
                   - 0.0952
-                  - 0.0948
+                  - 0.09md
                 hex: "#171818"
       - configuration:
           State: Hover
@@ -157,7 +157,7 @@ components:
                 components:
                   - 0.0894
                   - 0.0952
-                  - 0.0948
+                  - 0.09md
                 hex: "#171818"
       - configuration:
           State: Loading
@@ -241,13 +241,13 @@ components:
         elements:
           root:
             styles:
-              width: 60
-              height: 60
+              width: lg
+              height: lg
               layoutSizingVertical: FIXED
               backgroundColor: null
               aspectRatio:
-                x: 48
-                y: 48
+                x: md
+                y: md
       - configuration:
           State: Hover
           Type: Secondary
@@ -279,16 +279,16 @@ components:
         elements:
           root:
             styles:
-              width: 60
-              height: 60
+              width: lg
+              height: lg
               layoutSizingVertical: FIXED
               backgroundColor: null
               aspectRatio:
-                x: 48
-                y: 48
+                x: md
+                y: md
       - configuration:
           State: Loading
-          Size: "48"
+          Size: "md"
         elements:
           root:
             styles:
@@ -319,7 +319,7 @@ components:
                 hex: "#E8F4F0"
       - configuration:
           State: Waiting
-          Size: "48"
+          Size: "md"
         elements:
           root:
             styles:
@@ -327,12 +327,12 @@ components:
       - configuration:
           State: Default
           Type: Icon
-          Size: "48"
+          Size: "md"
         elements:
           root:
             styles:
-              width: 48
-              height: 48
+              width: md
+              height: md
               padding:
                 top: 20
                 bottom: 20
@@ -340,12 +340,12 @@ components:
       - configuration:
           State: Hover
           Type: Icon
-          Size: "48"
+          Size: "md"
         elements:
           root:
             styles:
-              width: 48
-              height: 48
+              width: md
+              height: md
               padding:
                 top: 20
                 bottom: 20
