@@ -1,0 +1,48 @@
+# Design System
+
+> Design system for generating consistent user interfaces from Figma designs using AI coding assistants such as Cursor.
+
+## Instructions
+
+* Follow `AGENTS.md` for project rules and implementation guidelines.
+* Use existing component metadata and design tokens instead of inventing new styles.
+* Preserve the visual design, spacing, typography, colors, and component states defined in Figma.
+* Reuse existing components whenever possible.
+
+## Component Metadata
+
+* Component schema: `component.schema.json`
+* Component definitions: `components/`
+* Button: `components/button.yaml`
+* Radio Button: `components/radiobutton.yaml`
+* Checkbox: `components/checkbox.yaml`
+* Input: `components/input.yaml`
+* Links: `components/links.yaml`
+* Tabs: `components/tab.yaml`
+* Tags: `components/tags.yaml`
+* Block Header: `components/blockHeader.yaml`
+
+## Design Tokens
+
+* Token definitions: `tokens/tokens.json`
+* Use semantic tokens when available.
+* Do not introduce arbitrary colors, spacing, typography, or border-radius values when existing tokens apply.
+
+## Figma
+
+* Figma is the source of truth for visual design, component appearance, layout, and variants.
+* Component metadata documents available properties, states, and intended usage.
+* Follow the existing Figma component structure and reuse available assets.
+
+## AI Implementation Guidelines
+
+* Inspect the existing project structure before generating code.
+* Reuse documented components and tokens.
+* Match the Figma layout as closely as possible.
+* Do not create duplicate components when an existing component can be reused.
+* If a required component, property, or token is missing, identify the gap before introducing a new pattern.
+* Validate the generated interface against the original design.
+
+## Current Goal
+
+Generate working user interfaces from Figma designs while maintaining consistency with the existing design system.
