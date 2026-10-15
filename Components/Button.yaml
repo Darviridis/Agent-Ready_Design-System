@@ -8,16 +8,16 @@ components:
         type: text
       loading:
         type: instance
-        detectedIn: State=Loading, Type=Primary, Size=lg
+        detectedIn: State=Loading, Variant=Primary, Size=lg
         instanceOf: loading
       waiting:
         type: instance
-        detectedIn: State=Waiting, Type=Primary, Size=lg
+        detectedIn: State=Waiting, Variant=Primary, Size=lg
         instanceOf: waiting
-      icon:
+      close:
         type: instance
-        detectedIn: State=Default, Type=Icon, Size=lg
-        instanceOf: icon
+        detectedIn: State=Default, Variant=Icon, Size=lg
+        instanceOf: close
     props:
       State:
         type: string
@@ -29,7 +29,7 @@ components:
           - Loading
           - Waiting
         nullable: false
-      Type:
+      Variant:
         type: string
         default: Primary
         enum:
@@ -39,15 +39,15 @@ components:
         nullable: false
       Size:
         type: string
-        default: "lg"
+        default: lg
         enum:
-          - "lg"
-          - "md"
+          - lg
+          - md
         nullable: false
       Instance:
         type: string
         examples:
-          - icon
+          - close
     default:
       layout:
         - root:
@@ -103,14 +103,14 @@ components:
             width: 24
             height: 24
           instanceOf: waiting
-        icon:
+        close:
           styles:
             width: 24
             height: 24
-          instanceOf: icon
+          instanceOf: close
     variants:
       - configuration:
-          Size: "md"
+          Size: md
         elements:
           root:
             styles:
@@ -136,7 +136,7 @@ components:
                 components:
                   - 0.0894
                   - 0.0952
-                  - 0.09md
+                  - 0.0948
                 hex: "#171818"
       - configuration:
           State: Hover
@@ -157,7 +157,7 @@ components:
                 components:
                   - 0.0894
                   - 0.0952
-                  - 0.09md
+                  - 0.0948
                 hex: "#171818"
       - configuration:
           State: Loading
@@ -212,7 +212,7 @@ components:
                 hex: "#1F2C2A"
       - configuration:
           State: Default
-          Type: Secondary
+          Variant: Secondary
         elements:
           root:
             styles:
@@ -234,23 +234,23 @@ components:
                 hex: "#E8F4F0"
       - configuration:
           State: Default
-          Type: Icon
+          Variant: Icon
         layout:
           - root:
-              - icon
+              - close
         elements:
           root:
             styles:
-              width: lg
-              height: lg
+              width: 60
+              height: 60
               layoutSizingVertical: FIXED
               backgroundColor: null
               aspectRatio:
-                x: md
-                y: md
+                x: 48
+                y: 48
       - configuration:
           State: Hover
-          Type: Secondary
+          Variant: Secondary
         elements:
           root:
             styles:
@@ -272,23 +272,23 @@ components:
                 hex: "#E8F4F0"
       - configuration:
           State: Hover
-          Type: Icon
+          Variant: Icon
         layout:
           - root:
-              - icon
+              - close
         elements:
           root:
             styles:
-              width: lg
-              height: lg
+              width: 60
+              height: 60
               layoutSizingVertical: FIXED
               backgroundColor: null
               aspectRatio:
-                x: md
-                y: md
+                x: 48
+                y: 48
       - configuration:
           State: Loading
-          Size: "md"
+          Size: md
         elements:
           root:
             styles:
@@ -297,7 +297,7 @@ components:
                 bottom: 12
       - configuration:
           State: Loading
-          Type: Secondary
+          Variant: Secondary
         elements:
           root:
             styles:
@@ -319,83 +319,41 @@ components:
                 hex: "#E8F4F0"
       - configuration:
           State: Waiting
-          Size: "md"
+          Size: md
         elements:
           root:
             styles:
               padding: 20
       - configuration:
           State: Default
-          Type: Icon
-          Size: "md"
+          Variant: Icon
+          Size: md
         elements:
           root:
             styles:
-              width: md
-              height: md
+              width: 48
+              height: 48
               padding:
                 top: 20
                 bottom: 20
               aspectRatio: null
       - configuration:
           State: Hover
-          Type: Icon
-          Size: "md"
+          Variant: Icon
+          Size: md
         elements:
           root:
             styles:
-              width: md
-              height: md
+              width: 48
+              height: 48
               padding:
                 top: 20
                 bottom: 20
               aspectRatio: null
-      - configuration:
-          State: Disabled
-        elements:
-          root:
-            styles:
-              cornerRadius: 12
-              width: 200
-              mainAxisAlignment: CENTER
-              primaryAxisSizingMode: FIXED
-              crossAxisAlignment: CENTER
-              layoutMode: HORIZONTAL
-              layoutSizingVertical: HUG
-              itemSpacing: 8
-              padding:
-                top: 20
-                bottom: 20
-                start: 24
-                end: 24
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.2078
-                  - 0.2588
-                  - 0.2471
-                hex: "#35423F"
-          Connect wallet:
-            styles:
-              layoutSizingHorizontal: HUG
-              layoutSizingVertical: HUG
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.4106
-                  - 0.475
-                  - 0.461
-                hex: "#697976"
-              typography:
-                fontSize: 18
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 20
-              textAlignHorizontal: CENTER
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-14T17:43:38.397Z
+      lastUpdated: 2026-10-15T19:03:37.031Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
