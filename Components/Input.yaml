@@ -39,7 +39,7 @@ components:
           - Filled-hover
           - Error
         nullable: false
-      Show Error text:
+      showErrorText:
         type: boolean
         default: false
     default:
