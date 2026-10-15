@@ -8,7 +8,7 @@
  * Important:
  * - Replace the import path with the actual Input implementation in your project.
  * - Props from the YAML:
- *   - State: Empty | Hover | Filled | Disabled | Active | Read-only |
+ *   - State: Default | Hover | Filled | Disabled | Active | Read-only |
  *            Warning | Filled-hover | Error
  *   - Show Error text: boolean (default false)
  * - The component has a heading, an input frame, and optional helper/error text.
@@ -23,7 +23,7 @@ export function InputExamples() {
       <section aria-labelledby="input-basic">
         <h2 id="input-basic">Basic states</h2>
 
-        <Input State="Empty" heading="Heading" placeholder="Text" />
+        <Input State="Default" heading="Heading" placeholder="Text" />
         <Input State="Hover" heading="Heading" placeholder="Text" />
         <Input State="Active" heading="Heading" placeholder="Text" />
         <Input State="Filled" heading="Heading" value="Entered text" />
@@ -75,7 +75,7 @@ export function InputInteractionExamples() {
             ? "Error"
             : value
             ? "Filled"
-            : "Empty"
+            : "Default"
         }
         heading="Email"
         value={value}
