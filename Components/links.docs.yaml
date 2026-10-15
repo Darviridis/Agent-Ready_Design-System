@@ -37,9 +37,9 @@ type: string
 description: Controls the text size and line height of the link.
 default: S
 enum:
-- S
-- M
-- L
+- sm
+- md
+- lg
 required: true
 
 variants:
@@ -52,7 +52,7 @@ description: Link appearance when the pointer hovers over it.
 color: "#D5FFF5"
 
 Size:
-S:
+sm:
 description: Small link.
 font_family: Chirp
 font_style: Medium
@@ -60,14 +60,14 @@ font_size: 12
 line_height: 14
 
 ```
-M:
+md:
   description: Medium link.
   font_family: Chirp
   font_style: Medium
   font_size: 14
   line_height: 16
 
-L:
+lg:
   description: Large link.
   font_family: Chirp
   font_style: Medium
@@ -100,9 +100,9 @@ behavior:
 * State and Size are independent properties and must work in combination.
 * Default uses text color #AAE2C8.
 * Hover uses text color #D5FFF5.
-* S uses 12px text with a 14px line height.
-* M uses 14px text with a 16px line height.
-* L uses 16px text with an 18px line height.
+* sm uses 12px text with a 14px line height.
+* md uses 14px text with a 16px line height.
+* lg uses 16px text with an 18px line height.
 * Keep the link text configurable rather than hardcoding the word Link.
 * The consuming interface must provide the destination URL.
 * Do not treat the visual State property as a replacement for actual pointer or keyboard interaction.
