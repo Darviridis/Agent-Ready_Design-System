@@ -5,7 +5,7 @@ title: Button
 description: >
   A reusable interactive component for triggering actions. It supports
   Primary, Secondary, and Icon types, five interaction states, and two
-  sizes: 60 and 48. Loading and Waiting states can display dedicated
+  sizes: lg and md. Loading and Waiting states can display dedicated
   indicator instances. Icon buttons use the close instance.
 
 purpose:
@@ -54,10 +54,10 @@ props:
   Size:
     type: string
     description: Controls button dimensions and padding.
-    default: "60"
+    default: "lg"
     enum:
-      - "60"
-      - "48"
+      - "lg"
+      - "md"
     required: true
 
   Instance:
@@ -109,12 +109,12 @@ variants:
       indicator_instance: waiting
 
   Size:
-    "60":
+    "lg":
       description: Large button size.
       root_width: 200
       vertical_padding: 20
 
-    "48":
+    "md":
       description: Compact button size.
       vertical_padding: 14
 
@@ -236,7 +236,7 @@ composition:
     description: Close icon used in Icon button variants.
 
 size_overrides:
-  "48":
+  "md":
     root:
       vertical_padding: 14
 
@@ -247,13 +247,13 @@ size_overrides:
       padding: 20
 
     Icon:
-      width: 48
-      height: 48
+      width: md
+      height: md
 
-  "60":
+  "lg":
     Icon:
-      width: 60
-      height: 60
+      width: lg
+      height: lg
 
 behavior:
   - Type, State, and Size describe separate properties, but not every combination has a defined visual layout.
@@ -293,7 +293,7 @@ implementation:
   - Apply Type, State, and Size according to the selected variant.
   - Preserve the explicit visual differences between Primary, Secondary, and Icon.
   - Preserve the nested loading, waiting, and close instances where defined.
-  - Use "60" and "48" as Size values; do not substitute M or L.
+  - Use "lg" and "md" as Size values; do not substitute M or L.
   - Implement keyboard focus separately because the supplied visual specification does not define a dedicated focus state.
   - Keep actual disabled, loading, and waiting behavior synchronized with application state.
   - Do not invent additional visual states or colors unless they are defined elsewhere in the design system.
