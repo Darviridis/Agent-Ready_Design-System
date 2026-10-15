@@ -8,9 +8,9 @@
  * Important:
  * - Replace the import path with the actual Tags implementation in your project.
  * - Props from the YAML:
- *   - Size: small | big
+ *   - Size: sm | md
  *   - Type: square | oval
- * - Default: Size="small", Type="square"
+ * - Default: Size="sm", Type="square"
  * - square → shows "Native" text
  * - oval → shows "Verified" text, rounded pill style with stroke
  * - The content is fixed in the design system ("Native" / "Verified").
@@ -23,20 +23,20 @@ export function TagsExamples() {
     <main>
       <section aria-labelledby="tags-square">
         <h2 id="tags-square">Square tags</h2>
-        <Tags Size="small" Type="square">
+        <Tags Size="sm" Type="square">
           Native
         </Tags>
-        <Tags Size="big" Type="square">
+        <Tags Size="md" Type="square">
           Native
         </Tags>
       </section>
 
       <section aria-labelledby="tags-oval">
         <h2 id="tags-oval">Oval (Verified) tags</h2>
-        <Tags Size="small" Type="oval">
+        <Tags Size="sm" Type="oval">
           Verified
         </Tags>
-        <Tags Size="big" Type="oval">
+        <Tags Size="md" Type="oval">
           Verified
         </Tags>
       </section>
