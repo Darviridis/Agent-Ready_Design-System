@@ -17,7 +17,7 @@ components:
         detectedIn: State=Filled
       Caret:
         type: rectangle
-        detectedIn: State=Active
+        detectedIn: State=Focused
       Please check this value:
         type: text
         detectedIn: State=Warning
@@ -33,7 +33,7 @@ components:
           - Hover
           - Filled
           - Disabled
-          - Active
+          - Focused
           - Read-only
           - Warning
           - Filled-hover
@@ -255,7 +255,7 @@ components:
             styles:
               opacity: 0.5
       - configuration:
-          State: Active
+          State: Focused
         layout:
           - root:
               - Heading
