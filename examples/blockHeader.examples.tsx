@@ -1,4 +1,4 @@
-```tsx
+
 import { BlockHeader } from "../components/BlockHeader";
 
 export function BlockHeaderExamples() {
