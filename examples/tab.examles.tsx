@@ -1,105 +1,125 @@
 /**
- * Tab examples based on the supplied Specs 2 YAML.
- *
- * Purpose:
- * - Show the AI coding agent how to use the Tab component.
- * - Preserve the prop names and values from the Figma spec.
- *
- * Important:
- * - Replace the import path with the actual Tab implementation in your project.
- * - Props from the YAML:
- *   - State: Active | Non-active
- *   - Size: 2XL | XL | L | M | S
- *   - Interaction: Default | Hover
- * - Default values: State="Active", Size="2XL", Interaction="Default"
- * - Hover styles change background and text color.
- * - Non-active has a darker background and muted text color.
- */
+
+* Tab examples based on components/tab.yaml.
+*
+* Props:
+* * Type: Active | Non-active
+* * Size: 2XL | XL | L | M | S
+* * State: Default | Hover
+*
+* Defaults:
+* * Type="Active"
+* * Size="2XL"
+* * State="Default"
+*
+* Type controls selection appearance.
+* Size controls typography and padding.
+* State controls the hover appearance.
+  */
+
+import { useState } from "react";
 import { Tab } from "../components/Tab";
 
 export function TabExamples() {
-  return (
-    <main>
-      <section aria-labelledby="tab-active">
-        <h2 id="tab-active">Active tabs (different sizes)</h2>
-        <Tab State="Active" Size="2XL" Interaction="Default">
-          Tab
-        </Tab>
-        <Tab State="Active" Size="XL" Interaction="Default">
-          Tab
-        </Tab>
-        <Tab State="Active" Size="L" Interaction="Default">
-          Tab
-        </Tab>
-        <Tab State="Active" Size="M" Interaction="Default">
-          Tab
-        </Tab>
-        <Tab State="Active" Size="S" Interaction="Default">
-          Tab
-        </Tab>
-      </section>
+return ( <main> <section aria-labelledby="tab-sizes"> <h2 id="tab-sizes">Tab sizes</h2>
 
-      <section aria-labelledby="tab-non-active">
-        <h2 id="tab-non-active">Non-active tabs</h2>
-        <Tab State="Non-active" Size="2XL" Interaction="Default">
-          Tab
-        </Tab>
-        <Tab State="Non-active" Size="M" Interaction="Default">
-          Tab
-        </Tab>
-      </section>
+```
+    <Tab Type="Active" Size="2XL" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="XL" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="L" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="M" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="S" State="Default">Overview</Tab>
+  </section>
 
-      <section aria-labelledby="tab-hover">
-        <h2 id="tab-hover">Hover states</h2>
-        <Tab State="Active" Size="2XL" Interaction="Hover">
-          Tab
-        </Tab>
-        <Tab State="Non-active" Size="2XL" Interaction="Hover">
-          Tab
-        </Tab>
-      </section>
-    </main>
-  );
+  <section aria-labelledby="tab-types">
+    <h2 id="tab-types">Tab types</h2>
+
+    <Tab Type="Active" Size="L" State="Default">
+      Active
+    </Tab>
+
+    <Tab Type="Non-active" Size="L" State="Default">
+      Non-active
+    </Tab>
+  </section>
+
+  <section aria-labelledby="tab-hover">
+    <h2 id="tab-hover">Hover states</h2>
+
+    <Tab Type="Active" Size="L" State="Hover">
+      Active hover
+    </Tab>
+
+    <Tab Type="Non-active" Size="L" State="Hover">
+      Non-active hover
+    </Tab>
+  </section>
+</main>
+```
+
+);
 }
 
 /**
- * Interactive example with controlled active tab.
- */
-import { useState } from "react";
+
+* Interactive example with controlled tab selection.
+*
+* Note:
+* This example assumes Tab supports onClick and forwards
+* standard button or tab attributes to its underlying element.
+  */
 
 export function TabInteractionExamples() {
-  const [activeTab, setActiveTab] = useState<"overview" | "details" | "settings">("overview");
+const [activeTab, setActiveTab] = useState<
+"overview" | "details" | "settings"
 
-  return (
-    <section aria-labelledby="tab-interactions">
-      <h2 id="tab-interactions">Interaction examples</h2>
+> ("overview");
 
-      <div role="tablist">
+const tabs = [
+{ id: "overview", label: "Overview" },
+{ id: "details", label: "Details" },
+{ id: "settings", label: "Settings" },
+] as const;
+
+return ( <section aria-labelledby="tab-interactions"> <h2 id="tab-interactions">Interactive tabs</h2>
+
+```
+  <div role="tablist" aria-label="Example sections">
+    {tabs.map((tab) => {
+      const isActive = activeTab === tab.id;
+
+      return (
         <Tab
-          State={activeTab === "overview" ? "Active" : "Non-active"}
+          key={tab.id}
+          id={`tab-${tab.id}`}
+          role="tab"
+          aria-selected={isActive}
+          aria-controls={`panel-${tab.id}`}
+          Type={isActive ? "Active" : "Non-active"}
           Size="L"
-          Interaction="Default"
-          onClick={() => setActiveTab("overview")}
+          State="Default"
+          onClick={() => setActiveTab(tab.id)}
         >
-          Overview
+          {tab.label}
         </Tab>
-        <Tab
-          State={activeTab === "details" ? "Active" : "Non-active"}
-          Size="L"
-          Interaction="Default"
-          onClick={() => setActiveTab("details")}
-        >
-          Details
-        </Tab>
-        <Tab
-          State={activeTab === "settings" ? "Active" : "Non-active"}
-          Size="L"
-          Interaction="Default"
-          onClick={() => setActiveTab("settings")}
-        >
-          Settings
-        </Tab>
-      </div>
-    </section>
-  );
+      );
+    })}
+  </div>
+
+  {tabs.map((tab) => (
+    <div
+      key={tab.id}
+      id={`panel-${tab.id}`}
+      role="tabpanel"
+      aria-labelledby={`tab-${tab.id}`}
+      hidden={activeTab !== tab.id}
+      tabIndex={0}
+    >
+      {tab.label} content
+    </div>
+  ))}
+</section>
+```
+
+);
 }
