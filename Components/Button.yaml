@@ -14,10 +14,10 @@ components:
         type: instance
         detectedIn: State=Waiting, Type=Primary, Size=lg
         instanceOf: waiting
-      close:
+      icon:
         type: instance
         detectedIn: State=Default, Type=Icon, Size=lg
-        instanceOf: close
+        instanceOf: icon
     props:
       State:
         type: string
@@ -47,7 +47,7 @@ components:
       Instance:
         type: string
         examples:
-          - close
+          - icon
     default:
       layout:
         - root:
@@ -103,11 +103,11 @@ components:
             width: 24
             height: 24
           instanceOf: waiting
-        close:
+        icon:
           styles:
             width: 24
             height: 24
-          instanceOf: close
+          instanceOf: icon
     variants:
       - configuration:
           Size: "md"
@@ -237,7 +237,7 @@ components:
           Type: Icon
         layout:
           - root:
-              - close
+              - icon
         elements:
           root:
             styles:
@@ -275,7 +275,7 @@ components:
           Type: Icon
         layout:
           - root:
-              - close
+              - icon
         elements:
           root:
             styles:
