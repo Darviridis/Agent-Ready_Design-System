@@ -2,7 +2,7 @@ component: input
 
 description: >
 A text input component that allows users to enter, edit, or review a value.
-It supports empty, focused, filled, disabled, read-only, warning, and error
+It supports default, focused, filled, disabled, read-only, warning, and error
 visual states.
 
 purpose:
@@ -28,9 +28,9 @@ description: >
 Selects the visual state defined by the Figma component. Runtime behavior
 should be controlled by the field value, focus, disabled, read-only, and
 validation state.
-default: Empty
+default: Default
 enum:
-- Empty
+- Default
 - Hover
 - Filled
 - Disabled
@@ -50,8 +50,8 @@ default: false
 required: false
 
 states:
-Empty:
-description: Empty field in its normal state.
+Default:
+description: Default field in its normal state.
 value: ""
 editable: true
 focused: false
@@ -60,7 +60,7 @@ background: "#1F2C2A"
 placeholder_color: "#697976"
 
 Hover:
-description: Empty field while the pointer hovers over it.
+description: Default field while the pointer hovers over it.
 editable: true
 focused: false
 appearance:
@@ -174,7 +174,7 @@ background: "#1F2C2A"
 
 Text:
 semantic_role: placeholder
-description: Placeholder displayed when the field is empty.
+description: Placeholder displayed when the field is Default.
 content: Text
 color: "#697976"
 font_family: Chirp
