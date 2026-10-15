@@ -27,9 +27,9 @@ components:
     props:
       State:
         type: string
-        default: Empty
+        default: Default
         enum:
-          - Empty
+          - Default
           - Hover
           - Filled
           - Disabled
@@ -469,7 +469,7 @@ components:
           roleValidation: warn
           invalidVariants: false
           invalidCombinations: true
-          emptyVariants: false
+          EmptyVariants: false
           defaultSlotContent: false
           splitComponents: true
           splitConcerns: true
