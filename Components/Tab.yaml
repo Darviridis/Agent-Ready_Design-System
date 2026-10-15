@@ -12,7 +12,7 @@ components:
         default: Active
         enum:
           - Active
-          - Non-active
+          - Inactive
         nullable: false
       Size:
         type: string
@@ -201,7 +201,7 @@ components:
                 hangingPunctuation: false
                 hangingList: false
       - configuration:
-          Type: Non-active
+          Type: Inactive
         elements:
           root:
             styles:
@@ -223,7 +223,7 @@ components:
                   - 0.8044
                 hex: "#C2D4CD"
       - configuration:
-          Type: Non-active
+          Type: Inactive
           State: Hover
         elements:
           root:
