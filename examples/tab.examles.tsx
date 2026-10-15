@@ -3,7 +3,7 @@
 * Tab examples based on components/tab.yaml.
 *
 * Props:
-* * Type: Active | Non-active
+* * Type: Active | Inactive
 * * Size: 2xl | xl | lg | md | sm
 * * State: Default | Hover
 *
@@ -38,8 +38,8 @@ return ( <main> <section aria-labelledby="tab-sizes"> <h2 id="tab-sizes">Tab siz
       Active
     </Tab>
 
-    <Tab Type="Non-active" Size="lg" State="Default">
-      Non-active
+    <Tab Type="Inactive" Size="lg" State="Default">
+      Inactive
     </Tab>
   </section>
 
@@ -50,8 +50,8 @@ return ( <main> <section aria-labelledby="tab-sizes"> <h2 id="tab-sizes">Tab siz
       Active hover
     </Tab>
 
-    <Tab Type="Non-active" Size="lg" State="Hover">
-      Non-active hover
+    <Tab Type="Inactive" Size="lg" State="Hover">
+      Inactive hover
     </Tab>
   </section>
 </main>
@@ -95,7 +95,7 @@ return ( <section aria-labelledby="tab-interactions"> <h2 id="tab-interactions">
           role="tab"
           aria-selected={isActive}
           aria-controls={`panel-${tab.id}`}
-          Type={isActive ? "Active" : "Non-active"}
+          Type={isActive ? "Active" : "Inactive"}
           Size="lg"
           State="Default"
           onClick={() => setActiveTab(tab.id)}
