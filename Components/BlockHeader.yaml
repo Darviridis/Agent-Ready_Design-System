@@ -1,6 +1,6 @@
 components:
   blockHeader:
-    title: Block header
+    title: BlockHeader
     anatomy:
       root:
         type: container
