@@ -22,13 +22,13 @@ export function LinksExamples() {
       <section aria-labelledby="links-sizes">
         <h2 id="links-sizes">Link sizes</h2>
 
-        <Links State="Default" Size="S" href="#">
+        <Links State="Default" Size="sm" href="#">
           Link
         </Links>
-        <Links State="Default" Size="M" href="#">
+        <Links State="Default" Size="md" href="#">
           Link
         </Links>
-        <Links State="Default" Size="L" href="#">
+        <Links State="Default" Size="lg" href="#">
           Link
         </Links>
       </section>
@@ -36,13 +36,13 @@ export function LinksExamples() {
       <section aria-labelledby="links-hover">
         <h2 id="links-hover">Hover state</h2>
 
-        <Links State="Hover" Size="S" href="#">
+        <Links State="Hover" Size="sm" href="#">
           Link
         </Links>
-        <Links State="Hover" Size="M" href="#">
+        <Links State="Hover" Size="md" href="#">
           Link
         </Links>
-        <Links State="Hover" Size="L" href="#">
+        <Links State="Hover" Size="lg" href="#">
           Link
         </Links>
       </section>
@@ -58,10 +58,10 @@ export function LinksInteractionExamples() {
     <section aria-labelledby="links-interactions">
       <h2 id="links-interactions">Real usage</h2>
 
-      <Links State="Default" Size="M" href="/docs">
+      <Links State="Default" Size="md" href="/docs">
         Documentation
       </Links>
-      <Links State="Default" Size="M" href="/support">
+      <Links State="Default" Size="md" href="/support">
         Support
       </Links>
     </section>
