@@ -21,23 +21,23 @@ export function ButtonExamples() {
       <section aria-labelledby="button-primary">
         <h2 id="button-primary">Primary buttons</h2>
 
-        <Button Type="Primary" State="Default" Size="60">
+        <Button Type="Primary" State="Default" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Hover" Size="60">
+        <Button Type="Primary" State="Hover" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Disabled" Size="60" disabled>
+        <Button Type="Primary" State="Disabled" Size="lg" disabled>
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Default" Size="48">
+        <Button Type="Primary" State="Default" Size="md">
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Disabled" Size="48" disabled>
+        <Button Type="Primary" State="Disabled" Size="md" disabled>
           Connect wallet
         </Button>
       </section>
@@ -45,19 +45,19 @@ export function ButtonExamples() {
       <section aria-labelledby="button-secondary">
         <h2 id="button-secondary">Secondary buttons</h2>
 
-        <Button Type="Secondary" State="Default" Size="60">
+        <Button Type="Secondary" State="Default" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Secondary" State="Hover" Size="60">
+        <Button Type="Secondary" State="Hover" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Secondary" State="Loading" Size="60">
+        <Button Type="Secondary" State="Loading" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Secondary" State="Default" Size="48">
+        <Button Type="Secondary" State="Default" Size="md">
           Connect wallet
         </Button>
       </section>
@@ -65,19 +65,19 @@ export function ButtonExamples() {
       <section aria-labelledby="button-loading">
         <h2 id="button-loading">Loading and waiting</h2>
 
-        <Button Type="Primary" State="Loading" Size="60">
+        <Button Type="Primary" State="Loading" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Loading" Size="48">
+        <Button Type="Primary" State="Loading" Size="md">
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Waiting" Size="60">
+        <Button Type="Primary" State="Waiting" Size="lg">
           Connect wallet
         </Button>
 
-        <Button Type="Primary" State="Waiting" Size="48">
+        <Button Type="Primary" State="Waiting" Size="md">
           Connect wallet
         </Button>
       </section>
@@ -88,7 +88,7 @@ export function ButtonExamples() {
         <Button
           Type="Icon"
           State="Default"
-          Size="60"
+          Size="lg"
           Instance="close"
           aria-label="Close"
         />
@@ -96,7 +96,7 @@ export function ButtonExamples() {
         <Button
           Type="Icon"
           State="Hover"
-          Size="60"
+          Size="lg"
           Instance="close"
           aria-label="Close"
         />
@@ -104,7 +104,7 @@ export function ButtonExamples() {
         <Button
           Type="Icon"
           State="Default"
-          Size="48"
+          Size="md"
           Instance="close"
           aria-label="Close"
         />
@@ -112,7 +112,7 @@ export function ButtonExamples() {
         <Button
           Type="Icon"
           State="Hover"
-          Size="48"
+          Size="md"
           Instance="close"
           aria-label="Close"
         />
@@ -155,7 +155,7 @@ export function ButtonInteractionExamples() {
       <Button
         Type="Primary"
         State={isLoading ? "Loading" : isWaiting ? "Waiting" : "Default"}
-        Size="60"
+        Size="lg"
         onClick={handleConnect}
         disabled={isLoading || isWaiting}
       >
@@ -165,7 +165,7 @@ export function ButtonInteractionExamples() {
       <Button
         Type="Primary"
         State="Disabled"
-        Size="60"
+        Size="lg"
         disabled
       >
         Unavailable action
@@ -174,7 +174,7 @@ export function ButtonInteractionExamples() {
       <Button
         Type="Icon"
         State="Default"
-        Size="60"
+        Size="lg"
         Instance="close"
         aria-label="Close dialog"
         onClick={() => {
