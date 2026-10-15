@@ -1,6 +1,6 @@
 components:
-  radiobutton:
-    title: Radiobutton
+  RadioButton:
+    title: RadioButton
     anatomy:
       root:
         type: container
