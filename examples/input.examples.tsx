@@ -10,7 +10,7 @@
  * - Props from the YAML:
  *   - State: Default | Hover | Filled | Disabled | Active | Read-only |
  *            Warning | Filled-hover | Error
- *   - Show Error text: boolean (default false)
+ *   - showErrorText: boolean (default false)
  * - The component has a heading, an input frame, and optional helper/error text.
  * - Caret appears only in Active state.
  * - Warning and Error states change the border color and show specific messages.
