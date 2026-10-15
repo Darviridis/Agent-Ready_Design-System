@@ -4,12 +4,12 @@
 *
 * Props:
 * * Type: Active | Non-active
-* * Size: 2XL | XL | L | M | S
+* * Size: 2xl | xl | lg | md | sm
 * * State: Default | Hover
 *
 * Defaults:
 * * Type="Active"
-* * Size="2XL"
+* * Size="2xl"
 * * State="Default"
 *
 * Type controls selection appearance.
@@ -24,21 +24,21 @@ export function TabExamples() {
 return ( <main> <section aria-labelledby="tab-sizes"> <h2 id="tab-sizes">Tab sizes</h2>
 
 ```
-    <Tab Type="Active" Size="2XL" State="Default">Overview</Tab>
-    <Tab Type="Active" Size="XL" State="Default">Overview</Tab>
-    <Tab Type="Active" Size="L" State="Default">Overview</Tab>
-    <Tab Type="Active" Size="M" State="Default">Overview</Tab>
-    <Tab Type="Active" Size="S" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="2xl" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="xl" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="lg" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="md" State="Default">Overview</Tab>
+    <Tab Type="Active" Size="sm" State="Default">Overview</Tab>
   </section>
 
   <section aria-labelledby="tab-types">
     <h2 id="tab-types">Tab types</h2>
 
-    <Tab Type="Active" Size="L" State="Default">
+    <Tab Type="Active" Size="lg" State="Default">
       Active
     </Tab>
 
-    <Tab Type="Non-active" Size="L" State="Default">
+    <Tab Type="Non-active" Size="lg" State="Default">
       Non-active
     </Tab>
   </section>
@@ -46,11 +46,11 @@ return ( <main> <section aria-labelledby="tab-sizes"> <h2 id="tab-sizes">Tab siz
   <section aria-labelledby="tab-hover">
     <h2 id="tab-hover">Hover states</h2>
 
-    <Tab Type="Active" Size="L" State="Hover">
+    <Tab Type="Active" Size="lg" State="Hover">
       Active hover
     </Tab>
 
-    <Tab Type="Non-active" Size="L" State="Hover">
+    <Tab Type="Non-active" Size="lg" State="Hover">
       Non-active hover
     </Tab>
   </section>
@@ -96,7 +96,7 @@ return ( <section aria-labelledby="tab-interactions"> <h2 id="tab-interactions">
           aria-selected={isActive}
           aria-controls={`panel-${tab.id}`}
           Type={isActive ? "Active" : "Non-active"}
-          Size="L"
+          Size="lg"
           State="Default"
           onClick={() => setActiveTab(tab.id)}
         >
