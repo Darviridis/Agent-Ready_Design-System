@@ -12,7 +12,7 @@ displays the Verified label.
 
 purpose:
 
-* Display short labels describing an item or property.
+* Display short labels describing an item's category, property, or status.
 * Identify native or verified content.
 * Help users scan attributes and statuses quickly.
 * Maintain consistent label styling across the interface.
@@ -38,7 +38,7 @@ enum:
 - md
 required: true
 
-Type:
+Shape:
 type: string
 description: Controls the tag's shape and displayed label.
 default: square
@@ -56,62 +56,71 @@ top: 4
 bottom: 4
 start: 8
 end: 8
-md:
-description: Larger tag.
-padding:
-top: 6
-bottom: 6
-start: 12
-end: 12
 
-Type:
+```
+md:
+  description: Larger tag.
+  padding:
+    top: 6
+    bottom: 6
+    start: 12
+    end: 12
+```
+
+Shape:
 square:
 description: Tag with slightly rounded corners.
 corner_radius: 4
 default_content: Native
 background_color: "#1F2C2A"
 text_color: "#697976"
+
+```
 oval:
-description: Pill-shaped tag with a border.
-corner_radius: 300
-default_content: Verified
-background_color: "#1F2C2A"
-text_color: "#AAE2C8"
-border_color: "#465C52"
-border_width: 0.8
-clips_content: true
+  description: Pill-shaped tag with a border.
+  corner_radius: 300
+  default_content: Verified
+  background_color: "#1F2C2A"
+  text_color: "#AAE2C8"
+  border_color: "#465C52"
+  border_width: 0.8
+  clips_content: true
+```
 
 combinations:
 sm_square:
 Size: sm
-Type: square
+Shape: square
 padding:
 top: 4
 bottom: 4
 start: 8
 end: 8
 clips_content: false
+
 md_square:
 Size: md
-Type: square
+Shape: square
 padding:
 top: 6
 bottom: 6
 start: 12
 end: 12
 clips_content: false
+
 sm_oval:
 Size: sm
-Type: oval
+Shape: oval
 padding:
 top: 2
 bottom: 2
 start: 8
 end: 8
 clips_content: true
+
 md_oval:
 Size: md
-Type: oval
+Shape: oval
 padding:
 top: 4
 bottom: 4
@@ -128,18 +137,20 @@ width_behavior: hug
 height_behavior: hug
 default_background_color: "#1F2C2A"
 default_corner_radius: 4
+
 Native:
 semantic_role: tag_label
-description: Text label used by the square variant.
+description: Text label used by the square shape.
 default_content: Native
 text_color: "#697976"
 font_family: Chirp
 font_style: Regular
 font_size: 12
 line_height: 14
+
 Verified:
 semantic_role: tag_label
-description: Text label used by the oval variant.
+description: Text label used by the oval shape.
 default_content: Verified
 text_color: "#AAE2C8"
 font_family: Chirp
@@ -149,10 +160,10 @@ line_height: 14
 
 behavior:
 
-* Size and Type are independent properties.
-* Support all four combinations of Size and Type.
-* The square variant displays Native by default.
-* The oval variant displays Verified by default.
+* Size and Shape are independent properties.
+* Support all four combinations of Size and Shape.
+* The square shape displays Native by default.
+* The oval shape displays Verified by default.
 * Keep the labels consistent with the actual item data.
 * Do not infer that an item is verified from its appearance alone.
 * Tags are informational by default and are not interactive controls.
@@ -172,10 +183,10 @@ implementation:
 * Read this file together with components/tags.yaml.
 * Treat the Specs 2 YAML as the source of truth for visual anatomy, colors, typography, borders, padding, and clipping behavior.
 * Treat this file as additional semantic and behavioral guidance.
-* Keep Size and Type as independent properties.
+* Keep Size and Shape as independent properties.
 * Apply the combination-specific padding when both properties are selected.
-* For Size=sm and Type=oval, use vertical padding of 2 and inherit horizontal padding of 8 from the base styles.
-* For Size=md and Type=oval, use vertical padding of 4 and inherit horizontal padding of 12 from the md-size variant.
+* For Size=sm and Shape=oval, use vertical padding of 2 and horizontal padding of 8.
+* For Size=md and Shape=oval, use vertical padding of 4 and horizontal padding of 12.
 * The sm oval variant clips content; the md oval variant does not.
 * Preserve the oval border and corner radius from the visual specification.
 * Do not invent additional states or interactions.
