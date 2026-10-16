@@ -12,10 +12,15 @@ components:
         default: Active
         enum:
           - Active
-          - Active-hover
           - Disabled
-          - Hover
           - Default
+        nullable: false
+      Interaction:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
         nullable: false
     default:
       layout:
@@ -60,7 +65,7 @@ components:
               hex: "#AAE2C8"
     variants:
       - configuration:
-          State: Active-hover
+          Interaction: Hover
         elements:
           root:
             styles:
@@ -109,10 +114,6 @@ components:
             styles:
               opacity: 0.3
       - configuration:
-          State: Hover
-        layout:
-          - root
-      - configuration:
           State: Default
         layout:
           - root
@@ -133,10 +134,31 @@ components:
                   - 0.1725
                   - 0.1647
                 hex: "#1F2C2A"
+      - configuration:
+          State: Default
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              strokes:
+                colorSpace: srgb
+                components:
+                  - 0.6667
+                  - 0.8863
+                  - 0.7843
+                hex: "#AAE2C8"
+              effects: null
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.2078
+                  - 0.2588
+                  - 0.2471
+                hex: "#35423F"
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-14T17:17:53.920Z
+      lastUpdated: 2026-10-16T18:11:10.831Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
