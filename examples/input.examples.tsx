@@ -1,90 +1,115 @@
-/**
- * Input examples based on the supplied Specs 2 YAML.
- *
- * Purpose:
- * - Show the AI coding agent how to use the Input component.
- * - Preserve the prop names and values from the Figma spec.
- *
- * Important:
- * - Replace the import path with the actual Input implementation in your project.
- * - Props from the YAML:
- *   - State: Default | Hover | Filled | Disabled | Focused | Read-only |
- *            Warning | Filled-hover | Error
- *   - showErrorText: boolean (default false)
- * - The component has a heading, an input frame, and optional helper/error text.
- * - Caret appears only in Focused state.
- * - Warning and Error states change the border color and show specific messages.
- */
-import { Input } from "../components/Input";
+import { Input } from "./Input";
 
 export function InputExamples() {
-  return (
-    <main>
-      <section aria-labelledby="input-basic">
-        <h2 id="input-basic">Basic states</h2>
+return (
+<div
+style={{
+display: "flex",
+flexDirection: "column",
+gap: 32,
+padding: 24,
+background: "#0B1819",
+color: "#D1DEDF",
+fontFamily: "Chirp, sans-serif",
+}}
+> <section> <h3>Basic states</h3>
 
-        <Input State="Default" heading="Heading" placeholder="Text" />
-        <Input State="Hover" heading="Heading" placeholder="Text" />
-        <Input State="Focused" heading="Heading" placeholder="Text" />
-        <Input State="Filled" heading="Heading" value="Entered text" />
-        <Input State="Filled-hover" heading="Heading" value="Entered text" />
-        <Input State="Read-only" heading="Heading" value="Entered text" readOnly />
-        <Input State="Disabled" heading="Heading" placeholder="Text" disabled />
-      </section>
+```
+    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      <InputExample label="Default">
+        <Input
+          State="Default"
+          Interaction="Default"
+          showErrorText={false}
+        />
+      </InputExample>
 
-      <section aria-labelledby="input-validation">
-        <h2 id="input-validation">Validation states</h2>
+      <InputExample label="Filled">
+        <Input
+          State="Filled"
+          Interaction="Default"
+          showErrorText={false}
+        />
+      </InputExample>
 
+      <InputExample label="Focus">
+        <Input
+          State="Focus"
+          Interaction="Default"
+          showErrorText={false}
+        />
+      </InputExample>
+
+      <InputExample label="Disabled">
+        <Input
+          State="Disabled"
+          Interaction="Default"
+          showErrorText={false}
+        />
+      </InputExample>
+
+      <InputExample label="Readonly">
+        <Input
+          State="Readonly"
+          Interaction="Default"
+          showErrorText={false}
+        />
+      </InputExample>
+    </div>
+  </section>
+
+  <section>
+    <h3>Interaction states</h3>
+
+    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      <InputExample label="Default hover">
+        <Input
+          State="Default"
+          Interaction="Hover"
+          showErrorText={false}
+        />
+      </InputExample>
+    </div>
+  </section>
+
+  <section>
+    <h3>Validation states</h3>
+
+    <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+      <InputExample label="Warning">
         <Input
           State="Warning"
-          heading="Heading"
-          value="Entered text"
-          helperText="Please check this value."
+          Interaction="Default"
+          showErrorText={true}
         />
+      </InputExample>
+
+      <InputExample label="Error">
         <Input
           State="Error"
-          heading="Heading"
-          value="Entered text"
-          errorText="Enter a valid value."
-          ShowErrorText={true}
+          Interaction="Default"
+          showErrorText={true}
         />
-      </section>
-    </main>
-  );
+      </InputExample>
+    </div>
+  </section>
+</div>
+```
+
+);
 }
 
-/**
- * Interactive controlled input example.
- */
-import { useState } from "react";
-
-export function InputInteractionExamples() {
-  const [value, setValue] = useState("");
-  const [touched, setTouched] = useState(false);
-
-  const isEmpty = value.trim() === "";
-  const isError = touched && isEmpty;
-
-  return (
-    <section aria-labelledby="input-interactions">
-      <h2 id="input-interactions">Interaction examples</h2>
-
-      <Input
-        State={
-          isError
-            ? "Error"
-            : value
-            ? "Filled"
-            : "Default"
-        }
-        heading="Email"
-        value={value}
-        placeholder="Enter your email"
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={() => setTouched(true)}
-        errorText={isError ? "Enter a valid value." : undefined}
-        ShowErrorText={isError}
-      />
-    </section>
-  );
+function InputExample({
+label,
+children,
+}: {
+label: string;
+children: React.ReactNode;
+}) {
+return (
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+<span style={{ fontSize: 14, color: "#C2D4CD" }}>{label}</span>
+{children} </div>
+);
 }
+-
