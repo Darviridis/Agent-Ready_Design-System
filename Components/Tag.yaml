@@ -1,6 +1,6 @@
 components:
-  tags:
-    title: "Tags "
+  tag:
+    title: "Tag "
     anatomy:
       root:
         type: container
