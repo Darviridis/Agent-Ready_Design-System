@@ -1,5 +1,5 @@
-component: links
-title: Links
+component: link
+title: Link
 
 description: >
 A reusable text link component with three sizes and two visual states.
