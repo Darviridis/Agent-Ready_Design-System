@@ -1,173 +1,170 @@
-component: radiobutton
-title: Radiobutton
+---
+
+component: RadioButton
+title: RadioButton
 
 description: >
-A radio button is a compact selection control used to represent a single
-selectable option. The supplied visual specification defines five states:
-Active, Active-hiver, Disable, Hover, and Default.
+A circular selection control that allows a user to select one option
+from a group of mutually exclusive options.
 
 purpose:
 
-* Represent a selectable option in a group of mutually exclusive options.
-* Communicate whether an option is selected.
-* Provide consistent radio button styling across the interface.
-
-usage:
-use_when:
-- The user needs to select one option from a group of options.
-- The available options should be visible and easy to compare.
-avoid_when:
-- The user needs to select multiple independent options; use checkboxes.
-- The user needs to switch a single setting on or off; consider a switch.
-- The user needs to trigger an action; use a button.
-alternatives:
-- Checkbox
-- Switch
-- Select
+* Allow users to select one option from a group.
+* Visually indicate whether an option is selected.
+* Provide visual feedback for hover and disabled states.
 
 props:
 State:
 type: string
-description: >
-Controls the visual appearance of the radio button. The selected value
-represents a visual state and must be synchronized with the actual
-selection and interaction state in the application.
+required: false
 default: Active
 enum:
 - Active
-- Active-hiver
-- Disable
-- Hover
+- Disabled
 - Default
-nullable: false
-required: true
+description: >
+Controls whether the radio button is selected, disabled, or unselected.
+
+Interaction:
+type: string
+required: false
+default: Default
+enum:
+- Default
+- Hover
+description: >
+Controls the pointer interaction appearance.
+
+anatomy:
+root:
+description: >
+The outer circular element. Defines the radio button size, background,
+border, and interaction appearance.
+Frame:
+description: >
+The inner circular indicator. Visible when the radio button is selected.
 
 variants:
-State:
-Active:
-description: >
-Base appearance with a visible inner circle. The source specification
-defines this as the default visual configuration.
-root:
-background_color: "#35423F"
-border_color: "#AAE2C8"
-border_width: 1.2
-inner_circle:
-background_color: "#AAE2C8"
-width: 10
-height: 10
-Active-hiver:
-description: >
-Active hover appearance with a highlighted border, inner circle,
-and glow effect.
-root:
-background_color: "#576762"
-border_color: "#D5FFF5"
-shadow:
-offset_x: 0
-offset_y: 0
-blur: 4
-spread: 0
-color: "#9DFFE8"
-inner_circle:
-background_color: "#D5FFF5"
-Disable:
-description: Disabled visual appearance.
-root:
-opacity: 0.3
-Hover:
-description: >
-Hover configuration. The source specification does not define
-additional visual style changes for this variant.
-Default:
-description: Unselected default appearance.
-root:
-background_color: "#1F2C2A"
-border_color: "#465C52"
 
-composition:
-root:
-semantic_role: radio
-description: >
-Outer circular control. It contains the inner circle in configurations
-where the inner circle is included in the layout.
-width: 16
-height: 16
-corner_radius: 100
-clips_content: true
-border_width: 1.2
-default_background_color: "#35423F"
-default_border_color: "#AAE2C8"
-"Frame ":
-semantic_role: selection_indicator
-description: >
-Inner circular indicator that visually represents the selected state.
-Preserve the source layer name when referencing the generated spec.
-width: 10
-height: 10
-corner_radius: 100
-position: absolute
-top: 3
-start: 3
-default_background_color: "#AAE2C8"
+* name: Active
+  props:
+  State: Active
+  Interaction: Default
+  description: >
+  Selected radio button. Displays the inner indicator.
+  styles:
+  root:
+  width: 16px
+  height: 16px
+  cornerRadius: 300
+  backgroundColor: "#35423F"
+  borderColor: "#AAE2C8"
+  borderWidth: 1.2px
+  Frame:
+  width: 10px
+  height: 10px
+  cornerRadius: 300
+  backgroundColor: "#AAE2C8"
+  position: absolute
+  top: 3px
+  start: 3px
+
+* name: Disabled
+  props:
+  State: Disabled
+  Interaction: Default
+  description: >
+  Disabled radio button. Uses the base appearance with reduced opacity.
+  styles:
+  root:
+  opacity: 0.3
+
+* name: Default
+  props:
+  State: Default
+  Interaction: Default
+  description: >
+  Unselected radio button. The inner indicator is not displayed.
+  styles:
+  root:
+  width: 16px
+  height: 16px
+  cornerRadius: 300
+  backgroundColor: "#1F2C2A"
+  borderColor: "#465C52"
+  borderWidth: 1.2px
+  Frame:
+  visible: false
+
+* name: Hover
+  props:
+  State: Active
+  Interaction: Hover
+  description: >
+  Hover appearance for a selected radio button.
+  styles:
+  root:
+  backgroundColor: "#576762"
+  borderColor: "#D5FFF5"
+  shadow:
+  color: "#9DFFE8"
+  blur: 4px
+  spread: 0
+  offsetX: 0
+  offsetY: 0
+  Frame:
+  backgroundColor: "#D5FFF5"
+
+* name: DefaultHover
+  props:
+  State: Default
+  Interaction: Hover
+  description: >
+  Hover appearance for an unselected radio button.
+  styles:
+  root:
+  backgroundColor: "#35423F"
+  borderColor: "#AAE2C8"
+  shadow: none
+  Frame:
+  visible: false
+
+combinations:
+
+* State: Active
+  Interaction: Default
+* State: Active
+  Interaction: Hover
+* State: Disabled
+  Interaction: Default
+* State: Default
+  Interaction: Default
+* State: Default
+  Interaction: Hover
 
 behavior:
 
-* Use radio buttons for mutually exclusive choices within a group.
-* Maintain the selected value in application state; do not rely on the visual State property alone.
-* Selecting an option should deselect the previously selected option in the same group.
-* Disabled radio buttons must not be selectable.
-* Hover changes appearance only and must not change the selected value.
-* The Active state includes an inner selection indicator in the supplied visual specification.
-* The Default state uses the unselected background and border colors defined in the specification.
-* Do not infer that Active-hiver is a separate selection state; verify that it represents the intended hover appearance of an active radio button.
-* Do not invent additional colors, dimensions, or effects for states that have no explicit styling.
-* The source uses the value Disable for the disabled appearance. Preserve this name when mapping the visual specification, but use the application's normal disabled semantics in code.
-* Verify whether the source value Active-hiver is intentional or a typo for Active-hover before renaming it.
+* When State is Active, display the inner Frame indicator.
+* When State is Default, hide the inner Frame indicator.
+* When State is Disabled, reduce the root opacity to 0.3.
+* When Interaction is Hover, apply the hover styles for the corresponding State.
+* The component is a visual control; selection state and group behavior must be managed by the consuming application.
 
 accessibility:
-
-* Implement the control with radio semantics, not as a decorative circle.
-* Provide an accessible name through an associated label.
-* Group related radio buttons with an accessible group label.
-* Expose the selected state to assistive technology.
-* Expose the disabled state programmatically, not only through opacity.
-* Support keyboard navigation and selection according to the platform's radio-group interaction pattern.
-* Provide a visible keyboard focus indicator distinct from hover styling.
-* Ensure the control and its label have a usable pointer target.
-* Verify that the control's contrast and focus indicator meet the project's accessibility requirements.
-* Do not expose the inner selection indicator as a separate interactive element.
+role: radio
+requirements:
+- Expose the selected state using aria-checked.
+- Expose disabled state using aria-disabled or the native disabled attribute.
+- Provide an accessible name through an associated label.
+- Support keyboard navigation when used within a radio group.
 
 implementation:
-
-* Read this file together with components/radiobutton.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, dimensions, colors, effects, and variant-specific layouts.
-* Treat this file as additional semantic, behavioral, and accessibility guidance.
-* Implement the component using an accessible radio input or an equivalent control with correct radio semantics.
-* Synchronize the checked value, disabled behavior, and visual state with application state.
-* Preserve the circular outer container and inner selection indicator where defined by the source specification.
-* Preserve the disabled opacity and active-hover glow as specified.
-* The Hover and Default variants explicitly use a layout containing only root; do not assume the inner circle is present in those configurations.
-* Do not invent a focus variant or additional visual combinations. Implement keyboard focus behavior separately if the visual specification does not define it.
-* Keep the source variant names unchanged until any naming corrections are confirmed.
-
-related_components:
-
-* checkbox
-* input
-* switch
-
-design_tokens:
-radiobutton_active_background: "#35423F"
-radiobutton_active_border: "#AAE2C8"
-radiobutton_active_indicator: "#AAE2C8"
-radiobutton_active_hover_background: "#576762"
-radiobutton_active_hover_border: "#D5FFF5"
-radiobutton_active_hover_indicator: "#D5FFF5"
-radiobutton_active_hover_glow: "#9DFFE8"
-radiobutton_default_background: "#1F2C2A"
-radiobutton_default_border: "#465C52"
-radiobutton_disabled_opacity: 0.3
-radiobutton_size: 16
-radiobutton_indicator_size: 10
-radiobutton_corner_radius: 100
+component: RadioButton
+suggestedFile: RadioButton.tsx
+examplesFile: radiobutton.examples.tsx
+notes:
+- Keep the State and Interaction prop values consistent with this specification.
+- Use a native input type="radio" when implementing actual form behavior.
+- Keep the visual Frame indicator separate from the input's accessible state.
+- Disabled controls should not respond to selection or hover interactions.
+--------------------------------------------------------------------------
