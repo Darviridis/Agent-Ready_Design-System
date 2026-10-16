@@ -1,6 +1,6 @@
 components:
-  links:
-    title: Links
+  link:
+    title: Link
     anatomy:
       root:
         type: container
