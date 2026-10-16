@@ -1,18 +1,4 @@
-/**
- * Links examples based on the supplied Specs 2 YAML.
- *
- * Purpose:
- * - Show the AI coding agent how to use the Links component.
- * - Preserve the prop names and values from the Figma spec.
- *
- * Important:
- * - Replace the import path with the actual Links implementation in your project.
- * - Props from the YAML:
- *   - State: Default | Hover
- *   - Size: S | M | L
- * - Default: State="Default", Size="S"
- * - Always underlined.
- * - Hover changes text color to a brighter mint.
+
  */
 import { Links } from "../components/Links";
 
