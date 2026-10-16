@@ -8,15 +8,15 @@ components:
         type: text
       loading:
         type: instance
-        detectedIn: State=Loading, Variant=Primary, Size=lg
+        detectedIn: State=Loading, Variant=Primary, Interaction=Default, Size=lg
         instanceOf: loading
       waiting:
         type: instance
-        detectedIn: State=Waiting, Variant=Primary, Size=lg
+        detectedIn: State=Waiting, Variant=Primary, Interaction=Default, Size=lg
         instanceOf: waiting
       icon:
         type: instance
-        detectedIn: State=Default, Variant=Icon, Size=lg
+        detectedIn: State=Default, Variant=Icon, Interaction=Default, Size=lg
         instanceOf: icon
     props:
       State:
@@ -24,7 +24,6 @@ components:
         default: Disabled
         enum:
           - Default
-          - Hover
           - Disabled
           - Loading
           - Waiting
@@ -36,6 +35,13 @@ components:
           - Primary
           - Secondary
           - Icon
+        nullable: false
+      Interaction:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
         nullable: false
       Size:
         type: string
@@ -139,27 +145,6 @@ components:
                   - 0.0948
                 hex: "#171818"
       - configuration:
-          State: Hover
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.8346
-                  - 1
-                  - 0.9616
-                hex: "#D5FFF5"
-          Connect wallet:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.0894
-                  - 0.0952
-                  - 0.0948
-                hex: "#171818"
-      - configuration:
           State: Loading
         layout:
           - root:
@@ -212,6 +197,19 @@ components:
                 hex: "#1F2C2A"
       - configuration:
           State: Default
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.8346
+                  - 1
+                  - 0.9616
+                hex: "#D5FFF5"
+      - configuration:
+          State: Default
           Variant: Secondary
         elements:
           root:
@@ -234,44 +232,6 @@ components:
                 hex: "#E8F4F0"
       - configuration:
           State: Default
-          Variant: Icon
-        layout:
-          - root:
-              - icon
-        elements:
-          root:
-            styles:
-              width: 60
-              height: 60
-              layoutSizingVertical: FIXED
-              backgroundColor: null
-              aspectRatio:
-                x: 48
-                y: 48
-      - configuration:
-          State: Hover
-          Variant: Secondary
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.4498
-                  - 0.5615
-                  - 0.5107
-                hex: "#738F82"
-          Connect wallet:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.9089
-                  - 0.9558
-                  - 0.9425
-                hex: "#E8F4F0"
-      - configuration:
-          State: Hover
           Variant: Icon
         layout:
           - root:
@@ -326,19 +286,20 @@ components:
               padding: 20
       - configuration:
           State: Default
-          Variant: Icon
-          Size: md
+          Variant: Secondary
+          Interaction: Hover
         elements:
           root:
             styles:
-              width: 48
-              height: 48
-              padding:
-                top: 20
-                bottom: 20
-              aspectRatio: null
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.4498
+                  - 0.5615
+                  - 0.5107
+                hex: "#738F82"
       - configuration:
-          State: Hover
+          State: Default
           Variant: Icon
           Size: md
         elements:
@@ -391,11 +352,11 @@ components:
                 fontFamily: Chirp
                 fontStyle: Medium
                 lineHeight: 20
-              textAlignHorizontal: CENTER        
+              textAlignHorizontal: CENTER              
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-15T19:03:37.031Z
+      lastUpdated: 2026-10-16T18:45:43.387Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
