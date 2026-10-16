@@ -6,7 +6,7 @@ components:
         type: container
       check:
         type: instance
-        detectedIn: State=Active
+        detectedIn: State=Active, Interaction=Default
         instanceOf: check
     props:
       State:
@@ -14,11 +14,15 @@ components:
         default: Default
         enum:
           - Default
-          - Hover
           - Active
-          - Active-disabled
-          - Active-hover
           - Disabled
+        nullable: false
+      Interaction:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
         nullable: false
     default:
       layout:
@@ -55,7 +59,7 @@ components:
           instanceOf: check
     variants:
       - configuration:
-          State: Hover
+          Interaction: Hover
         elements:
           root:
             styles:
@@ -92,35 +96,17 @@ components:
                   - 0.7843
                 hex: "#AAE2C8"
       - configuration:
-          State: Active-disabled
-        layout:
-          - root:
-              - check
+          State: Disabled
         elements:
           root:
             styles:
-              opacity: 0.5
-              strokes: null
-              strokeAlign: null
-              strokeWeight: null
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
+              backgroundColor: null
       - configuration:
-          State: Active-hover
-        layout:
-          - root:
-              - check
+          State: Active
+          Interaction: Hover
         elements:
           root:
             styles:
-              strokes: null
-              strokeAlign: null
-              strokeWeight: null
               effects:
                 shadows:
                   - visible: true
@@ -143,16 +129,10 @@ components:
                   - 1
                   - 0.9616
                 hex: "#D5FFF5"
-      - configuration:
-          State: Disabled
-        elements:
-          root:
-            styles:
-              backgroundColor: null
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-14T17:18:33.626Z
+      lastUpdated: 2026-10-16T18:22:06.846Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
