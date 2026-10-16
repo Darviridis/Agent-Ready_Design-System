@@ -1,204 +1,173 @@
-/**
-
-* Button examples based on the supplied Specs 2 YAML.
-*
-* Purpose:
-* * Show the AI coding agent how to use the Button component.
-* * Preserve the prop names and values from the Figma spec.
-*
-* Important:
-* * Replace the import path with the actual Button implementation in your project.
-* * These examples assume Button accepts Variant, State, Size, and Instance props.
-* * The YAML defines Disabled styling, but does not define a separate Disabled
-* variant for Variant=Secondary or Variant=Icon. Use those combinations only
-* after confirming their intended design in Figma.
-* * Hover is shown for documentation purposes. In production, hover styling
-* should normally be controlled by CSS or the component's interaction logic.
-  */
-
-import { Button } from "../components/Button";
+import { Button } from "./Button";
 
 export function ButtonExamples() {
-return ( <main> <section aria-labelledby="button-primary"> <h2 id="button-primary">Primary buttons</h2>
+return (
+<div
+style={{
+display: "flex",
+flexDirection: "column",
+gap: 32,
+padding: 24,
+background: "#0B1819",
+color: "#D1DEDF",
+fontFamily: "Chirp, sans-serif",
+}}
+> <section> <h3>Primary</h3> <div style={rowStyle}> <Example label="Default"> <Button
+           State="Default"
+           Variant="Primary"
+           Interaction="Default"
+           Size="lg"
+         /> </Example>
 
 ```
-    <Button Variant="Primary" State="Default" Size="lg">
-      Connect wallet
-    </Button>
+      <Example label="Hover">
+        <Button
+          State="Default"
+          Variant="Primary"
+          Interaction="Hover"
+          Size="lg"
+        />
+      </Example>
 
-    <Button Variant="Primary" State="Hover" Size="lg">
-      Connect wallet
-    </Button>
-
-    <Button
-      Variant="Primary"
-      State="Disabled"
-      Size="lg"
-      disabled
-    >
-      Connect wallet
-    </Button>
-
-    <Button Variant="Primary" State="Default" Size="md">
-      Connect wallet
-    </Button>
-
-    <Button
-      Variant="Primary"
-      State="Disabled"
-      Size="md"
-      disabled
-    >
-      Connect wallet
-    </Button>
+      <Example label="Disabled">
+        <Button
+          State="Disabled"
+          Variant="Primary"
+          Interaction="Default"
+          Size="lg"
+        />
+      </Example>
+    </div>
   </section>
 
-  <section aria-labelledby="button-secondary">
-    <h2 id="button-secondary">Secondary buttons</h2>
+  <section>
+    <h3>Secondary</h3>
+    <div style={rowStyle}>
+      <Example label="Default">
+        <Button
+          State="Default"
+          Variant="Secondary"
+          Interaction="Default"
+          Size="lg"
+        />
+      </Example>
 
-    <Button Variant="Secondary" State="Default" Size="lg">
-      Connect wallet
-    </Button>
-
-    <Button Variant="Secondary" State="Hover" Size="lg">
-      Connect wallet
-    </Button>
-
-    <Button Variant="Secondary" State="Loading" Size="lg">
-      Connect wallet
-    </Button>
-
-    <Button Variant="Secondary" State="Default" Size="md">
-      Connect wallet
-    </Button>
+      <Example label="Hover">
+        <Button
+          State="Default"
+          Variant="Secondary"
+          Interaction="Hover"
+          Size="lg"
+        />
+      </Example>
+    </div>
   </section>
 
-  <section aria-labelledby="button-loading">
-    <h2 id="button-loading">Loading and waiting</h2>
+  <section>
+    <h3>Sizes</h3>
+    <div style={rowStyle}>
+      <Example label="Large">
+        <Button
+          State="Default"
+          Variant="Primary"
+          Interaction="Default"
+          Size="lg"
+        />
+      </Example>
 
-    <Button Variant="Primary" State="Loading" Size="lg">
-      Connect wallet
-    </Button>
-
-    <Button Variant="Primary" State="Loading" Size="md">
-      Connect wallet
-    </Button>
-
-    <Button Variant="Primary" State="Waiting" Size="lg">
-      Connect wallet
-    </Button>
-
-    <Button Variant="Primary" State="Waiting" Size="md">
-      Connect wallet
-    </Button>
+      <Example label="Medium">
+        <Button
+          State="Default"
+          Variant="Primary"
+          Interaction="Default"
+          Size="md"
+        />
+      </Example>
+    </div>
   </section>
 
-  <section aria-labelledby="button-icon">
-    <h2 id="button-icon">Icon buttons</h2>
+  <section>
+    <h3>Loading and waiting</h3>
+    <div style={rowStyle}>
+      <Example label="Loading">
+        <Button
+          State="Loading"
+          Variant="Primary"
+          Interaction="Default"
+          Size="lg"
+        />
+      </Example>
 
-    <Button
-      Variant="Icon"
-      State="Default"
-      Size="lg"
-      Instance="icon"
-      aria-label="Open action"
-    />
+      <Example label="Loading secondary">
+        <Button
+          State="Loading"
+          Variant="Secondary"
+          Interaction="Default"
+          Size="lg"
+        />
+      </Example>
 
-    <Button
-      Variant="Icon"
-      State="Hover"
-      Size="lg"
-      Instance="icon"
-      aria-label="Open action"
-    />
-
-    <Button
-      Variant="Icon"
-      State="Default"
-      Size="md"
-      Instance="icon"
-      aria-label="Open action"
-    />
-
-    <Button
-      Variant="Icon"
-      State="Hover"
-      Size="md"
-      Instance="icon"
-      aria-label="Open action"
-    />
+      <Example label="Waiting">
+        <Button
+          State="Waiting"
+          Variant="Primary"
+          Interaction="Default"
+          Size="lg"
+        />
+      </Example>
+    </div>
   </section>
-</main>
+
+  <section>
+    <h3>Icon</h3>
+    <div style={rowStyle}>
+      <Example label="Large">
+        <Button
+          State="Default"
+          Variant="Icon"
+          Interaction="Default"
+          Size="lg"
+          Instance="icon"
+          aria-label="Icon action"
+        />
+      </Example>
+
+      <Example label="Medium">
+        <Button
+          State="Default"
+          Variant="Icon"
+          Interaction="Default"
+          Size="md"
+          Instance="icon"
+          aria-label="Icon action"
+        />
+      </Example>
+    </div>
+  </section>
+</div>
 ```
 
 );
 }
 
-/**
+const rowStyle: React.CSSProperties = {
+display: "flex",
+alignItems: "center",
+flexWrap: "wrap",
+gap: 24,
+};
 
-* Interactive examples:
-* State should normally be driven by component logic rather than manually
-* setting Hover. These examples illustrate the intended behavior.
-  */
-
-import { useState } from "react";
-
-export function ButtonInteractionExamples() {
-const [isLoading, setIsLoading] = useState(false);
-const [isWaiting, setIsWaiting] = useState(false);
-
-async function handleConnect() {
-setIsLoading(true);
-setIsWaiting(false);
-
-```
-try {
-  // Replace with the real wallet connection action.
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  // Set this to true only while waiting for a later confirmation.
-  setIsWaiting(true);
-} finally {
-  setIsLoading(false);
-}
-```
-
-}
-
-return ( <section aria-labelledby="button-interactions"> <h2 id="button-interactions">Interaction examples</h2>
-
-```
-  <Button
-    Variant="Primary"
-    State={isLoading ? "Loading" : isWaiting ? "Waiting" : "Default"}
-    Size="lg"
-    onClick={handleConnect}
-    disabled={isLoading || isWaiting}
-  >
-    Connect wallet
-  </Button>
-
-  <Button
-    Variant="Primary"
-    State="Disabled"
-    Size="lg"
-    disabled
-  >
-    Unavailable action
-  </Button>
-
-  <Button
-    Variant="Icon"
-    State="Default"
-    Size="lg"
-    Instance="icon"
-    aria-label="Open dialog"
-    onClick={() => {
-      // Replace with the real icon-dialog action.
-    }}
-  />
-</section>
-```
-
+function Example({
+label,
+children,
+}: {
+label: string;
+children: React.ReactNode;
+}) {
+return (
+<div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+<span style={{ fontSize: 14, color: "#C2D4CD" }}>{label}</span>
+{children} </div>
 );
 }
+-
