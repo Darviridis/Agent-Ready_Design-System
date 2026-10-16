@@ -1,335 +1,353 @@
+---
+
 component: button
 title: Button
 
 description: >
-A reusable interactive component for triggering actions. It supports
-Primary, Secondary, and Icon variants, five interaction states, and two
-sizes: lg and md. Loading and Waiting states can display dedicated
-indicator instances. Icon buttons use the icon instance.
+A reusable interactive component for triggering actions. Supports Primary,
+Secondary, and Icon variants, multiple states, hover interaction, and two sizes.
 
 purpose:
 
-* Trigger an action in the interface.
+* Trigger actions in the interface.
 * Provide consistent interactive controls.
-* Communicate button variant, interaction state, and size.
-* Indicate when an action is loading or waiting.
-
-usage:
-use_when:
-- The user needs to trigger an action.
-- The interface needs a primary or secondary action.
-- An icon-only action is appropriate and its purpose is clear.
-- The interface needs to communicate loading or waiting.
-avoid_when:
-- The primary purpose is navigation to another page; use a link.
-- The element is purely informational and does not trigger an action.
-- An icon-only button has no accessible name.
-alternatives:
-- Link
-- Tab
+* Communicate button variant and interaction state.
+* Indicate loading and waiting states.
 
 props:
+State:
+type: string
+required: false
+default: Disabled
+enum:
+- Default
+- Disabled
+- Loading
+- Waiting
+description: Controls the visual and functional state of the button.
+
 Variant:
 type: string
-description: Controls the button's visual style and content presentation.
+required: false
 default: Primary
 enum:
 - Primary
 - Secondary
 - Icon
-required: true
+description: Defines the button's visual style and content.
 
-State:
+Interaction:
 type: string
-description: Controls the button's visual and interaction state.
-default: Disabled
+required: false
+default: Default
 enum:
 - Default
 - Hover
-- Disabled
-- Loading
-- Waiting
-required: true
+description: Defines the hover appearance.
 
 Size:
 type: string
-description: Controls button dimensions and padding.
-default: "lg"
+required: false
+default: lg
 enum:
-- "lg"
-- "md"
-required: true
+- lg
+- md
+description: Defines the button's size and vertical padding.
 
 Instance:
 type: string
-description: Identifies an optional nested component instance.
-examples:
-- loading
-- waiting
-- icon
 required: false
+examples:
+- icon
+description: >
+Identifies the icon instance used by the button when applicable.
+
+anatomy:
+root:
+type: container
+description: Main button container.
+Connect wallet:
+type: text
+description: Button label.
+loading:
+type: instance
+instanceOf: loading
+description: Loading indicator shown in the Loading state.
+waiting:
+type: instance
+instanceOf: waiting
+description: Waiting indicator shown in the Waiting state.
+icon:
+type: instance
+instanceOf: icon
+description: Icon shown for the Icon variant.
+
+layout:
+root:
+width: 200px
+direction: horizontal
+alignItems: center
+justifyContent: center
+gap: 8px
+padding:
+top: 20px
+bottom: 20px
+start: 24px
+end: 24px
+cornerRadius: 12px
+Connect wallet:
+fontFamily: Chirp
+fontWeight: Medium
+fontSize: 18px
+lineHeight: 20px
+textAlign: center
+loading:
+width: 24px
+height: 24px
+waiting:
+width: 24px
+height: 24px
+icon:
+width: 24px
+height: 24px
 
 variants:
-Variant:
-Primary:
-description: Main action style.
-default_background: "#AAE2C8"
-default_text_color: "#171818"
 
-```
-Secondary:
-  description: Secondary action style.
-  default_background: "#465C52"
-  default_text_color: "#E8F4F0"
+* name: Primary
+  props:
+  State: Default
+  Variant: Primary
+  Interaction: Default
+  Size: lg
+  description: Primary action button.
+  styles:
+  root:
+  backgroundColor: "#AAE2C8"
+  cornerRadius: 12px
+  Connect wallet:
+  color: "#171818"
 
-Icon:
-  description: Icon-only button with no standard filled background.
-  background: null
-  default_instance: icon
-```
+* name: PrimaryHover
+  props:
+  State: Default
+  Variant: Primary
+  Interaction: Hover
+  description: Primary button on hover.
+  styles:
+  root:
+  backgroundColor: "#D5FFF5"
 
-State:
-Default:
-description: Normal enabled appearance.
+* name: Secondary
+  props:
+  State: Default
+  Variant: Secondary
+  Interaction: Default
+  description: Secondary action button.
+  styles:
+  root:
+  backgroundColor: "#465C52"
+  Connect wallet:
+  color: "#E8F4F0"
 
-```
-Disabled:
-  description: Disabled appearance.
-  background: "#35423F"
-  text_color: "#697976"
+* name: SecondaryHover
+  props:
+  State: Default
+  Variant: Secondary
+  Interaction: Hover
+  description: Secondary button on hover.
+  styles:
+  root:
+  backgroundColor: "#738F82"
 
-Hover:
-  description: Pointer hover appearance.
+* name: Disabled
+  props:
+  State: Disabled
+  Variant: Primary
+  Interaction: Default
+  description: Disabled button.
+  styles:
+  root:
+  backgroundColor: "#35423F"
+  Connect wallet:
+  color: "#697976"
 
-Loading:
-  description: Loading appearance with reduced opacity.
+* name: Loading
+  props:
+  State: Loading
+  Variant: Primary
+  Interaction: Default
+  Size: lg
+  description: Button displaying its label and a loading indicator.
+  layout:
+  root:
+  children:
+  - Connect wallet
+  - loading
+  styles:
+  root:
+  backgroundColor: "#AAE2C8"
   opacity: 0.5
-  indicator_instance: loading
+  padding:
+  top: 18px
+  bottom: 18px
+  end: 20px
+  Connect wallet:
+  color: "#0F0F0F"
 
-Waiting:
-  description: Waiting appearance with reduced opacity.
+* name: LoadingMedium
+  props:
+  State: Loading
+  Size: md
+  description: Medium loading button.
+  styles:
+  root:
+  padding:
+  top: 12px
+  bottom: 12px
+
+* name: LoadingSecondary
+  props:
+  State: Loading
+  Variant: Secondary
+  description: Loading button using the secondary style.
+  styles:
+  root:
+  backgroundColor: "#465C52"
+  Connect wallet:
+  color: "#E8F4F0"
+
+* name: Waiting
+  props:
+  State: Waiting
+  Variant: Primary
+  Interaction: Default
+  Size: lg
+  description: Button displaying only the waiting indicator.
+  layout:
+  root:
+  children:
+  - waiting
+  styles:
+  root:
+  backgroundColor: "#1F2C2A"
   opacity: 0.5
-  indicator_instance: waiting
-```
+  padding:
+  top: 26px
+  bottom: 26px
+  start: 20px
+  end: 20px
 
-Size:
-"lg":
-description: Large button size.
-root_width: 200
-vertical_padding: 20
+* name: WaitingMedium
+  props:
+  State: Waiting
+  Size: md
+  description: Medium waiting button.
+  styles:
+  root:
+  padding: 20px
 
-```
-"md":
-  description: Compact button size.
-  vertical_padding: 14
-```
+* name: Icon
+  props:
+  State: Default
+  Variant: Icon
+  Interaction: Default
+  Size: lg
+  description: Icon-only button.
+  layout:
+  root:
+  children:
+  - icon
+  styles:
+  root:
+  width: 60px
+  height: 60px
+  backgroundColor: none
+  icon:
+  width: 24px
+  height: 24px
+
+* name: IconMedium
+  props:
+  State: Default
+  Variant: Icon
+  Interaction: Default
+  Size: md
+  description: Medium icon-only button.
+  styles:
+  root:
+  width: 48px
+  height: 48px
 
 combinations:
-Primary_Default:
-Variant: Primary
-State: Default
-background_color: "#AAE2C8"
-text_color: "#171818"
 
-Primary_Hover:
-Variant: Primary
-State: Hover
-background_color: "#D5FFF5"
-text_color: "#171818"
-
-Primary_Disabled:
-Variant: Primary
-State: Disabled
-background_color: "#35423F"
-text_color: "#697976"
-
-Primary_Loading:
-Variant: Primary
-State: Loading
-background_color: "#AAE2C8"
-opacity: 0.5
-text_color: "#0F0F0F"
-includes:
-- Connect wallet
-- loading
-
-Primary_Waiting:
-Variant: Primary
-State: Waiting
-background_color: "#1F2C2A"
-opacity: 0.5
-includes:
-- waiting
-
-Secondary_Default:
-Variant: Secondary
-State: Default
-background_color: "#465C52"
-text_color: "#E8F4F0"
-
-Secondary_Hover:
-Variant: Secondary
-State: Hover
-background_color: "#738F82"
-text_color: "#E8F4F0"
-
-Secondary_Loading:
-Variant: Secondary
-State: Loading
-background_color: "#465C52"
-text_color: "#E8F4F0"
-
-Icon_Default:
-Variant: Icon
-State: Default
-background: null
-includes:
-- icon
-
-Icon_Hover:
-Variant: Icon
-State: Hover
-background: null
-includes:
-- icon
-
-composition:
-root:
-semantic_role: button
-description: Main interactive container.
-width: 200
-width_behavior: fixed
-height_behavior: hug
-corner_radius: 12
-direction: horizontal
-main_axis_alignment: center
-cross_axis_alignment: center
-item_spacing: 8
-default_background_color: "#35423F"
-padding:
-horizontal: 24
-vertical: 20
-
-Connect wallet:
-semantic_role: button_label
-description: Visible text label for the button.
-default_content: Connect wallet
-font_family: Chirp
-font_style: Medium
-font_size: 18
-line_height: 20
-default_text_color: "#697976"
-
-loading:
-semantic_role: loading_indicator
-instance_of: loading
-width: 24
-height: 24
-description: Nested loading indicator used in specified button variants.
-
-waiting:
-semantic_role: waiting_indicator
-instance_of: waiting
-width: 24
-height: 24
-description: Nested waiting indicator used in the Waiting variant.
-
-icon:
-semantic_role: icon
-instance_of: icon
-width: 24
-height: 24
-description: Icon used in Icon button variants.
-
-size_overrides:
-"md":
-root:
-vertical_padding: 14
-
-```
-Loading:
-  vertical_padding: 12
-
-Waiting:
-  padding: 20
-
-Icon:
-  width: md
-  height: md
-```
-
-"lg":
-Icon:
-width: lg
-height: lg
+* State: Default
+  Variant: Primary
+  Interaction: Default
+  Size: lg
+* State: Default
+  Variant: Primary
+  Interaction: Hover
+* State: Default
+  Variant: Secondary
+  Interaction: Default
+* State: Default
+  Variant: Secondary
+  Interaction: Hover
+* State: Default
+  Variant: Icon
+  Interaction: Default
+  Size: lg
+* State: Default
+  Variant: Icon
+  Interaction: Default
+  Size: md
+* State: Disabled
+  Variant: Primary
+  Interaction: Default
+* State: Loading
+  Variant: Primary
+  Interaction: Default
+  Size: lg
+* State: Loading
+  Size: md
+* State: Loading
+  Variant: Secondary
+* State: Waiting
+  Variant: Primary
+  Interaction: Default
+  Size: lg
+* State: Waiting
+  Size: md
 
 behavior:
 
-* Variant, State, and Size describe separate properties, but not every combination has a defined visual layout.
-* Keep the visible button label configurable rather than hardcoding Connect wallet.
-* Primary is intended for the main action in a context.
-* Secondary is intended for a supporting action.
-* Icon is intended for an icon-only action.
-* Hover changes visual appearance and must not trigger the action by itself.
-* Disabled buttons must not perform their action.
-* Loading and Waiting must reflect real application state rather than being used as decorative variants.
-* Prevent duplicate submissions while an action is loading when appropriate.
-* Restore the appropriate interactive state when the operation completes or fails.
-* Use the loading instance only in combinations defined by the visual specification.
-* Use the waiting instance in the Waiting variant.
-* Use the icon instance in Icon variants.
-* The Instance property is optional and must not replace explicit variant behavior.
-* Preserve the specified size-dependent padding and icon dimensions.
-* Do not infer unspecified visual combinations solely from the default styles.
+* State Default displays the button's normal content.
+* State Disabled uses the disabled background and text colors.
+* State Loading displays the label and loading indicator.
+* State Waiting displays only the waiting indicator.
+* Variant Primary uses the primary color palette.
+* Variant Secondary uses the secondary color palette.
+* Variant Icon displays only the icon instance.
+* Interaction Hover applies the corresponding hover background when defined.
+* Size lg and Size md use different vertical padding and icon button dimensions.
+* The consuming application manages click handling and asynchronous action logic.
 
 accessibility:
-
-* Use a semantic button element for actions.
-* Give the button an accessible name that communicates its purpose.
-* For icon-only buttons, provide an accessible name even when no visible text is present.
-* Support keyboard focus and activation.
-* Provide a visible focus indicator distinct from hover styling.
-* Ensure text, background, and focus indicators have sufficient contrast.
-* Implement disabled behavior in the actual control, not only through color or opacity.
-* Expose loading or busy status to assistive technology when appropriate.
-* Ensure loading and waiting indicators do not become redundant accessible content.
-* Preserve predictable focus behavior during asynchronous operations.
+requirements:
+- Use a native button element for interactive buttons.
+- Provide an accessible name for every button.
+- Use the disabled attribute when the button cannot be activated.
+- Expose loading or waiting status to assistive technology when applicable.
+- Icon-only buttons require an accessible name.
 
 implementation:
-
-* Read this file together with components/button.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, styles, and variant-specific layouts.
-* Treat this file as additional semantic, behavioral, and accessibility guidance.
-* Implement the component using a semantic button for actions.
-* Apply Variant, State, and Size according to the selected variant.
-* Preserve the explicit visual differences between Primary, Secondary, and Icon.
-* Preserve the nested loading, waiting, and icon instances where defined.
-* Use "lg" and "md" as Size values; do not substitute M or L.
-* Implement keyboard focus separately because the supplied visual specification does not define a dedicated focus state.
-* Keep actual disabled, loading, and waiting behavior synchronized with application state.
-* Do not invent additional visual states or colors unless they are defined elsewhere in the design system.
-* Do not assume all combinations of Variant, State, and Size are supported.
-
-related_components:
-
-* Link
-* Tab
-* loading
-* waiting
-* icon
-
-design_tokens:
-button_default_background: "#35423F"
-button_primary_background: "#AAE2C8"
-button_primary_hover_background: "#D5FFF5"
-button_secondary_background: "#465C52"
-button_secondary_hover_background: "#738F82"
-button_waiting_background: "#1F2C2A"
-button_disabled_text: "#697976"
-button_primary_text: "#171818"
-button_secondary_text: "#E8F4F0"
-button_corner_radius: 12
-button_font_family: Chirp
-button_font_style: Medium
-button_font_size: 18
-button_line_height: 20
+component: Button
+suggestedFile: Button.tsx
+examplesFile: button.examples.tsx
+notes:
+- Keep Variant, State, Interaction, Size, and Instance consistent with this specification.
+- Preserve the distinction between loading and waiting indicators.
+- Do not display the text label in the Waiting state.
+- The Icon variant uses the icon instance instead of the text label.
+- Use the source-defined values for dimensions, colors, opacity, and padding.
+-----------------------------------------------------------------------------
