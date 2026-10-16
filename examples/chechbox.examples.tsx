@@ -8,57 +8,54 @@
  * Important:
  * - Replace the import path with the actual Checkbox implementation in your project.
  * - Prop from the YAML:
- *   - State: Default | Hover | Active | Active-disabled | Active-hover | Disabled
+ *   - State: Default | Default | Active | Disabled
+ *   - Interaction | Default | Hover |
  * - Default state has a dark background + border.
  * - Active states show the check instance and change background to mint green.
  * - Active-disabled uses opacity: 0.5.
  * - Disabled (unchecked) removes the background.
  */
-import { Checkbox } from "../components/Checkbox";
+import { Checkbox } from "./Checkbox";
 
 export function CheckboxExamples() {
-  return (
-    <main>
-      <section aria-labelledby="checkbox-states">
-        <h2 id="checkbox-states">Checkbox states</h2>
+return (
+<div
+style={{
+display: "flex",
+flexDirection: "column",
+gap: 24,
+padding: 24,
+background: "#0B1819",
+color: "#D1DEDF",
+fontFamily: "Inter, sans-serif",
+}}
+> <section> <h3>States</h3>
+<div style={{ display: "flex", alignItems: "center", gap: 24 }}> <Example label="Default"> <Checkbox State="Default" Interaction="Default" /> </Example>
 
-        <Checkbox State="Default" aria-label="Unchecked" />
-        <Checkbox State="Hover" aria-label="Unchecked hover" />
-        <Checkbox State="Active" aria-label="Checked" />
-        <Checkbox State="Active-hover" aria-label="Checked hover" />
-        <Checkbox State="Active-disabled" aria-label="Checked disabled" disabled />
-        <Checkbox State="Disabled" aria-label="Unchecked disabled" disabled />
-      </section>
-    </main>
-  );
-}
+```
+      <Example label="Active">
+        <Checkbox State="Active" Interaction="Default" />
+      </Example>
 
-/**
- * Interactive example.
- * Prefer controlling checked state via form logic instead of manually
- * setting Hover / Active-hover.
- */
-import { useState } from "react";
+      <Example label="Disabled">
+        <Checkbox State="Disabled" Interaction="Default" />
+      </Example>
+    </div>
+  </section>
 
-export function CheckboxInteractionExamples() {
-  const [checked, setChecked] = useState(false);
-  const [disabledChecked, setDisabledChecked] = useState(true);
+  <section>
+    <h3>Hover states</h3>
+    <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+      <Example label="Default hover">
+        <Checkbox State="Default" Interaction="Hover" />
+      </Example>
 
-  return (
-    <section aria-labelledby="checkbox-interactions">
-      <h2 id="checkbox-interactions">Interaction examples</h2>
+      <Example label="Active hover">
+        <Checkbox State="Active" Interaction="Hover" />
+      </Example>
+    </div>
+  </section>
+</div>
+```
 
-      <Checkbox
-        State={checked ? "Active" : "Default"}
-        onClick={() => setChecked((v) => !v)}
-        aria-label="Accept terms"
-      />
 
-      <Checkbox
-        State={disabledChecked ? "Active-disabled" : "Disabled"}
-        disabled
-        aria-label="Locked option"
-      />
-    </section>
-  );
-}
