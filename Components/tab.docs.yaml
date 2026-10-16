@@ -2,134 +2,111 @@
 
 ## Description
 
-A reusable tab component with five sizes, two tab types, and two interaction states. It is intended to be used in a tab group to switch between related views or content panels.
+A tab component for switching between interface sections. It supports Active and Inactive states, five sizes, and Default and Hover interaction states.
 
 ## Purpose
 
-* Indicate which tab is currently selected.
-* Allow users to switch between related views or sections.
-* Provide consistent tab styling across different interface sizes.
-
-## Usage
-
-### Use when
-
-* Users need to switch between related views within the same context.
-* The interface contains a group of tabs.
-* The selected and unselected tabs need to look different.
-
-### Avoid when
-
-* The element navigates to a separate page. Use a link instead.
-* The element performs an action unrelated to switching tabs.
-* The element is used as a standalone button without a tab context.
-
-## Props
-
-### Type
-
-Defines whether the tab is selected.
-
-* Type: `string`
-* Default: `Active`
-* Values: `Active`, `Inactive`
-
-### Size
-
-Controls the tab's typography and padding.
-
-* Type: `string`
-* Default: `2xl`
-* Values: `2xl`, `xl`, `lg`, `md`, `sm`
-
-### State
-
-Controls the tab's visual interaction state.
-
-* Type: `string`
-* Default: `Default`
-* Values: `Default`, `Hover`
-
-## Visual variants
-
-### Type
-
-**Active**
-
-* Background: `#576762`
-* Text: `#E8F4F0`
-
-**Inactive**
-
-* Background: `#35423F`
-* Text: `#C2D4CD`
-* Item spacing: `0`
-
-### State
-
-**Default**
-
-* Uses the default colors defined by `Type`.
-
-**Hover**
-
-* Active tab background: `#D5FFF5`
-* Inactive tab background: `#738F82`
-* Text color: `#171818`
-
-Hover changes the visual appearance but does not change the selected tab.
-
-## Sizes
-
-| Size | Font size | Line height | Padding (vertical) | Padding (horizontal) |
-| ---- | --------: | ----------: | -----------------: | -------------------: |
-| 2xl  |      18px |        20px |               18px |                 32px |
-| xl   |      16px |        18px |               14px |                 24px |
-| lg   |      16px |        18px |               12px |                 16px |
-| md   |      14px |        16px |                8px |                 16px |
-| sm   |      12px |        14px |                5px |                 16px |
-
-All sizes use the Chirp font family and Medium font style.
+* Indicate the currently active section.
+* Provide navigation between related views or content.
+* Maintain consistent tab styling across different sizes and interaction states.
 
 ## Anatomy
 
-* `root`: Container defining the background, padding, spacing, alignment, and corner radius.
-* `Tab`: Text label displayed inside the tab. The label should be configurable.
+* `root` — container for the tab.
+* `Tab` — text label displayed inside the tab.
+
+## Props
+
+| Prop          | Type   | Default   | Values                        |
+| ------------- | ------ | --------- | ----------------------------- |
+| `State`       | string | `Active`  | `Inactive`, `Active`          |
+| `Size`        | string | `2xl`     | `2xl`, `xl`, `lg`, `md`, `sm` |
+| `Interaction` | string | `Default` | `Default`, `Hover`            |
+
+All props are non-nullable.
+
+## Layout
+
+* Root layout: horizontal.
+* Horizontal and vertical sizing: Hug.
+* Content alignment: centered on both axes.
+* Default corner radius: `8px`.
+* Default item spacing: `10px`.
+* Default padding: `18px` top and bottom, `32px` left and right.
+
+## Variants and styles
+
+### State: Active
+
+Default background: `#576762`.
+
+Text color: `#E8F4F0`.
+
+Typography: Chirp Medium, `18px` font size, `20px` line height.
+
+### State: Inactive
+
+Background: `#35423F`.
+
+Text color: `#C2D4CD`.
+
+Item spacing: `0px`.
+
+### Interaction: Hover
+
+For the Active state:
+
+* Background: `#D5FFF5`.
+* Text color: `#171818`.
+
+For the Inactive state:
+
+* Background: `#738F82`.
+* Text color: `#171818`.
+
+### Size: 2xl
+
+* Padding: `18px` top and bottom, `32px` left and right.
+* Font size: `18px`.
+* Line height: `20px`.
+
+### Size: xl
+
+* Padding: `14px` top and bottom, `24px` left and right.
+* Font size: `16px`.
+* Line height: `18px`.
+
+### Size: lg
+
+* Padding: `12px` top and bottom, `16px` left and right.
+* Font size: `16px`.
+* Line height: `18px`.
+
+### Size: md
+
+* Padding: `8px` top and bottom, `16px` left and right.
+* Font size: `14px`.
+* Line height: `16px`.
+
+### Size: sm
+
+* Padding: `5px` top and bottom, `16px` left and right.
+* Font size: `12px`.
+* Line height: `14px`.
+
+All sizes use Chirp Medium.
 
 ## Behavior
 
-* `Type`, `Size`, and `State` are independent properties.
-* Support all combinations of the defined property values.
-* `Active` indicates the currently selected tab.
-* `Inactive` indicates a tab that is available but not selected.
-* `Hover` changes the appearance without changing the selected state.
-* Selecting a tab must update the selected state in the parent tab group.
-* A tab group should normally have one selected tab at a time.
-* Switching tabs should display the corresponding content panel.
-* Do not use the visual `Type` property as a substitute for application selection logic.
+* `State` controls whether the tab is Active or Inactive.
+* `Interaction` controls whether the tab uses Default or Hover styling.
+* `Size` controls the tab's padding and typography.
+* The YAML defines no invalid prop combinations.
 
-## Accessibility
+## Implementation notes
 
-* Use semantic tab markup when the component switches between tab panels.
-* Implement appropriate `tablist`, `tab`, and `tabpanel` relationships.
-* Expose selection through `aria-selected` when using the ARIA tabs pattern.
-* Give each tab an accessible name based on its visible label.
-* Support keyboard navigation and activation according to the chosen tab pattern.
-* Provide a visible keyboard focus indicator distinct from hover.
-* Ensure text and focus indicators have sufficient contrast.
-* Do not communicate selection through color alone.
-
-## Implementation
-
-* Read this file together with `components/tab.yaml`.
-* Treat the YAML as the source of truth for visual anatomy, colors, typography, padding, and variants.
-* Preserve the exact prop names and values defined in the YAML.
-* Use `Type` for selection appearance, `Size` for dimensions, and `State` for interaction appearance.
-* Keep tab selection and content switching in application logic.
-* Implement keyboard focus separately because the visual specification does not define a dedicated focus state.
-* Do not invent additional visual states or props.
-
-## Related components
-
-* Tab group
-* Tab panel
+* Preserve the exact prop names and enum values from the specification.
+* Apply the Inactive + Hover styles when `State="Inactive"` and `Interaction="Hover"`.
+* Apply the Active + Hover styles when `State="Active"` and `Interaction="Hover"`.
+* The specification defines visual styling only; it does not specify click behavior, selected-state management, keyboard navigation, or content switching.
+* Do not infer additional states or styles that are not defined in the YAML.
