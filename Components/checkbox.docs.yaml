@@ -1,153 +1,164 @@
+---
+
 component: checkbox
+title: Checkbox
 
 description: >
-A checkbox is an interactive control that allows users to select or
-deselect an option. Unlike a radio button, a checkbox does not restrict
-the user to selecting only one option in a group.
+A square selection control that allows users to toggle an option on or off.
 
 purpose:
 
-* Allow users to toggle an option on or off.
-* Support independent selections in forms and settings.
-* Communicate whether an option is selected, unavailable, or interactive.
-
-usage:
-use_when:
-- Users can select or deselect an option independently.
-- A form allows multiple options to be selected.
-- Users need to enable or disable a setting.
-avoid_when:
-- Exactly one option must be selected from a group; use a radio button.
-- An action must be triggered immediately without representing a persistent selection; consider a button.
+* Allow users to select or deselect an option.
+* Display the selected state with a check mark.
+* Provide visual feedback for hover and disabled states.
 
 props:
 State:
 type: string
+required: false
+default: Default
+enum:
+- Default
+- Active
+- Disabled
 description: >
-Describes the visual state represented by the source Figma component.
-In a running application, checked, disabled, and hover should be
-controlled by actual component state and interaction.
+Controls whether the checkbox is unselected, selected, or disabled.
+
+Interaction:
+type: string
+required: false
 default: Default
 enum:
 - Default
 - Hover
-- Active
-- Active-disabled
-- Active-hover
-- Disabled
-required: true
+description: >
+Controls the hover appearance of the checkbox.
 
-states:
-Default:
-checked: false
-disabled: false
-description: Unchecked checkbox in its normal state.
-appearance:
-background: "#1F2C2A"
-border: "#35423F"
+anatomy:
+root:
+description: >
+The outer square container. Defines the checkbox size, background,
+border, and interaction appearance.
+check:
+type: instance
+instanceOf: check
+description: >
+The check mark displayed when State is Active.
 
-Hover:
-checked: false
-disabled: false
-description: Unchecked checkbox when the pointer hovers over it.
-appearance:
-background: "#35423F"
-border: "#AAE2C8"
+variants:
 
-Active:
-checked: true
-disabled: false
-description: Selected checkbox in its normal state.
-appearance:
-background: "#AAE2C8"
-check_icon_visible: true
+* name: Default
+  props:
+  State: Default
+  Interaction: Default
+  description: Unselected checkbox in its default state.
+  styles:
+  root:
+  width: 24px
+  height: 24px
+  cornerRadius: 8px
+  backgroundColor: "#1F2C2A"
+  borderColor: "#35423F"
+  borderWidth: 1px
+  check:
+  visible: false
 
-Active-disabled:
-checked: true
-disabled: true
-description: Selected checkbox that cannot currently be changed.
-appearance:
-background: "#AAE2C8"
-opacity: 0.5
-check_icon_visible: true
+* name: Active
+  props:
+  State: Active
+  Interaction: Default
+  description: Selected checkbox with a check mark.
+  styles:
+  root:
+  width: 24px
+  height: 24px
+  cornerRadius: 8px
+  backgroundColor: "#AAE2C8"
+  border: none
+  check:
+  visible: true
+  width: 24px
+  height: 24px
+  position: absolute
+  top: 0
+  start: 0
 
-Active-hover:
-checked: true
-disabled: false
-description: Selected checkbox when the pointer hovers over it.
-appearance:
-background: "#D5FFF5"
-glow_color: "#9DFFE8"
-glow_blur: 4
-check_icon_visible: true
+* name: Disabled
+  props:
+  State: Disabled
+  Interaction: Default
+  description: Disabled checkbox. The root background is unset by the specification.
+  styles:
+  root:
+  backgroundColor: unset
 
-Disabled:
-checked: false
-disabled: true
-description: Unchecked checkbox that cannot currently be changed.
-appearance:
-background: null
-border: "#35423F"
+* name: DefaultHover
+  props:
+  State: Default
+  Interaction: Hover
+  description: Unselected checkbox on hover.
+  styles:
+  root:
+  backgroundColor: "#35423F"
+  borderColor: "#AAE2C8"
+  borderWidth: 1px
+  check:
+  visible: false
+
+* name: ActiveHover
+  props:
+  State: Active
+  Interaction: Hover
+  description: Selected checkbox on hover, with a glow effect.
+  styles:
+  root:
+  backgroundColor: "#D5FFF5"
+  shadow:
+  color: "#9DFFE8"
+  blur: 4px
+  spread: 0
+  offsetX: 0
+  offsetY: 0
+  check:
+  visible: true
+
+combinations:
+
+* State: Default
+  Interaction: Default
+* State: Default
+  Interaction: Hover
+* State: Active
+  Interaction: Default
+* State: Active
+  Interaction: Hover
+* State: Disabled
+  Interaction: Default
 
 behavior:
 
-* Clicking or tapping an enabled checkbox toggles its checked value.
-* The checked value must be stored in application state, not inferred only from the visual variant.
-* A disabled checkbox cannot be toggled by pointer, touch, or keyboard interaction.
-* Hover appearance applies only when the control is enabled and the input method supports hover.
-* Active-disabled represents a checked and disabled checkbox.
-* Active-hover represents a checked checkbox in its hover state.
-* The check icon is visible in selected states.
-* The visual State property from Figma must not be used as the only source of runtime interaction state.
-
-composition:
-root:
-semantic_role: checkbox
-description: The interactive checkbox container.
-dimensions:
-width: 24
-height: 24
-corner_radius: 8
-border_width: 1
-check:
-component: check
-description: Checkmark displayed when the checkbox is selected.
-visibility_rule: Visible when checked.
+* When State is Default, do not display the check mark.
+* When State is Active, display the check instance.
+* When State is Disabled, remove the root background color as specified.
+* When State is Default and Interaction is Hover, use the hover background and border colors.
+* When State is Active and Interaction is Hover, use the hover background and glow effect.
+* Selection behavior must be managed by the consuming application.
 
 accessibility:
-
-* Implement the control using a native input type="checkbox" or an equivalent accessible checkbox pattern.
-* Provide an accessible name through an associated label or aria-label.
-* Expose the checked and disabled states to assistive technologies.
-* Support keyboard interaction; Space should toggle an enabled checkbox.
-* Preserve a visible keyboard focus indicator.
-* Do not communicate selection or disabled status through color alone.
-* If the checkbox controls a setting, associate it with a clear descriptive label.
-* Ensure the interactive hit area is large enough for the product's accessibility requirements; the 24x24 visual box does not necessarily define the entire hit area.
+role: checkbox
+requirements:
+- Expose the selected state using aria-checked.
+- Expose the disabled state using aria-disabled or the native disabled attribute.
+- Provide an accessible name through an associated label.
+- Support keyboard interaction when used as a form control.
 
 implementation:
-
-* Read this file together with components/checkbox.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, dimensions, colors, effects, and variant definitions.
-* Treat this file as additional guidance for semantics, behavior, and accessibility.
-* Reuse the existing check component rather than drawing a duplicate checkmark.
-* Use the checked value to determine whether the check icon is displayed.
-* Use the disabled value to prevent interaction and expose the correct accessibility state.
-* Keep hover and focus states distinct.
-* Preserve the selected state when a checkbox becomes disabled.
-* Do not implement an indeterminate state unless it is added to the design specification and product requirements.
-
-related_components:
-
-* check
-* radiobutton
-
-design_tokens:
-checkbox_background_default: "#1F2C2A"
-checkbox_border_default: "#35423F"
-checkbox_border_hover: "#AAE2C8"
-checkbox_background_checked: "#AAE2C8"
-checkbox_background_checked_hover: "#D5FFF5"
-checkbox_glow_checked_hover: "#9DFFE8"
-checkbox_corner_radius: 8
-checkbox_size: 24
+component: Checkbox
+suggestedFile: Checkbox.tsx
+examplesFile: checkbox.examples.tsx
+notes:
+- Keep State and Interaction values consistent with this specification.
+- Use a native input type="checkbox" when implementing form behavior.
+- Keep the check mark instance visible only when State is Active.
+- Do not invent additional disabled styles that are not defined in the source specification.
+--------------------------------------------------------------------------------------------
