@@ -2,8 +2,8 @@
 
 # Keep this file separate from the Specs 2 generated visual specification.
 
-component: tags
-title: Tags
+component: tag
+title: Tag
 
 description: >
 A compact informational tag component with two sizes and two shapes.
