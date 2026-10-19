@@ -23,80 +23,68 @@ components:
         type: string
         default: Disabled
         enum:
-          - Default
-          - Disabled
-          - Loading
-          - Waiting
+        - Default
+        - Disabled
+        - Loading
+        - Waiting
         nullable: false
       Variant:
         type: string
         default: Primary
         enum:
-          - Primary
-          - Secondary
-          - Icon
+        - Primary
+        - Secondary
+        - Icon
         nullable: false
       Interaction:
         type: string
         default: Default
         enum:
-          - Default
-          - Hover
+        - Default
+        - Hover
         nullable: false
       Size:
         type: string
         default: lg
         enum:
-          - lg
-          - md
+        - lg
+        - md
         nullable: false
       Instance:
         type: string
         examples:
-          - icon
+        - icon
     default:
       layout:
-        - root:
-            - Connect wallet
+      - root:
+        - Connect wallet
       elements:
         root:
           styles:
-            cornerRadius: 12
+            cornerRadius: '{semantic.radius.md}'
             width: 200
             mainAxisAlignment: CENTER
             primaryAxisSizingMode: FIXED
             crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
             layoutSizingVertical: HUG
-            itemSpacing: 8
+            itemSpacing: '{semantic.spacing.inline.8}'
             padding:
-              top: 20
-              bottom: 20
-              start: 24
-              end: 24
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.1216
-                - 0.1725
-                - 0.1647
-              hex: "#1F2C2A"
+              top: '{primitive.spacing.20}'
+              bottom: '{primitive.spacing.20}'
+              start: '{primitive.spacing.24}'
+              end: '{primitive.spacing.24}'
+            backgroundColor: '{component.color.action.tertiary-background}'
         Connect wallet:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.4118
-                - 0.4745
-                - 0.4627
-              hex: "#697976"
+            textColor: '{semantic.color.text.tertiary-text}'
             typography:
-              fontSize: 18
-              fontFamily: Chirp
+              fontSize: '{semantic.typography.body.lg.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Medium
-              lineHeight: 20
+              lineHeight: '{semantic.typography.body.lg.line-height}'
             textAlignHorizontal: CENTER
           content: Connect wallet
         loading:
@@ -115,241 +103,169 @@ components:
             height: 24
           instanceOf: icon
     variants:
-      - configuration:
-          Size: md
-        elements:
-          root:
-            styles:
-              padding:
-                top: 14
-                bottom: 14
-      - configuration:
-          State: Default
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
-          Connect wallet:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.0902
-                  - 0.0941
-                  - 0.0941
-                hex: "#171818"
-      - configuration:
-          State: Loading
-        layout:
-          - root:
-              - Connect wallet
-              - loading
-        elements:
-          root:
-            styles:
-              opacity: 0.5
-              padding:
-                top: 18
-                end: 20
-                bottom: 18
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
-          Connect wallet:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.0902
-                  - 0.0941
-                  - 0.0941
-                hex: "#171818"
-      - configuration:
-          State: Waiting
-        layout:
-          - root:
-              - waiting
-        elements:
-          root:
-            styles:
-              opacity: 0.5
-              padding:
-                top: 26
-                end: 20
-                bottom: 26
-                start: 20
-      - configuration:
-          State: Default
-          Interaction: Hover
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.8353
-                  - 1
-                  - 0.9608
-                hex: "#D5FFF5"
-      - configuration:
-          State: Default
-          Variant: Secondary
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.2745
-                  - 0.3608
-                  - 0.3216
-                hex: "#465C52"
-          Connect wallet:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.9098
-                  - 0.9569
-                  - 0.9412
-                hex: "#E8F4F0"
-      - configuration:
-          State: Default
-          Variant: Icon
-        layout:
-          - root:
-              - icon
-        elements:
-          root:
-            styles:
-              width: 60
-              height: 60
-              layoutSizingVertical: FIXED
-              backgroundColor: null
-              aspectRatio:
-                x: 48
-                y: 48
-      - configuration:
-          State: Loading
-          Size: md
-        elements:
-          root:
-            styles:
-              padding:
-                top: 12
-                bottom: 12
-      - configuration:
-          State: Loading
-          Variant: Secondary
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.2745
-                  - 0.3608
-                  - 0.3216
-                hex: "#465C52"
-          Connect wallet:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.9098
-                  - 0.9569
-                  - 0.9412
-                hex: "#E8F4F0"
-      - configuration:
-          State: Waiting
-          Size: md
-        elements:
-          root:
-            styles:
-              padding: 20
-      - configuration:
-          State: Default
-          Variant: Secondary
-          Interaction: Hover
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.451
-                  - 0.5608
-                  - 0.5098
-                hex: "#738F82"
-      - configuration:
-          State: Default
-          Variant: Icon
-          Size: md
-        elements:
-          root:
-            styles:
-              width: 48
-              height: 48
-              padding:
-                top: 20
-                bottom: 20
-              aspectRatio: null
-       - configuration:
-          State: Disabled
-        elements:
-          root:
-            styles:
-              cornerRadius: 12
-              width: 200
-              mainAxisAlignment: CENTER
-              primaryAxisSizingMode: FIXED
-              crossAxisAlignment: CENTER
-              layoutMode: HORIZONTAL
-              layoutSizingVertical: HUG
-              itemSpacing: 8
-              padding:
-                top: 20
-                bottom: 20
-                start: 24
-                end: 24
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.2078
-                  - 0.2588
-                  - 0.2471
-                hex: "#35423F"
-          Connect wallet:
-            styles:
-              layoutSizingHorizontal: HUG
-              layoutSizingVertical: HUG
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.4106
-                  - 0.475
-                  - 0.461
-                hex: "#697976"
-              typography:
-                fontSize: 18
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 20
-              textAlignHorizontal: CENTER      
+    - configuration:
+        Size: md
+      elements:
+        root:
+          styles:
+            padding:
+              top: '{primitive.spacing.14}'
+              bottom: '{primitive.spacing.14}'
+    - configuration:
+        State: Default
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.primary-background}'
+        Connect wallet:
+          styles:
+            textColor: '{semantic.color.text.inverse-text}'
+    - configuration:
+        State: Loading
+      layout:
+      - root:
+        - Connect wallet
+        - loading
+      elements:
+        root:
+          styles:
+            opacity: 0.5
+            padding:
+              top: '{primitive.spacing.18}'
+              end: '{primitive.spacing.20}'
+              bottom: '{primitive.spacing.18}'
+            backgroundColor: '{component.color.action.primary-background}'
+        Connect wallet:
+          styles:
+            textColor: '{semantic.color.text.inverse-text}'
+    - configuration:
+        State: Waiting
+      layout:
+      - root:
+        - waiting
+      elements:
+        root:
+          styles:
+            opacity: 0.5
+            padding:
+              top: '{primitive.spacing.26}'
+              end: '{primitive.spacing.20}'
+              bottom: '{primitive.spacing.26}'
+              start: '{primitive.spacing.20}'
+    - configuration:
+        State: Default
+        Interaction: Hover
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.primary-background-hover}'
+    - configuration:
+        State: Default
+        Variant: Secondary
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.secondary-background}'
+        Connect wallet:
+          styles:
+            textColor: '{semantic.color.text.primary-text}'
+    - configuration:
+        State: Default
+        Variant: Icon
+      layout:
+      - root:
+        - icon
+      elements:
+        root:
+          styles:
+            width: 60
+            height: 60
+            layoutSizingVertical: FIXED
+            backgroundColor: null
+            aspectRatio:
+              x: 48
+              y: 48
+    - configuration:
+        State: Loading
+        Size: md
+      elements:
+        root:
+          styles:
+            padding:
+              top: '{primitive.spacing.12}'
+              bottom: '{primitive.spacing.12}'
+    - configuration:
+        State: Loading
+        Variant: Secondary
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.secondary-background}'
+        Connect wallet:
+          styles:
+            textColor: '{semantic.color.text.primary-text}'
+    - configuration:
+        State: Waiting
+        Size: md
+      elements:
+        root:
+          styles:
+            padding: '{primitive.spacing.20}'
+    - configuration:
+        State: Default
+        Variant: Secondary
+        Interaction: Hover
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.secondary-background-hover}'
+    - configuration:
+        State: Default
+        Variant: Icon
+        Size: md
+      elements:
+        root:
+          styles:
+            width: 48
+            height: 48
+            padding:
+              top: '{primitive.spacing.20}'
+              bottom: '{primitive.spacing.20}'
+            aspectRatio: null
+    - configuration:
+        State: Disabled
+      elements:
+        root:
+          styles:
+            cornerRadius: '{semantic.radius.md}'
+            width: 200
+            mainAxisAlignment: CENTER
+            primaryAxisSizingMode: FIXED
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            layoutSizingVertical: HUG
+            itemSpacing: '{semantic.spacing.inline.8}'
+            padding:
+              top: '{primitive.spacing.20}'
+              bottom: '{primitive.spacing.20}'
+              start: '{primitive.spacing.24}'
+              end: '{primitive.spacing.24}'
+            backgroundColor: '{component.color.action.tertiary-background-hover}'
+        Connect wallet:
+          styles:
+            layoutSizingHorizontal: HUG
+            layoutSizingVertical: HUG
+            textColor: '{semantic.color.text.tertiary-text}'
+            typography:
+              fontSize: '{semantic.typography.body.lg.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.lg.line-height}'
+            textAlignHorizontal: CENTER
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:20:15.404Z
+      lastUpdated: 2026-10-19 21:20:15.404000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
