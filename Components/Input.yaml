@@ -29,58 +29,52 @@ components:
         type: string
         default: Default
         enum:
-          - Default
-          - Filled
-          - Disabled
-          - Focus
-          - Readonly
-          - Warning
-          - Error
+        - Default
+        - Filled
+        - Disabled
+        - Focus
+        - Readonly
+        - Warning
+        - Error
         nullable: false
       Interaction:
         type: string
         default: Default
         enum:
-          - Default
-          - Hover
+        - Default
+        - Hover
         nullable: false
       showErrorText:
         type: boolean
         default: false
     default:
       layout:
-        - root:
-            - Heading
-            - Frame 1:
-                - Text
-            - Error text
+      - root:
+        - Heading
+        - Frame 1:
+          - Text
+        - Error text
       elements:
         root:
           styles:
             width: 420
             layoutMode: VERTICAL
             layoutSizingVertical: HUG
-            itemSpacing: 4
+            itemSpacing: '{semantic.spacing.inline.4}'
         Heading:
           styles:
             layoutSizingHorizontal: FILL
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.7608
-                - 0.8314
-                - 0.8039
-              hex: "#C2D4CD"
+            textColor: '{semantic.color.text.secondary-text}'
             typography:
-              fontFamily: Chirp
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Bold
-              lineHeight: 18
+              lineHeight: '{semantic.typography.body.md.line-height}'
           content: Heading
         Frame 1:
           styles:
             clipsContent: true
-            cornerRadius: 12
+            cornerRadius: '{semantic.radius.md}'
             primaryAxisSizingMode: FIXED
             crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
@@ -88,66 +82,42 @@ components:
             layoutSizingVertical: HUG
             itemSpacing: 10
             padding:
-              top: 14
-              bottom: 14
-              start: 20
-              end: 20
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.1216
-                - 0.1725
-                - 0.1647
-              hex: "#1F2C2A"
+              top: '{primitive.spacing.14}'
+              bottom: '{primitive.spacing.14}'
+              start: '{primitive.spacing.20}'
+              end: '{primitive.spacing.20}'
+            backgroundColor: '{component.color.action.tertiary-background}'
         Text:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.4118
-                - 0.4745
-                - 0.4627
-              hex: "#697976"
+            textColor: '{semantic.color.text.tertiary-text}'
             typography:
-              fontFamily: Chirp
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Regular
-              lineHeight: 18
+              lineHeight: '{semantic.typography.body.md.line-height}'
           content: Text
         Error text:
           styles:
             visible: false
             width: 55
             height: 16
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.8275
-                - 0.5216
-                - 0.5216
-              hex: "#D38585"
+            textColor: '{semantic.color.text.error-text}'
             typography:
-              fontSize: 12
+              fontSize: '{semantic.typography.body.xs.font-size}'
               fontFamily: Golos Text
               fontStyle: Regular
-              lineHeight: 16
+              lineHeight: '{semantic.typography.body.sm.line-height}'
           content: Error text
         Entered text:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.9098
-                - 0.9569
-                - 0.9412
-              hex: "#E8F4F0"
+            textColor: '{semantic.color.text.primary-text}'
             typography:
-              fontFamily: Chirp
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Regular
-              lineHeight: 18
+              lineHeight: '{semantic.typography.body.md.line-height}'
           content: Entered text
         Caret:
           styles:
@@ -156,259 +126,159 @@ components:
             position: ABSOLUTE
             top: 14
             start: 20
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.6667
-                - 0.8863
-                - 0.7843
-              hex: "#AAE2C8"
+            backgroundColor: '{component.color.action.primary-background}'
         Please check this value:
           styles:
             visible: false
             width: 139
             height: 16
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.826
-                - 0.7157
-                - 0.5202
-              hex: "#D3B685"
+            textColor: '{semantic.color.warning.warning}'
             typography:
-              fontSize: 12
+              fontSize: '{semantic.typography.body.xs.font-size}'
               fontFamily: Golos Text
               fontStyle: Regular
-              lineHeight: 16
+              lineHeight: '{semantic.typography.body.sm.line-height}'
           content: Please check this value.
         Enter a valid value:
           styles:
             visible: false
             width: 109
             height: 16
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.8275
-                - 0.5216
-                - 0.5216
-              hex: "#D38585"
+            textColor: '{semantic.color.text.error-text}'
             typography:
-              fontSize: 12
+              fontSize: '{semantic.typography.body.xs.font-size}'
               fontFamily: Golos Text
               fontStyle: Regular
-              lineHeight: 16
+              lineHeight: '{semantic.typography.body.sm.line-height}'
           content: Enter a valid value.
     variants:
-      - configuration:
-          Interaction: Hover
-        elements:
-          Frame 1:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.451
-                  - 0.5608
-                  - 0.5098
-                hex: "#738F82"
-              strokeAlign: INSIDE
-              strokeWeight: 1
-              effects:
-                shadows:
-                  - visible: true
-                    offsetX: 0
-                    offsetY: 0
-                    blur: 4
-                    spread: 0
-                    color:
-                      colorSpace: srgb
-                      components:
-                        - 0.6154
-                        - 1
-                        - 0.9103
-                      alpha: 0.800000011920929
-                      hex: "#9DFFE8"
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.2078
-                  - 0.2588
-                  - 0.2471
-                hex: "#35423F"
-      - configuration:
-          State: Filled
-        layout:
-          - root:
-              - Heading
-              - Frame 1:
-                  - Entered text
-              - Error text
-      - configuration:
-          State: Disabled
-        elements:
-          Heading:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.4118
-                  - 0.4745
-                  - 0.4627
-                hex: "#697976"
-          Frame 1:
-            styles:
-              opacity: 0.5
-      - configuration:
-          State: Focus
-        layout:
-          - root:
-              - Heading
-              - Frame 1:
-                  - Text
-                  - Caret
-              - Error text
-        elements:
-          Frame 1:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
-              strokeAlign: INSIDE
-              strokeWeight: 2
-              effects:
-                shadows:
-                  - visible: true
-                    offsetX: 0
-                    offsetY: 0
-                    blur: 4
-                    spread: 0
-                    color:
-                      colorSpace: srgb
-                      components:
-                        - 0.6154
-                        - 1
-                        - 0.9103
-                      alpha: 0.800000011920929
-                      hex: "#9DFFE8"
-      - configuration:
-          State: Readonly
-        layout:
-          - root:
-              - Heading
-              - Frame 1:
-                  - Entered text
-              - Error text
-        elements:
-          Frame 1:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.2078
-                  - 0.2588
-                  - 0.2471
-                hex: "#35423F"
-              strokeAlign: INSIDE
-              strokeWeight: 1
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.0431
-                  - 0.0941
-                  - 0.098
-                hex: "#0B1819"
-      - configuration:
-          State: Warning
-        layout:
-          - root:
-              - Heading
-              - Frame 1:
-                  - Entered text
-              - Please check this value
-        elements:
-          Frame 1:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.826
-                  - 0.7157
-                  - 0.5202
-                hex: "#D3B685"
-              strokeAlign: INSIDE
-              strokeWeight: 1
-              effects:
-                shadows:
-                  - visible: true
-                    offsetX: 0
-                    offsetY: 0
-                    blur: 4
-                    spread: 3
-                    color:
-                      colorSpace: srgb
-                      components:
-                        - 0.9783
-                        - 1
-                        - 0.675
-                      alpha: 0.25
-                      hex: "#F9FFAC"
-      - configuration:
-          State: Error
-        layout:
-          - root:
-              - Heading
-              - Frame 1:
-                  - Entered text
-              - Enter a valid value
-        elements:
-          Frame 1:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.8275
-                  - 0.5216
-                  - 0.5216
-                hex: "#D38585"
-              strokeAlign: INSIDE
-              strokeWeight: 1
-              effects:
-                shadows:
-                  - visible: true
-                    offsetX: 0
-                    offsetY: 0
-                    blur: 4
-                    spread: 3
-                    color:
-                      colorSpace: srgb
-                      components:
-                        - 1
-                        - 0.675
-                        - 0.675
-                      alpha: 0.25
-                      hex: "#FFACAC"
-      - configuration:
-          State: Filled
-          Interaction: Hover
-        elements:
-          Frame 1:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.2745
-                  - 0.3608
-                  - 0.3216
-                hex: "#465C52"
+    - configuration:
+        Interaction: Hover
+      elements:
+        Frame 1:
+          styles:
+            strokes: '{component.color.action.secondary-background-hover}'
+            strokeAlign: INSIDE
+            strokeWeight: 1
+            effects:
+              shadows:
+              - visible: true
+                offsetX: 0
+                offsetY: 0
+                blur: 4
+                spread: 0
+                color: '{semantic.color.effect.glow}'
+            backgroundColor: '{component.color.action.tertiary-background-hover}'
+    - configuration:
+        State: Filled
+      layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Error text
+    - configuration:
+        State: Disabled
+      elements:
+        Heading:
+          styles:
+            textColor: '{semantic.color.text.tertiary-text}'
+        Frame 1:
+          styles:
+            opacity: 0.5
+    - configuration:
+        State: Focus
+      layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Text
+          - Caret
+        - Error text
+      elements:
+        Frame 1:
+          styles:
+            strokes: '{component.color.action.primary-background}'
+            strokeAlign: INSIDE
+            strokeWeight: 2
+            effects:
+              shadows:
+              - visible: true
+                offsetX: 0
+                offsetY: 0
+                blur: 4
+                spread: 0
+                color: '{semantic.color.effect.glow}'
+    - configuration:
+        State: Readonly
+      layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Error text
+      elements:
+        Frame 1:
+          styles:
+            strokes: '{component.color.action.tertiary-background-hover}'
+            strokeAlign: INSIDE
+            strokeWeight: 1
+            backgroundColor: '{semantic.color.background.primary-bg}'
+    - configuration:
+        State: Warning
+      layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Please check this value
+      elements:
+        Frame 1:
+          styles:
+            strokes: '{semantic.color.warning.warning}'
+            strokeAlign: INSIDE
+            strokeWeight: 1
+            effects:
+              shadows:
+              - visible: true
+                offsetX: 0
+                offsetY: 0
+                blur: 4
+                spread: 3
+                color: '{semantic.color.effect.warning-glow}'
+    - configuration:
+        State: Error
+      layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Enter a valid value
+      elements:
+        Frame 1:
+          styles:
+            strokes: '{semantic.color.text.error-text}'
+            strokeAlign: INSIDE
+            strokeWeight: 1
+            effects:
+              shadows:
+              - visible: true
+                offsetX: 0
+                offsetY: 0
+                blur: 4
+                spread: 3
+                color: '{semantic.color.effect.error-glow}'
+    - configuration:
+        State: Filled
+        Interaction: Hover
+      elements:
+        Frame 1:
+          styles:
+            strokes: '{component.color.action.secondary-background}'
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:25:06.104Z
+      lastUpdated: 2026-10-19 21:25:06.104000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
