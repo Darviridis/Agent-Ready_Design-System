@@ -57,6 +57,7 @@ components:
             Instance: close
             State: Default
             Variant: Icon
+            Interaction: Default
             Size: md
           instanceOf: Button
         Heading:
@@ -91,7 +92,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-15T19:17:23.758Z
+      lastUpdated: 2026-10-19T21:27:33.693Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
