@@ -67,10 +67,10 @@ components:
             textColor:
               colorSpace: srgb
               components:
-                - 0.8196
-                - 0.8706
-                - 0.8745
-              hex: "#D1DEDF"
+                - 0.9098
+                - 0.9569
+                - 0.9412
+              hex: "#E8F4F0"
             typography:
               fontSize: 24
               fontFamily: Chirp
@@ -92,7 +92,7 @@ components:
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:27:33.693Z
+      lastUpdated: 2026-10-19T21:46:23.368Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
