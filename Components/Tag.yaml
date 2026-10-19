@@ -14,24 +14,24 @@ components:
         type: string
         default: sm
         enum:
-          - sm
-          - md
+        - sm
+        - md
         nullable: false
       Shape:
         type: string
         default: square
         enum:
-          - oval
-          - square
+        - oval
+        - square
         nullable: false
     default:
       layout:
-        - root:
-            - Native
+      - root:
+        - Native
       elements:
         root:
           styles:
-            cornerRadius: 4
+            cornerRadius: '{semantic.radius.xs}'
             mainAxisAlignment: CENTER
             crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
@@ -39,103 +39,79 @@ components:
             layoutSizingVertical: HUG
             itemSpacing: 10
             padding:
-              top: 4
-              bottom: 4
-              start: 8
-              end: 8
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.1216
-                - 0.1725
-                - 0.1647
-              hex: "#1F2C2A"
+              top: '{primitive.spacing.4}'
+              bottom: '{primitive.spacing.4}'
+              start: '{primitive.spacing.8}'
+              end: '{primitive.spacing.8}'
+            backgroundColor: '{component.color.action.tertiary-background}'
         Native:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.7608
-                - 0.8314
-                - 0.8039
-              hex: "#C2D4CD"
+            textColor: '{semantic.color.text.secondary-text}'
             typography:
-              fontSize: 12
-              fontFamily: Chirp
+              fontSize: '{semantic.typography.body.xs.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Regular
-              lineHeight: 14
+              lineHeight: '{semantic.typography.body.xs.line-height}'
             textAlignHorizontal: END
           content: Native
         Verified:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.6667
-                - 0.8863
-                - 0.7843
-              hex: "#AAE2C8"
+            textColor: '{component.color.action.primary-background}'
             typography:
-              fontSize: 12
-              fontFamily: Chirp
+              fontSize: '{semantic.typography.body.xs.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Regular
-              lineHeight: 14
+              lineHeight: '{semantic.typography.body.xs.line-height}'
           content: Verified
     variants:
-      - configuration:
-          Shape: oval
-        layout:
-          - root:
-              - Verified
-        elements:
-          root:
-            styles:
-              clipsContent: true
-              cornerRadius: 300
-              mainAxisAlignment: START
-              crossAxisAlignment: START
-              layoutMode: VERTICAL
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.2745
-                  - 0.3608
-                  - 0.3216
-                hex: "#465C52"
-              strokeAlign: INSIDE
-              strokeWeight: 0.8
-              itemSpacing: 0
-              padding:
-                top: 2
-                bottom: 2
-      - configuration:
-          Size: md
-        elements:
-          root:
-            styles:
-              padding:
-                top: 6
-                end: 12
-                bottom: 6
-                start: 12
-      - configuration:
-          Size: md
-          Shape: oval
-        elements:
-          root:
-            styles:
-              clipsContent: false
-              padding:
-                top: 4
-                bottom: 4
+    - configuration:
+        Shape: oval
+      layout:
+      - root:
+        - Verified
+      elements:
+        root:
+          styles:
+            clipsContent: true
+            cornerRadius: '{semantic.radius.full}'
+            mainAxisAlignment: START
+            crossAxisAlignment: START
+            layoutMode: VERTICAL
+            strokes: '{component.color.action.secondary-background}'
+            strokeAlign: INSIDE
+            strokeWeight: 0.8
+            itemSpacing: 0
+            padding:
+              top: 2
+              bottom: 2
+    - configuration:
+        Size: md
+      elements:
+        root:
+          styles:
+            padding:
+              top: 6
+              end: '{primitive.spacing.12}'
+              bottom: 6
+              start: '{primitive.spacing.12}'
+    - configuration:
+        Size: md
+        Shape: oval
+      elements:
+        root:
+          styles:
+            clipsContent: false
+            padding:
+              top: '{primitive.spacing.4}'
+              bottom: '{primitive.spacing.4}'
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:30:57.921Z
+      lastUpdated: 2026-10-19 21:30:57.921000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
