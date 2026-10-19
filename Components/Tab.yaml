@@ -11,34 +11,34 @@ components:
         type: string
         default: Active
         enum:
-          - Inactive
-          - Active
+        - Inactive
+        - Active
         nullable: false
       Size:
         type: string
         default: 2xl
         enum:
-          - 2xl
-          - xl
-          - lg
-          - md
-          - sm
+        - 2xl
+        - xl
+        - lg
+        - md
+        - sm
         nullable: false
       Interaction:
         type: string
         default: Default
         enum:
-          - Default
-          - Hover
+        - Default
+        - Hover
         nullable: false
     default:
       layout:
-        - root:
-            - Tab
+      - root:
+        - Tab
       elements:
         root:
           styles:
-            cornerRadius: 8
+            cornerRadius: '{semantic.radius.sm}'
             mainAxisAlignment: CENTER
             crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
@@ -46,199 +46,157 @@ components:
             layoutSizingVertical: HUG
             itemSpacing: 10
             padding:
-              top: 18
-              bottom: 18
-              start: 32
-              end: 32
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.2078
-                - 0.2588
-                - 0.2471
-              hex: "#35423F"
+              top: '{primitive.spacing.18}'
+              bottom: '{primitive.spacing.18}'
+              start: '{primitive.spacing.32}'
+              end: '{primitive.spacing.32}'
+            backgroundColor: '{component.color.action.tertiary-background-hover}'
         Tab:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.9098
-                - 0.9569
-                - 0.9412
-              hex: "#E8F4F0"
+            textColor: '{semantic.color.text.primary-text}'
             typography:
-              fontSize: 18
-              fontFamily: Chirp
+              fontSize: '{semantic.typography.body.lg.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Medium
-              lineHeight: 20
+              lineHeight: '{semantic.typography.body.lg.line-height}'
           content: Tab
     variants:
-      - configuration:
-          Interaction: Default
-        elements:
-          root:
-            styles:
-              itemSpacing: 0
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.1216
-                  - 0.1725
-                  - 0.1647
-                hex: "#1F2C2A"
-          Tab:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.7608
-                  - 0.8314
-                  - 0.8039
-                hex: "#C2D4CD"
-      - configuration:
-          Size: xl
-        elements:
-          root:
-            styles:
-              padding:
-                top: 14
-                end: 24
-                bottom: 14
-                start: 24
-          Tab:
-            styles:
-              typography:
-                fontSize: 16
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 18
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: NONE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          Size: lg
-        elements:
-          root:
-            styles:
-              padding:
-                top: 12
-                end: 16
-                bottom: 12
-                start: 16
-          Tab:
-            styles:
-              typography:
-                fontSize: 16
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 18
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: NONE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          Size: md
-        elements:
-          root:
-            styles:
-              padding:
-                top: 8
-                end: 16
-                bottom: 8
-                start: 16
-          Tab:
-            styles:
-              typography:
-                fontSize: 14
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 16
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: NONE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          Size: sm
-        elements:
-          root:
-            styles:
-              padding:
-                top: 5
-                end: 16
-                bottom: 5
-                start: 16
-          Tab:
-            styles:
-              typography:
-                fontSize: 12
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 14
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: NONE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          State: Active
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.8353
-                  - 1
-                  - 0.9608
-                hex: "#D5FFF5"
-          Tab:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.0902
-                  - 0.0941
-                  - 0.0941
-                hex: "#171818"
-      - configuration:
-          State: Active
-          Interaction: Default
-        elements:
-          root:
-            styles:
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
+    - configuration:
+        Interaction: Default
+      elements:
+        root:
+          styles:
+            itemSpacing: 0
+            backgroundColor: '{component.color.action.tertiary-background}'
+        Tab:
+          styles:
+            textColor: '{semantic.color.text.secondary-text}'
+    - configuration:
+        Size: xl
+      elements:
+        root:
+          styles:
+            padding:
+              top: '{primitive.spacing.14}'
+              end: '{primitive.spacing.24}'
+              bottom: '{primitive.spacing.14}'
+              start: '{primitive.spacing.24}'
+        Tab:
+          styles:
+            typography:
+              fontSize: '{semantic.typography.body.md.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.md.line-height}'
+              letterSpacing: '{semantic.typography.letter-spacing.default}'
+              textCase: ORIGINAL
+              textDecoration: NONE
+              paragraphIndent: 0
+              paragraphSpacing: 0
+              leadingTrim: NONE
+              listSpacing: 0
+              hangingPunctuation: false
+              hangingList: false
+    - configuration:
+        Size: lg
+      elements:
+        root:
+          styles:
+            padding:
+              top: '{primitive.spacing.12}'
+              end: '{primitive.spacing.16}'
+              bottom: '{primitive.spacing.12}'
+              start: '{primitive.spacing.16}'
+        Tab:
+          styles:
+            typography:
+              fontSize: '{semantic.typography.body.md.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.md.line-height}'
+              letterSpacing: '{semantic.typography.letter-spacing.default}'
+              textCase: ORIGINAL
+              textDecoration: NONE
+              paragraphIndent: 0
+              paragraphSpacing: 0
+              leadingTrim: NONE
+              listSpacing: 0
+              hangingPunctuation: false
+              hangingList: false
+    - configuration:
+        Size: md
+      elements:
+        root:
+          styles:
+            padding:
+              top: '{primitive.spacing.8}'
+              end: '{primitive.spacing.16}'
+              bottom: '{primitive.spacing.8}'
+              start: '{primitive.spacing.16}'
+        Tab:
+          styles:
+            typography:
+              fontSize: '{semantic.typography.body.sm.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.sm.line-height}'
+              letterSpacing: '{semantic.typography.letter-spacing.default}'
+              textCase: ORIGINAL
+              textDecoration: NONE
+              paragraphIndent: 0
+              paragraphSpacing: 0
+              leadingTrim: NONE
+              listSpacing: 0
+              hangingPunctuation: false
+              hangingList: false
+    - configuration:
+        Size: sm
+      elements:
+        root:
+          styles:
+            padding:
+              top: 5
+              end: '{primitive.spacing.16}'
+              bottom: 5
+              start: '{primitive.spacing.16}'
+        Tab:
+          styles:
+            typography:
+              fontSize: '{semantic.typography.body.xs.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.xs.line-height}'
+              letterSpacing: '{semantic.typography.letter-spacing.default}'
+              textCase: ORIGINAL
+              textDecoration: NONE
+              paragraphIndent: 0
+              paragraphSpacing: 0
+              leadingTrim: NONE
+              listSpacing: 0
+              hangingPunctuation: false
+              hangingList: false
+    - configuration:
+        State: Active
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.primary-background-hover}'
+        Tab:
+          styles:
+            textColor: '{semantic.color.text.inverse-text}'
+    - configuration:
+        State: Active
+        Interaction: Default
+      elements:
+        root:
+          styles:
+            backgroundColor: '{component.color.action.primary-background}'
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:26:09.374Z
+      lastUpdated: 2026-10-19 21:26:09.374000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
