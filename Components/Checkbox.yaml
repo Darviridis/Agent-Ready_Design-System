@@ -37,10 +37,10 @@ components:
             strokes:
               colorSpace: srgb
               components:
-                - 0.2078
-                - 0.2588
-                - 0.2471
-              hex: "#35423F"
+                - 0.2745
+                - 0.3608
+                - 0.3216
+              hex: "#465C52"
             strokeWeight: 1
             backgroundColor:
               colorSpace: srgb
@@ -73,10 +73,10 @@ components:
               backgroundColor:
                 colorSpace: srgb
                 components:
-                  - 0.2078
-                  - 0.2588
-                  - 0.2471
-                hex: "#35423F"
+                  - 0.2745
+                  - 0.3608
+                  - 0.3216
+                hex: "#465C52"
       - configuration:
           State: Active
         layout:
@@ -125,14 +125,14 @@ components:
               backgroundColor:
                 colorSpace: srgb
                 components:
-                  - 0.8346
+                  - 0.8353
                   - 1
-                  - 0.9616
+                  - 0.9608
                 hex: "#D5FFF5"
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-16T18:22:06.846Z
+      lastUpdated: 2026-10-19T21:23:46.664Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
