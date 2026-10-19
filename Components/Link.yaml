@@ -100,14 +100,14 @@ components:
               textColor:
                 colorSpace: srgb
                 components:
-                  - 0.8346
+                  - 0.8353
                   - 1
-                  - 0.9616
+                  - 0.9608
                 hex: "#D5FFF5"
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-14T17:19:24.232Z
+      lastUpdated: 2026-10-19T21:24:19.934Z
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
