@@ -11,21 +11,21 @@ components:
         type: string
         default: Default
         enum:
-          - Default
-          - Hover
+        - Default
+        - Hover
         nullable: false
       Size:
         type: string
         default: sm
         enum:
-          - sm
-          - md
-          - lg
+        - sm
+        - md
+        - lg
         nullable: false
     default:
       layout:
-        - root:
-            - Link
+      - root:
+        - Link
       elements:
         root:
           styles:
@@ -39,75 +39,63 @@ components:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.6667
-                - 0.8863
-                - 0.7843
-              hex: "#AAE2C8"
+            textColor: '{component.color.action.primary-background}'
             typography:
-              fontSize: 12
-              fontFamily: Chirp
+              fontSize: '{semantic.typography.body.xs.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Medium
-              lineHeight: 14
+              lineHeight: '{semantic.typography.body.xs.line-height}'
               textDecoration: UNDERLINE
           content: Link
     variants:
-      - configuration:
-          Size: md
-        elements:
-          Link:
-            styles:
-              typography:
-                fontSize: 14
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 16
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: UNDERLINE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          Size: lg
-        elements:
-          Link:
-            styles:
-              typography:
-                fontSize: 16
-                fontFamily: Chirp
-                fontStyle: Medium
-                lineHeight: 18
-                letterSpacing: 0
-                textCase: ORIGINAL
-                textDecoration: UNDERLINE
-                paragraphIndent: 0
-                paragraphSpacing: 0
-                leadingTrim: NONE
-                listSpacing: 0
-                hangingPunctuation: false
-                hangingList: false
-      - configuration:
-          State: Hover
-        elements:
-          Link:
-            styles:
-              textColor:
-                colorSpace: srgb
-                components:
-                  - 0.8353
-                  - 1
-                  - 0.9608
-                hex: "#D5FFF5"
+    - configuration:
+        Size: md
+      elements:
+        Link:
+          styles:
+            typography:
+              fontSize: '{semantic.typography.body.sm.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.sm.line-height}'
+              letterSpacing: '{semantic.typography.letter-spacing.default}'
+              textCase: ORIGINAL
+              textDecoration: UNDERLINE
+              paragraphIndent: 0
+              paragraphSpacing: 0
+              leadingTrim: NONE
+              listSpacing: 0
+              hangingPunctuation: false
+              hangingList: false
+    - configuration:
+        Size: lg
+      elements:
+        Link:
+          styles:
+            typography:
+              fontSize: '{semantic.typography.body.md.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
+              fontStyle: Medium
+              lineHeight: '{semantic.typography.body.md.line-height}'
+              letterSpacing: '{semantic.typography.letter-spacing.default}'
+              textCase: ORIGINAL
+              textDecoration: UNDERLINE
+              paragraphIndent: 0
+              paragraphSpacing: 0
+              leadingTrim: NONE
+              listSpacing: 0
+              hangingPunctuation: false
+              hangingList: false
+    - configuration:
+        State: Hover
+      elements:
+        Link:
+          styles:
+            textColor: '{component.color.action.primary-background-hover}'
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:24:19.934Z
+      lastUpdated: 2026-10-19 21:24:19.934000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
