@@ -13,42 +13,30 @@ components:
         type: string
         default: Default
         enum:
-          - Default
-          - Active
-          - Disabled
+        - Default
+        - Active
+        - Disabled
         nullable: false
       Interaction:
         type: string
         default: Default
         enum:
-          - Default
-          - Hover
+        - Default
+        - Hover
         nullable: false
     default:
       layout:
-        - root
+      - root
       elements:
         root:
           styles:
             clipsContent: true
-            cornerRadius: 8
+            cornerRadius: '{semantic.radius.sm}'
             width: 24
             height: 24
-            strokes:
-              colorSpace: srgb
-              components:
-                - 0.2745
-                - 0.3608
-                - 0.3216
-              hex: "#465C52"
+            strokes: '{component.color.action.secondary-background}'
             strokeWeight: 1
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.1216
-                - 0.1725
-                - 0.1647
-              hex: "#1F2C2A"
+            backgroundColor: '{component.color.action.tertiary-background}'
         check:
           styles:
             position: ABSOLUTE
@@ -58,81 +46,50 @@ components:
             height: 24
           instanceOf: check
     variants:
-      - configuration:
-          Interaction: Hover
-        elements:
-          root:
-            styles:
-              strokes:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.2745
-                  - 0.3608
-                  - 0.3216
-                hex: "#465C52"
-      - configuration:
-          State: Active
-        layout:
-          - root:
-              - check
-        elements:
-          root:
-            styles:
-              strokes: null
-              strokeAlign: null
-              strokeWeight: null
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.6667
-                  - 0.8863
-                  - 0.7843
-                hex: "#AAE2C8"
-      - configuration:
-          State: Disabled
-        elements:
-          root:
-            styles:
-              backgroundColor: null
-      - configuration:
-          State: Active
-          Interaction: Hover
-        elements:
-          root:
-            styles:
-              effects:
-                shadows:
-                  - visible: true
-                    offsetX: 0
-                    offsetY: 0
-                    blur: 4
-                    spread: 0
-                    color:
-                      colorSpace: srgb
-                      components:
-                        - 0.6154
-                        - 1
-                        - 0.9103
-                      alpha: 0.800000011920929
-                      hex: "#9DFFE8"
-              backgroundColor:
-                colorSpace: srgb
-                components:
-                  - 0.8353
-                  - 1
-                  - 0.9608
-                hex: "#D5FFF5"
+    - configuration:
+        Interaction: Hover
+      elements:
+        root:
+          styles:
+            strokes: '{component.color.action.primary-background}'
+            backgroundColor: '{component.color.action.secondary-background}'
+    - configuration:
+        State: Active
+      layout:
+      - root:
+        - check
+      elements:
+        root:
+          styles:
+            strokes: null
+            strokeAlign: null
+            strokeWeight: null
+            backgroundColor: '{component.color.action.primary-background}'
+    - configuration:
+        State: Disabled
+      elements:
+        root:
+          styles:
+            backgroundColor: null
+    - configuration:
+        State: Active
+        Interaction: Hover
+      elements:
+        root:
+          styles:
+            effects:
+              shadows:
+              - visible: true
+                offsetX: 0
+                offsetY: 0
+                blur: 4
+                spread: 0
+                color: '{semantic.color.effect.glow}'
+            backgroundColor: '{component.color.action.primary-background-hover}'
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:23:46.664Z
+      lastUpdated: 2026-10-19 21:23:46.664000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
