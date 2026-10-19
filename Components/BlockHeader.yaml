@@ -14,41 +14,35 @@ components:
         type: string
         default: Center
         enum:
-          - Center
-          - Left
+        - Center
+        - Left
         nullable: false
     default:
       layout:
-        - root:
-            - Button
-            - Heading
-            - Button
+      - root:
+        - Button
+        - Heading
+        - Button
       elements:
         root:
           styles:
             cornerRadius:
-              topStart: 20
-              topEnd: 20
-              bottomEnd: 0
-              bottomStart: 0
+              topStart: '{semantic.radius.xl}'
+              topEnd: '{semantic.radius.xl}'
+              bottomEnd: '{semantic.radius.none}'
+              bottomStart: '{semantic.radius.none}'
             width: 1200
             primaryAxisSizingMode: FIXED
             crossAxisAlignment: CENTER
             layoutMode: HORIZONTAL
             layoutSizingVertical: HUG
-            itemSpacing: 8
+            itemSpacing: '{semantic.spacing.inline.8}'
             padding:
-              top: 8
-              bottom: 8
-              start: 24
-              end: 24
-            backgroundColor:
-              colorSpace: srgb
-              components:
-                - 0.0431
-                - 0.0941
-                - 0.098
-              hex: "#0B1819"
+              top: '{primitive.spacing.8}'
+              bottom: '{primitive.spacing.8}'
+              start: '{primitive.spacing.24}'
+              end: '{primitive.spacing.24}'
+            backgroundColor: '{semantic.color.background.primary-bg}'
         Button:
           styles:
             width: 48
@@ -64,35 +58,29 @@ components:
           styles:
             layoutSizingHorizontal: FILL
             layoutSizingVertical: HUG
-            textColor:
-              colorSpace: srgb
-              components:
-                - 0.9098
-                - 0.9569
-                - 0.9412
-              hex: "#E8F4F0"
+            textColor: '{semantic.color.text.primary-text}'
             typography:
-              fontSize: 24
-              fontFamily: Chirp
+              fontSize: '{semantic.typography.heading.h4.font-size}'
+              fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Bold
-              lineHeight: 32
+              lineHeight: '{semantic.typography.heading.h4.line-height}'
             textAlignHorizontal: CENTER
           content: Heading
     variants:
-      - configuration:
-          Align: Left
-        layout:
-          - root:
-              - Heading
-              - Button
-        elements:
-          Heading:
-            styles:
-              textAlignHorizontal: START
+    - configuration:
+        Align: Left
+      layout:
+      - root:
+        - Heading
+        - Button
+      elements:
+        Heading:
+          styles:
+            textAlignHorizontal: START
     invalidPropCombinations: []
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19T21:46:23.368Z
+      lastUpdated: 2026-10-19 21:27:33.693000+00:00
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
