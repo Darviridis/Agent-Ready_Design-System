@@ -1,170 +1,184 @@
----
+# Semantic documentation for RadioButton
+# Keep this file separate from the Specs 2 generated visual specification.
 
 component: RadioButton
 title: RadioButton
 
 description: >
-A circular selection control that allows a user to select one option
-from a group of mutually exclusive options.
+  A circular selection control that allows a user to select one option
+  from a group of mutually exclusive options. Visual values use design tokens.
 
 purpose:
-
-* Allow users to select one option from a group.
-* Visually indicate whether an option is selected.
-* Provide visual feedback for hover and disabled states.
+  - Allow users to select one option from a group.
+  - Visually indicate whether an option is selected.
+  - Provide visual feedback for hover and disabled states.
 
 props:
-State:
-type: string
-required: false
-default: Active
-enum:
-- Active
-- Disabled
-- Default
-description: >
-Controls whether the radio button is selected, disabled, or unselected.
+  State:
+    type: string
+    required: true
+    default: Active
+    enum:
+      - Active
+      - Disabled
+      - Default
+    description: >
+      Controls whether the radio button is selected, disabled, or unselected.
 
-Interaction:
-type: string
-required: false
-default: Default
-enum:
-- Default
-- Hover
-description: >
-Controls the pointer interaction appearance.
+  Interaction:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+    description: >
+      Controls the pointer interaction appearance.
 
 anatomy:
-root:
-description: >
-The outer circular element. Defines the radio button size, background,
-border, and interaction appearance.
-Frame:
-description: >
-The inner circular indicator. Visible when the radio button is selected.
+  root:
+    type: container
+    description: >
+      The outer circular element. Defines the radio button size, background,
+      border, and interaction appearance.
+  Frame:
+    type: container
+    description: >
+      The inner circular indicator. Visible when the radio button is selected.
 
 variants:
+  - name: Active
+    props:
+      State: Active
+      Interaction: Default
+    description: >
+      Selected radio button. Displays the inner indicator.
+    styles:
+      root:
+        width: 16
+        height: 16
+        cornerRadius: "{semantic.radius.full}"
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
+        strokes: "{component.color.action.primary-background}"
+        strokeWeight: 1.2
+        clipsContent: true
+      Frame:
+        width: 10
+        height: 10
+        cornerRadius: "{semantic.radius.full}"
+        backgroundColor: "{component.color.action.primary-background}"
+        position: ABSOLUTE
+        top: 3
+        start: 3
 
-* name: Active
-  props:
-  State: Active
-  Interaction: Default
-  description: >
-  Selected radio button. Displays the inner indicator.
-  styles:
-  root:
-  width: 16px
-  height: 16px
-  cornerRadius: 300
-  backgroundColor: "#35423F"
-  borderColor: "#AAE2C8"
-  borderWidth: 1.2px
-  Frame:
-  width: 10px
-  height: 10px
-  cornerRadius: 300
-  backgroundColor: "#AAE2C8"
-  position: absolute
-  top: 3px
-  start: 3px
+  - name: Disabled
+    props:
+      State: Disabled
+      Interaction: Default
+    description: >
+      Disabled radio button. Uses the base appearance with reduced opacity.
+    styles:
+      root:
+        opacity: 0.3
 
-* name: Disabled
-  props:
-  State: Disabled
-  Interaction: Default
-  description: >
-  Disabled radio button. Uses the base appearance with reduced opacity.
-  styles:
-  root:
-  opacity: 0.3
+  - name: Default
+    props:
+      State: Default
+      Interaction: Default
+    description: >
+      Unselected radio button. The inner indicator is not displayed.
+    layout:
+      - root
+    styles:
+      root:
+        width: 16
+        height: 16
+        cornerRadius: "{semantic.radius.full}"
+        backgroundColor: "{component.color.action.tertiary-background}"
+        strokes: "{component.color.action.secondary-background}"
+        strokeWeight: 1.2
+      Frame:
+        visible: false
 
-* name: Default
-  props:
-  State: Default
-  Interaction: Default
-  description: >
-  Unselected radio button. The inner indicator is not displayed.
-  styles:
-  root:
-  width: 16px
-  height: 16px
-  cornerRadius: 300
-  backgroundColor: "#1F2C2A"
-  borderColor: "#465C52"
-  borderWidth: 1.2px
-  Frame:
-  visible: false
+  - name: Hover
+    props:
+      State: Active
+      Interaction: Hover
+    description: >
+      Hover appearance for a selected radio button.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.secondary-background-hover}"
+        strokes: "{component.color.action.primary-background-hover}"
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: 4
+              spread: 0
+              color: "{semantic.color.effect.glow}"
+      Frame:
+        backgroundColor: "{component.color.action.primary-background-hover}"
 
-* name: Hover
-  props:
-  State: Active
-  Interaction: Hover
-  description: >
-  Hover appearance for a selected radio button.
-  styles:
-  root:
-  backgroundColor: "#576762"
-  borderColor: "#D5FFF5"
-  shadow:
-  color: "#9DFFE8"
-  blur: 4px
-  spread: 0
-  offsetX: 0
-  offsetY: 0
-  Frame:
-  backgroundColor: "#D5FFF5"
-
-* name: DefaultHover
-  props:
-  State: Default
-  Interaction: Hover
-  description: >
-  Hover appearance for an unselected radio button.
-  styles:
-  root:
-  backgroundColor: "#35423F"
-  borderColor: "#AAE2C8"
-  shadow: none
-  Frame:
-  visible: false
+  - name: DefaultHover
+    props:
+      State: Default
+      Interaction: Hover
+    description: >
+      Hover appearance for an unselected radio button.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
+        strokes: "{component.color.action.primary-background}"
+        effects: null
+      Frame:
+        visible: false
 
 combinations:
-
-* State: Active
-  Interaction: Default
-* State: Active
-  Interaction: Hover
-* State: Disabled
-  Interaction: Default
-* State: Default
-  Interaction: Default
-* State: Default
-  Interaction: Hover
+  - State: Active
+    Interaction: Default
+  - State: Active
+    Interaction: Hover
+  - State: Disabled
+    Interaction: Default
+  - State: Default
+    Interaction: Default
+  - State: Default
+    Interaction: Hover
 
 behavior:
-
-* When State is Active, display the inner Frame indicator.
-* When State is Default, hide the inner Frame indicator.
-* When State is Disabled, reduce the root opacity to 0.3.
-* When Interaction is Hover, apply the hover styles for the corresponding State.
-* The component is a visual control; selection state and group behavior must be managed by the consuming application.
+  - When State is Active, display the inner Frame indicator.
+  - When State is Default, hide the inner Frame indicator.
+  - When State is Disabled, reduce the root opacity to 0.3.
+  - When Interaction is Hover, apply the hover styles for the corresponding State.
+  - The component is a visual control; selection state and group behavior must be managed by the consuming application.
 
 accessibility:
-role: radio
-requirements:
-- Expose the selected state using aria-checked.
-- Expose disabled state using aria-disabled or the native disabled attribute.
-- Provide an accessible name through an associated label.
-- Support keyboard navigation when used within a radio group.
+  role: radio
+  requirements:
+    - Expose the selected state using aria-checked.
+    - Expose disabled state using aria-disabled or the native disabled attribute.
+    - Provide an accessible name through an associated label.
+    - Support keyboard navigation when used within a radio group.
 
 implementation:
-component: RadioButton
-suggestedFile: RadioButton.tsx
-examplesFile: radiobutton.examples.tsx
-notes:
-- Keep the State and Interaction prop values consistent with this specification.
-- Use a native input type="radio" when implementing actual form behavior.
-- Keep the visual Frame indicator separate from the input's accessible state.
-- Disabled controls should not respond to selection or hover interactions.
---------------------------------------------------------------------------
+  component: RadioButton
+  suggestedFile: RadioButton.tsx
+  examplesFile: radioButton.examples.tsx
+  notes:
+    - Keep the State and Interaction prop values consistent with this specification.
+    - Use a native input type="radio" when implementing actual form behavior.
+    - Keep the visual Frame indicator separate from the input's accessible state.
+    - Disabled controls should not respond to selection or hover interactions.
+    - Resolve design tokens at runtime / build time.
+
+design_tokens:
+  radius_full: "{semantic.radius.full}"
+  primary_background: "{component.color.action.primary-background}"
+  primary_background_hover: "{component.color.action.primary-background-hover}"
+  secondary_background: "{component.color.action.secondary-background}"
+  secondary_background_hover: "{component.color.action.secondary-background-hover}"
+  tertiary_background: "{component.color.action.tertiary-background}"
+  tertiary_background_hover: "{component.color.action.tertiary-background-hover}"
+  glow: "{semantic.color.effect.glow}"
