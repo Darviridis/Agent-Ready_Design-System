@@ -1,209 +1,201 @@
-# Semantic documentation for Tags
-
+# Semantic documentation for Tag
 # Keep this file separate from the Specs 2 generated visual specification.
 
 component: tag
 title: Tag
 
 description: >
-A compact informational tag component with two sizes and two shapes.
-The square variant displays the Native label, while the oval variant
-displays the Verified label.
+  A compact informational tag component with two sizes and two shapes.
+  The square variant displays the Native label, while the oval variant
+  displays the Verified label. All visual values use design tokens.
 
 purpose:
-
-* Display short labels describing an item's category, property, or status.
-* Identify native or verified content.
-* Help users scan attributes and statuses quickly.
-* Maintain consistent label styling across the interface.
+  - Display short labels describing an item's category, property, or status.
+  - Identify native or verified content.
+  - Help users scan attributes and statuses quickly.
+  - Maintain consistent label styling across the interface.
 
 usage:
-use_when:
-- A short label describes an item's category, property, or status.
-- Users need to recognize native or verified content.
-- A compact visual label improves information scanning.
-avoid_when:
-- The element triggers an action and should be a button.
-- The element navigates to another destination and should be a link.
-- The content requires a sentence or paragraph.
-- The label would claim a status that has not been verified by product data.
+  use_when:
+    - A short label describes an item's category, property, or status.
+    - Users need to recognize native or verified content.
+    - A compact visual label improves information scanning.
+  avoid_when:
+    - The element triggers an action and should be a button.
+    - The element navigates to another destination and should be a link.
+    - The content requires a sentence or paragraph.
+    - The label would claim a status that has not been verified by product data.
 
 props:
-Size:
-type: string
-description: Controls the tag's padding and overall dimensions.
-default: sm
-enum:
-- sm
-- md
-required: true
+  Size:
+    type: string
+    description: Controls the tag's padding and overall dimensions.
+    default: sm
+    enum:
+      - sm
+      - md
+    required: true
 
-Shape:
-type: string
-description: Controls the tag's shape and displayed label.
-default: square
-enum:
-- oval
-- square
-required: true
+  Shape:
+    type: string
+    description: Controls the tag's shape and displayed label.
+    default: square
+    enum:
+      - oval
+      - square
+    required: true
 
 variants:
-Size:
-sm:
-description: Compact tag.
-padding:
-top: 4
-bottom: 4
-start: 8
-end: 8
+  Size:
+    sm:
+      description: Compact tag.
+      padding:
+        top: "{primitive.spacing.4}"
+        bottom: "{primitive.spacing.4}"
+        start: "{primitive.spacing.8}"
+        end: "{primitive.spacing.8}"
 
-```
-md:
-  description: Larger tag.
-  padding:
-    top: 6
-    bottom: 6
-    start: 12
-    end: 12
-```
+    md:
+      description: Larger tag.
+      padding:
+        top: 6
+        bottom: 6
+        start: "{primitive.spacing.12}"
+        end: "{primitive.spacing.12}"
 
-Shape:
-square:
-description: Tag with slightly rounded corners.
-corner_radius: 4
-default_content: Native
-background_color: "#1F2C2A"
-text_color: "#697976"
+  Shape:
+    square:
+      description: Tag with slightly rounded corners.
+      corner_radius: "{semantic.radius.xs}"
+      default_content: Native
+      background_color: "{component.color.action.tertiary-background}"
+      text_color: "{semantic.color.text.secondary-text}"
 
-```
-oval:
-  description: Pill-shaped tag with a border.
-  corner_radius: 300
-  default_content: Verified
-  background_color: "#1F2C2A"
-  text_color: "#AAE2C8"
-  border_color: "#465C52"
-  border_width: 0.8
-  clips_content: true
-```
+    oval:
+      description: Pill-shaped tag with a border.
+      corner_radius: "{semantic.radius.full}"
+      default_content: Verified
+      background_color: "{component.color.action.tertiary-background}"
+      text_color: "{component.color.action.primary-background}"
+      border_color: "{component.color.action.secondary-background}"
+      border_width: 0.8
+      clips_content: true
 
 combinations:
-sm_square:
-Size: sm
-Shape: square
-padding:
-top: 4
-bottom: 4
-start: 8
-end: 8
-clips_content: false
+  sm_square:
+    Size: sm
+    Shape: square
+    padding:
+      top: "{primitive.spacing.4}"
+      bottom: "{primitive.spacing.4}"
+      start: "{primitive.spacing.8}"
+      end: "{primitive.spacing.8}"
+    clips_content: false
 
-md_square:
-Size: md
-Shape: square
-padding:
-top: 6
-bottom: 6
-start: 12
-end: 12
-clips_content: false
+  md_square:
+    Size: md
+    Shape: square
+    padding:
+      top: 6
+      bottom: 6
+      start: "{primitive.spacing.12}"
+      end: "{primitive.spacing.12}"
+    clips_content: false
 
-sm_oval:
-Size: sm
-Shape: oval
-padding:
-top: 2
-bottom: 2
-start: 8
-end: 8
-clips_content: true
+  sm_oval:
+    Size: sm
+    Shape: oval
+    padding:
+      top: 2
+      bottom: 2
+      start: "{primitive.spacing.8}"
+      end: "{primitive.spacing.8}"
+    clips_content: true
 
-md_oval:
-Size: md
-Shape: oval
-padding:
-top: 4
-bottom: 4
-start: 12
-end: 12
-clips_content: false
+  md_oval:
+    Size: md
+    Shape: oval
+    padding:
+      top: "{primitive.spacing.4}"
+      bottom: "{primitive.spacing.4}"
+      start: "{primitive.spacing.12}"
+      end: "{primitive.spacing.12}"
+    clips_content: false
 
 composition:
-root:
-semantic_role: label_container
-description: Container that defines the tag's shape, padding, background, and border.
-direction: horizontal
-width_behavior: hug
-height_behavior: hug
-default_background_color: "#1F2C2A"
-default_corner_radius: 4
+  root:
+    semantic_role: label_container
+    description: Container that defines the tag's shape, padding, background, and border.
+    direction: horizontal
+    width_behavior: hug
+    height_behavior: hug
+    default_background_color: "{component.color.action.tertiary-background}"
+    default_corner_radius: "{semantic.radius.xs}"
 
-Native:
-semantic_role: tag_label
-description: Text label used by the square shape.
-default_content: Native
-text_color: "#697976"
-font_family: Chirp
-font_style: Regular
-font_size: 12
-line_height: 14
+  Native:
+    semantic_role: tag_label
+    description: Text label used by the square shape.
+    default_content: Native
+    text_color: "{semantic.color.text.secondary-text}"
+    font_family: "{semantic.typography.font-family.primary}"
+    font_style: Regular
+    font_size: "{semantic.typography.body.xs.font-size}"
+    line_height: "{semantic.typography.body.xs.line-height}"
 
-Verified:
-semantic_role: tag_label
-description: Text label used by the oval shape.
-default_content: Verified
-text_color: "#AAE2C8"
-font_family: Chirp
-font_style: Regular
-font_size: 12
-line_height: 14
+  Verified:
+    semantic_role: tag_label
+    description: Text label used by the oval shape.
+    default_content: Verified
+    text_color: "{component.color.action.primary-background}"
+    font_family: "{semantic.typography.font-family.primary}"
+    font_style: Regular
+    font_size: "{semantic.typography.body.xs.font-size}"
+    line_height: "{semantic.typography.body.xs.line-height}"
 
 behavior:
-
-* Size and Shape are independent properties.
-* Support all four combinations of Size and Shape.
-* The square shape displays Native by default.
-* The oval shape displays Verified by default.
-* Keep the labels consistent with the actual item data.
-* Do not infer that an item is verified from its appearance alone.
-* Tags are informational by default and are not interactive controls.
-* Keep label content configurable if the component needs to support additional values.
+  - Size and Shape are independent properties.
+  - Support all four combinations of Size and Shape.
+  - The square shape displays Native by default.
+  - The oval shape displays Verified by default.
+  - Keep the labels consistent with the actual item data.
+  - Do not infer that an item is verified from its appearance alone.
+  - Tags are informational by default and are not interactive controls.
+  - Keep label content configurable if the component needs to support additional values.
 
 accessibility:
-
-* Ensure each label communicates meaningful information.
-* Do not rely on color or shape alone to communicate a status.
-* Maintain sufficient text contrast against the background.
-* Use a non-interactive semantic element for informational tags.
-* If a tag becomes interactive, provide appropriate button or link semantics and keyboard support.
-* Avoid making informational tags focusable without a functional reason.
+  - Ensure each label communicates meaningful information.
+  - Do not rely on color or shape alone to communicate a status.
+  - Maintain sufficient text contrast against the background.
+  - Use a non-interactive semantic element for informational tags.
+  - If a tag becomes interactive, provide appropriate button or link semantics and keyboard support.
+  - Avoid making informational tags focusable without a functional reason.
 
 implementation:
-
-* Read this file together with components/tags.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, colors, typography, borders, padding, and clipping behavior.
-* Treat this file as additional semantic and behavioral guidance.
-* Keep Size and Shape as independent properties.
-* Apply the combination-specific padding when both properties are selected.
-* For Size=sm and Shape=oval, use vertical padding of 2 and horizontal padding of 8.
-* For Size=md and Shape=oval, use vertical padding of 4 and horizontal padding of 12.
-* The sm oval variant clips content; the md oval variant does not.
-* Preserve the oval border and corner radius from the visual specification.
-* Do not invent additional states or interactions.
+  - Read this file together with components/tag.yaml.
+  - Treat the Specs 2 YAML as the source of truth for visual anatomy, colors, typography, borders, padding, and clipping behavior.
+  - Treat this file as additional semantic and behavioral guidance.
+  - Keep Size and Shape as independent properties.
+  - Apply the combination-specific padding when both properties are selected.
+  - For Size=sm and Shape=oval, use vertical padding of 2 and horizontal padding of 8.
+  - For Size=md and Shape=oval, use vertical padding of 4 and horizontal padding of 12.
+  - The sm oval variant clips content; the md oval variant does not.
+  - Preserve the oval border and corner radius from the visual specification.
+  - Resolve design tokens; do not invent additional states or interactions.
 
 related_components:
-
-* Badge
-* Status label
+  - Badge
+  - Status label
 
 design_tokens:
-tag_background: "#1F2C2A"
-tag_native_text: "#697976"
-tag_verified_text: "#AAE2C8"
-tag_oval_border: "#465C52"
-tag_square_corner_radius: 4
-tag_oval_corner_radius: 300
-tag_font_family: Chirp
-tag_font_style: Regular
-tag_font_size: 12
-tag_line_height: 14
+  tag_background: "{component.color.action.tertiary-background}"
+  tag_native_text: "{semantic.color.text.secondary-text}"
+  tag_verified_text: "{component.color.action.primary-background}"
+  tag_oval_border: "{component.color.action.secondary-background}"
+  tag_square_corner_radius: "{semantic.radius.xs}"
+  tag_oval_corner_radius: "{semantic.radius.full}"
+  tag_font_family: "{semantic.typography.font-family.primary}"
+  tag_font_size: "{semantic.typography.body.xs.font-size}"
+  tag_line_height: "{semantic.typography.body.xs.line-height}"
+  spacing_4: "{primitive.spacing.4}"
+  spacing_8: "{primitive.spacing.8}"
+  spacing_12: "{primitive.spacing.12}"
