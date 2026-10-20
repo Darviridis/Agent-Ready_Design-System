@@ -1,353 +1,372 @@
----
+# Semantic documentation for Button
+# Keep this file separate from the Specs 2 generated visual specification.
 
 component: button
 title: Button
 
 description: >
-A reusable interactive component for triggering actions. Supports Primary,
-Secondary, and Icon variants, multiple states, hover interaction, and two sizes.
+  A reusable interactive component for triggering actions. Supports Primary,
+  Secondary, and Icon variants, multiple states, hover interaction, and two sizes.
+  All visual values are expressed via design tokens.
 
 purpose:
-
-* Trigger actions in the interface.
-* Provide consistent interactive controls.
-* Communicate button variant and interaction state.
-* Indicate loading and waiting states.
+  - Trigger actions in the interface.
+  - Provide consistent interactive controls.
+  - Communicate button variant and interaction state.
+  - Indicate loading and waiting states.
 
 props:
-State:
-type: string
-required: false
-default: Disabled
-enum:
-- Default
-- Disabled
-- Loading
-- Waiting
-description: Controls the visual and functional state of the button.
+  State:
+    type: string
+    required: true
+    default: Disabled
+    enum:
+      - Default
+      - Disabled
+      - Loading
+      - Waiting
+    description: Controls the visual and functional state of the button.
 
-Variant:
-type: string
-required: false
-default: Primary
-enum:
-- Primary
-- Secondary
-- Icon
-description: Defines the button's visual style and content.
+  Variant:
+    type: string
+    required: true
+    default: Primary
+    enum:
+      - Primary
+      - Secondary
+      - Icon
+    description: Defines the button's visual style and content.
 
-Interaction:
-type: string
-required: false
-default: Default
-enum:
-- Default
-- Hover
-description: Defines the hover appearance.
+  Interaction:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+    description: Defines the hover appearance.
 
-Size:
-type: string
-required: false
-default: lg
-enum:
-- lg
-- md
-description: Defines the button's size and vertical padding.
+  Size:
+    type: string
+    required: true
+    default: lg
+    enum:
+      - lg
+      - md
+    description: Defines the button's size and vertical padding.
 
-Instance:
-type: string
-required: false
-examples:
-- icon
-description: >
-Identifies the icon instance used by the button when applicable.
+  Instance:
+    type: string
+    required: false
+    examples:
+      - icon
+    description: >
+      Identifies the icon instance used by the button when applicable.
 
 anatomy:
-root:
-type: container
-description: Main button container.
-Connect wallet:
-type: text
-description: Button label.
-loading:
-type: instance
-instanceOf: loading
-description: Loading indicator shown in the Loading state.
-waiting:
-type: instance
-instanceOf: waiting
-description: Waiting indicator shown in the Waiting state.
-icon:
-type: instance
-instanceOf: icon
-description: Icon shown for the Icon variant.
+  root:
+    type: container
+    description: Main button container.
+  Connect wallet:
+    type: text
+    description: Button label (default content "Connect wallet").
+  loading:
+    type: instance
+    instanceOf: loading
+    description: Loading indicator shown in the Loading state.
+  waiting:
+    type: instance
+    instanceOf: waiting
+    description: Waiting indicator shown in the Waiting state.
+  icon:
+    type: instance
+    instanceOf: icon
+    description: Icon shown for the Icon variant.
 
 layout:
-root:
-width: 200px
-direction: horizontal
-alignItems: center
-justifyContent: center
-gap: 8px
-padding:
-top: 20px
-bottom: 20px
-start: 24px
-end: 24px
-cornerRadius: 12px
-Connect wallet:
-fontFamily: Chirp
-fontWeight: Medium
-fontSize: 18px
-lineHeight: 20px
-textAlign: center
-loading:
-width: 24px
-height: 24px
-waiting:
-width: 24px
-height: 24px
-icon:
-width: 24px
-height: 24px
+  root:
+    width: 200
+    direction: HORIZONTAL
+    mainAxisAlignment: CENTER
+    crossAxisAlignment: CENTER
+    primaryAxisSizingMode: FIXED
+    layoutSizingVertical: HUG
+    itemSpacing: "{semantic.spacing.inline.8}"
+    padding:
+      top: "{primitive.spacing.20}"
+      bottom: "{primitive.spacing.20}"
+      start: "{primitive.spacing.24}"
+      end: "{primitive.spacing.24}"
+    cornerRadius: "{semantic.radius.md}"
+  Connect wallet:
+    layoutSizingHorizontal: HUG
+    layoutSizingVertical: HUG
+    textAlignHorizontal: CENTER
+    typography:
+      fontSize: "{semantic.typography.body.lg.font-size}"
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontStyle: Medium
+      lineHeight: "{semantic.typography.body.lg.line-height}"
+  loading:
+    width: 24
+    height: 24
+  waiting:
+    width: 24
+    height: 24
+  icon:
+    width: 24
+    height: 24
 
 variants:
+  - name: Primary
+    props:
+      State: Default
+      Variant: Primary
+      Interaction: Default
+      Size: lg
+    description: Primary action button.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.primary-background}"
+      Connect wallet:
+        textColor: "{semantic.color.text.inverse-text}"
 
-* name: Primary
-  props:
-  State: Default
-  Variant: Primary
-  Interaction: Default
-  Size: lg
-  description: Primary action button.
-  styles:
-  root:
-  backgroundColor: "#AAE2C8"
-  cornerRadius: 12px
-  Connect wallet:
-  color: "#171818"
+  - name: PrimaryHover
+    props:
+      State: Default
+      Variant: Primary
+      Interaction: Hover
+    description: Primary button on hover.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.primary-background-hover}"
 
-* name: PrimaryHover
-  props:
-  State: Default
-  Variant: Primary
-  Interaction: Hover
-  description: Primary button on hover.
-  styles:
-  root:
-  backgroundColor: "#D5FFF5"
+  - name: Secondary
+    props:
+      State: Default
+      Variant: Secondary
+      Interaction: Default
+    description: Secondary action button.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.secondary-background}"
+      Connect wallet:
+        textColor: "{semantic.color.text.primary-text}"
 
-* name: Secondary
-  props:
-  State: Default
-  Variant: Secondary
-  Interaction: Default
-  description: Secondary action button.
-  styles:
-  root:
-  backgroundColor: "#465C52"
-  Connect wallet:
-  color: "#E8F4F0"
+  - name: SecondaryHover
+    props:
+      State: Default
+      Variant: Secondary
+      Interaction: Hover
+    description: Secondary button on hover.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.secondary-background-hover}"
 
-* name: SecondaryHover
-  props:
-  State: Default
-  Variant: Secondary
-  Interaction: Hover
-  description: Secondary button on hover.
-  styles:
-  root:
-  backgroundColor: "#738F82"
+  - name: Disabled
+    props:
+      State: Disabled
+    description: Disabled button (uses tertiary-hover background).
+    styles:
+      root:
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
+      Connect wallet:
+        textColor: "{semantic.color.text.tertiary-text}"
 
-* name: Disabled
-  props:
-  State: Disabled
-  Variant: Primary
-  Interaction: Default
-  description: Disabled button.
-  styles:
-  root:
-  backgroundColor: "#35423F"
-  Connect wallet:
-  color: "#697976"
+  - name: Loading
+    props:
+      State: Loading
+      Variant: Primary
+      Size: lg
+    description: Button displaying its label and a loading indicator.
+    layout:
+      - root:
+        - Connect wallet
+        - loading
+    styles:
+      root:
+        opacity: 0.5
+        backgroundColor: "{component.color.action.primary-background}"
+        padding:
+          top: "{primitive.spacing.18}"
+          bottom: "{primitive.spacing.18}"
+          end: "{primitive.spacing.20}"
+      Connect wallet:
+        textColor: "{semantic.color.text.inverse-text}"
 
-* name: Loading
-  props:
-  State: Loading
-  Variant: Primary
-  Interaction: Default
-  Size: lg
-  description: Button displaying its label and a loading indicator.
-  layout:
-  root:
-  children:
-  - Connect wallet
-  - loading
-  styles:
-  root:
-  backgroundColor: "#AAE2C8"
-  opacity: 0.5
-  padding:
-  top: 18px
-  bottom: 18px
-  end: 20px
-  Connect wallet:
-  color: "#0F0F0F"
+  - name: LoadingMedium
+    props:
+      State: Loading
+      Size: md
+    description: Medium loading button.
+    styles:
+      root:
+        padding:
+          top: "{primitive.spacing.12}"
+          bottom: "{primitive.spacing.12}"
 
-* name: LoadingMedium
-  props:
-  State: Loading
-  Size: md
-  description: Medium loading button.
-  styles:
-  root:
-  padding:
-  top: 12px
-  bottom: 12px
+  - name: LoadingSecondary
+    props:
+      State: Loading
+      Variant: Secondary
+    description: Loading button using the secondary style.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.secondary-background}"
+      Connect wallet:
+        textColor: "{semantic.color.text.primary-text}"
 
-* name: LoadingSecondary
-  props:
-  State: Loading
-  Variant: Secondary
-  description: Loading button using the secondary style.
-  styles:
-  root:
-  backgroundColor: "#465C52"
-  Connect wallet:
-  color: "#E8F4F0"
+  - name: Waiting
+    props:
+      State: Waiting
+      Variant: Primary
+      Size: lg
+    description: Button displaying only the waiting indicator.
+    layout:
+      - root:
+        - waiting
+    styles:
+      root:
+        opacity: 0.5
+        padding:
+          top: "{primitive.spacing.26}"
+          bottom: "{primitive.spacing.26}"
+          start: "{primitive.spacing.20}"
+          end: "{primitive.spacing.20}"
 
-* name: Waiting
-  props:
-  State: Waiting
-  Variant: Primary
-  Interaction: Default
-  Size: lg
-  description: Button displaying only the waiting indicator.
-  layout:
-  root:
-  children:
-  - waiting
-  styles:
-  root:
-  backgroundColor: "#1F2C2A"
-  opacity: 0.5
-  padding:
-  top: 26px
-  bottom: 26px
-  start: 20px
-  end: 20px
+  - name: WaitingMedium
+    props:
+      State: Waiting
+      Size: md
+    description: Medium waiting button.
+    styles:
+      root:
+        padding: "{primitive.spacing.20}"
 
-* name: WaitingMedium
-  props:
-  State: Waiting
-  Size: md
-  description: Medium waiting button.
-  styles:
-  root:
-  padding: 20px
+  - name: Icon
+    props:
+      State: Default
+      Variant: Icon
+      Size: lg
+    description: Icon-only button.
+    layout:
+      - root:
+        - icon
+    styles:
+      root:
+        width: 60
+        height: 60
+        layoutSizingVertical: FIXED
+        backgroundColor: null
+        aspectRatio:
+          x: 48
+          y: 48
 
-* name: Icon
-  props:
-  State: Default
-  Variant: Icon
-  Interaction: Default
-  Size: lg
-  description: Icon-only button.
-  layout:
-  root:
-  children:
-  - icon
-  styles:
-  root:
-  width: 60px
-  height: 60px
-  backgroundColor: none
-  icon:
-  width: 24px
-  height: 24px
-
-* name: IconMedium
-  props:
-  State: Default
-  Variant: Icon
-  Interaction: Default
-  Size: md
-  description: Medium icon-only button.
-  styles:
-  root:
-  width: 48px
-  height: 48px
+  - name: IconMedium
+    props:
+      State: Default
+      Variant: Icon
+      Size: md
+    description: Medium icon-only button.
+    styles:
+      root:
+        width: 48
+        height: 48
+        padding:
+          top: "{primitive.spacing.20}"
+          bottom: "{primitive.spacing.20}"
+        aspectRatio: null
 
 combinations:
-
-* State: Default
-  Variant: Primary
-  Interaction: Default
-  Size: lg
-* State: Default
-  Variant: Primary
-  Interaction: Hover
-* State: Default
-  Variant: Secondary
-  Interaction: Default
-* State: Default
-  Variant: Secondary
-  Interaction: Hover
-* State: Default
-  Variant: Icon
-  Interaction: Default
-  Size: lg
-* State: Default
-  Variant: Icon
-  Interaction: Default
-  Size: md
-* State: Disabled
-  Variant: Primary
-  Interaction: Default
-* State: Loading
-  Variant: Primary
-  Interaction: Default
-  Size: lg
-* State: Loading
-  Size: md
-* State: Loading
-  Variant: Secondary
-* State: Waiting
-  Variant: Primary
-  Interaction: Default
-  Size: lg
-* State: Waiting
-  Size: md
+  - State: Default
+    Variant: Primary
+    Interaction: Default
+    Size: lg
+  - State: Default
+    Variant: Primary
+    Interaction: Hover
+  - State: Default
+    Variant: Secondary
+    Interaction: Default
+  - State: Default
+    Variant: Secondary
+    Interaction: Hover
+  - State: Default
+    Variant: Icon
+    Interaction: Default
+    Size: lg
+  - State: Default
+    Variant: Icon
+    Interaction: Default
+    Size: md
+  - State: Disabled
+  - State: Loading
+    Variant: Primary
+    Size: lg
+  - State: Loading
+    Size: md
+  - State: Loading
+    Variant: Secondary
+  - State: Waiting
+    Variant: Primary
+    Size: lg
+  - State: Waiting
+    Size: md
 
 behavior:
-
-* State Default displays the button's normal content.
-* State Disabled uses the disabled background and text colors.
-* State Loading displays the label and loading indicator.
-* State Waiting displays only the waiting indicator.
-* Variant Primary uses the primary color palette.
-* Variant Secondary uses the secondary color palette.
-* Variant Icon displays only the icon instance.
-* Interaction Hover applies the corresponding hover background when defined.
-* Size lg and Size md use different vertical padding and icon button dimensions.
-* The consuming application manages click handling and asynchronous action logic.
+  - State Default displays the button's normal content.
+  - State Disabled uses the disabled background and text colors.
+  - State Loading displays the label and loading indicator.
+  - State Waiting displays only the waiting indicator.
+  - Variant Primary uses the primary color palette.
+  - Variant Secondary uses the secondary color palette.
+  - Variant Icon displays only the icon instance.
+  - Interaction Hover applies the corresponding hover background when defined.
+  - Size lg and Size md use different vertical padding and icon button dimensions.
+  - The consuming application manages click handling and asynchronous action logic.
 
 accessibility:
-requirements:
-- Use a native button element for interactive buttons.
-- Provide an accessible name for every button.
-- Use the disabled attribute when the button cannot be activated.
-- Expose loading or waiting status to assistive technology when applicable.
-- Icon-only buttons require an accessible name.
+  requirements:
+    - Use a native button element for interactive buttons.
+    - Provide an accessible name for every button.
+    - Use the disabled attribute when the button cannot be activated.
+    - Expose loading or waiting status to assistive technology when applicable.
+    - Icon-only buttons require an accessible name.
 
 implementation:
-component: Button
-suggestedFile: Button.tsx
-examplesFile: button.examples.tsx
-notes:
-- Keep Variant, State, Interaction, Size, and Instance consistent with this specification.
-- Preserve the distinction between loading and waiting indicators.
-- Do not display the text label in the Waiting state.
-- The Icon variant uses the icon instance instead of the text label.
-- Use the source-defined values for dimensions, colors, opacity, and padding.
------------------------------------------------------------------------------
+  component: Button
+  suggestedFile: Button.tsx
+  examplesFile: button.examples.tsx
+  notes:
+    - Keep Variant, State, Interaction, Size, and Instance consistent with this specification.
+    - Preserve the distinction between loading and waiting indicators.
+    - Do not display the text label in the Waiting state.
+    - The Icon variant uses the icon instance instead of the text label.
+    - Resolve all design tokens; do not hardcode resolved color or spacing values.
+    - Use the source-defined values for dimensions, opacity, and padding.
+
+related_components:
+  - loading
+  - waiting
+  - icon
+
+design_tokens:
+  radius: "{semantic.radius.md}"
+  spacing_inline_8: "{semantic.spacing.inline.8}"
+  spacing_20: "{primitive.spacing.20}"
+  spacing_24: "{primitive.spacing.24}"
+  spacing_18: "{primitive.spacing.18}"
+  spacing_12: "{primitive.spacing.12}"
+  spacing_26: "{primitive.spacing.26}"
+  primary_background: "{component.color.action.primary-background}"
+  primary_background_hover: "{component.color.action.primary-background-hover}"
+  secondary_background: "{component.color.action.secondary-background}"
+  secondary_background_hover: "{component.color.action.secondary-background-hover}"
+  tertiary_background: "{component.color.action.tertiary-background}"
+  tertiary_background_hover: "{component.color.action.tertiary-background-hover}"
+  inverse_text: "{semantic.color.text.inverse-text}"
+  primary_text: "{semantic.color.text.primary-text}"
+  tertiary_text: "{semantic.color.text.tertiary-text}"
+  body_lg_font_size: "{semantic.typography.body.lg.font-size}"
+  body_lg_line_height: "{semantic.typography.body.lg.line-height}"
+  font_family_primary: "{semantic.typography.font-family.primary}"
