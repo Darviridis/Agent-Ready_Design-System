@@ -1,150 +1,150 @@
+# Semantic documentation for Link
+# Keep this file separate from the Specs 2 generated visual specification.
+
 component: link
 title: Link
 
 description: >
-A reusable text link component with three sizes and two visual states.
-It provides a consistent underlined appearance for navigation throughout
-the interface.
+  A reusable text link component with three sizes and two visual states.
+  It provides a consistent underlined appearance for navigation throughout
+  the interface. Visual values use design tokens.
 
 purpose:
-
-* Navigate users to pages, sections, or external resources.
-* Maintain consistent link styling across the product.
-* Support different text sizes for different interface contexts.
+  - Navigate users to pages, sections, or external resources.
+  - Maintain consistent link styling across the product.
+  - Support different text sizes for different interface contexts.
 
 usage:
-use_when:
-- Users need to navigate to another page or resource.
-- A text link appears within a form, content section, or informational area.
-- The interface requires a consistent underlined link style.
-avoid_when:
-- The action changes application state rather than navigating; use a button.
-- The element submits a form; use a button.
-- The element is decorative and not interactive.
+  use_when:
+    - Users need to navigate to another page or resource.
+    - A text link appears within a form, content section, or informational area.
+    - The interface requires a consistent underlined link style.
+  avoid_when:
+    - The action changes application state rather than navigating; use a button.
+    - The element submits a form; use a button.
+    - The element is decorative and not interactive.
 
 props:
-State:
-type: string
-description: Controls the visual state of the link.
-default: Default
-enum:
-- Default
-- Hover
-required: true
+  State:
+    type: string
+    description: Controls the visual state of the link.
+    default: Default
+    enum:
+      - Default
+      - Hover
+    required: true
 
-Size:
-type: string
-description: Controls the text size and line height of the link.
-default: S
-enum:
-- sm
-- md
-- lg
-required: true
+  Size:
+    type: string
+    description: Controls the text size and line height of the link.
+    default: sm
+    enum:
+      - sm
+      - md
+      - lg
+    required: true
 
 variants:
-State:
-Default:
-description: Normal link appearance.
-color: "#AAE2C8"
-Hover:
-description: Link appearance when the pointer hovers over it.
-color: "#D5FFF5"
+  State:
+    Default:
+      description: Normal link appearance.
+      textColor: "{component.color.action.primary-background}"
+    Hover:
+      description: Link appearance when the pointer hovers over it.
+      textColor: "{component.color.action.primary-background-hover}"
 
-Size:
-sm:
-description: Small link.
-font_family: Chirp
-font_style: Medium
-font_size: 12
-line_height: 14
+  Size:
+    sm:
+      description: Small link.
+      font_family: "{semantic.typography.font-family.primary}"
+      font_style: Medium
+      font_size: "{semantic.typography.body.xs.font-size}"
+      line_height: "{semantic.typography.body.xs.line-height}"
+      textDecoration: UNDERLINE
 
-```
-md:
-  description: Medium link.
-  font_family: Chirp
-  font_style: Medium
-  font_size: 14
-  line_height: 16
+    md:
+      description: Medium link.
+      font_family: "{semantic.typography.font-family.primary}"
+      font_style: Medium
+      font_size: "{semantic.typography.body.sm.font-size}"
+      line_height: "{semantic.typography.body.sm.line-height}"
+      textDecoration: UNDERLINE
 
-lg:
-  description: Large link.
-  font_family: Chirp
-  font_style: Medium
-  font_size: 16
-  line_height: 18
-```
+    lg:
+      description: Large link.
+      font_family: "{semantic.typography.font-family.primary}"
+      font_style: Medium
+      font_size: "{semantic.typography.body.md.font-size}"
+      line_height: "{semantic.typography.body.md.line-height}"
+      textDecoration: UNDERLINE
 
 composition:
-root:
-semantic_role: link_container
-direction: horizontal
-main_axis_alignment: center
-cross_axis_alignment: center
-width_behavior: hug
-height_behavior: hug
-item_spacing: 10
+  root:
+    semantic_role: link_container
+    direction: HORIZONTAL
+    mainAxisAlignment: CENTER
+    crossAxisAlignment: CENTER
+    layoutSizingHorizontal: HUG
+    layoutSizingVertical: HUG
+    itemSpacing: 10
 
-Link:
-semantic_role: anchor
-description: Visible text of the link.
-default_content: Link
-text_decoration: underline
-default_color: "#AAE2C8"
-font_family: Chirp
-font_style: Medium
+  Link:
+    semantic_role: anchor
+    description: Visible text of the link.
+    default_content: Link
+    textDecoration: UNDERLINE
+    default_color: "{component.color.action.primary-background}"
+    font_family: "{semantic.typography.font-family.primary}"
+    font_style: Medium
 
 behavior:
-
-* Use State to select the visual state and Size to select the typography size.
-* State and Size are independent properties and must work in combination.
-* Default uses text color #AAE2C8.
-* Hover uses text color #D5FFF5.
-* sm uses 12px text with a 14px line height.
-* md uses 14px text with a 16px line height.
-* lg uses 16px text with an 18px line height.
-* Keep the link text configurable rather than hardcoding the word Link.
-* The consuming interface must provide the destination URL.
-* Do not treat the visual State property as a replacement for actual pointer or keyboard interaction.
-* Hover styling must not be the only indication that the element is interactive.
+  - Use State to select the visual state and Size to select the typography size.
+  - State and Size are independent properties and must work in combination.
+  - Default uses primary-background color.
+  - Hover uses primary-background-hover color.
+  - sm uses body.xs typography.
+  - md uses body.sm typography.
+  - lg uses body.md typography.
+  - Keep the link text configurable rather than hardcoding the word Link.
+  - The consuming interface must provide the destination URL.
+  - Do not treat the visual State property as a replacement for actual pointer or keyboard interaction.
+  - Hover styling must not be the only indication that the element is interactive.
 
 accessibility:
-
-* Use a semantic anchor element with a valid href for navigation.
-* Provide descriptive link text that communicates the destination or purpose.
-* Support keyboard navigation and activation.
-* Provide a visible keyboard focus indicator distinct from the hover appearance.
-* Maintain sufficient text and focus-indicator contrast.
-* Preserve the underline to distinguish links from surrounding text.
-* Do not use a link for an action that should be represented by a button.
-* Communicate unexpected new-tab behavior when applicable.
+  - Use a semantic anchor element with a valid href for navigation.
+  - Provide descriptive link text that communicates the destination or purpose.
+  - Support keyboard navigation and activation.
+  - Provide a visible keyboard focus indicator distinct from the hover appearance.
+  - Maintain sufficient text and focus-indicator contrast.
+  - Preserve the underline to distinguish links from surrounding text.
+  - Do not use a link for an action that should be represented by a button.
+  - Communicate unexpected new-tab behavior when applicable.
 
 implementation:
-
-* Read this file together with components/links.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, typography, colors, and variants.
-* Treat this file as additional semantic and behavioral guidance.
-* Implement navigation using a semantic anchor with a valid destination.
-* Keep State and Size as independent properties.
-* Support all six combinations of State and Size.
-* Apply the typography values defined for the selected Size.
-* Apply the color defined for the selected State.
-* Add keyboard focus styling according to the broader design system.
-* Do not invent visited, disabled, or active states unless they are defined by the design system.
+  - Read this file together with components/link.yaml.
+  - Treat the Specs 2 YAML as the source of truth for visual anatomy, typography, colors, and variants.
+  - Treat this file as additional semantic and behavioral guidance.
+  - Implement navigation using a semantic anchor with a valid destination.
+  - Keep State and Size as independent properties.
+  - Support all six combinations of State and Size.
+  - Apply the typography values defined for the selected Size.
+  - Apply the color defined for the selected State.
+  - Add keyboard focus styling according to the broader design system.
+  - Do not invent visited, disabled, or active states unless they are defined by the design system.
+  - Resolve design tokens at runtime / build time.
 
 related_components:
-
-* Button
+  - Button
 
 design_tokens:
-link_default: "#AAE2C8"
-link_hover: "#D5FFF5"
-link_font_family: Chirp
-link_font_style: Medium
-link_size_s: 12
-link_line_height_s: 14
-link_size_m: 14
-link_line_height_m: 16
-link_size_l: 16
-link_line_height_l: 18
-link_text_decoration: underline
+  link_default: "{component.color.action.primary-background}"
+  link_hover: "{component.color.action.primary-background-hover}"
+  link_font_family: "{semantic.typography.font-family.primary}"
+  link_font_style: Medium
+  link_size_sm: "{semantic.typography.body.xs.font-size}"
+  link_line_height_sm: "{semantic.typography.body.xs.line-height}"
+  link_size_md: "{semantic.typography.body.sm.font-size}"
+  link_line_height_md: "{semantic.typography.body.sm.line-height}"
+  link_size_lg: "{semantic.typography.body.md.font-size}"
+  link_line_height_lg: "{semantic.typography.body.md.line-height}"
+  link_text_decoration: UNDERLINE
