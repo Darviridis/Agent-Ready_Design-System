@@ -1,97 +1,115 @@
+/**
+ * BlockHeader examples based on the Specs 2 YAML (token-based).
+ *
+ * Props:
+ *   - Align: Center | Left
+ */
 import type { ReactNode } from "react";
-import { Button } from "../components/Button";
+import { Button } from "./Button";
+import { BlockHeader } from "./BlockHeader";
 
 type BlockHeaderProps = {
-Align?: "Center" | "Left";
-heading?: ReactNode;
-onClose?: () => void;
+  Align?: "Center" | "Left";
+  heading?: ReactNode;
+  onClose?: () => void;
 };
 
-export function BlockHeader({
-Align = "Center",
-heading = "Heading",
-onClose,
+export function BlockHeaderComponent({
+  Align = "Center",
+  heading = "Heading",
+  onClose,
 }: BlockHeaderProps) {
-const isLeft = Align === "Left";
+  const isLeft = Align === "Left";
 
-const closeButton = ( <Button
-   Instance="close"
-   Variant="Icon"
-   State="Default"
-   Size="md"
-   aria-label="Close"
-   onClick={onClose}
- />
-);
+  const closeButton = (
+    <Button
+      Instance="close"
+      Variant="Icon"
+      State="Default"
+      Size="md"
+      aria-label="Close"
+      onClick={onClose}
+    />
+  );
 
-const headingElement = (
-<h2
-style={{
-flex: 1,
-minWidth: 0,
-margin: 0,
-color: "#D1DEDF",
-fontFamily: "Chirp, sans-serif",
-fontSize: 24,
-fontWeight: 700,
-lineHeight: "32px",
-textAlign: isLeft ? "left" : "center",
-}}
->
-{heading} </h2>
-);
+  const headingElement = (
+    <h2
+      style={{
+        flex: 1,
+        minWidth: 0,
+        margin: 0,
+        color: "var(--semantic-color-text-primary-text, #D1DEDF)",
+        fontFamily: "var(--semantic-typography-font-family-primary, Chirp), sans-serif",
+        fontSize: "var(--semantic-typography-heading-h4-font-size, 24px)",
+        fontWeight: 700,
+        lineHeight: "var(--semantic-typography-heading-h4-line-height, 32px)",
+        textAlign: isLeft ? "left" : "center",
+      }}
+    >
+      {heading}
+    </h2>
+  );
 
-return (
-<header
-style={{
-boxSizing: "border-box",
-display: "flex",
-alignItems: "center",
-gap: 8,
-width: "100%",
-maxWidth: 1200,
-minHeight: 48,
-padding: "8px 24px",
-borderRadius: "20px 20px 0 0",
-backgroundColor: "#0B1819",
-}}
->
-{isLeft ? (
-<>
-{headingElement}
-{closeButton}
-</>
-) : (
-<>
-{closeButton}
-{headingElement}
-{closeButton}
-</>
-)} </header>
-);
+  return (
+    <header
+      style={{
+        boxSizing: "border-box",
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--semantic-spacing-inline-8, 8px)",
+        width: "100%",
+        maxWidth: 1200,
+        minHeight: 48,
+        padding: "var(--primitive-spacing-8, 8px) var(--primitive-spacing-24, 24px)",
+        borderRadius:
+          "var(--semantic-radius-xl, 20px) var(--semantic-radius-xl, 20px) var(--semantic-radius-none, 0) var(--semantic-radius-none, 0)",
+        backgroundColor: "var(--semantic-color-background-primary-bg, #0B1819)",
+      }}
+    >
+      {isLeft ? (
+        <>
+          {headingElement}
+          {closeButton}
+        </>
+      ) : (
+        <>
+          {closeButton}
+          {headingElement}
+          {closeButton}
+        </>
+      )}
+    </header>
+  );
 }
-
-
-
-import { BlockHeader } from "../components/BlockHeader";
 
 export function BlockHeaderExamples() {
-return ( <main> <section> <h2>Block header — Center</h2> <BlockHeader Align="Center" heading="Heading" /> </section>
+  return (
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 32,
+        padding: 24,
+        background: "var(--semantic-color-background-primary-bg, #0B1819)",
+        color: "var(--semantic-color-text-primary-text, #D1DEDF)",
+        fontFamily: "var(--semantic-typography-font-family-primary, Chirp), sans-serif",
+      }}
+    >
+      <section>
+        <h2>Block header — Center</h2>
+        <BlockHeader Align="Center" heading="Heading" />
+      </section>
 
-```
-  <section>
-    <h2>Block header — Left</h2>
-    <BlockHeader Align="Left" heading="Heading" />
-  </section>
+      <section>
+        <h2>Block header — Left</h2>
+        <BlockHeader Align="Left" heading="Heading" />
+      </section>
 
-  <section>
-    <h2>Different heading text</h2>
-    <BlockHeader Align="Center" heading="Wallet settings" />
-    <BlockHeader Align="Left" heading="Transaction history" />
-  </section>
-</main>
-```
-
-);
+      <section>
+        <h2>Different heading text</h2>
+        <BlockHeader Align="Center" heading="Wallet settings" />
+        <BlockHeader Align="Left" heading="Transaction history" />
+      </section>
+    </main>
+  );
 }
-
