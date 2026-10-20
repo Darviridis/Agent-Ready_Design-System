@@ -1,130 +1,130 @@
 # Semantic documentation for BlockHeader
-
 # Keep this file separate from the Specs 2 generated visual specification.
 
 component: blockHeader
 title: BlockHeader
 
 description: >
-A header component for a content block or section. It can display a
-heading with navigation or action buttons.
+  A header component for a content block or section. It can display a
+  heading with navigation or action buttons. Visual values use design tokens.
 
 purpose:
-
-* Identify the current content block or section.
-* Provide a consistent header layout.
-* Optionally provide an action such as closing the block.
+  - Identify the current content block or section.
+  - Provide a consistent header layout.
+  - Optionally provide an action such as closing the block.
 
 usage:
-use_when:
-- A content block needs a title and optional action button.
-- A section requires a consistent header across different screens.
-avoid_when:
-- The page requires a full application navigation bar.
-- The heading does not belong to a distinct content block.
+  use_when:
+    - A content block needs a title and optional action button.
+    - A section requires a consistent header across different screens.
+  avoid_when:
+    - The page requires a full application navigation bar.
+    - The heading does not belong to a distinct content block.
 
 props:
-Align:
-type: string
-description: Controls the horizontal alignment and arrangement of the header.
-default: Center
-enum:
-- Center
-- Left
-required: true
+  Align:
+    type: string
+    description: Controls the horizontal alignment and arrangement of the header.
+    default: Center
+    enum:
+      - Center
+      - Left
+    required: true
 
 variants:
-Align:
-Center:
-description: Displays a button, a centered heading, and a button.
-layout:
-- Button
-- Heading
-- Button
-heading_alignment: center
+  Align:
+    Center:
+      description: Displays a button, a centered heading, and a button.
+      layout:
+        - Button
+        - Heading
+        - Button
+      heading_alignment: center
 
-```
-Left:
-  description: Displays the heading aligned to the start, followed by one button.
-  layout:
-    - Heading
-    - Button
-  heading_alignment: start
-```
+    Left:
+      description: Displays the heading aligned to the start, followed by one button.
+      layout:
+        - Heading
+        - Button
+      heading_alignment: start
 
 composition:
-root:
-semantic_role: header
-description: Container for the heading and its associated actions.
-
-Heading:
-semantic_role: heading
-default_level: 2
-content: Heading
-
-Button:
-component: Button
-purpose: Header action, such as closing the block.
+  root:
+    semantic_role: header
+    description: Container for the heading and its associated actions.
+  Heading:
+    semantic_role: heading
+    default_level: 2
+    content: Heading
+  Button:
+    component: Button
+    purpose: Header action, such as closing the block.
 
 behavior:
-
-* The Center variant contains two Button instances according to the source specification.
-* The Left variant contains one Button instance according to the source specification.
-* The heading alignment and element arrangement change according to Align.
-* Button actions must be defined by the consuming interface; the visual specification alone does not define their behavior.
+  - The Center variant contains two Button instances according to the source specification.
+  - The Left variant contains one Button instance according to the source specification.
+  - The heading alignment and element arrangement change according to Align.
+  - Button actions must be defined by the consuming interface; the visual specification alone does not define their behavior.
 
 layout:
-source_width: 1200
-width_behavior: >
-Treat 1200px as the source design width, not necessarily a fixed runtime
-width. The component should adapt to its parent container unless the
-product requirements explicitly require a fixed width.
-direction: horizontal
-item_spacing: 8
-padding:
-top: 8
-bottom: 8
-start: 24
-end: 24
-corner_radius:
-top_start: 20
-top_end: 20
-bottom_end: 0
-bottom_start: 0
+  source_width: 1200
+  width_behavior: >
+    Treat 1200px as the source design width, not necessarily a fixed runtime
+    width. The component should adapt to its parent container unless the
+    product requirements explicitly require a fixed width.
+  direction: horizontal
+  item_spacing: "{semantic.spacing.inline.8}"
+  padding:
+    top: "{primitive.spacing.8}"
+    bottom: "{primitive.spacing.8}"
+    start: "{primitive.spacing.24}"
+    end: "{primitive.spacing.24}"
+  corner_radius:
+    top_start: "{semantic.radius.xl}"
+    top_end: "{semantic.radius.xl}"
+    bottom_end: "{semantic.radius.none}"
+    bottom_start: "{semantic.radius.none}"
+  backgroundColor: "{semantic.color.background.primary-bg}"
 
 typography:
-Heading:
-font_family: Chirp
-font_style: Bold
-font_size: 24
-line_height: 32
-color: "#D1DEDF"
+  Heading:
+    font_family: "{semantic.typography.font-family.primary}"
+    font_style: Bold
+    font_size: "{semantic.typography.heading.h4.font-size}"
+    line_height: "{semantic.typography.heading.h4.line-height}"
+    color: "{semantic.color.text.primary-text}"
 
 accessibility:
-
-* Use a semantic header element for the component container when appropriate.
-* Represent Heading as a real heading element, with its level determined by the page hierarchy.
-* Give each Button an accessible name that describes its action.
-* Preserve a visible keyboard focus indicator for interactive buttons.
-* Do not rely on alignment or visual appearance alone to communicate meaning.
+  - Use a semantic header element for the component container when appropriate.
+  - Represent Heading as a real heading element, with its level determined by the page hierarchy.
+  - Give each Button an accessible name that describes its action.
+  - Preserve a visible keyboard focus indicator for interactive buttons.
+  - Do not rely on alignment or visual appearance alone to communicate meaning.
 
 implementation:
-
-* Read this file together with components/blockHeader.yaml.
-* Treat the Specs 2 YAML as the source of truth for visual anatomy, dimensions, and variants.
-* Treat this file as additional semantic and behavioral guidance.
-* Use the existing Button component rather than creating a separate button implementation.
-* Keep the heading and buttons responsive to the available container width.
-* Ensure the Center variant remains visually centered when the left and right button widths differ.
-* Implement actual button actions in the consuming interface.
-* Use Align with the values Center and Left; do not use Type or Property 1 for this property.
-* Configure nested Button instances according to the source specification, using Variant="Icon", State="Default", Size="md", and Instance="close".
+  - Read this file together with components/blockHeader.yaml.
+  - Treat the Specs 2 YAML as the source of truth for visual anatomy, dimensions, and variants.
+  - Treat this file as additional semantic and behavioral guidance.
+  - Use the existing Button component rather than creating a separate button implementation.
+  - Keep the heading and buttons responsive to the available container width.
+  - Ensure the Center variant remains visually centered when the left and right button widths differ.
+  - Implement actual button actions in the consuming interface.
+  - Use Align with the values Center and Left; do not use Type or Property 1 for this property.
+  - Configure nested Button instances according to the source specification:
+      Variant="Icon", State="Default", Size="md", Instance="close".
+  - Resolve design tokens at runtime / build time.
 
 related_components:
-
-* Button
+  - Button
 
 design_tokens:
-background: "#0B1819"
-heading_text: "#D1DEDF"
-corner_radius: 20
+  background: "{semantic.color.background.primary-bg}"
+  heading_text: "{semantic.color.text.primary-text}"
+  radius_xl: "{semantic.radius.xl}"
+  radius_none: "{semantic.radius.none}"
+  spacing_inline_8: "{semantic.spacing.inline.8}"
+  spacing_8: "{primitive.spacing.8}"
+  spacing_24: "{primitive.spacing.24}"
+  heading_h4_font_size: "{semantic.typography.heading.h4.font-size}"
+  heading_h4_line_height: "{semantic.typography.heading.h4.line-height}"
+  font_family_primary: "{semantic.typography.font-family.primary}"
