@@ -1,164 +1,182 @@
----
+# Semantic documentation for Checkbox
+# Keep this file separate from the Specs 2 generated visual specification.
 
 component: checkbox
 title: Checkbox
 
 description: >
-A square selection control that allows users to toggle an option on or off.
+  A square selection control that allows users to toggle an option on or off.
+  Uses design tokens for colors, radii, and effects.
 
 purpose:
-
-* Allow users to select or deselect an option.
-* Display the selected state with a check mark.
-* Provide visual feedback for hover and disabled states.
+  - Allow users to select or deselect an option.
+  - Display the selected state with a check mark.
+  - Provide visual feedback for hover and disabled states.
 
 props:
-State:
-type: string
-required: false
-default: Default
-enum:
-- Default
-- Active
-- Disabled
-description: >
-Controls whether the checkbox is unselected, selected, or disabled.
+  State:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Active
+      - Disabled
+    description: >
+      Controls whether the checkbox is unselected, selected, or disabled.
 
-Interaction:
-type: string
-required: false
-default: Default
-enum:
-- Default
-- Hover
-description: >
-Controls the hover appearance of the checkbox.
+  Interaction:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+    description: >
+      Controls the hover appearance of the checkbox.
 
 anatomy:
-root:
-description: >
-The outer square container. Defines the checkbox size, background,
-border, and interaction appearance.
-check:
-type: instance
-instanceOf: check
-description: >
-The check mark displayed when State is Active.
+  root:
+    type: container
+    description: >
+      The outer square container. Defines the checkbox size, background,
+      border, and interaction appearance.
+  check:
+    type: instance
+    instanceOf: check
+    description: >
+      The check mark displayed when State is Active.
+      Detected in State=Active, Interaction=Default.
 
 variants:
+  - name: Default
+    props:
+      State: Default
+      Interaction: Default
+    description: Unselected checkbox in its default state.
+    styles:
+      root:
+        width: 24
+        height: 24
+        cornerRadius: "{semantic.radius.sm}"
+        backgroundColor: "{component.color.action.tertiary-background}"
+        strokes: "{component.color.action.secondary-background}"
+        strokeWeight: 1
+        clipsContent: true
+      check:
+        visible: false
 
-* name: Default
-  props:
-  State: Default
-  Interaction: Default
-  description: Unselected checkbox in its default state.
-  styles:
-  root:
-  width: 24px
-  height: 24px
-  cornerRadius: 8px
-  backgroundColor: "#1F2C2A"
-  borderColor: "#35423F"
-  borderWidth: 1px
-  check:
-  visible: false
+  - name: Active
+    props:
+      State: Active
+      Interaction: Default
+    description: Selected checkbox with a check mark.
+    layout:
+      - root:
+        - check
+    styles:
+      root:
+        width: 24
+        height: 24
+        cornerRadius: "{semantic.radius.sm}"
+        backgroundColor: "{component.color.action.primary-background}"
+        strokes: null
+        strokeWeight: null
+      check:
+        visible: true
+        width: 24
+        height: 24
+        position: ABSOLUTE
+        top: 0
+        start: 0
 
-* name: Active
-  props:
-  State: Active
-  Interaction: Default
-  description: Selected checkbox with a check mark.
-  styles:
-  root:
-  width: 24px
-  height: 24px
-  cornerRadius: 8px
-  backgroundColor: "#AAE2C8"
-  border: none
-  check:
-  visible: true
-  width: 24px
-  height: 24px
-  position: absolute
-  top: 0
-  start: 0
+  - name: Disabled
+    props:
+      State: Disabled
+      Interaction: Default
+    description: Disabled checkbox. Background is unset per specification.
+    styles:
+      root:
+        backgroundColor: null
 
-* name: Disabled
-  props:
-  State: Disabled
-  Interaction: Default
-  description: Disabled checkbox. The root background is unset by the specification.
-  styles:
-  root:
-  backgroundColor: unset
+  - name: DefaultHover
+    props:
+      State: Default
+      Interaction: Hover
+    description: Unselected checkbox on hover.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.secondary-background}"
+        strokes: "{component.color.action.primary-background}"
+        strokeWeight: 1
+      check:
+        visible: false
 
-* name: DefaultHover
-  props:
-  State: Default
-  Interaction: Hover
-  description: Unselected checkbox on hover.
-  styles:
-  root:
-  backgroundColor: "#35423F"
-  borderColor: "#AAE2C8"
-  borderWidth: 1px
-  check:
-  visible: false
-
-* name: ActiveHover
-  props:
-  State: Active
-  Interaction: Hover
-  description: Selected checkbox on hover, with a glow effect.
-  styles:
-  root:
-  backgroundColor: "#D5FFF5"
-  shadow:
-  color: "#9DFFE8"
-  blur: 4px
-  spread: 0
-  offsetX: 0
-  offsetY: 0
-  check:
-  visible: true
+  - name: ActiveHover
+    props:
+      State: Active
+      Interaction: Hover
+    description: Selected checkbox on hover, with a glow effect.
+    styles:
+      root:
+        backgroundColor: "{component.color.action.primary-background-hover}"
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: 4
+              spread: 0
+              color: "{semantic.color.effect.glow}"
+      check:
+        visible: true
 
 combinations:
-
-* State: Default
-  Interaction: Default
-* State: Default
-  Interaction: Hover
-* State: Active
-  Interaction: Default
-* State: Active
-  Interaction: Hover
-* State: Disabled
-  Interaction: Default
+  - State: Default
+    Interaction: Default
+  - State: Default
+    Interaction: Hover
+  - State: Active
+    Interaction: Default
+  - State: Active
+    Interaction: Hover
+  - State: Disabled
+    Interaction: Default
 
 behavior:
-
-* When State is Default, do not display the check mark.
-* When State is Active, display the check instance.
-* When State is Disabled, remove the root background color as specified.
-* When State is Default and Interaction is Hover, use the hover background and border colors.
-* When State is Active and Interaction is Hover, use the hover background and glow effect.
-* Selection behavior must be managed by the consuming application.
+  - When State is Default, do not display the check mark.
+  - When State is Active, display the check instance.
+  - When State is Disabled, remove the root background color as specified.
+  - When State is Default and Interaction is Hover, use the hover background and border colors.
+  - When State is Active and Interaction is Hover, use the hover background and glow effect.
+  - Selection behavior must be managed by the consuming application.
 
 accessibility:
-role: checkbox
-requirements:
-- Expose the selected state using aria-checked.
-- Expose the disabled state using aria-disabled or the native disabled attribute.
-- Provide an accessible name through an associated label.
-- Support keyboard interaction when used as a form control.
+  role: checkbox
+  requirements:
+    - Expose the selected state using aria-checked.
+    - Expose the disabled state using aria-disabled or the native disabled attribute.
+    - Provide an accessible name through an associated label.
+    - Support keyboard interaction when used as a form control.
 
 implementation:
-component: Checkbox
-suggestedFile: Checkbox.tsx
-examplesFile: checkbox.examples.tsx
-notes:
-- Keep State and Interaction values consistent with this specification.
-- Use a native input type="checkbox" when implementing form behavior.
-- Keep the check mark instance visible only when State is Active.
-- Do not invent additional disabled styles that are not defined in the source specification.
---------------------------------------------------------------------------------------------
+  component: Checkbox
+  suggestedFile: Checkbox.tsx
+  examplesFile: checkbox.examples.tsx
+  notes:
+    - Keep State and Interaction values consistent with this specification.
+    - Use a native input type="checkbox" when implementing form behavior.
+    - Keep the check mark instance visible only when State is Active.
+    - Resolve design tokens at runtime / build time; do not hardcode resolved values.
+    - Do not invent additional disabled styles that are not defined in the source specification.
+
+related_components:
+  - check (instance)
+
+design_tokens:
+  radius: "{semantic.radius.sm}"
+  tertiary_background: "{component.color.action.tertiary-background}"
+  secondary_background: "{component.color.action.secondary-background}"
+  primary_background: "{component.color.action.primary-background}"
+  primary_background_hover: "{component.color.action.primary-background-hover}"
+  glow: "{semantic.color.effect.glow}"
