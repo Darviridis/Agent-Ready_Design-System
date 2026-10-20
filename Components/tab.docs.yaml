@@ -1,112 +1,179 @@
-# Tab
+# Semantic documentation for Tab
+# Keep this file separate from the Specs 2 generated visual specification.
 
-## Description
+component: tab
+title: Tab
 
-A tab component for switching between interface sections. It supports Active and Inactive states, five sizes, and Default and Hover interaction states.
+description: >
+  A tab component for switching between interface sections. It supports
+  Active and Inactive states, five sizes, and Default and Hover interaction
+  states. All visual values use design tokens.
 
-## Purpose
+purpose:
+  - Indicate the currently active section.
+  - Provide navigation between related views or content.
+  - Maintain consistent tab styling across different sizes and interaction states.
 
-* Indicate the currently active section.
-* Provide navigation between related views or content.
-* Maintain consistent tab styling across different sizes and interaction states.
+anatomy:
+  root:
+    type: container
+    description: Container for the tab.
+  Tab:
+    type: text
+    description: Text label displayed inside the tab.
 
-## Anatomy
+props:
+  State:
+    type: string
+    default: Active
+    enum:
+      - Inactive
+      - Active
+    required: true
+  Size:
+    type: string
+    default: 2xl
+    enum:
+      - 2xl
+      - xl
+      - lg
+      - md
+      - sm
+    required: true
+  Interaction:
+    type: string
+    default: Default
+    enum:
+      - Default
+      - Hover
+    required: true
 
-* `root` — container for the tab.
-* `Tab` — text label displayed inside the tab.
+layout:
+  root:
+    direction: HORIZONTAL
+    layoutSizingHorizontal: HUG
+    layoutSizingVertical: HUG
+    mainAxisAlignment: CENTER
+    crossAxisAlignment: CENTER
+    cornerRadius: "{semantic.radius.sm}"
+    itemSpacing: 10
+    padding:
+      top: "{primitive.spacing.18}"
+      bottom: "{primitive.spacing.18}"
+      start: "{primitive.spacing.32}"
+      end: "{primitive.spacing.32}"
 
-## Props
+variants:
+  State:
+    Active:
+      description: Active tab.
+      backgroundColor: "{component.color.action.primary-background}"
+      textColor: "{semantic.color.text.inverse-text}"
+    Inactive:
+      description: Inactive tab.
+      backgroundColor: "{component.color.action.tertiary-background}"
+      textColor: "{semantic.color.text.secondary-text}"
+      itemSpacing: 0
 
-| Prop          | Type   | Default   | Values                        |
-| ------------- | ------ | --------- | ----------------------------- |
-| `State`       | string | `Active`  | `Inactive`, `Active`          |
-| `Size`        | string | `2xl`     | `2xl`, `xl`, `lg`, `md`, `sm` |
-| `Interaction` | string | `Default` | `Default`, `Hover`            |
+  Interaction:
+    Hover:
+      description: Hover appearance (combined with State).
+      # Active + Hover → primary-background-hover + inverse text handled via variant cascade
+      # Inactive + Hover → tertiary-background-hover
 
-All props are non-nullable.
+  Size:
+    2xl:
+      padding:
+        top: "{primitive.spacing.18}"
+        bottom: "{primitive.spacing.18}"
+        start: "{primitive.spacing.32}"
+        end: "{primitive.spacing.32}"
+      typography:
+        fontSize: "{semantic.typography.body.lg.font-size}"
+        lineHeight: "{semantic.typography.body.lg.line-height}"
+        fontStyle: Medium
+    xl:
+      padding:
+        top: "{primitive.spacing.14}"
+        bottom: "{primitive.spacing.14}"
+        start: "{primitive.spacing.24}"
+        end: "{primitive.spacing.24}"
+      typography:
+        fontSize: "{semantic.typography.body.md.font-size}"
+        lineHeight: "{semantic.typography.body.md.line-height}"
+        fontStyle: Medium
+    lg:
+      padding:
+        top: "{primitive.spacing.12}"
+        bottom: "{primitive.spacing.12}"
+        start: "{primitive.spacing.16}"
+        end: "{primitive.spacing.16}"
+      typography:
+        fontSize: "{semantic.typography.body.md.font-size}"
+        lineHeight: "{semantic.typography.body.md.line-height}"
+        fontStyle: Medium
+    md:
+      padding:
+        top: "{primitive.spacing.8}"
+        bottom: "{primitive.spacing.8}"
+        start: "{primitive.spacing.16}"
+        end: "{primitive.spacing.16}"
+      typography:
+        fontSize: "{semantic.typography.body.sm.font-size}"
+        lineHeight: "{semantic.typography.body.sm.line-height}"
+        fontStyle: Medium
+    sm:
+      padding:
+        top: 5
+        bottom: 5
+        start: "{primitive.spacing.16}"
+        end: "{primitive.spacing.16}"
+      typography:
+        fontSize: "{semantic.typography.body.xs.font-size}"
+        lineHeight: "{semantic.typography.body.xs.line-height}"
+        fontStyle: Medium
 
-## Layout
+behavior:
+  - State controls whether the tab is Active or Inactive.
+  - Interaction controls whether the tab uses Default or Hover styling.
+  - Size controls the tab's padding and typography.
+  - The YAML defines no invalid prop combinations.
+  - Active + Default → primary-background + inverse-text.
+  - Active + Hover → primary-background-hover.
+  - Inactive + Default → tertiary-background + secondary-text.
+  - Inactive + Hover → tertiary-background-hover (via Interaction variant).
 
-* Root layout: horizontal.
-* Horizontal and vertical sizing: Hug.
-* Content alignment: centered on both axes.
-* Default corner radius: `8px`.
-* Default item spacing: `10px`.
-* Default padding: `18px` top and bottom, `32px` left and right.
+implementation:
+  - Preserve the exact prop names and enum values from the specification.
+  - Apply the Inactive + Hover styles when State="Inactive" and Interaction="Hover".
+  - Apply the Active + Hover styles when State="Active" and Interaction="Hover".
+  - The specification defines visual styling only; it does not specify click behavior,
+    selected-state management, keyboard navigation, or content switching.
+  - Do not infer additional states or styles that are not defined in the YAML.
+  - Resolve design tokens at runtime / build time.
 
-## Variants and styles
-
-### State: Active
-
-Default background: `#576762`.
-
-Text color: `#E8F4F0`.
-
-Typography: Chirp Medium, `18px` font size, `20px` line height.
-
-### State: Inactive
-
-Background: `#35423F`.
-
-Text color: `#C2D4CD`.
-
-Item spacing: `0px`.
-
-### Interaction: Hover
-
-For the Active state:
-
-* Background: `#D5FFF5`.
-* Text color: `#171818`.
-
-For the Inactive state:
-
-* Background: `#738F82`.
-* Text color: `#171818`.
-
-### Size: 2xl
-
-* Padding: `18px` top and bottom, `32px` left and right.
-* Font size: `18px`.
-* Line height: `20px`.
-
-### Size: xl
-
-* Padding: `14px` top and bottom, `24px` left and right.
-* Font size: `16px`.
-* Line height: `18px`.
-
-### Size: lg
-
-* Padding: `12px` top and bottom, `16px` left and right.
-* Font size: `16px`.
-* Line height: `18px`.
-
-### Size: md
-
-* Padding: `8px` top and bottom, `16px` left and right.
-* Font size: `14px`.
-* Line height: `16px`.
-
-### Size: sm
-
-* Padding: `5px` top and bottom, `16px` left and right.
-* Font size: `12px`.
-* Line height: `14px`.
-
-All sizes use Chirp Medium.
-
-## Behavior
-
-* `State` controls whether the tab is Active or Inactive.
-* `Interaction` controls whether the tab uses Default or Hover styling.
-* `Size` controls the tab's padding and typography.
-* The YAML defines no invalid prop combinations.
-
-## Implementation notes
-
-* Preserve the exact prop names and enum values from the specification.
-* Apply the Inactive + Hover styles when `State="Inactive"` and `Interaction="Hover"`.
-* Apply the Active + Hover styles when `State="Active"` and `Interaction="Hover"`.
-* The specification defines visual styling only; it does not specify click behavior, selected-state management, keyboard navigation, or content switching.
-* Do not infer additional states or styles that are not defined in the YAML.
+design_tokens:
+  radius_sm: "{semantic.radius.sm}"
+  primary_background: "{component.color.action.primary-background}"
+  primary_background_hover: "{component.color.action.primary-background-hover}"
+  tertiary_background: "{component.color.action.tertiary-background}"
+  tertiary_background_hover: "{component.color.action.tertiary-background-hover}"
+  inverse_text: "{semantic.color.text.inverse-text}"
+  secondary_text: "{semantic.color.text.secondary-text}"
+  primary_text: "{semantic.color.text.primary-text}"
+  font_family_primary: "{semantic.typography.font-family.primary}"
+  body_lg_font_size: "{semantic.typography.body.lg.font-size}"
+  body_lg_line_height: "{semantic.typography.body.lg.line-height}"
+  body_md_font_size: "{semantic.typography.body.md.font-size}"
+  body_md_line_height: "{semantic.typography.body.md.line-height}"
+  body_sm_font_size: "{semantic.typography.body.sm.font-size}"
+  body_sm_line_height: "{semantic.typography.body.sm.line-height}"
+  body_xs_font_size: "{semantic.typography.body.xs.font-size}"
+  body_xs_line_height: "{semantic.typography.body.xs.line-height}"
+  spacing_18: "{primitive.spacing.18}"
+  spacing_32: "{primitive.spacing.32}"
+  spacing_14: "{primitive.spacing.14}"
+  spacing_24: "{primitive.spacing.24}"
+  spacing_12: "{primitive.spacing.12}"
+  spacing_16: "{primitive.spacing.16}"
+  spacing_8: "{primitive.spacing.8}"
