@@ -1,298 +1,386 @@
----
+# Semantic documentation for Input
+# Keep this file separate from the Specs 2 generated visual specification.
 
 component: input
 title: Input
 
 description: >
-A text input component for entering and displaying user-provided values.
-Supports default, filled, focus, disabled, readonly, warning, and error states.
+  A text input component for entering and displaying user-provided values.
+  Supports default, filled, focus, disabled, readonly, warning, and error states.
+  Visual values use design tokens.
 
 purpose:
-
-* Allow users to enter text values.
-* Display a label and input content.
-* Provide visual feedback for focus, hover, disabled, warning, and error states.
-* Display validation messages when needed.
+  - Allow users to enter text values.
+  - Display a label and input content.
+  - Provide visual feedback for focus, hover, disabled, warning, and error states.
+  - Display validation messages when needed.
 
 props:
-State:
-type: string
-required: false
-default: Default
-enum:
-- Default
-- Filled
-- Disabled
-- Focus
-- Readonly
-- Warning
-- Error
-description: >
-Controls the visual and content state of the input.
+  State:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Filled
+      - Disabled
+      - Focus
+      - Readonly
+      - Warning
+      - Error
+    description: >
+      Controls the visual and content state of the input.
 
-Interaction:
-type: string
-required: false
-default: Default
-enum:
-- Default
-- Hover
-description: >
-Controls the hover appearance of the input frame.
+  Interaction:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+    description: >
+      Controls the hover appearance of the input frame.
 
-showErrorText:
-type: boolean
-required: false
-default: false
-description: >
-Controls whether validation helper text should be displayed.
-The exact visibility behavior should be implemented consistently
-with the selected State.
+  showErrorText:
+    type: boolean
+    required: false
+    default: false
+    description: >
+      Controls whether validation helper text should be displayed.
+      The exact visibility behavior should be implemented consistently
+      with the selected State.
 
 anatomy:
-root:
-type: container
-description: >
-Vertical wrapper containing the heading, input frame, and helper text.
-Heading:
-type: text
-description: Label displayed above the input.
-Frame 1:
-type: container
-description: >
-Input frame containing the displayed text or caret.
-Text:
-type: text
-description: Placeholder or default input content.
-Entered text:
-type: text
-description: Text displayed in the filled input.
-Caret:
-type: rectangle
-description: Caret displayed in the focused input.
-Error text:
-type: text
-description: Error helper text.
-Please check this value:
-type: text
-description: Warning helper text.
-Enter a valid value:
-type: text
-description: Error validation message.
+  root:
+    type: container
+    description: >
+      Vertical wrapper containing the heading, input frame, and helper text.
+  Heading:
+    type: text
+    description: Label displayed above the input.
+  Frame 1:
+    type: container
+    description: >
+      Input frame containing the displayed text or caret.
+  Text:
+    type: text
+    description: Placeholder or default input content.
+  Entered text:
+    type: text
+    description: Text displayed in the filled input.
+  Caret:
+    type: rectangle
+    description: Caret displayed in the focused input.
+  Error text:
+    type: text
+    description: Error helper text.
+  Please check this value:
+    type: text
+    description: Warning helper text.
+  Enter a valid value:
+    type: text
+    description: Error validation message.
 
 layout:
-root:
-width: 420px
-direction: vertical
-gap: 4px
-Heading:
-width: fill
-lineHeight: 18px
-fontFamily: Chirp
-fontWeight: Bold
-color: "#C2D4CD"
-Frame 1:
-width: fill
-direction: horizontal
-alignItems: center
-gap: 10px
-padding:
-top: 14px
-bottom: 14px
-start: 20px
-end: 20px
-cornerRadius: 12px
-backgroundColor: "#1F2C2A"
-Text:
-fontFamily: Chirp
-fontWeight: Regular
-lineHeight: 18px
-color: "#697976"
-Entered text:
-fontFamily: Chirp
-fontWeight: Regular
-lineHeight: 18px
-color: "#E8F4F0"
-Error text:
-fontFamily: Golos Text
-fontSize: 12px
-lineHeight: 16px
-color: "#D38585"
+  root:
+    width: 420
+    direction: VERTICAL
+    layoutSizingVertical: HUG
+    itemSpacing: "{semantic.spacing.inline.4}"
+  Heading:
+    layoutSizingHorizontal: FILL
+    layoutSizingVertical: HUG
+    textColor: "{semantic.color.text.secondary-text}"
+    typography:
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontStyle: Bold
+      lineHeight: "{semantic.typography.body.md.line-height}"
+  Frame 1:
+    layoutSizingHorizontal: FILL
+    layoutSizingVertical: HUG
+    direction: HORIZONTAL
+    crossAxisAlignment: CENTER
+    itemSpacing: 10
+    padding:
+      top: "{primitive.spacing.14}"
+      bottom: "{primitive.spacing.14}"
+      start: "{primitive.spacing.20}"
+      end: "{primitive.spacing.20}"
+    cornerRadius: "{semantic.radius.md}"
+    backgroundColor: "{component.color.action.tertiary-background}"
+  Text:
+    layoutSizingHorizontal: HUG
+    layoutSizingVertical: HUG
+    textColor: "{semantic.color.text.tertiary-text}"
+    typography:
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontStyle: Regular
+      lineHeight: "{semantic.typography.body.md.line-height}"
+  Entered text:
+    layoutSizingHorizontal: HUG
+    layoutSizingVertical: HUG
+    textColor: "{semantic.color.text.primary-text}"
+    typography:
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontStyle: Regular
+      lineHeight: "{semantic.typography.body.md.line-height}"
+  Error text:
+    visible: false
+    textColor: "{semantic.color.text.error-text}"
+    typography:
+      fontSize: "{semantic.typography.body.xs.font-size}"
+      fontFamily: Golos Text
+      fontStyle: Regular
+      lineHeight: "{semantic.typography.body.sm.line-height}"
 
 variants:
+  - name: Default
+    props:
+      State: Default
+      Interaction: Default
+    description: >
+      Empty input displaying the placeholder text.
+    styles:
+      Frame 1:
+        backgroundColor: "{component.color.action.tertiary-background}"
+      Text:
+        textColor: "{semantic.color.text.tertiary-text}"
 
-* name: Default
-  props:
-  State: Default
-  Interaction: Default
-  description: >
-  Empty input displaying the placeholder text.
-  styles:
-  Frame 1:
-  backgroundColor: "#1F2C2A"
-  Text:
-  color: "#697976"
+  - name: Hover
+    props:
+      State: Default
+      Interaction: Hover
+    description: >
+      Default input while hovered.
+    styles:
+      Frame 1:
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
+        strokes: "{component.color.action.secondary-background-hover}"
+        strokeAlign: INSIDE
+        strokeWeight: 1
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: 4
+              spread: 0
+              color: "{semantic.color.effect.glow}"
 
-* name: Hover
-  props:
-  State: Default
-  Interaction: Hover
-  description: >
-  Default input while hovered.
-  styles:
-  Frame 1:
-  backgroundColor: "#35423F"
-  borderColor: "#738F82"
-  borderWidth: 1px
-  shadow:
-  color: "#ACFFEE"
-  alpha: 0.25
-  blur: 4px
-  spread: 3px
-  offsetX: 0
-  offsetY: 0
+  - name: Filled
+    props:
+      State: Filled
+      Interaction: Default
+    description: >
+      Input displaying entered text.
+    layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Error text
 
-* name: Filled
-  props:
-  State: Filled
-  Interaction: Default
-  description: >
-  Input displaying entered text.
-  layout:
-  Frame 1:
-  content: Entered text
+  - name: Disabled
+    props:
+      State: Disabled
+      Interaction: Default
+    description: >
+      Disabled input with a muted heading and reduced frame opacity.
+    styles:
+      Heading:
+        textColor: "{semantic.color.text.tertiary-text}"
+      Frame 1:
+        opacity: 0.5
 
-* name: Disabled
-  props:
-  State: Disabled
-  Interaction: Default
-  description: >
-  Disabled input with a muted heading and reduced frame opacity.
-  styles:
-  Heading:
-  color: "#697976"
-  Frame 1:
-  opacity: 0.5
+  - name: Focus
+    props:
+      State: Focus
+      Interaction: Default
+    description: >
+      Focused input displaying a caret and highlighted frame.
+    layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Text
+          - Caret
+        - Error text
+    styles:
+      Frame 1:
+        strokes: "{component.color.action.primary-background}"
+        strokeAlign: INSIDE
+        strokeWeight: 2
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: 4
+              spread: 0
+              color: "{semantic.color.effect.glow}"
+      Caret:
+        width: 1
+        height: 18
+        position: ABSOLUTE
+        top: 14
+        start: 20
+        backgroundColor: "{component.color.action.primary-background}"
 
-* name: Focus
-  props:
-  State: Focus
-  Interaction: Default
-  description: >
-  Focused input displaying a caret and highlighted frame.
-  styles:
-  Frame 1:
-  borderColor: "#AAE2C8"
-  borderWidth: 2px
-  shadow:
-  color: "#ACFFEE"
-  alpha: 0.25
-  blur: 4px
-  spread: 3px
-  offsetX: 0
-  offsetY: 0
-  Caret:
-  width: 1px
-  height: 18px
-  top: 14px
-  start: 20px
-  backgroundColor: "#AAE2C8"
+  - name: Readonly
+    props:
+      State: Readonly
+      Interaction: Default
+    description: >
+      Read-only input displaying text without allowing edits.
+    layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Error text
+    styles:
+      Frame 1:
+        strokes: "{component.color.action.tertiary-background-hover}"
+        strokeAlign: INSIDE
+        strokeWeight: 1
+        backgroundColor: "{semantic.color.background.primary-bg}"
 
-* name: Readonly
-  props:
-  State: Readonly
-  Interaction: Default
-  description: >
-  Read-only input displaying text without allowing edits.
-  styles:
-  Frame 1:
-  backgroundColor: "#0B1819"
-  borderColor: "#35423F"
-  borderWidth: 1px
+  - name: Warning
+    props:
+      State: Warning
+      Interaction: Default
+    description: >
+      Input displaying a warning validation message.
+    layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Please check this value
+    styles:
+      Frame 1:
+        strokes: "{semantic.color.warning.warning}"
+        strokeAlign: INSIDE
+        strokeWeight: 1
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: 4
+              spread: 3
+              color: "{semantic.color.effect.warning-glow}"
+      Please check this value:
+        textColor: "{semantic.color.warning.warning}"
 
-* name: Warning
-  props:
-  State: Warning
-  Interaction: Default
-  description: >
-  Input displaying a warning validation message.
-  styles:
-  Frame 1:
-  borderColor: "#D3B685"
-  borderWidth: 1px
-  shadow:
-  color: "#F9FFAC"
-  alpha: 0.25
-  blur: 4px
-  spread: 3px
-  offsetX: 0
-  offsetY: 0
-  Please check this value:
-  color: "#D3B685"
+  - name: Error
+    props:
+      State: Error
+      Interaction: Default
+    description: >
+      Input displaying an error validation message.
+    layout:
+      - root:
+        - Heading
+        - Frame 1:
+          - Entered text
+        - Enter a valid value
+    styles:
+      Frame 1:
+        strokes: "{semantic.color.text.error-text}"
+        strokeAlign: INSIDE
+        strokeWeight: 1
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: 4
+              spread: 3
+              color: "{semantic.color.effect.error-glow}"
+      Enter a valid value:
+        textColor: "{semantic.color.text.error-text}"
 
-* name: Error
-  props:
-  State: Error
-  Interaction: Default
-  description: >
-  Input displaying an error validation message.
-  styles:
-  Frame 1:
-  borderColor: "#D38585"
-  borderWidth: 1px
-  shadow:
-  color: "#FFACAC"
-  alpha: 0.25
-  blur: 4px
-  spread: 3px
-  offsetX: 0
-  offsetY: 0
-  Enter a valid value:
-  color: "#D38585"
+  - name: FilledHover
+    props:
+      State: Filled
+      Interaction: Hover
+    description: Filled input on hover.
+    styles:
+      Frame 1:
+        strokes: "{component.color.action.secondary-background}"
 
 combinations:
-
-* State: Default
-  Interaction: Default
-* State: Default
-  Interaction: Hover
-* State: Filled
-  Interaction: Default
-* State: Disabled
-  Interaction: Default
-* State: Focus
-  Interaction: Default
-* State: Readonly
-  Interaction: Default
-* State: Warning
-  Interaction: Default
-* State: Error
-  Interaction: Default
+  - State: Default
+    Interaction: Default
+  - State: Default
+    Interaction: Hover
+  - State: Filled
+    Interaction: Default
+  - State: Filled
+    Interaction: Hover
+  - State: Disabled
+    Interaction: Default
+  - State: Focus
+    Interaction: Default
+  - State: Readonly
+    Interaction: Default
+  - State: Warning
+    Interaction: Default
+  - State: Error
+    Interaction: Default
 
 behavior:
-
-* State Default displays the Text placeholder.
-* State Filled displays Entered text.
-* State Disabled applies 0.5 opacity to the input frame and changes the heading color.
-* State Focus displays the caret and highlighted frame.
-* State Readonly displays entered text with a dark background.
-* State Warning displays the warning message "Please check this value."
-* State Error displays the error message "Enter a valid value."
-* Interaction Hover applies the hover styles to the input frame.
-* showErrorText controls the visibility of validation helper text in the implementation.
-* The consuming application manages the input value and validation logic.
+  - State Default displays the Text placeholder.
+  - State Filled displays Entered text.
+  - State Disabled applies 0.5 opacity to the input frame and changes the heading color.
+  - State Focus displays the caret and highlighted frame.
+  - State Readonly displays entered text with a primary background.
+  - State Warning displays the warning message "Please check this value."
+  - State Error displays the error message "Enter a valid value."
+  - Interaction Hover applies the hover styles to the input frame.
+  - showErrorText controls the visibility of validation helper text in the implementation.
+  - The consuming application manages the input value and validation logic.
 
 accessibility:
-role: textbox
-requirements:
-- Associate the heading or label with the input element.
-- Use the native disabled attribute when State is Disabled.
-- Use readOnly when State is Readonly.
-- Expose validation errors to assistive technology.
-- Connect helper text using aria-describedby when applicable.
-- Use aria-invalid for invalid input values when appropriate.
+  role: textbox
+  requirements:
+    - Associate the heading or label with the input element.
+    - Use the native disabled attribute when State is Disabled.
+    - Use readOnly when State is Readonly.
+    - Expose validation errors to assistive technology.
+    - Connect helper text using aria-describedby when applicable.
+    - Use aria-invalid for invalid input values when appropriate.
 
 implementation:
-component: Input
-suggestedFile: Input.tsx
-examplesFile: input
+  component: Input
+  suggestedFile: Input.tsx
+  examplesFile: input.examples.tsx
+  notes:
+    - Keep State, Interaction, and showErrorText consistent with this specification.
+    - Resolve design tokens at runtime / build time.
+    - Do not invent additional states beyond those defined in the YAML.
+
+design_tokens:
+  radius_md: "{semantic.radius.md}"
+  spacing_inline_4: "{semantic.spacing.inline.4}"
+  spacing_14: "{primitive.spacing.14}"
+  spacing_20: "{primitive.spacing.20}"
+  tertiary_background: "{component.color.action.tertiary-background}"
+  tertiary_background_hover: "{component.color.action.tertiary-background-hover}"
+  secondary_background: "{component.color.action.secondary-background}"
+  secondary_background_hover: "{component.color.action.secondary-background-hover}"
+  primary_background: "{component.color.action.primary-background}"
+  primary_bg: "{semantic.color.background.primary-bg}"
+  secondary_text: "{semantic.color.text.secondary-text}"
+  tertiary_text: "{semantic.color.text.tertiary-text}"
+  primary_text: "{semantic.color.text.primary-text}"
+  error_text: "{semantic.color.text.error-text}"
+  warning: "{semantic.color.warning.warning}"
+  glow: "{semantic.color.effect.glow}"
+  warning_glow: "{semantic.color.effect.warning-glow}"
+  error_glow: "{semantic.color.effect.error-glow}"
+  font_family_primary: "{semantic.typography.font-family.primary}"
+  body_md_line_height: "{semantic.typography.body.md.line-height}"
+  body_xs_font_size: "{semantic.typography.body.xs.font-size}"
+  body_sm_line_height: "{semantic.typography.body.sm.line-height}"
