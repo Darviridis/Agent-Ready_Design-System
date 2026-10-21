@@ -5,9 +5,12 @@
 ## 2. Check that components have consistent naming conventions
 
 ## 3. Props and variants follow semantic patterns
-## 4. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum)
+## 4. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) + edit json for three-tier architecture
 ## 5. Publish library
 ## 6. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
+
+## Design tokens are in a machine-readable format
+
 
 ## 7. Change your hex ang raw data to tokens in yaml
 
