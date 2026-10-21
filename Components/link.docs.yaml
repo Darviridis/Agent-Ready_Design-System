@@ -44,6 +44,26 @@ props:
       - lg
     required: true
 
+composition:
+  canContain:
+    - Link   # text content
+  required:
+    - Link
+  optional: []
+  order: >
+    Single text child only. The link text is the only content.
+  notes: >
+    Prefer a children prop for the link text and an href prop for the
+    destination. Do not accept nested interactive elements.
+
+anti_patterns:
+  - Do not use Link for actions that change application state; use Button.
+  - Do not use Link to submit a form; use Button type="submit".
+  - Do not nest interactive components (buttons, inputs) inside Link.
+  - Do not remove the underline; it distinguishes links from surrounding text.
+  - Do not invent visited / disabled / active states unless defined by the design system.
+  - Do not hardcode colors or typography; always resolve design tokens.
+
 variants:
   State:
     Default:
@@ -78,7 +98,7 @@ variants:
       line_height: "{semantic.typography.body.md.line-height}"
       textDecoration: UNDERLINE
 
-composition:
+anatomy:
   root:
     semantic_role: link_container
     direction: HORIZONTAL
