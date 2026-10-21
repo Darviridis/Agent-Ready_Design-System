@@ -63,7 +63,9 @@ This three-tier architecture is industry best practice, not a requirement of the
 
 ## 4. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
 
-## 5. Design tokens are in a machine-readable format
+## 5. Change your hex ang raw data to tokens in yaml
+
+## 6. Design tokens are in a machine-readable format
 
 ### Your design tokens should have at least three levels of abstraction:
 
@@ -136,8 +138,6 @@ Design token files use the recommended file extensions .tokens or .tokens.json. 
 If you're not sure what to include, start with colours (primitives and semantic), spacing scale, and typography (sizes, weights, line heights).
 
 If Figma is your source of truth but isn't machine-readable, you don't have a source of truth. You have a very pretty suggestion.
-
-## 6. Change your hex ang raw data to tokens in yaml
 
 ## 7. Create metadata docs for components (docs.yaml)
 
