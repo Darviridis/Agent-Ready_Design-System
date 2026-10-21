@@ -65,6 +65,7 @@ Common pitfalls: Storing docs only in markdown or wikis. Relying solely on Story
 AI doesn't forgive inconsistency. Humans see btn_primary and button-primary as "basically the same thing". AI sees two completely different patterns.
 
 ## 9. Component composition is explicit ( in docs. yaml)
+## 12. Design decisions are documented with rationale (I skip it for now) ( in docs. yaml)
 ## 10. Create JSON files with schema validation
 ## 11. Create code examples
 
@@ -81,4 +82,4 @@ After code
 ## 1. Add a code syntax in Figma
 ## 2. Write a script to audit
 
-## 12. Design decisions are documented with rationale (I skip it for now)
+
