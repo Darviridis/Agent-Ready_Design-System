@@ -46,6 +46,29 @@ anatomy:
     description: >
       The inner circular indicator. Visible when the radio button is selected.
 
+composition:
+  canContain:
+    - Frame
+  required: []
+  optional:
+    - Frame
+  order: >
+    Frame is positioned absolutely inside root (top: 3, start: 3)
+    and is only present when State=Active.
+  notes: >
+    RadioButton is an atomic control. It does not accept arbitrary children
+    or labels. Associate an external label via htmlFor / aria-labelledby.
+    Group behavior is managed by a parent RadioGroup or form logic.
+
+anti_patterns:
+  - Do not place text or labels inside the RadioButton root.
+  - Do not nest interactive controls inside RadioButton.
+  - Do not show the Frame indicator when State is Default or Disabled.
+  - Do not manage group selection logic inside a single RadioButton;
+    use a parent group or form state.
+  - Do not invent additional visual states unless defined by the design system.
+  - Do not hardcode colors or radii; always resolve design tokens.
+
 variants:
   - name: Active
     props:
