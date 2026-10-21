@@ -67,7 +67,7 @@ AI doesn't forgive inconsistency. Humans see btn_primary and button-primary as "
 ## 9. Component composition is explicit ( in docs. yaml)
 ## 10. Create JSON files with schema validation
 ## 11. Create code examples
-## 12. Design decisions are documented with rationale (I skip it for now)
+
 ## 13. Create llms.txt
 ## 14. Create primitives.css и semantic.css
 ## 15. Code Connect
@@ -80,3 +80,5 @@ After code
 
 ## 1. Add a code syntax in Figma
 ## 2. Write a script to audit
+
+## 12. Design decisions are documented with rationale (I skip it for now)
