@@ -31,6 +31,39 @@ props:
       - Left
     required: true
 
+composition:
+  canContain:
+    - Button
+    - Heading
+  required:
+    - Heading
+  optional:
+    - Button
+  order: >
+    Align=Center → Button, Heading, Button
+    Align=Left   → Heading, Button
+  rules:
+    - Heading is always required.
+    - Center variant renders two Button instances (typically both close icons).
+    - Left variant renders one Button instance after the Heading.
+    - Nested Button must be configured as Variant="Icon", State="Default",
+      Size="md", Instance="close" (or equivalent action icon).
+  notes: >
+    Prefer a slot-based API in implementation:
+      header?: React.ReactNode   // left action(s)
+      children: React.ReactNode  // heading content
+      footer?: React.ReactNode   // right action(s)
+    or explicit props: heading + onClose / actions.
+
+anti_patterns:
+  - Do not place arbitrary content (forms, lists, images) inside BlockHeader.
+  - Do not use non-Icon Button variants inside the header.
+  - Do not omit the Heading.
+  - Do not reverse the order of elements for Align=Center (Button must
+    flank the Heading).
+  - Do not treat BlockHeader as a page-level navigation bar.
+  - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+
 variants:
   Align:
     Center:
@@ -48,7 +81,7 @@ variants:
         - Button
       heading_alignment: start
 
-composition:
+anatomy:
   root:
     semantic_role: header
     description: Container for the heading and its associated actions.
@@ -113,6 +146,7 @@ implementation:
   - Configure nested Button instances according to the source specification:
       Variant="Icon", State="Default", Size="md", Instance="close".
   - Resolve design tokens at runtime / build time.
+  - Prefer a slot-based or explicit-prop API (heading + actions) over free children.
 
 related_components:
   - Button
