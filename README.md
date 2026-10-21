@@ -1,4 +1,4 @@
-# How I create agent ready design system
+# How I’m building a design system ready for AI agents
 
 ## 1. Preparing and organizing the Figma file with components and tokens
 
