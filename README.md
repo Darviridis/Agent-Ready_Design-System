@@ -92,7 +92,40 @@ This three-tier architecture is industry best practice, not a requirement of the
 
 ## 6. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
 
-## Design tokens are in a machine-readable format
+
+## 7. Design tokens are in a machine-readable format
+
+Design tokens are in a machine-readable format
+
+Your design tokens should exist as structured JSON files following the W3C DTCG specification. The source of truth should be these files, not CSS variables or Figma styles (those are generated outputs).
+
+The DTCG specification reached its first stable version in October 2025, after years of collaborative development by designers, developers, and tool makers from organisations including Adobe, Amazon, Google, Figma, Microsoft, and many others.
+
+```
+{
+  "color-brand-primary": {
+    "$value": "#2563eb",
+    "$type": "color",
+    "$description": "Primary brand colour used for main actions and key UI elements"
+  },
+  "spacing-scale-4": {
+    "$value": { "value": 16, "unit": "px" },
+    "$type": "dimension",
+    "$description": "Base spacing unit for component padding"
+  }
+}
+```
+Note that the DTCG specification defines dimension values as objects containing a numeric value and a unit (either "px" or "rem"), not as strings like "16px". Tools like Style Dictionary handle the conversion to platform-specific formats.
+
+Machine-readable tokens let AI understand your design language. When tokens are only CSS variables or Figma styles, AI can see what values exist but not their relationships or intended usage.
+
+The DTCG format can be processed by tools like Style Dictionary (v4 has first-class DTCG support), Terrazzo, and Tokens Studio to generate platform-specific outputs. One source file produces CSS custom properties, iOS Swift constants, Android XML resources, and documentation.
+
+Design token files use the recommended file extensions .tokens or .tokens.json. All specification-defined properties are prefixed with $, including $value, $type, and $description.
+
+If you're not sure what to include, start with colours (primitives and semantic), spacing scale, and typography (sizes, weights, line heights).
+
+If Figma is your source of truth but isn't machine-readable, you don't have a source of truth. You have a very pretty suggestion.
 
 
 ## 7. Change your hex ang raw data to tokens in yaml
@@ -168,13 +201,35 @@ Use Modal for critical confirmations. Use Popover for simple, single-action inte
 
 For major architectural decisions, consider Architecture Decision Records (ADRs). These lightweight documents capture context, decision, and consequences of significant choices.
 
+### Component composition is explicit
+
+Your system should clearly document which components can contain other components, which can't, and why.
+
+AI needs to understand component relationships to suggest appropriate implementations. When it sees a Card, it should know CardHeader goes at the top, CardContent in the middle, and CardFooter at the bottom.
+
+Document composition in component metadata:
+
+```
+{
+  "name": "Card",
+  "composition": {
+    "canContain": ["CardHeader", "CardContent", "CardFooter"],
+    "required": ["CardContent"],
+    "optional": ["CardHeader", "CardFooter"],
+    "order": "CardHeader must come before CardContent, CardFooter must come last"
+  }
+}
+```
+
+Document anti-patterns too. Show what NOT to do.
+
 ## 9. Component composition is explicit ( in docs. yaml)
 ## 12. Design decisions are documented with rationale (I skip it for now) ( in docs. yaml)
 ## 10. Create JSON files with schema validation
 
 ## 11. Create code examples
 
-Usage examples are code-first, not screenshot-first
+### Usage examples are code-first, not screenshot-first
 
 Show code, not pictures of code. Every component should have runnable examples demonstrating common patterns and edge cases.
 
@@ -191,6 +246,23 @@ Cover basic usage (simplest possible implementation), common variations, edge ca
 If you're using Storybook, you're halfway there. The stories you write are code examples. Make sure they're comprehensive and demonstrate real patterns, not just isolated variants.
 
 Common pitfalls: Showing only happy-path examples. Demonstrating components in isolation without composition. Using pseudo-code or incomplete examples.
+
+### Component composition is explicit
+
+Your system should clearly document which components can contain other components, which can't, and why.
+
+AI needs to understand component relationships to suggest appropriate implementations. When it sees a Card, it should know CardHeader goes at the top, CardContent in the middle, and CardFooter at the bottom.
+
+Use TypeScript to constrain composition. Slot-based APIs work well when order matters:
+
+```
+type CardProps = {
+  header?: React.ReactNode;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+};
+```
+This makes composition explicit in the API. AI and developers both understand that header content appears before children.
 
 ## 13. Create llms.txt
 
@@ -227,7 +299,6 @@ LLM providers haven't confirmed they read these during training. The value is mo
 Create llms.txt in the root of your design system repository. Update it when you add major documentation or reorganise your system. Treat it like you would a README.
 
 ## 14. Create primitives.css и semantic.css
-## 15. Code Connect
 ## 16. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
@@ -237,5 +308,38 @@ After code
 
 ## 1. Add a code syntax in Figma
 ## 2. Write a script to audit
+## 3. Figma components use Code Connect with MCP integration
+
+There should be explicit mappings between your Figma design components and your code components. Figma's Code Connect lets you link Figma component properties to code props, and it integrates with Figma's MCP server so AI coding assistants can resolve the right components at runtime.
+
+Without design-to-code mappings, AI guesses. Is Figma's "Primary" variant called variant="primary" in code? Or type="primary"? Or kind="primary"?
+```
+// Button.figma.tsx
+import figma from '@figma/code-connect';
+import { Button } from './Button';
+
+figma.connect(Button, 'https://www.figma.com/design/abc123?node-id=65:5', {
+  props: {
+    variant: figma.enum('Variant', {
+      Primary: 'primary',
+      Secondary: 'secondary',
+      Danger: 'danger'
+    }),
+    size: figma.enum('Size', {
+      Small: 'small',
+      Medium: 'medium',
+      Large: 'large'
+    }),
+    disabled: figma.boolean('Disabled'),
+    label: figma.string('Label')
+  },
+  example: ({ label, ...props }) => <Button {...props}>{label}</Button>
+});
+```
+Figma's MCP server brings design context directly into AI coding tools like Cursor, Claude Code, and Windsurf. It provides the node tree, variant information, layout constraints, design tokens, and asset references that screenshot-based tools can't capture.
+
+Both Code Connect UI and CLI feed into Figma's MCP infrastructure. The UI runs inside Figma and connects to GitHub for repository access. The CLI lives alongside your component code and offers more granular control over property mapping.
+
+If you're not using Figma or React, create documentation that maps design tool properties to code props. A simple table works as a starting point.
 
 
