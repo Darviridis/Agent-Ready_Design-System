@@ -81,6 +81,52 @@ anatomy:
     type: text
     description: Error validation message.
 
+composition:
+  canContain:
+    - Heading
+    - Frame 1
+    - Text            # placeholder inside Frame
+    - Entered text    # value inside Frame
+    - Caret          # focus indicator inside Frame
+    - Error text
+    - "Please check this value"
+    - "Enter a valid value"
+  required:
+    - Heading
+    - Frame 1
+  optional:
+    - Text
+    - Entered text
+    - Caret
+    - Error text
+    - "Please check this value"
+    - "Enter a valid value"
+  order: >
+    root (vertical):
+      1. Heading
+      2. Frame 1 (contains Text | Entered text | Caret depending on State)
+      3. helper text (Error text | Please check this value | Enter a valid value)
+  rules:
+    - State=Default → Frame shows Text (placeholder)
+    - State=Filled | Readonly | Warning | Error → Frame shows Entered text
+    - State=Focus → Frame shows Text + Caret
+    - State=Warning → helper = "Please check this value"
+    - State=Error → helper = "Enter a valid value"
+  notes: >
+    Prefer a slot-based or explicit-prop API:
+      label?: React.ReactNode
+      value / placeholder
+      helperText?: React.ReactNode
+    Do not accept arbitrary nested interactive components inside the frame.
+
+anti_patterns:
+  - Do not nest buttons, links, or other interactive controls inside the input frame.
+  - Do not put the helper text above the Heading or between Heading and Frame.
+  - Do not show Caret when State is not Focus.
+  - Do not show both warning and error helper texts at the same time.
+  - Do not invent additional states beyond those defined in the YAML.
+  - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+
 layout:
   root:
     width: 420
@@ -360,6 +406,7 @@ implementation:
     - Keep State, Interaction, and showErrorText consistent with this specification.
     - Resolve design tokens at runtime / build time.
     - Do not invent additional states beyond those defined in the YAML.
+    - Prefer explicit props (label, value, placeholder, helperText) over free children.
 
 design_tokens:
   radius_md: "{semantic.radius.md}"
