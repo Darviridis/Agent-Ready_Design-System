@@ -232,9 +232,7 @@ Document composition in component metadata:
 
 Document anti-patterns too. Show what NOT to do.
 
-## 8. Create JSON files with schema validation
-
-## 9. Create code examples
+## 8. Create code examples
 
 ### Usage examples are code-first, not screenshot-first
 
@@ -270,6 +268,8 @@ type CardProps = {
 };
 ```
 This makes composition explicit in the API. AI and developers both understand that header content appears before children.
+
+## 9. Create JSON files with schema validation
 
 ## 10. Create llms.txt
 
