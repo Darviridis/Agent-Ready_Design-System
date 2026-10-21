@@ -232,11 +232,9 @@ Document composition in component metadata:
 
 Document anti-patterns too. Show what NOT to do.
 
-## 8. Component composition is explicit ( in docs. yaml)
-## 9. Design decisions are documented with rationale (I skip it for now) ( in docs. yaml)
-## 10. Create JSON files with schema validation
+## 8. Create JSON files with schema validation
 
-## 11. Create code examples
+## 9. Create code examples
 
 ### Usage examples are code-first, not screenshot-first
 
@@ -273,7 +271,7 @@ type CardProps = {
 ```
 This makes composition explicit in the API. AI and developers both understand that header content appears before children.
 
-## 12. Create llms.txt
+## 10. Create llms.txt
 
 llms.txt file exists in your repo
 Quick win
@@ -307,13 +305,14 @@ LLM providers haven't confirmed they read these during training. The value is mo
 
 Create llms.txt in the root of your design system repository. Update it when you add major documentation or reorganise your system. Treat it like you would a README.
 
-## 13. Create primitives.css и semantic.css
-## 14. Built a React + Vite codebase, structured around three core folders:
+## 11. Create primitives.css и semantic.css
+
+## 12. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
 
-After code
+## After code
 
 ## 1. Add a code syntax in Figma
 ## 2. Write a script to audit
