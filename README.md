@@ -1,4 +1,4 @@
-# Agent-Ready_Design-System
+# How I create agent ready design system
 
 ## 1. Preparing and organizing the Figma file with components and tokens
 
@@ -350,4 +350,12 @@ Both Code Connect UI and CLI feed into Figma's MCP infrastructure. The UI runs i
 
 If you're not using Figma or React, create documentation that maps design tool properties to code props. A simple table works as a starting point.
 
+Source: 
 
+https://designsystemsforai.com
+
+https://hvpandya.com/llm-design-systems
+
+https://uxdesign.cc/designing-with-claude-code-and-codex-cli-building-ai-driven-workflows-powered-by-code-connect-ui-f10c136ec11f
+
+https://nathanacurtis.substack.com/p/spec-driven-ui-component-development
