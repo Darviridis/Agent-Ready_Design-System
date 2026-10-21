@@ -48,6 +48,28 @@ props:
       - Hover
     required: true
 
+composition:
+  canContain:
+    - Tab   # text label
+  required:
+    - Tab
+  optional: []
+  order: >
+    Single text child only. The label is the only content of the tab.
+  notes: >
+    Tab is an atomic navigation control. Prefer a children or label prop
+    for the text content. Composition of multiple Tabs into a TabList /
+    Tabs container is the responsibility of a higher-level component.
+
+anti_patterns:
+  - Do not nest interactive components (buttons, inputs, links) inside Tab.
+  - Do not put icons or badges inside Tab unless the design system later
+    defines an icon slot.
+  - Do not use Tab for actions that change application state without
+    navigation; prefer Button.
+  - Do not invent additional states beyond Active / Inactive and Default / Hover.
+  - Do not hardcode colors, spacing, or typography; always resolve design tokens.
+
 layout:
   root:
     direction: HORIZONTAL
@@ -78,7 +100,7 @@ variants:
   Interaction:
     Hover:
       description: Hover appearance (combined with State).
-      # Active + Hover → primary-background-hover + inverse text handled via variant cascade
+      # Active + Hover → primary-background-hover
       # Inactive + Hover → tertiary-background-hover
 
   Size:
@@ -151,6 +173,7 @@ implementation:
     selected-state management, keyboard navigation, or content switching.
   - Do not infer additional states or styles that are not defined in the YAML.
   - Resolve design tokens at runtime / build time.
+  - Prefer a children or label prop for the text content.
 
 design_tokens:
   radius_sm: "{semantic.radius.sm}"
