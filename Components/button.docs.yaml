@@ -83,6 +83,39 @@ anatomy:
     instanceOf: icon
     description: Icon shown for the Icon variant.
 
+composition:
+  canContain:
+    - "Connect wallet"   # text label
+    - loading
+    - waiting
+    - icon
+  required: []
+  optional:
+    - "Connect wallet"
+    - loading
+    - waiting
+    - icon
+  order: >
+    Default / Loading (Primary|Secondary): [Connect wallet, loading?]
+    Waiting: [waiting] only
+    Icon: [icon] only
+  rules:
+    - State=Default + Variant=Primary|Secondary → text label only
+    - State=Loading → text label + loading instance (side by side)
+    - State=Waiting → waiting instance only (no text label)
+    - Variant=Icon → icon instance only (no text label)
+  notes: >
+    Content is controlled by State + Variant. Do not pass arbitrary children.
+    Prefer a label prop or children for the text slot when implementing.
+
+anti_patterns:
+  - Do not render loading and waiting instances at the same time.
+  - Do not show the text label when State=Waiting.
+  - Do not show the text label when Variant=Icon.
+  - Do not nest other interactive components inside Button.
+  - Do not use Button for pure navigation; prefer Link when the action is navigation-only.
+  - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+
 layout:
   root:
     width: 200
@@ -343,7 +376,7 @@ implementation:
     - Do not display the text label in the Waiting state.
     - The Icon variant uses the icon instance instead of the text label.
     - Resolve all design tokens; do not hardcode resolved color or spacing values.
-    - Use the source-defined values for dimensions, opacity, and padding.
+    - Prefer a children or label prop for the text slot when implementing.
 
 related_components:
   - loading
