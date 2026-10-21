@@ -45,6 +45,28 @@ props:
       - square
     required: true
 
+composition:
+  canContain:
+    - Native   # text (square)
+    - Verified # text (oval)
+  required:
+    - one text label
+  optional: []
+  order: >
+    Single text child only. Square → Native, Oval → Verified
+    (or configurable label via children/label prop).
+  notes: >
+    Tag is an atomic informational component. Prefer a children or label
+    prop for the text content. Do not accept nested interactive elements.
+
+anti_patterns:
+  - Do not place interactive elements (buttons, links, inputs) inside Tag.
+  - Do not use Tag for actions or navigation; use Button or Link instead.
+  - Do not put long sentences or paragraphs inside a Tag.
+  - Do not claim a "Verified" status unless product data confirms it.
+  - Do not invent additional shapes or sizes beyond sm/md and oval/square.
+  - Do not hardcode colors or radii; always resolve design tokens.
+
 variants:
   Size:
     sm:
@@ -122,7 +144,7 @@ combinations:
       end: "{primitive.spacing.12}"
     clips_content: false
 
-composition:
+anatomy:
   root:
     semantic_role: label_container
     description: Container that defines the tag's shape, padding, background, and border.
