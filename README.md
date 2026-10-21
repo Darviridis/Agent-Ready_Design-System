@@ -21,6 +21,7 @@ When a designer sees a button, they bring context: primary buttons are for main 
 
 The metadata should include component name and description, available variants and their purposes, props with types and defaults, composition patterns (what can contain what), usage constraints, and related components.
 
+```json
 {
   "$schema": "https://example.com/schemas/component.schema.json",
   "name": "Button",
@@ -53,6 +54,7 @@ The metadata should include component name and description, available variants a
     "cannotContain": ["Button", "Input"]
   }
 }
+```
 
 Store the metadata alongside your component code. If your Button lives in src/components/Button.tsx, put the metadata in src/components/Button.meta.json.
 Common pitfalls: Storing docs only in markdown or wikis. Relying solely on Storybook's auto-generated docs without custom metadata. Documenting appearance but not intent.
