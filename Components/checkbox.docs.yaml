@@ -48,6 +48,27 @@ anatomy:
       The check mark displayed when State is Active.
       Detected in State=Active, Interaction=Default.
 
+composition:
+  canContain:
+    - check
+  required: []
+  optional:
+    - check
+  order: >
+    The check instance is positioned absolutely inside root
+    (top: 0, start: 0) and is only present when State=Active.
+  notes: >
+    Checkbox is an atomic control. It does not accept arbitrary children
+    or labels. Associate an external label via htmlFor / aria-labelledby.
+
+anti_patterns:
+  - Do not place text or labels inside the Checkbox root.
+  - Do not nest interactive controls (buttons, links, other checkboxes).
+  - Do not show the check instance when State is Default or Disabled.
+  - Do not invent additional visual states (e.g. indeterminate) unless
+    defined by the design system.
+  - Do not hardcode colors or radii; always resolve design tokens.
+
 variants:
   - name: Default
     props:
