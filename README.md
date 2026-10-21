@@ -44,11 +44,28 @@ Review your component props and ask: "Would this make sense if I changed my colo
 
 Establish a prop vocabulary. Intent: primary, secondary, tertiary, danger, success, warning, info. Size: small, medium, large. State: disabled, readOnly, required, loading, error. Boolean prefixes: is* for states (isActive), has* for presence (hasIcon), can* for permissions (canEdit).
 
-## 4. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) + edit json for three-tier architecture
+## 3. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) 
 
 Token architecture is three-tier minimum
 
 Your design tokens should have at least three levels of abstraction:
+
+Primitive tokens: Raw values with no semantic meaning
+Semantic tokens: Tokens with meaningful, context-aware names
+Component tokens: Tokens scoped to specific components
+Each tier references the tier below it. This architecture can use nested groups or flat naming conventions, both valid per the W3C DTCG specification.
+
+Token hierarchy gives AI the context it needs. When AI sees button.background.primary, it knows this is specifically for primary button backgrounds. It won't suggest using it for borders or text.
+
+The semantic layer bridges raw values and usage context. When you have color.text.primary that references color.neutral.900, AI understands this is the main text colour.
+
+This three-tier architecture is industry best practice, not a requirement of the DTCG specification. The spec focuses on file format, not token organisation. But systems like Material Design 3, Atlassian, and VA.gov use this structure for good reason. If you're new to JSON structures for design tokens, I covered the fundamentals in JSON demystified: A field guide for designers.
+
+## 4. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
+
+## 5. Design tokens are in a machine-readable format
+
+### Your design tokens should have at least three levels of abstraction:
 
 Primitive tokens: Raw values with no semantic meaning
 Semantic tokens: Tokens with meaningful, context-aware names
@@ -88,14 +105,7 @@ The semantic layer bridges raw values and usage context. When you have color.tex
 
 This three-tier architecture is industry best practice, not a requirement of the DTCG specification. The spec focuses on file format, not token organisation. But systems like Material Design 3, Atlassian, and VA.gov use this structure for good reason. If you're new to JSON structures for design tokens, I covered the fundamentals in JSON demystified: A field guide for designers.
 
-## 5. Publish library
-
-## 6. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
-
-
-## 7. Design tokens are in a machine-readable format
-
-Design tokens are in a machine-readable format
+### Design tokens are in a machine-readable format
 
 Your design tokens should exist as structured JSON files following the W3C DTCG specification. The source of truth should be these files, not CSS variables or Figma styles (those are generated outputs).
 
@@ -127,10 +137,9 @@ If you're not sure what to include, start with colours (primitives and semantic)
 
 If Figma is your source of truth but isn't machine-readable, you don't have a source of truth. You have a very pretty suggestion.
 
+## 6. Change your hex ang raw data to tokens in yaml
 
-## 7. Change your hex ang raw data to tokens in yaml
-
-## 8. Create metadata docs for components (docs.yaml)
+## 7. Create metadata docs for components (docs.yaml)
 
 ### Machine-readable component metadata exists
 
@@ -223,8 +232,8 @@ Document composition in component metadata:
 
 Document anti-patterns too. Show what NOT to do.
 
-## 9. Component composition is explicit ( in docs. yaml)
-## 12. Design decisions are documented with rationale (I skip it for now) ( in docs. yaml)
+## 8. Component composition is explicit ( in docs. yaml)
+## 9. Design decisions are documented with rationale (I skip it for now) ( in docs. yaml)
 ## 10. Create JSON files with schema validation
 
 ## 11. Create code examples
@@ -264,7 +273,7 @@ type CardProps = {
 ```
 This makes composition explicit in the API. AI and developers both understand that header content appears before children.
 
-## 13. Create llms.txt
+## 12. Create llms.txt
 
 llms.txt file exists in your repo
 Quick win
@@ -298,8 +307,8 @@ LLM providers haven't confirmed they read these during training. The value is mo
 
 Create llms.txt in the root of your design system repository. Update it when you add major documentation or reorganise your system. Treat it like you would a README.
 
-## 14. Create primitives.css и semantic.css
-## 16. Built a React + Vite codebase, structured around three core folders:
+## 13. Create primitives.css и semantic.css
+## 14. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
