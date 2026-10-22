@@ -8,10 +8,16 @@ The goal is to reproduce existing designs accurately while reusing documented co
 
 ## 2. Source of Truth
 
-* **Figma** is the source of truth for visual appearance, layout, spacing, typography, colors, and component variants.
-* **Component YAML files** define component metadata, properties, states, defaults, and supported variants.
-* **Design tokens** define reusable design values.
-* **This file** defines AI implementation rules.
+Read `Source_of_truth.md` before implementing or modifying design-system components.
+
+- Figma is the source of truth for approved visual design.
+- Figma Variables are currently the authoritative source for design token values.
+- `tokens.json` is the machine-readable representation of approved tokens and must remain synchronized with Figma Variables.
+- YAML files in `components/` document component properties, variants, states, and usage constraints.
+- Application code is the source of truth for runtime behavior and application logic.
+- Generated CSS and other derived outputs must not become independent sources of truth.
+
+If sources conflict, follow `Source_of_truth.md`. Do not silently guess, introduce arbitrary visual values, or claim synchronization without verification.
 
 If information is missing or contradictory, identify the conflict instead of inventing a new design decision.
 
