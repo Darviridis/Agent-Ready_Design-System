@@ -15,6 +15,25 @@ purpose:
   - Help users scan attributes and statuses quickly.
   - Maintain consistent label styling across the interface.
 
+rationale:
+  why_this_approach: >
+    Tags are compact, non-interactive status labels. Shape encodes meaning
+    (square → Native, oval → Verified) so scanning is fast, while Size keeps
+    density flexible. Keeping tags non-interactive by default avoids confusion
+    with Buttons and Links.
+  trade_offs:
+    - Shape is coupled to default label content; custom labels are possible
+      but must not invent unverified "Verified" claims.
+    - No hover/focus styles in the visual spec; interactive tags need extra
+      product-level design.
+    - Long text will overflow or break the compact layout.
+  alternatives:
+    - Use Button when the control triggers an action.
+    - Use Link when the control navigates.
+    - Use a Badge or Status component if the design system later distinguishes
+      count badges from categorical tags.
+
+
 usage:
   use_when:
     - A short label describes an item's category, property, or status.
