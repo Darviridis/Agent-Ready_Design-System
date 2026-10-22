@@ -14,6 +14,24 @@ purpose:
   - Provide navigation between related views or content.
   - Maintain consistent tab styling across different sizes and interaction states.
 
+rationale:
+  why_this_approach: >
+    Tab is a single selectable item, not a full tab list. State (Active /
+    Inactive) and Size scale (2xl → sm) let the same component work in dense
+    toolbars and prominent section switchers. Interaction=Hover is documented
+    separately so default and hover styles stay explicit for design-to-code.
+  trade_offs:
+    - Selection management, keyboard roving tabindex, and panel switching
+      belong to a parent Tabs / TabList, not this component.
+    - No icon slot in the current visual spec; icon+label tabs would require
+      a design extension.
+  alternatives:
+    - Use Button for actions that do not switch views.
+    - Use Link for navigation to a different route when tabs are not in-page.
+    - Compose multiple Tab instances inside a dedicated Tabs container for
+      accessible tablist behavior.
+
+
 anatomy:
   root:
     type: container
