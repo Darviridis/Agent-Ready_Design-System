@@ -24,7 +24,7 @@ When implementing a Figma screen, reproduce the approved design rather than rede
 
 ### Design Tokens — Shared Design Values
 
-`tokens/tokens.json` is the machine-readable representation of the design tokens used by the design system.
+`tokens.json` is the machine-readable representation of the design tokens used by the design system.
 
 It contains reusable values for:
 - Colors
@@ -77,7 +77,7 @@ Do not treat existing code as proof that a visual discrepancy is intentional.
 When sources disagree, follow these rules:
 
 1. **Visual appearance:** Follow the approved Figma design.
-2. **Shared token values:** Follow approved Figma Variables and synchronize `tokens/tokens.json`.
+2. **Shared token values:** Follow approved Figma Variables and synchronize `tokens.json`.
 3. **Component properties and states:** Follow the approved Figma component configuration and update YAML metadata to match.
 4. **Runtime behavior:** Follow the documented component requirements and the application's implementation.
 5. **Missing or contradictory information:** Ask for clarification or report the conflict instead of silently inventing a solution.
