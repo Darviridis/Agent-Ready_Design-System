@@ -13,6 +13,26 @@ purpose:
   - Provide a consistent header layout.
   - Optionally provide an action such as closing the block.
 
+rationale:
+  why_this_approach: >
+    BlockHeader provides a consistent section chrome (title + optional close)
+    without becoming a full application navigation bar. Align=Center places
+    actions on both sides of a centered title for modal-like blocks; Align=Left
+    prioritizes title scanning with a single trailing action. Nested Buttons
+    are constrained to Icon / md so the header stays compact and predictable.
+  trade_offs:
+    - Center variant always expects two Icon buttons; asymmetric actions need
+      careful visual balancing.
+    - Fixed design width of 1200 is a source reference, not a hard runtime
+      constraint; responsive behavior must be implemented by the consumer.
+    - Does not include breadcrumbs, tabs, or secondary nav.
+  alternatives:
+    - Use a full AppBar / TopNav for global product navigation.
+    - Use a plain heading plus standalone Button when the block does not need
+      standardized header chrome.
+    - Avoid stuffing forms, filters, or long toolbars into BlockHeader.
+
+
 usage:
   use_when:
     - A content block needs a title and optional action button.
