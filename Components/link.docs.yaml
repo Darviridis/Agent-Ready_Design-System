@@ -14,6 +14,23 @@ purpose:
   - Maintain consistent link styling across the product.
   - Support different text sizes for different interface contexts.
 
+rationale:
+  why_this_approach: >
+    Link is reserved for navigation. Underline and primary-colored text keep
+    links recognizable in dense content. Size (sm / md / lg) aligns with body
+    typography so links fit forms, paragraphs, and larger callouts without a
+    separate button-like style.
+  trade_offs:
+    - No visited / disabled states in the current spec; products must extend
+      carefully if those are required.
+    - Hover color change alone is not enough for accessibility; focus styles
+      must be added in implementation.
+  alternatives:
+    - Use Button when the control changes application state or submits data.
+    - Use Button Variant=Icon for icon-only actions in toolbars.
+    - Do not style a Button to look like a link or a Link to look like a button.
+
+
 usage:
   use_when:
     - Users need to navigate to another page or resource.
