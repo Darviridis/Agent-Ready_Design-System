@@ -327,8 +327,7 @@ The gap isn't technical. It's organisational. Most systems fail AI-readiness bec
 ## After code
 
 ## 1. Add a code syntax in Figma
-## 2. Write a script to audit
-## 3. Figma components use Code Connect with MCP integration
+## 2. Figma components use Code Connect with MCP integration
 
 There should be explicit mappings between your Figma design components and your code components. Figma's Code Connect lets you link Figma component properties to code props, and it integrates with Figma's MCP server so AI coding assistants can resolve the right components at runtime.
 
@@ -361,6 +360,18 @@ Figma's MCP server brings design context directly into AI coding tools like Curs
 Both Code Connect UI and CLI feed into Figma's MCP infrastructure. The UI runs inside Figma and connects to GitHub for repository access. The CLI lives alongside your component code and offers more granular control over property mapping.
 
 If you're not using Figma or React, create documentation that maps design tool properties to code props. A simple table works as a starting point.
+
+## 3 Component stories and examples are programmatically accessible
+
+Your component examples (Storybook stories, Playroom snippets, or similar) should be available in a structured format that AI and tools can parse. AI shouldn't need to scrape HTML pages to find examples.
+
+For Storybook users, this typically means stories written in CSF (Component Story Format) as ES6 modules, the story index available during build/deploy, and component examples stored as code files.
+
+When AI can access all your stories programmatically, it learns how components compose together, which prop combinations are common, what realistic data looks like, and how components handle edge cases.
+
+Storybook builds output a story index (often index.json) that provides structured access to all stories. AI can query this to find all Button stories, then access the actual story code at the importPath.
+
+If you're not using Storybook, create an /examples directory organised by component. Each example should be a runnable code file covering basic usage, all variants, common compositions, edge cases, error states, and accessibility patterns.
 
 Source: 
 
