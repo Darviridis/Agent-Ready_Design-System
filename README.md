@@ -305,9 +305,21 @@ LLM providers haven't confirmed they read these during training. The value is mo
 
 Create llms.txt in the root of your design system repository. Update it when you add major documentation or reorganise your system. Treat it like you would a README.
 
-## 11. Create primitives.css и semantic.css
+## 11. Design system has a clear source of truth hierarchy
 
-## 12. Built a React + Vite codebase, structured around three core folders:
+When design and code diverge, there should be a documented rule for which source is authoritative. This might be "Figma is the source of truth for visual design, code is the source for behaviour" or "Token files are the source of truth for both Figma and code".
+
+The specific answer matters less than having an answer that's documented and followed.
+
+AI needs to know which source to trust when sources diverge. If Figma shows a button with 16px padding but the code uses 12px, which is correct?
+
+Document the hierarchy and build processes that enforce it. If tokens are the source of truth, make Figma and code both generate from tokens.
+
+The gap isn't technical. It's organisational. Most systems fail AI-readiness because no one owns the infrastructure layer between design and code.
+
+## 12. Create primitives.css и semantic.css
+
+## 13. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
