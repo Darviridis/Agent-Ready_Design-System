@@ -15,6 +15,26 @@ purpose:
   - Communicate button variant and interaction state.
   - Indicate loading and waiting states.
 
+rationale:
+  why_this_approach: >
+    A single Button component with Variant (Primary / Secondary / Icon) and
+    explicit async States (Loading / Waiting) keeps action affordances consistent
+    across the product. Loading keeps the label visible so users know what is
+    in progress; Waiting replaces content with an indicator when the outcome
+    is not yet known. Icon variant is reserved for compact header/toolbar actions.
+  trade_offs:
+    - Loading and Waiting are separate states; implementers must choose the
+      correct one rather than a single "busy" flag.
+    - Default prop default is Disabled in the source spec; consumers should
+      set State explicitly for interactive buttons.
+    - Icon buttons require an accessible name; visual-only icons are insufficient.
+  alternatives:
+    - Use Link for pure navigation that does not change application state.
+    - Use a dedicated IconButton only if the design system later splits Icon
+      out; today Icon is a Variant of Button.
+    - Do not use Button for inline text navigation; prefer Link.
+
+
 props:
   State:
     type: string
