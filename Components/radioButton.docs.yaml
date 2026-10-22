@@ -13,6 +13,21 @@ purpose:
   - Visually indicate whether an option is selected.
   - Provide visual feedback for hover and disabled states.
 
+rationale:
+  why_this_approach: >
+    RadioButton exposes a clear selected indicator (inner Frame) and matches
+    native radio semantics for mutually exclusive choices. State and Interaction
+    are separate so disabled and hover do not collapse into one visual mode.
+    Group behavior is intentionally left to the parent form or RadioGroup.
+  trade_offs:
+    - No built-in label; association must be done externally.
+    - Size is fixed at 16px in the source; density variants are not defined.
+  alternatives:
+    - Use Checkbox when multiple options can be selected independently.
+    - Use a Select / dropdown when the option set is long.
+    - Use Segmented control or Tabs when the choice also switches visible content.
+
+
 props:
   State:
     type: string
