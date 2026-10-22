@@ -15,6 +15,26 @@ purpose:
   - Provide visual feedback for focus, hover, disabled, warning, and error states.
   - Display validation messages when needed.
 
+rationale:
+  why_this_approach: >
+    Input centralizes text entry with explicit States for empty, filled, focus,
+    disabled, readonly, warning, and error. Validation messages are part of the
+    component layout so spacing and color stay consistent. Hover is a separate
+    Interaction so pointer feedback does not override validation borders.
+  trade_offs:
+    - Warning and Error both show helper text but different colors/glows;
+      product copy must match the severity.
+    - showErrorText is a boolean flag; more complex multi-message validation
+      needs composition outside this component.
+    - Caret is a visual affordance for Focus in the design spec; real caret
+      comes from the native input in implementation.
+  alternatives:
+    - Use a Textarea (if introduced) for multi-line content.
+    - Use Select / Combobox for constrained option sets.
+    - Use Readonly display text (non-input) when the value is never editable
+      and should not look like a field.
+
+
 props:
   State:
     type: string
