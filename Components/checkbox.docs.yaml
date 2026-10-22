@@ -13,6 +13,25 @@ purpose:
   - Display the selected state with a check mark.
   - Provide visual feedback for hover and disabled states.
 
+rationale:
+  why_this_approach: >
+    A dedicated square checkbox with an explicit check instance keeps selected
+    state visually unambiguous and matches native form control expectations.
+    Separate State (Default / Active / Disabled) and Interaction (Default / Hover)
+    props map cleanly to CSS and accessibility attributes without inventing
+    intermediate visual modes.
+  trade_offs:
+    - No built-in indeterminate state; multi-select "partial" must be handled
+      by the product layer if needed.
+    - Label is external; the control itself is icon-sized only, which requires
+      careful hit-area and label association in implementation.
+  alternatives:
+    - Use a Switch/Toggle for immediate on/off settings that feel more "mode-like"
+      than form options.
+    - Use RadioButton when the user must pick exactly one option from a group.
+    - Do not replace with a styled Button that only looks like a checkbox.
+
+
 props:
   State:
     type: string
