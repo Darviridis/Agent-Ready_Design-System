@@ -317,17 +317,7 @@ There's no widely-adopted machine-readable standard for accessibility metadata y
 
 Link contrast requirements to actual tokens. Instead of saying "text must have 4.5:1 contrast", specify that button.text.primary on button.background.primary must have 4.5:1 contrast. This lets automated tools validate token combinations.
 
-## 12. Component usage can be tracked and queried
-
-You should be able to answer questions like: Which components are used in which applications? What version of Button is the checkout page using? How many instances of the deprecated Alert component still exist?
-
-AI can suggest updates and identify inconsistencies if it knows what's actually deployed. When a component API changes, AI should be able to tell you which implementations need updating.
-
-For monorepos, use build-time static analysis. For distributed applications, consider runtime telemetry. For microfrontends, each app should report design system dependencies during build and aggregate data centrally.
-
-Start simple: run a periodic scan of your codebase and generate a usage report. Store it as JSON. You can get sophisticated later with automated tracking and dashboards.
-
-## 13. Design system has a clear source of truth hierarchy
+## 12. Design system has a clear source of truth hierarchy
 
 When design and code diverge, there should be a documented rule for which source is authoritative. This might be "Figma is the source of truth for visual design, code is the source for behaviour" or "Token files are the source of truth for both Figma and code".
 
@@ -339,9 +329,9 @@ Document the hierarchy and build processes that enforce it. If tokens are the so
 
 The gap isn't technical. It's organisational. Most systems fail AI-readiness because no one owns the infrastructure layer between design and code.
 
-## 14. Create primitives.css и semantic.css
+## 13. Create primitives.css и semantic.css
 
-## 15. Built a React + Vite codebase, structured around three core folders:
+## 14. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
@@ -395,7 +385,17 @@ Storybook builds output a story index (often index.json) that provides structure
 
 If you're not using Storybook, create an /examples directory organised by component. Each example should be a runnable code file covering basic usage, all variants, common compositions, edge cases, error states, and accessibility patterns.
 
-## 4. 15. Breaking changes have a documented migration path
+## 4. Component usage can be tracked and queried
+
+You should be able to answer questions like: Which components are used in which applications? What version of Button is the checkout page using? How many instances of the deprecated Alert component still exist?
+
+AI can suggest updates and identify inconsistencies if it knows what's actually deployed. When a component API changes, AI should be able to tell you which implementations need updating.
+
+For monorepos, use build-time static analysis. For distributed applications, consider runtime telemetry. For microfrontends, each app should report design system dependencies during build and aggregate data centrally.
+
+Start simple: run a periodic scan of your codebase and generate a usage report. Store it as JSON. You can get sophisticated later with automated tracking and dashboards.
+
+## 5. Breaking changes have a documented migration path
 
 When you deprecate a component or change its API, there should be clear documentation of what changed, guidance on how to migrate, code examples showing before and after, automated migration tools where possible (codemods), and a timeline for when the old pattern will be removed.
 
