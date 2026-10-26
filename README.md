@@ -361,7 +361,7 @@ Both Code Connect UI and CLI feed into Figma's MCP infrastructure. The UI runs i
 
 If you're not using Figma or React, create documentation that maps design tool properties to code props. A simple table works as a starting point.
 
-## 3 Component stories and examples are programmatically accessible
+## 3. Component stories and examples are programmatically accessible
 
 Your component examples (Storybook stories, Playroom snippets, or similar) should be available in a structured format that AI and tools can parse. AI shouldn't need to scrape HTML pages to find examples.
 
