@@ -305,7 +305,29 @@ LLM providers haven't confirmed they read these during training. The value is mo
 
 Create llms.txt in the root of your design system repository. Update it when you add major documentation or reorganise your system. Treat it like you would a README.
 
-## 11. Design system has a clear source of truth hierarchy
+## 11. Accessibility requirements are documented in structured format
+
+Accessibility patterns for each component should be documented following the W3C ARIA Authoring Practices Guide, ideally in a structured, parsable format.
+
+The APG provides informative (not normative) guidance on how to apply WAI-ARIA roles, states, and properties to common UI patterns. It includes examples for over 30 different component types, each with keyboard interaction patterns, focus management rules, and working code samples. While not required for WCAG conformance, the APG represents established best practices that assistive technology users expect.
+
+Accessibility is often where AI-generated code falls short. Without structured guidance based on established patterns, AI might create a Modal that looks right but doesn't trap focus, doesn't have proper ARIA labels, or can't be closed with the keyboard.
+
+There's no widely-adopted machine-readable standard for accessibility metadata yet, but structured formats make requirements more useful for both AI and automated testing. For a broader perspective on embedding accessibility throughout your design system, see Accessibility as a first-class citizen in your design system.
+
+Link contrast requirements to actual tokens. Instead of saying "text must have 4.5:1 contrast", specify that button.text.primary on button.background.primary must have 4.5:1 contrast. This lets automated tools validate token combinations.
+
+## 12. Component usage can be tracked and queried
+
+You should be able to answer questions like: Which components are used in which applications? What version of Button is the checkout page using? How many instances of the deprecated Alert component still exist?
+
+AI can suggest updates and identify inconsistencies if it knows what's actually deployed. When a component API changes, AI should be able to tell you which implementations need updating.
+
+For monorepos, use build-time static analysis. For distributed applications, consider runtime telemetry. For microfrontends, each app should report design system dependencies during build and aggregate data centrally.
+
+Start simple: run a periodic scan of your codebase and generate a usage report. Store it as JSON. You can get sophisticated later with automated tracking and dashboards.
+
+## 13. Design system has a clear source of truth hierarchy
 
 When design and code diverge, there should be a documented rule for which source is authoritative. This might be "Figma is the source of truth for visual design, code is the source for behaviour" or "Token files are the source of truth for both Figma and code".
 
@@ -317,9 +339,9 @@ Document the hierarchy and build processes that enforce it. If tokens are the so
 
 The gap isn't technical. It's organisational. Most systems fail AI-readiness because no one owns the infrastructure layer between design and code.
 
-## 12. Create primitives.css и semantic.css
+## 14. Create primitives.css и semantic.css
 
-## 13. Built a React + Vite codebase, structured around three core folders:
+## 15. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
@@ -372,6 +394,18 @@ When AI can access all your stories programmatically, it learns how components c
 Storybook builds output a story index (often index.json) that provides structured access to all stories. AI can query this to find all Button stories, then access the actual story code at the importPath.
 
 If you're not using Storybook, create an /examples directory organised by component. Each example should be a runnable code file covering basic usage, all variants, common compositions, edge cases, error states, and accessibility patterns.
+
+## 4. 15. Breaking changes have a documented migration path
+
+When you deprecate a component or change its API, there should be clear documentation of what changed, guidance on how to migrate, code examples showing before and after, automated migration tools where possible (codemods), and a timeline for when the old pattern will be removed.
+
+AI can help automate migrations if the path is clear. When AI encounters deprecated Alert components, it can suggest the Toast replacement and even apply the transformation automatically.
+
+Document deprecations in a structured way. Use deprecation warnings in your code for non-production builds.
+
+For major migrations, consider building codemods with jscodeshift. Track migration progress using your component usage tracking.
+
+Without migration paths, teams ignore breaking changes. They stay on old versions because upgrading is too painful. Your design system stagnates.
 
 Source: 
 
