@@ -1,0 +1,219 @@
+# Accessibility requirements
+# Based on the current Tokens JSON exported from Figma.
+# Standard: WCAG 2.2 Level AA
+# Reference: https://www.w3.org/TR/WCAG22/
+# ARIA Authoring Practices: https://www.w3.org/WAI/ARIA/apg/
+
+standard:
+  name: WCAG
+  version: "2.2"
+  target: AA
+
+principles:
+  semantic_html:
+    - "Use native HTML elements before adding ARIA roles."
+    - "Use button for actions and anchor for navigation."
+    - "Use headings in a logical hierarchy."
+    - "Do not communicate meaning using color alone."
+
+  keyboard:
+    - "All interactive controls must be operable using a keyboard."
+    - "Keyboard focus order must follow the visual and reading order."
+    - "Do not create keyboard traps."
+    - "Use Tab and Shift+Tab to move between controls; use Enter or Space for buttons."
+    - "Tabs must follow the expected keyboard interaction pattern for tabs."
+
+  focus:
+    - "Every interactive element must have a visible focus indicator."
+    - "Focus indicators must have sufficient contrast against adjacent colors."
+    - "Do not remove the browser outline unless it is replaced with an equally visible indicator."
+    - "Focused controls must not be obscured by sticky headers, overlays, or other content."
+
+  accessible_names:
+    - "Every interactive control must have an accessible name."
+    - "Icon-only buttons must have an accessible name, such as aria-label, or equivalent visually hidden text."
+    - "Form controls must have programmatically associated labels."
+    - "Do not use placeholder text as the only label."
+
+  dynamic_content:
+    - "Loading, success, warning, and error states must be available to assistive technology."
+    - "Announce asynchronous status changes when appropriate, for example with role=status or aria-live."
+    - "When validation fails, identify the field and describe the error in text."
+    - "When a control is disabled, its disabled state must be exposed programmatically."
+
+  motion:
+    - "Respect prefers-reduced-motion."
+    - "Avoid unnecessary flashing or rapidly repeating animations."
+
+components:
+  button:
+    requirements:
+      - "Use a native button for actions and an anchor for navigation."
+      - "The accessible name must describe the action."
+      - "Disabled, loading, and waiting states must be communicated programmatically."
+      - "Prevent repeated activation while an action is loading when appropriate."
+      - "Icon-only buttons must include an accessible name."
+      - "Provide a visible keyboard focus indicator."
+      - "Do not rely on hover alone to communicate meaning."
+    contrast:
+      text: "Normal button text must have a contrast ratio of at least 4.5:1 against its actual background."
+      non_text: "Visible boundaries and state indicators needed to identify the control must meet 3:1 against adjacent colors where WCAG requires it."
+
+  input:
+    requirements:
+      - "Associate each input with a persistent visible label."
+      - "Expose required, invalid, disabled, and read-only states programmatically."
+      - "Describe validation errors in text and associate them with the relevant input."
+      - "Do not indicate errors by color alone."
+      - "Ensure the focus indicator is visible."
+    contrast:
+      text: "Input text and labels must meet 4.5:1 against their background."
+      boundary: "When the input boundary is needed to identify the control, check it against adjacent colors using the applicable 3:1 non-text contrast requirement."
+
+  checkbox:
+    requirements:
+      - "Use a native checkbox where possible."
+      - "Provide a visible label associated with the checkbox."
+      - "Support keyboard interaction with Space."
+      - "Expose checked, unchecked, and disabled states programmatically."
+      - "Do not communicate the checked state using color alone."
+      - "Provide a visible focus indicator."
+
+  radiobutton:
+    requirements:
+      - "Use native radio inputs where possible."
+      - "Group related options with a fieldset and legend, or an equivalent accessible group label."
+      - "Provide a visible label for each option."
+      - "Support keyboard navigation consistent with native radio controls."
+      - "Expose checked and disabled states programmatically."
+      - "Provide a visible focus indicator."
+
+  tab:
+    requirements:
+      - "Use role=tablist, role=tab, and role=tabpanel only when implementing a real tab interface."
+      - "Each tab must have an accessible name and an associated panel."
+      - "Expose the selected tab with aria-selected."
+      - "Only the active tab should be in the tab sequence when using the standard roving-tabindex pattern."
+      - "Support arrow-key navigation between tabs."
+      - "Provide a visible focus indicator."
+      - "Do not use tabs for navigation to different pages; use links instead."
+
+color_contrast:
+  rules:
+    normal_text_minimum: "4.5:1"
+    large_text_minimum: "3:1"
+    non_text_ui_minimum: "3:1 where required by WCAG 2.2 AA"
+    large_text_definition: "At least 24 CSS px regular, or approximately 18.66 CSS px bold."
+    note: "Contrast values below are calculated from the hex values in the current Tokens JSON. Recheck actual foreground/background pairings in Figma and in the rendered UI."
+
+  page_background_pairs:
+    - name: "Primary text on primary page background"
+      foreground_token: "semantic.color.text.primary-text"
+      foreground_hex: "#E8F4F0"
+      background_token: "semantic.color.background.primary-bg"
+      background_hex: "#0B1819"
+      contrast_ratio: 16.08
+      status: "pass"
+
+    - name: "Secondary text on primary page background"
+      foreground_token: "semantic.color.text.secondary-text"
+      foreground_hex: "#C2D4CD"
+      background_token: "semantic.color.background.primary-bg"
+      background_hex: "#0B1819"
+      contrast_ratio: 11.73
+      status: "pass"
+
+    - name: "Tertiary text on primary page background"
+      foreground_token: "semantic.color.text.tertiary-text"
+      foreground_hex: "#A0ADAA"
+      background_token: "semantic.color.background.primary-bg"
+      background_hex: "#0B1819"
+      contrast_ratio: 7.81
+      status: "pass"
+      note: "The current token resolves to primitive.color.neutral.300 = #A0ADAA. This differs from the previously discussed #697976."
+
+    - name: "Link text on primary page background"
+      foreground_token: "semantic.color.text.link-text"
+      foreground_hex: "#AAE2C8"
+      background_token: "semantic.color.background.primary-bg"
+      background_hex: "#0B1819"
+      contrast_ratio: 12.44
+      status: "pass"
+
+    - name: "Link hover text on primary page background"
+      foreground_token: "semantic.color.text.link-text-hover"
+      foreground_hex: "#D5FFF5"
+      background_token: "semantic.color.background.primary-bg"
+      background_hex: "#0B1819"
+      contrast_ratio: 16.78
+      status: "pass"
+
+    - name: "Error text on primary page background"
+      foreground_token: "semantic.color.text.error-text"
+      foreground_hex: "#DB9A9A"
+      background_token: "semantic.color.background.primary-bg"
+      background_hex: "#0B1819"
+      contrast_ratio: 7.85
+      status: "pass"
+
+  candidate_button_pairs:
+    note: "These are candidate pairings inferred from token names, not confirmed visual assignments. Verify each pairing against the actual Figma component before treating it as final."
+    pairs:
+      - name: "Inverse text on primary action background"
+        foreground_token: "semantic.color.text.inverse-text"
+        foreground_hex: "#171818"
+        background_token: "component.color.action.primary-background"
+        background_hex: "#AAE2C8"
+        contrast_ratio: 12.22
+        status: "pass"
+
+      - name: "Primary text on secondary action background"
+        foreground_token: "semantic.color.text.primary-text"
+        foreground_hex: "#E8F4F0"
+        background_token: "component.color.action.secondary-background"
+        background_hex: "#465C52"
+        contrast_ratio: 6.40
+        status: "pass"
+
+      - name: "Primary text on secondary action hover background"
+        foreground_token: "semantic.color.text.primary-text"
+        foreground_hex: "#E8F4F0"
+        background_token: "component.color.action.secondary-background-hover"
+        background_hex: "#5C7368"
+        contrast_ratio: 4.54
+        status: "pass"
+        note: "Passes 4.5:1 narrowly; recheck after any color or opacity changes."
+
+      - name: "Primary text on tertiary action background"
+        foreground_token: "semantic.color.text.primary-text"
+        foreground_hex: "#E8F4F0"
+        background_token: "component.color.action.tertiary-background"
+        background_hex: "#5C7368"
+        contrast_ratio: 4.54
+        status: "pass"
+        note: "Passes 4.5:1 narrowly; verify this is the actual text/background pairing in Figma."
+
+      - name: "Primary text on tertiary action hover background"
+        foreground_token: "semantic.color.text.primary-text"
+        foreground_hex: "#E8F4F0"
+        background_token: "component.color.action.tertiary-background-hover"
+        background_hex: "#83AA98"
+        contrast_ratio: 2.28
+        status: "review"
+        note: "Fails for normal text. If this pairing is used, select a darker text token or a darker hover background and verify the visual design."
+
+validation:
+  manual:
+    - "Check every foreground/background pairing in the rendered UI, including default, hover, focus, active, disabled, loading, error, and warning states."
+    - "Verify all text meets 4.5:1, except large text which must meet at least 3:1."
+    - "Verify relevant component boundaries, icons, and state indicators meet 3:1 against adjacent colors where required."
+    - "Navigate the interface using only the keyboard."
+    - "Check focus order and confirm focus is always visible and not obscured."
+    - "Test controls with a screen reader."
+    - "Check at 200% zoom and at narrow viewport widths."
+    - "Check reduced-motion preferences."
+
+  automated:
+    - "Run an automated accessibility scan, for example axe-core, against rendered pages."
+    - "Add accessibility checks to component stories or UI tests when implementation exists."
+    - "Treat automated scans as a supplement; keyboard, focus, semantics, and screen-reader behavior also require manual testing."
