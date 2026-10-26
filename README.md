@@ -44,7 +44,7 @@ Review your component props and ask: "Would this make sense if I changed my colo
 
 Establish a prop vocabulary. Intent: primary, secondary, tertiary, danger, success, warning, info. Size: small, medium, large. State: disabled, readOnly, required, loading, error. Boolean prefixes: is* for states (isActive), has* for presence (hasIcon), can* for permissions (canEdit).
 
-## 3. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) 
+## 3. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) + check accessibility
 
 Token architecture is three-tier minimum
 
