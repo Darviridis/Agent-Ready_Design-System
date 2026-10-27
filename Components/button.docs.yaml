@@ -39,7 +39,7 @@ props:
   State:
     type: string
     required: true
-    default: Disabled
+    default: Default
     enum:
       - Default
       - Disabled
