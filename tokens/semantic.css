@@ -1,0 +1,84 @@
+/**
+ * semantic.css
+ * Generated from design tokens (semantic layer).
+ * Depends on primitives.css. Prefer these variables in UI code.
+ */
+
+:root {
+  --semantic-color-core-primary: var(--primitive-color-green-400);
+  --semantic-color-core-secondary: var(--primitive-color-green-700);
+  --semantic-color-core-tertiary: var(--primitive-color-neutral-600);
+  --semantic-color-core-tertiary-hover: var(--primitive-color-neutral-500);
+  --semantic-color-hover-primary-hover: var(--primitive-color-green-200);
+  --semantic-color-hover-secondary-hover: var(--primitive-color-green-600);
+  --semantic-color-background-primary-bg: var(--primitive-color-neutral-800);
+  --semantic-color-background-secondary-bg: var(--primitive-color-neutral-600);
+  --semantic-color-background-tertiary-bg: var(--primitive-color-neutral-500);
+  --semantic-color-text-primary-text: var(--primitive-color-neutral-100);
+  --semantic-color-text-secondary-text: var(--primitive-color-neutral-200);
+  --semantic-color-text-tertiary-text: var(--primitive-color-neutral-300);
+  --semantic-color-text-inverse-text: var(--primitive-color-neutral-700);
+  --semantic-color-text-link-text: var(--semantic-color-core-primary);
+  --semantic-color-text-link-text-hover: var(--semantic-color-hover-primary-hover);
+  --semantic-color-text-error-text: var(--primitive-color-red-500);
+  --semantic-color-border-primary: var(--semantic-color-core-primary);
+  --semantic-color-border-secondary: var(--primitive-color-green-600);
+  --semantic-color-border-warning: var(--semantic-color-warning-warning);
+  --semantic-color-border-error: var(--semantic-color-warning-error);
+  --semantic-color-warning-warning: var(--primitive-color-yellow-500);
+  --semantic-color-warning-error: var(--primitive-color-red-500);
+  --semantic-color-effect-glow: var(--primitive-color-green-glow);
+  --semantic-color-effect-warning-glow: var(--primitive-color-yellow-glow);
+  --semantic-color-effect-error-glow: var(--primitive-color-red-glow);
+  --semantic-radius-none: 0px;
+  --semantic-radius-xs: 4px;
+  --semantic-radius-sm: 8px;
+  --semantic-radius-md: 12px;
+  --semantic-radius-lg: 16px;
+  --semantic-radius-xl: 20px;
+  --semantic-radius-2xl: 40px;
+  --semantic-radius-full: 300px;
+  --semantic-spacing-inline-4: var(--primitive-spacing-4);
+  --semantic-spacing-inline-8: var(--primitive-spacing-8);
+  --semantic-spacing-inline-12: var(--primitive-spacing-12);
+  --semantic-spacing-inline-14: var(--primitive-spacing-14);
+  --semantic-spacing-inline-16: var(--primitive-spacing-16);
+  --semantic-spacing-inline-18: var(--primitive-spacing-18);
+  --semantic-spacing-inline-20: var(--primitive-spacing-20);
+  --semantic-spacing-inline-24: var(--primitive-spacing-24);
+  --semantic-spacing-inline-26: var(--primitive-spacing-26);
+  --semantic-spacing-inline-32: var(--primitive-spacing-32);
+  --semantic-spacing-inline-40: var(--primitive-spacing-40);
+  --semantic-spacing-stack-4: var(--primitive-spacing-4);
+  --semantic-spacing-stack-8: var(--primitive-spacing-8);
+  --semantic-spacing-stack-12: var(--primitive-spacing-12);
+  --semantic-spacing-stack-14: var(--primitive-spacing-14);
+  --semantic-spacing-stack-16: var(--primitive-spacing-16);
+  --semantic-spacing-stack-18: var(--primitive-spacing-18);
+  --semantic-spacing-stack-20: var(--primitive-spacing-20);
+  --semantic-spacing-stack-24: var(--primitive-spacing-24);
+  --semantic-spacing-stack-26: var(--primitive-spacing-26);
+  --semantic-spacing-stack-32: var(--primitive-spacing-32);
+  --semantic-spacing-stack-40: var(--primitive-spacing-40);
+  --semantic-typography-font-family-primary: Chirp;
+  --semantic-typography-font-weight-normal: 400;
+  --semantic-typography-font-weight-emphasized: 500;
+  --semantic-typography-font-weight-strong: 700;
+  --semantic-typography-heading-h1-font-size: 64px;
+  --semantic-typography-heading-h1-line-height: 72px;
+  --semantic-typography-heading-h2-font-size: 48px;
+  --semantic-typography-heading-h2-line-height: 56px;
+  --semantic-typography-heading-h3-font-size: 32px;
+  --semantic-typography-heading-h3-line-height: 40px;
+  --semantic-typography-heading-h4-font-size: 24px;
+  --semantic-typography-heading-h4-line-height: 32px;
+  --semantic-typography-body-lg-font-size: 18px;
+  --semantic-typography-body-lg-line-height: 20px;
+  --semantic-typography-body-md-font-size: 16px;
+  --semantic-typography-body-md-line-height: 18px;
+  --semantic-typography-body-sm-font-size: 14px;
+  --semantic-typography-body-sm-line-height: 16px;
+  --semantic-typography-body-xs-font-size: 12px;
+  --semantic-typography-body-xs-line-height: 14px;
+  --semantic-typography-letter-spacing-default: 0;
+}
