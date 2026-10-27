@@ -5,6 +5,8 @@
 ## Instructions
 
 * Follow `AGENTS.md` for project rules and implementation guidelines.
+* Follow `Source_of_truth.md` when sources conflict.
+* Follow `DESIGN.md` for general design-system usage rules.
 * Use existing component metadata and design tokens instead of inventing new styles.
 * Preserve the visual design, spacing, typography, colors, and component states defined in Figma.
 * Reuse existing components whenever possible.
@@ -13,20 +15,33 @@
 
 * Component schema: `component.schema.json`
 * Component definitions: `components/`
-* Button: `components/button.yaml`
-* Radio Button: `components/radiobutton.yaml`
-* Checkbox: `components/checkbox.yaml`
-* Input: `components/input.yaml`
-* Links: `components/links.yaml`
-* Tabs: `components/tab.yaml`
-* Tags: `components/tags.yaml`
-* Block Header: `components/blockHeader.yaml`
+* Semantic docs (optional companion files): `*.docs.yaml` alongside Specs YAML
+
+### Components (Specs keys → file)
+
+| Specs key     | File                          |
+|---------------|-------------------------------|
+| button        | `components/button.yaml`      |
+| RadioButton   | `components/RadioButton.yaml` |
+| checkbox      | `components/checkbox.yaml`    |
+| input         | `components/input.yaml`       |
+| link          | `components/link.yaml`        |
+| tab           | `components/tab.yaml`         |
+| tag           | `components/tag.yaml`         |
+| blockHeader   | `components/blockHeader.yaml` |
+
+Do not invent alternate filenames (`links.yaml`, `tags.yaml`, etc.). Use the names above.
 
 ## Design Tokens
 
 * Token definitions: `tokens/tokens.json`
 * Use semantic tokens when available.
 * Do not introduce arbitrary colors, spacing, typography, or border-radius values when existing tokens apply.
+
+## Accessibility
+
+* Requirements: `accessibility.yaml` (WCAG 2.2 AA)
+* Apply component-specific rules for button, input, checkbox, RadioButton, tab, link, tag, and blockHeader.
 
 ## Figma
 
@@ -42,6 +57,7 @@
 * Do not create duplicate components when an existing component can be reused.
 * If a required component, property, or token is missing, identify the gap before introducing a new pattern.
 * Validate the generated interface against the original design.
+* Never claim sources are synchronized unless synchronization was actually verified.
 
 ## Current Goal
 
