@@ -16,6 +16,7 @@ Use the following files as sources of information:
 * `components/` — component specifications, anatomy, properties, variants, states, and styles.
 * `assets/icons/` — the existing icon library.
 * `DESIGN.md` — general design principles and implementation rules.
+* `accessibility.yaml` — WCAG 2.2 AA requirements and component-specific rules.
 
 Do not assume that a property, component, or token exists unless it is defined in the available specifications.
 
