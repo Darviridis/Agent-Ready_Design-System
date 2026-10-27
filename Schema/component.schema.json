@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "component.schema.json",
-  "title": "Component specs",
-  "description": "Schema for component YAML files (Specs 2 / Figma export). Root object holds one or more components.",
+  "$id": "https://raw.githubusercontent.com/DirectedEdges/specs/specs-schema@0.35.0/packages/schema/schema/component.schema.json",
+  "title": "Component specs (Specs 2 / Figma export)",
+  "description": "Schema for component YAML files produced by Specs 2. Accepts design tokens as strings and resolved numbers/nulls.",
   "type": "object",
   "required": ["components"],
   "additionalProperties": false,
@@ -10,26 +10,49 @@
     "components": {
       "type": "object",
       "minProperties": 1,
-      "description": "Map: component key -> component definition.",
+      "description": "Map: component key → component definition.",
       "additionalProperties": { "$ref": "#/$defs/component" }
     }
   },
   "$defs": {
+    "tokenOrNumber": {
+      "description": "Design token string or resolved number.",
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "number" }
+      ]
+    },
+    "tokenOrNumberOrNull": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "number" },
+        { "type": "null" }
+      ]
+    },
+    "tokenOrNull": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "null" }
+      ]
+    },
+    "scalar": {
+      "type": ["string", "number", "boolean", "null"]
+    },
+
     "component": {
       "type": "object",
       "required": ["title", "anatomy", "props", "default", "variants", "metadata"],
       "additionalProperties": false,
       "properties": {
-        "title": { "type": "string" },
+        "title": { "type": "string", "minLength": 1 },
         "anatomy": {
           "type": "object",
           "required": ["root"],
-          "description": "Map: element name -> element description. 'root' is mandatory.",
+          "minProperties": 1,
           "additionalProperties": { "$ref": "#/$defs/anatomyNode" }
         },
         "props": {
           "type": "object",
-          "description": "Map: prop name -> prop definition.",
           "additionalProperties": { "$ref": "#/$defs/prop" }
         },
         "default": { "$ref": "#/$defs/defaultState" },
@@ -48,22 +71,30 @@
       }
     },
 
-    "scalar": { "type": ["string", "number", "boolean"] },
-
     "anatomyNode": {
       "type": "object",
       "required": ["type"],
       "additionalProperties": false,
       "properties": {
-        "type": { "enum": ["container", "text", "rectangle", "instance"] },
+        "type": {
+          "type": "string",
+          "enum": ["container", "text", "rectangle", "instance"]
+        },
         "detectedIn": {
           "type": "string",
-          "description": "Variant in which the element appears, e.g. 'State=Active' or 'Type=Primary, State=Loading, Size=L'."
+          "description": "Variant in which the element appears, e.g. 'State=Active' or 'Size=sm, Shape=oval'."
         },
         "instanceOf": { "type": "string" }
       },
-      "if": { "properties": { "type": { "const": "instance" } }, "required": ["type"] },
-      "then": { "required": ["instanceOf"] }
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "instance" } },
+            "required": ["type"]
+          },
+          "then": { "required": ["instanceOf"] }
+        }
+      ]
     },
 
     "prop": {
@@ -71,7 +102,10 @@
       "required": ["type"],
       "additionalProperties": false,
       "properties": {
-        "type": { "enum": ["string", "boolean", "number"] },
+        "type": {
+          "type": "string",
+          "enum": ["string", "boolean", "number"]
+        },
         "default": { "$ref": "#/$defs/scalar" },
         "enum": {
           "type": "array",
@@ -88,9 +122,9 @@
     },
 
     "layoutNode": {
-      "description": "Either an element name, or an object { parentName: [children...] }.",
+      "description": "Element name (string) or single-key object { parentName: [children...] }.",
       "oneOf": [
-        { "type": "string" },
+        { "type": "string", "minLength": 1 },
         {
           "type": "object",
           "minProperties": 1,
@@ -129,7 +163,6 @@
         "configuration": {
           "type": "object",
           "minProperties": 1,
-          "description": "Map: prop name -> value. Must reference props of the component.",
           "additionalProperties": { "$ref": "#/$defs/scalar" }
         },
         "layout": { "$ref": "#/$defs/layout" },
@@ -155,37 +188,26 @@
       }
     },
 
-    "color": {
-      "type": "string",
-      "pattern": "^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$"
-    },
-    "nullableColor": {
-      "oneOf": [{ "$ref": "#/$defs/color" }, { "type": "null" }]
-    },
-    "sizingMode": { "enum": ["HUG", "FILL", "FIXED"] },
-    "axisAlignment": { "enum": ["START", "CENTER", "END", "SPACE_BETWEEN", "BASELINE"] },
-
     "sides": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "top": { "type": "number" },
-        "bottom": { "type": "number" },
-        "start": { "type": "number" },
-        "end": { "type": "number" }
+        "top": { "$ref": "#/$defs/tokenOrNumber" },
+        "bottom": { "$ref": "#/$defs/tokenOrNumber" },
+        "start": { "$ref": "#/$defs/tokenOrNumber" },
+        "end": { "$ref": "#/$defs/tokenOrNumber" }
       }
     },
     "corners": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "topStart": { "type": "number" },
-        "topEnd": { "type": "number" },
-        "bottomEnd": { "type": "number" },
-        "bottomStart": { "type": "number" }
+        "topStart": { "$ref": "#/$defs/tokenOrNumber" },
+        "topEnd": { "$ref": "#/$defs/tokenOrNumber" },
+        "bottomEnd": { "$ref": "#/$defs/tokenOrNumber" },
+        "bottomStart": { "$ref": "#/$defs/tokenOrNumber" }
       }
     },
-
     "shadow": {
       "type": "object",
       "required": ["color"],
@@ -196,21 +218,27 @@
         "offsetY": { "type": "number" },
         "blur": { "type": "number", "minimum": 0 },
         "spread": { "type": "number" },
-        "color": { "$ref": "#/$defs/color" }
+        "color": {
+          "description": "Token string or hex color.",
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
-
     "typography": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
-        "fontSize": { "type": "number", "exclusiveMinimum": 0 },
+        "fontSize": { "$ref": "#/$defs/tokenOrNumber" },
         "fontFamily": { "type": "string" },
         "fontStyle": { "type": "string" },
-        "lineHeight": { "type": "number", "exclusiveMinimum": 0 },
-        "letterSpacing": { "type": "number" },
+        "lineHeight": { "$ref": "#/$defs/tokenOrNumber" },
+        "letterSpacing": { "$ref": "#/$defs/tokenOrNumber" },
         "textCase": { "type": "string" },
-        "textDecoration": { "enum": ["NONE", "UNDERLINE", "STRIKETHROUGH"] },
+        "textDecoration": {
+          "type": "string",
+          "enum": ["NONE", "UNDERLINE", "STRIKETHROUGH"]
+        },
         "paragraphIndent": { "type": "number" },
         "paragraphSpacing": { "type": "number" },
         "leadingTrim": { "type": "string" },
@@ -221,7 +249,7 @@
     },
 
     "styles": {
-      "description": "Known style properties are typed; unknown ones are allowed (additionalProperties: true) so new generator fields do not break validation.",
+      "description": "Visual styles. Tokens (strings), numbers and nulls are all allowed to match Specs 2 export.",
       "type": "object",
       "additionalProperties": true,
       "properties": {
@@ -229,54 +257,104 @@
         "clipsContent": { "type": "boolean" },
         "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
 
-        "width": { "type": "number", "minimum": 0 },
-        "height": { "type": "number", "minimum": 0 },
+        "width": { "$ref": "#/$defs/tokenOrNumber" },
+        "height": { "$ref": "#/$defs/tokenOrNumber" },
         "aspectRatio": {
           "oneOf": [
             {
               "type": "object",
               "required": ["x", "y"],
               "additionalProperties": false,
-              "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+              "properties": {
+                "x": { "type": "number" },
+                "y": { "type": "number" }
+              }
             },
             { "type": "null" }
           ]
         },
 
-        "layoutMode": { "enum": ["HORIZONTAL", "VERTICAL", "NONE"] },
-        "layoutSizingHorizontal": { "$ref": "#/$defs/sizingMode" },
-        "layoutSizingVertical": { "$ref": "#/$defs/sizingMode" },
-        "primaryAxisSizingMode": { "enum": ["FIXED", "AUTO"] },
-        "mainAxisAlignment": { "$ref": "#/$defs/axisAlignment" },
-        "crossAxisAlignment": { "$ref": "#/$defs/axisAlignment" },
-        "itemSpacing": { "type": "number" },
+        "layoutMode": {
+          "type": "string",
+          "enum": ["HORIZONTAL", "VERTICAL", "NONE"]
+        },
+        "layoutSizingHorizontal": {
+          "type": "string",
+          "enum": ["HUG", "FILL", "FIXED"]
+        },
+        "layoutSizingVertical": {
+          "type": "string",
+          "enum": ["HUG", "FILL", "FIXED"]
+        },
+        "primaryAxisSizingMode": {
+          "type": "string",
+          "enum": ["FIXED", "AUTO"]
+        },
+        "mainAxisAlignment": {
+          "type": "string",
+          "enum": ["START", "CENTER", "END", "SPACE_BETWEEN", "BASELINE"]
+        },
+        "crossAxisAlignment": {
+          "type": "string",
+          "enum": ["START", "CENTER", "END", "SPACE_BETWEEN", "BASELINE"]
+        },
+        "itemSpacing": { "$ref": "#/$defs/tokenOrNumber" },
+
         "padding": {
-          "oneOf": [{ "type": "number" }, { "$ref": "#/$defs/sides" }]
+          "oneOf": [
+            { "$ref": "#/$defs/tokenOrNumber" },
+            { "$ref": "#/$defs/sides" }
+          ]
         },
 
-        "position": { "enum": ["ABSOLUTE", "AUTO"] },
+        "position": {
+          "type": "string",
+          "enum": ["ABSOLUTE", "AUTO"]
+        },
         "top": { "type": "number" },
         "start": { "type": "number" },
 
         "cornerRadius": {
-          "oneOf": [{ "type": "number", "minimum": 0 }, { "$ref": "#/$defs/corners" }]
+          "oneOf": [
+            { "$ref": "#/$defs/tokenOrNumber" },
+            { "$ref": "#/$defs/corners" }
+          ]
         },
 
-        "backgroundColor": { "$ref": "#/$defs/nullableColor" },
-        "strokes": { "$ref": "#/$defs/nullableColor" },
-        "strokeAlign": { "enum": ["INSIDE", "OUTSIDE", "CENTER", null] },
-        "strokeWeight": { "type": ["number", "null"], "minimum": 0 },
+        "backgroundColor": { "$ref": "#/$defs/tokenOrNull" },
+        "strokes": { "$ref": "#/$defs/tokenOrNull" },
+        "strokeAlign": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["INSIDE", "OUTSIDE", "CENTER"]
+            },
+            { "type": "null" }
+          ]
+        },
+        "strokeWeight": { "$ref": "#/$defs/tokenOrNumberOrNull" },
 
         "effects": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "shadows": { "type": "array", "items": { "$ref": "#/$defs/shadow" } }
-          }
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "shadows": {
+                  "type": "array",
+                  "items": { "$ref": "#/$defs/shadow" }
+                }
+              }
+            },
+            { "type": "null" }
+          ]
         },
 
-        "textColor": { "$ref": "#/$defs/color" },
-        "textAlignHorizontal": { "enum": ["START", "CENTER", "END", "JUSTIFIED"] },
+        "textColor": { "type": "string", "minLength": 1 },
+        "textAlignHorizontal": {
+          "type": "string",
+          "enum": ["START", "CENTER", "END", "JUSTIFIED"]
+        },
         "typography": { "$ref": "#/$defs/typography" }
       }
     },
@@ -287,15 +365,17 @@
       "additionalProperties": true,
       "properties": {
         "author": { "type": "string" },
-        "lastUpdated": { "type": "string", "format": "date-time" },
+        "lastUpdated": { "type": "string" },
         "generator": {
           "type": "object",
+          "additionalProperties": true,
           "properties": {
-            "url": { "type": "string", "format": "uri" },
+            "url": { "type": "string" },
             "version": { "type": "string" },
             "name": { "type": "string" },
             "license": {
               "type": "object",
+              "additionalProperties": true,
               "properties": {
                 "status": { "type": "string" },
                 "level": { "type": "string" }
@@ -305,14 +385,16 @@
         },
         "schema": {
           "type": "object",
+          "additionalProperties": true,
           "properties": {
-            "url": { "type": "string", "format": "uri" },
+            "url": { "type": "string" },
             "version": { "type": "string" },
-            "latest": { "type": "string", "format": "uri" }
+            "latest": { "type": "string" }
           }
         },
         "source": {
           "type": "object",
+          "additionalProperties": true,
           "properties": {
             "pageId": { "type": "string" },
             "nodeId": { "type": "string" },
