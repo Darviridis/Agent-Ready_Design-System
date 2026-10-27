@@ -1,6 +1,21 @@
 # How I’m building a design system ready for AI agents
 
-## 1. Preparing and organizing the Figma file with components and tokens
+## 1. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) + check accessibility
+
+Token architecture is three-tier minimum
+
+Your design tokens should have at least three levels of abstraction:
+
+Primitive tokens: Raw values with no semantic meaning
+Semantic tokens: Tokens with meaningful, context-aware names
+Component tokens: Tokens scoped to specific components
+Each tier references the tier below it. This architecture can use nested groups or flat naming conventions, both valid per the W3C DTCG specification.
+
+Token hierarchy gives AI the context it needs. When AI sees button.background.primary, it knows this is specifically for primary button backgrounds. It won't suggest using it for borders or text.
+
+The semantic layer bridges raw values and usage context. When you have color.text.primary that references color.neutral.900, AI understands this is the main text colour.
+
+This three-tier architecture is industry best practice, not a requirement of the DTCG specification. The spec focuses on file format, not token organisation. But systems like Material Design 3, Atlassian, and VA.gov use this structure for good reason. If you're new to JSON structures for design tokens, I covered the fundamentals in JSON demystified: A field guide for designers.
 
 ## 2. Check that components have consistent naming conventions
 
@@ -44,28 +59,11 @@ Review your component props and ask: "Would this make sense if I changed my colo
 
 Establish a prop vocabulary. Intent: primary, secondary, tertiary, danger, success, warning, info. Size: small, medium, large. State: disabled, readOnly, required, loading, error. Boolean prefixes: is* for states (isActive), has* for presence (hasIcon), can* for permissions (canEdit).
 
-## 3. Create tokens for colors, typography, spacings, radius (Token architecture is three-tier minimum) + check accessibility
+## 3. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
 
-Token architecture is three-tier minimum
+## 4. Change your hex ang raw data to tokens in yaml
 
-Your design tokens should have at least three levels of abstraction:
-
-Primitive tokens: Raw values with no semantic meaning
-Semantic tokens: Tokens with meaningful, context-aware names
-Component tokens: Tokens scoped to specific components
-Each tier references the tier below it. This architecture can use nested groups or flat naming conventions, both valid per the W3C DTCG specification.
-
-Token hierarchy gives AI the context it needs. When AI sees button.background.primary, it knows this is specifically for primary button backgrounds. It won't suggest using it for borders or text.
-
-The semantic layer bridges raw values and usage context. When you have color.text.primary that references color.neutral.900, AI understands this is the main text colour.
-
-This three-tier architecture is industry best practice, not a requirement of the DTCG specification. The spec focuses on file format, not token organisation. But systems like Material Design 3, Atlassian, and VA.gov use this structure for good reason. If you're new to JSON structures for design tokens, I covered the fundamentals in JSON demystified: A field guide for designers.
-
-## 4. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
-
-## 5. Change your hex ang raw data to tokens in yaml
-
-## 6. Design tokens are in a machine-readable format
+## 5. Design tokens are in a machine-readable format
 
 ### Your design tokens should have at least three levels of abstraction:
 
@@ -139,7 +137,7 @@ If you're not sure what to include, start with colours (primitives and semantic)
 
 If Figma is your source of truth but isn't machine-readable, you don't have a source of truth. You have a very pretty suggestion.
 
-## 7. Create metadata docs for components (docs.yaml)
+## 6. Create metadata docs for components (docs.yaml)
 
 ### Machine-readable component metadata exists
 
@@ -232,7 +230,7 @@ Document composition in component metadata:
 
 Document anti-patterns too. Show what NOT to do.
 
-## 8. Create code examples
+## 7. Create code examples
 
 ### Usage examples are code-first, not screenshot-first
 
@@ -269,9 +267,9 @@ type CardProps = {
 ```
 This makes composition explicit in the API. AI and developers both understand that header content appears before children.
 
-## 9. Create JSON files with schema validation
+## 8. Create JSON files with schema validation
 
-## 10. Create llms.txt
+## 9. Create llms.txt
 
 llms.txt file exists in your repo
 Quick win
@@ -305,7 +303,7 @@ LLM providers haven't confirmed they read these during training. The value is mo
 
 Create llms.txt in the root of your design system repository. Update it when you add major documentation or reorganise your system. Treat it like you would a README.
 
-## 11. Accessibility requirements are documented in structured format
+## 10. Accessibility requirements are documented in structured format
 
 Accessibility patterns for each component should be documented following the W3C ARIA Authoring Practices Guide, ideally in a structured, parsable format.
 
@@ -317,7 +315,7 @@ There's no widely-adopted machine-readable standard for accessibility metadata y
 
 Link contrast requirements to actual tokens. Instead of saying "text must have 4.5:1 contrast", specify that button.text.primary on button.background.primary must have 4.5:1 contrast. This lets automated tools validate token combinations.
 
-## 12. Design system has a clear source of truth hierarchy
+## 11. Design system has a clear source of truth hierarchy
 
 When design and code diverge, there should be a documented rule for which source is authoritative. This might be "Figma is the source of truth for visual design, code is the source for behaviour" or "Token files are the source of truth for both Figma and code".
 
@@ -329,9 +327,9 @@ Document the hierarchy and build processes that enforce it. If tokens are the so
 
 The gap isn't technical. It's organisational. Most systems fail AI-readiness because no one owns the infrastructure layer between design and code.
 
-## 13. Create primitives.css и semantic.css
+## 12. Create primitives.css и semantic.css
 
-## 14. Built a React + Vite codebase, structured around three core folders:
+## 13. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
