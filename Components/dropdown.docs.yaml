@@ -1,0 +1,281 @@
+# Semantic documentation for Dropdown
+# Keep this file separate from the Specs 2 generated visual specification.
+component: dropdown
+title: Dropdown
+description: >
+  A selectable control that displays a list of options in an overlay. Supports
+  closed (Default / Hover / Disabled) and open states. Uses a trigger with
+  selected value and chevron, and an options list composed of SelectItem
+  instances. All visual values are expressed via design tokens.
+purpose:
+  - Allow the user to choose one value from a list of options.
+  - Provide a compact closed state and an expanded options list when open.
+  - Communicate selection, hover, open, and disabled states consistently.
+  - Pair with SelectItem for individual option rendering.
+rationale:
+  why_this_approach: >
+    A single Dropdown component with an explicit State (Default / Hover / Open /
+    Disabled) keeps the closed trigger and open list in one place. The open
+    state owns the options-list and scrollbar; the closed states only show
+    the Label + trigger. Chevron flips between down and up based on State.
+    SelectItem is a separate component so option appearance (hover, selected,
+    disabled) can be reused and tested independently.
+  trade_offs:
+    - Open state layout is richer than closed; implementers must swap chevron
+      and mount the options-list only when State=Open.
+    - Scrollbar is part of the open anatomy and is positioned absolutely;
+      consumers may need to map it to a native scrollbar or a custom one.
+    - Label is always present in the default layout; hide it only if the
+      product requires a label-less trigger.
+  alternatives:
+    - Use a native <select> for simple cases when custom styling is not required.
+    - Use a Popover + listbox pattern if the design system later splits trigger
+      and panel into separate components.
+    - Do not use Dropdown for multi-select; prefer a dedicated multi-select
+      or checkbox group.
+props:
+  State:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+      - Open
+      - Disabled
+    description: >
+      Controls the visual and functional state of the dropdown.
+      Default = closed, Hover = closed with hover styles, Open = expanded
+      options list, Disabled = non-interactive closed state.
+anatomy:
+  root:
+    type: container
+    description: Outermost vertical stack (Label + trigger [+ options-list when Open]).
+  Label:
+    type: text
+    description: Optional field label above the trigger.
+  trigger:
+    type: container
+    description: Clickable area showing the selected value and chevron.
+  Selected value:
+    type: text
+    description: Currently selected option text shown in the trigger.
+  chevron-down:
+    type: instance
+    instanceOf: chevron-down
+    description: Chevron icon shown when the dropdown is closed.
+  chevron-up:
+    type: instance
+    instanceOf: chevron-up
+    description: Chevron icon shown when the dropdown is open.
+  options-list:
+    type: container
+    description: Overlay panel containing SelectItem instances and scrollbar (Open only).
+  SelectItem:
+    type: instance
+    instanceOf: SelectItem
+    description: Individual option row inside the options list (Open only).
+  scrollbar:
+    type: container
+    description: Visual scrollbar indicator inside the options list (Open only).
+composition:
+  canContain:
+    - Label
+    - trigger
+    - Selected value
+    - chevron-down
+    - chevron-up
+    - options-list
+    - SelectItem
+    - scrollbar
+  required:
+    - root
+    - trigger
+    - Selected value
+  optional:
+    - Label
+    - chevron-down
+    - chevron-up
+    - options-list
+    - SelectItem
+    - scrollbar
+  order: >
+    Closed (Default | Hover | Disabled): [Label?, trigger [Selected value, chevron-down]]
+    Open: [Label?, trigger [Selected value, chevron-up], options-list [SelectItem+, scrollbar?]]
+  rules:
+    - State=Default | Hover | Disabled → show chevron-down; hide options-list and chevron-up
+    - State=Open → show chevron-up and options-list with one or more SelectItem instances
+    - State=Disabled → reduce opacity on the trigger; do not open the list
+  notes: >
+    Content of Selected value and the list of SelectItem instances is controlled
+    by the consuming application. Prefer a value/options API when implementing.
+anti_patterns:
+  - Do not show both chevron-down and chevron-up at the same time.
+  - Do not render options-list when State is not Open.
+  - Do not nest interactive components other than SelectItem inside the options list.
+  - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+  - Do not use Dropdown for multi-select without an explicit multi-select design.
+layout:
+  root:
+    width: 300
+    direction: VERTICAL
+    layoutSizingVertical: HUG
+    itemSpacing: "{semantic.spacing.stack.4}"
+  Label:
+    layoutSizingHorizontal: FILL
+    layoutSizingVertical: HUG
+    typography:
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontWeight: "{semantic.typography.font-weight.strong}"
+      lineHeight: "{semantic.typography.body.md.line-height}"
+    textColor: "{semantic.color.text.secondary-text}"
+  trigger:
+    direction: HORIZONTAL
+    mainAxisAlignment: SPACE_BETWEEN
+    crossAxisAlignment: CENTER
+    layoutSizingHorizontal: FILL
+    layoutSizingVertical: HUG
+    itemSpacing: "{semantic.spacing.inline.12}"
+    padding:
+      top: "{primitive.spacing.12}"
+      bottom: "{primitive.spacing.12}"
+      start: "{primitive.spacing.16}"
+      end: "{primitive.spacing.12}"
+    cornerRadius: "{semantic.radius.sm}"
+    backgroundColor: "{semantic.color.background.secondary-bg}"
+  Selected value:
+    layoutSizingHorizontal: HUG
+    layoutSizingVertical: HUG
+    typography:
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontWeight: "{semantic.typography.font-weight.normal}"
+      lineHeight: "{semantic.typography.body.md.line-height}"
+    textColor: "{semantic.color.text.primary-text}"
+  chevron-down:
+    width: 24
+    height: 24
+  chevron-up:
+    width: 24
+    height: 24
+  options-list:
+    width: 300
+    direction: VERTICAL
+    layoutSizingVertical: HUG
+    itemSpacing: "{semantic.spacing.stack.12}"
+    padding:
+      top: "{primitive.spacing.16}"
+      bottom: "{primitive.spacing.16}"
+      start: "{primitive.spacing.16}"
+      end: "{primitive.spacing.16}"
+    cornerRadius: "{semantic.radius.md}"
+    backgroundColor: "{semantic.color.background.secondary-bg}"
+    clipsContent: true
+  scrollbar:
+    width: 5
+    height: 50
+    position: ABSOLUTE
+    cornerRadius: "{semantic.radius.md}"
+    backgroundColor: "{semantic.color.background.tertiary-bg}"
+  SelectItem:
+    layoutSizingHorizontal: FILL
+    height: 48
+variants:
+  - name: Default
+    props:
+      State: Default
+    description: Closed dropdown with default trigger appearance.
+    styles:
+      trigger:
+        backgroundColor: "{semantic.color.background.secondary-bg}"
+  - name: Hover
+    props:
+      State: Hover
+    description: Closed dropdown with hover styles on the trigger.
+    styles:
+      trigger:
+        backgroundColor: "{semantic.color.background.tertiary-bg}"
+        padding:
+          end: "{primitive.spacing.8}"
+  - name: Open
+    props:
+      State: Open
+    description: Expanded dropdown showing options list and chevron-up.
+    layout:
+      - root:
+        - Label
+        - trigger:
+          - Selected value
+          - chevron-up
+        - options-list:
+          - SelectItem
+          - SelectItem
+          - SelectItem
+          - SelectItem
+          - scrollbar
+    styles:
+      trigger:
+        backgroundColor: "{semantic.color.background.tertiary-bg}"
+        strokes: "{semantic.color.border.primary}"
+        strokeAlign: INSIDE
+        strokeWeight: 1
+        padding:
+          end: "{primitive.spacing.8}"
+  - name: Disabled
+    props:
+      State: Disabled
+    description: Non-interactive closed dropdown.
+    styles:
+      trigger:
+        opacity: 0.5
+combinations:
+  - State: Default
+  - State: Hover
+  - State: Open
+  - State: Disabled
+behavior:
+  - State Default shows the closed trigger with chevron-down.
+  - State Hover applies tertiary background to the trigger.
+  - State Open shows the options-list, flips to chevron-up, and adds a primary border to the trigger.
+  - State Disabled reduces trigger opacity and prevents opening.
+  - Selecting a SelectItem updates the Selected value and typically closes the list.
+  - The consuming application owns open/close state and the list of options.
+accessibility:
+  requirements:
+    - Use a native button or combobox pattern for the trigger.
+    - Expose the expanded/collapsed state to assistive technology (aria-expanded).
+    - Provide an accessible name (visible Label or aria-label).
+    - When open, manage focus within the options list and support arrow-key navigation.
+    - Use aria-activedescendant or roving tabindex for option focus.
+    - Announce the selected value and disabled state appropriately.
+implementation:
+  component: Dropdown
+  suggestedFile: Dropdown.tsx
+  examplesFile: dropdown.examples.tsx
+  notes:
+    - Keep State consistent with this specification (Default / Hover / Open / Disabled).
+    - Mount options-list and chevron-up only when State=Open.
+    - Compose options with SelectItem instances; do not invent ad-hoc option rows.
+    - Resolve all design tokens; do not hardcode resolved color or spacing values.
+    - Prefer a controlled value + onChange API for selection.
+related_components:
+  - SelectItem
+  - chevron-down
+  - chevron-up
+design_tokens:
+  radius_sm: "{semantic.radius.sm}"
+  radius_md: "{semantic.radius.md}"
+  spacing_stack_4: "{semantic.spacing.stack.4}"
+  spacing_stack_12: "{semantic.spacing.stack.12}"
+  spacing_inline_12: "{semantic.spacing.inline.12}"
+  spacing_8: "{primitive.spacing.8}"
+  spacing_12: "{primitive.spacing.12}"
+  spacing_16: "{primitive.spacing.16}"
+  background_secondary: "{semantic.color.background.secondary-bg}"
+  background_tertiary: "{semantic.color.background.tertiary-bg}"
+  border_primary: "{semantic.color.border.primary}"
+  text_primary: "{semantic.color.text.primary-text}"
+  text_secondary: "{semantic.color.text.secondary-text}"
+  font_family_primary: "{semantic.typography.font-family.primary}"
+  font_weight_strong: "{semantic.typography.font-weight.strong}"
+  font_weight_normal: "{semantic.typography.font-weight.normal}"
+  body_md_line_height: "{semantic.typography.body.md.line-height}"
