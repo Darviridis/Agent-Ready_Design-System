@@ -1,0 +1,173 @@
+# Semantic documentation for SelectItem
+# Keep this file separate from the Specs 2 generated visual specification.
+component: selectItem
+title: SelectItem
+description: >
+  A single option row used inside a Dropdown options list. Supports Default,
+  Hover, Selected, and Disabled states. All visual values are expressed via
+  design tokens.
+purpose:
+  - Represent one selectable option inside a Dropdown.
+  - Communicate hover, selected, and disabled states consistently.
+  - Provide a reusable building block for option lists.
+rationale:
+  why_this_approach: >
+    SelectItem is a separate component from Dropdown so that option appearance
+    (background, border, text color) can be designed, tested, and reused
+    independently. State drives the visual treatment; the parent Dropdown
+    owns selection logic and which item is Selected.
+  trade_offs:
+    - Selection is a visual state only; the parent must keep a single Selected
+      item (or none) consistent with the application value.
+    - Disabled items remain visible but non-interactive; the parent must
+      prevent selection of disabled options.
+  alternatives:
+    - Use a plain listbox option if the design system later provides a more
+      generic Option component.
+    - Do not use SelectItem outside of a Dropdown/options-list context.
+props:
+  State:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+      - Selected
+      - Disabled
+    description: >
+      Controls the visual state of the option.
+      Default = idle, Hover = pointer over, Selected = currently chosen value,
+      Disabled = non-interactive.
+anatomy:
+  root:
+    type: container
+    description: Option row container.
+  Label:
+    type: text
+    description: Option label text.
+composition:
+  canContain:
+    - Label
+  required:
+    - root
+    - Label
+  optional: []
+  order: >
+    [Label]
+  rules:
+    - Always render a single Label as the primary content.
+    - Do not nest interactive controls inside SelectItem.
+  notes: >
+    Label content is provided by the parent (option text). Prefer a label or
+    children prop when implementing.
+anti_patterns:
+  - Do not render multiple Labels or other interactive children.
+  - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+  - Do not use SelectItem as a standalone button outside a list context.
+layout:
+  root:
+    width: 308
+    height: 48
+    direction: HORIZONTAL
+    crossAxisAlignment: CENTER
+    itemSpacing: "{semantic.spacing.inline.8}"
+    padding:
+      top: "{primitive.spacing.12}"
+      bottom: "{primitive.spacing.12}"
+      start: "{primitive.spacing.20}"
+      end: "{primitive.spacing.20}"
+    cornerRadius: "{semantic.radius.sm}"
+    backgroundColor: "{semantic.color.core.secondary}"
+  Label:
+    layoutSizingHorizontal: FILL
+    layoutSizingVertical: HUG
+    typography:
+      fontFamily: "{semantic.typography.font-family.primary}"
+      fontWeight: "{semantic.typography.font-weight.normal}"
+      lineHeight: "{semantic.typography.body.md.line-height}"
+    textColor: "{semantic.color.text.secondary-text}"
+variants:
+  - name: Default
+    props:
+      State: Default
+    description: Idle option row.
+    styles:
+      root:
+        backgroundColor: "{semantic.color.core.secondary}"
+      Label:
+        textColor: "{semantic.color.text.secondary-text}"
+  - name: Hover
+    props:
+      State: Hover
+    description: Option under pointer.
+    styles:
+      root:
+        backgroundColor: "{semantic.color.hover.secondary-hover}"
+      Label:
+        textColor: "{semantic.color.text.primary-text}"
+  - name: Selected
+    props:
+      State: Selected
+    description: Currently selected option.
+    styles:
+      root:
+        backgroundColor: "{semantic.color.hover.secondary-hover}"
+        strokes: "{semantic.color.border.primary}"
+        strokeAlign: INSIDE
+        strokeWeight: 1
+      Label:
+        textColor: "{semantic.color.text.primary-text}"
+  - name: Disabled
+    props:
+      State: Disabled
+    description: Non-interactive option.
+    styles:
+      root:
+        backgroundColor: "{semantic.color.background.secondary-bg}"
+      Label:
+        opacity: 0.5
+        textColor: "{semantic.color.text.tertiary-text}"
+combinations:
+  - State: Default
+  - State: Hover
+  - State: Selected
+  - State: Disabled
+behavior:
+  - State Default uses the secondary background and secondary text color.
+  - State Hover lightens the background and switches to primary text.
+  - State Selected keeps the hover background and adds a primary border.
+  - State Disabled uses a darker background, tertiary text, and reduced opacity.
+  - Click / keyboard activation is handled by the parent Dropdown; SelectItem
+    itself only reflects the visual State.
+accessibility:
+  requirements:
+    - Map to role="option" (or the platform equivalent) inside a listbox.
+    - Expose selected and disabled states to assistive technology.
+    - Ensure the option is focusable when the list is open and the item is not disabled.
+    - Provide a clear accessible name from the Label text.
+implementation:
+  component: SelectItem
+  suggestedFile: SelectItem.tsx
+  examplesFile: select-item.examples.tsx
+  notes:
+    - Keep State consistent with this specification.
+    - Prefer a controlled selected flag from the parent rather than internal state.
+    - Resolve all design tokens; do not hardcode resolved color or spacing values.
+related_components:
+  - dropdown
+design_tokens:
+  radius_sm: "{semantic.radius.sm}"
+  spacing_inline_8: "{semantic.spacing.inline.8}"
+  spacing_12: "{primitive.spacing.12}"
+  spacing_20: "{primitive.spacing.20}"
+  core_secondary: "{semantic.color.core.secondary}"
+  hover_secondary: "{semantic.color.hover.secondary-hover}"
+  border_primary: "{semantic.color.border.primary}"
+  background_secondary: "{semantic.color.background.secondary-bg}"
+  text_primary: "{semantic.color.text.primary-text}"
+  text_secondary: "{semantic.color.text.secondary-text}"
+  text_tertiary: "{semantic.color.text.tertiary-text}"
+  font_family_primary: "{semantic.typography.font-family.primary}"
+  font_weight_normal: "{semantic.typography.font-weight.normal}"
+  body_md_line_height: "{semantic.typography.body.md.line-height}"
