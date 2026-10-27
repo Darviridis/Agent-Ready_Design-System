@@ -1,0 +1,168 @@
+components:
+  switch:
+    title: Switch
+    anatomy:
+      root:
+        type: container
+      "Frame ":
+        type: container
+    props:
+      State:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Active
+          - Disabled
+        nullable: false
+      Interaction:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
+        nullable: false
+    default:
+      layout:
+        - root:
+            - "Frame "
+      elements:
+        root:
+          styles:
+            cornerRadius: 40
+            width: 48
+            height: 24
+            primaryAxisSizingMode: FIXED
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            strokes:
+              colorSpace: srgb
+              components:
+                - 0.3608
+                - 0.451
+                - 0.4078
+              hex: "#5C7368"
+            strokeWeight: 1
+            itemSpacing: 10
+            padding: 3
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.0431
+                - 0.0941
+                - 0.098
+              hex: "#0B1819"
+        "Frame ":
+          styles:
+            clipsContent: true
+            cornerRadius: 300
+            width: 18
+            height: 18
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.6667
+                - 0.8863
+                - 0.7843
+              hex: "#AAE2C8"
+    variants:
+      - configuration:
+          State: Active
+        elements:
+          root:
+            styles:
+              mainAxisAlignment: END
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.1216
+                  - 0.1725
+                  - 0.1647
+                hex: "#1F2C2A"
+      - configuration:
+          State: Disabled
+        elements:
+          "Frame ":
+            styles:
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.2745
+                  - 0.3608
+                  - 0.3216
+                hex: "#465C52"
+      - configuration:
+          State: Active
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              effects:
+                shadows:
+                  - visible: true
+                    offsetX: 0
+                    offsetY: 0
+                    blur: 4
+                    spread: 0
+                    color:
+                      colorSpace: srgb
+                      components:
+                        - 0.6154
+                        - 1
+                        - 0.9103
+                      alpha: 0.800000011920929
+                      hex: "#9DFFE8"
+          "Frame ":
+            styles:
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.8353
+                  - 1
+                  - 0.9608
+                hex: "#D5FFF5"
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-27T15:59:42.475Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.25.0
+        name: Spectacular
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/spectacular/specs-schema@0.38.0/packages/schema/schema/component.schema.json
+        version: 0.38.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/spectacular/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 416:104
+        nodeId: 417:2640
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: YAML
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: OBJECT
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
