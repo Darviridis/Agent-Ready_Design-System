@@ -7,7 +7,9 @@ title: Tab
 description: >
   A tab component for switching between interface sections. It supports
   Active and Inactive states, five sizes, and Default and Hover interaction
-  states. All visual values use design tokens.
+  states. The intended default configuration is Active + Default + 2xl.
+  The base default in Specs 2 is a layered visual specification and must not
+  be treated as an independent semantic state. All visual values use design tokens.
 
 purpose:
   - Indicate the currently active section.
@@ -17,9 +19,11 @@ purpose:
 rationale:
   why_this_approach: >
     Tab is a single selectable item, not a full tab list. State (Active /
-    Inactive) and Size scale (2xl → sm) let the same component work in dense
-    toolbars and prominent section switchers. Interaction=Hover is documented
-    separately so default and hover styles stay explicit for design-to-code.
+    Inactive) and Size (2xl → sm) let the same component work in dense
+    toolbars and prominent section switchers. Interaction (Default / Hover)
+    is documented separately so each visual combination is explicit.
+    Specs 2 uses layered variants, so the base default appearance must not
+    be used as a substitute for a State + Interaction combination.
   trade_offs:
     - Selection management, keyboard roving tabindex, and panel switching
       belong to a parent Tabs / TabList, not this component.
@@ -30,7 +34,6 @@ rationale:
     - Use Link for navigation to a different route when tabs are not in-page.
     - Compose multiple Tab instances inside a dedicated Tabs container for
       accessible tablist behavior.
-
 
 anatomy:
   root:
@@ -48,6 +51,7 @@ props:
       - Inactive
       - Active
     required: true
+
   Size:
     type: string
     default: 2xl
@@ -58,6 +62,7 @@ props:
       - md
       - sm
     required: true
+
   Interaction:
     type: string
     default: Default
@@ -66,9 +71,32 @@ props:
       - Hover
     required: true
 
+default_configuration:
+  name: Базовый default
+  description: >
+    The intended default configuration is State=Active, Interaction=Default,
+    Size=2xl. This configuration represents an active tab in its normal,
+    non-hovered state.
+  props:
+    State: Active
+    Interaction: Default
+    Size: 2xl
+  styles:
+    backgroundColor: "{component.color.action.primary-background}"
+    textColor: "{semantic.color.text.inverse-text}"
+    padding:
+      top: "{primitive.spacing.18}"
+      bottom: "{primitive.spacing.18}"
+      start: "{primitive.spacing.32}"
+      end: "{primitive.spacing.32}"
+  implementation_note: >
+    The base default in Specs 2 is not equivalent to either the Active or
+    Inactive semantic state. Always resolve the explicit State + Interaction
+    pair instead of relying on the unqualified base default.
+
 composition:
   canContain:
-    - Tab   # text label
+    - Tab
   required:
     - Tab
   optional: []
@@ -86,6 +114,7 @@ anti_patterns:
   - Do not use Tab for actions that change application state without
     navigation; prefer Button.
   - Do not invent additional states beyond Active / Inactive and Default / Hover.
+  - Do not rely on the bare Specs 2 default to determine the semantic state.
   - Do not hardcode colors, spacing, or typography; always resolve design tokens.
 
 layout:
@@ -96,7 +125,7 @@ layout:
     mainAxisAlignment: CENTER
     crossAxisAlignment: CENTER
     cornerRadius: "{semantic.radius.sm}"
-    itemSpacing: 10
+    itemSpacing: 0
     padding:
       top: "{primitive.spacing.18}"
       bottom: "{primitive.spacing.18}"
@@ -106,23 +135,40 @@ layout:
 variants:
   State:
     Active:
-      description: Active tab.
-      backgroundColor: "{component.color.action.primary-background}"
-      textColor: "{semantic.color.text.inverse-text}"
+      description: >
+        Active tab. Its background and text color depend on Interaction.
+      Default:
+        backgroundColor: "{component.color.action.primary-background}"
+        textColor: "{semantic.color.text.inverse-text}"
+      Hover:
+        backgroundColor: "{component.color.action.primary-background-hover}"
+        textColor: "{semantic.color.text.inverse-text}"
+
     Inactive:
-      description: Inactive tab.
-      backgroundColor: "{component.color.action.tertiary-background}"
-      textColor: "{semantic.color.text.secondary-text}"
-      itemSpacing: 0
+      description: >
+        Inactive tab. Its background and text color depend on Interaction.
+      Default:
+        backgroundColor: "{component.color.action.tertiary-background}"
+        textColor: "{semantic.color.text.secondary-text}"
+        itemSpacing: 0
+      Hover:
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
+        textColor: "{semantic.color.text.secondary-text}"
+        itemSpacing: 0
 
   Interaction:
+    Default:
+      description: >
+        Normal, non-hovered appearance. Always combine with an explicit State.
     Hover:
-      description: Hover appearance (combined with State).
-      # Active + Hover → primary-background-hover
-      # Inactive + Hover → tertiary-background-hover
+      description: >
+        Hover appearance. Always combine with an explicit State.
+        Active + Hover uses primary-background-hover.
+        Inactive + Hover uses tertiary-background-hover.
 
   Size:
     2xl:
+      description: Базовый размер по умолчанию.
       padding:
         top: "{primitive.spacing.18}"
         bottom: "{primitive.spacing.18}"
@@ -132,6 +178,7 @@ variants:
         fontSize: "{semantic.typography.body.lg.font-size}"
         lineHeight: "{semantic.typography.body.lg.line-height}"
         fontStyle: Medium
+
     xl:
       padding:
         top: "{primitive.spacing.14}"
@@ -142,6 +189,7 @@ variants:
         fontSize: "{semantic.typography.body.md.font-size}"
         lineHeight: "{semantic.typography.body.md.line-height}"
         fontStyle: Medium
+
     lg:
       padding:
         top: "{primitive.spacing.12}"
@@ -152,6 +200,7 @@ variants:
         fontSize: "{semantic.typography.body.md.font-size}"
         lineHeight: "{semantic.typography.body.md.line-height}"
         fontStyle: Medium
+
     md:
       padding:
         top: "{primitive.spacing.8}"
@@ -162,6 +211,7 @@ variants:
         fontSize: "{semantic.typography.body.sm.font-size}"
         lineHeight: "{semantic.typography.body.sm.line-height}"
         fontStyle: Medium
+
     sm:
       padding:
         top: 5
@@ -174,22 +224,29 @@ variants:
         fontStyle: Medium
 
 behavior:
-  - State controls whether the tab is Active or Inactive.
-  - Interaction controls whether the tab uses Default or Hover styling.
-  - Size controls the tab's padding and typography.
-  - The YAML defines no invalid prop combinations.
+  - State determines whether the tab is Active or Inactive.
+  - Interaction determines whether the tab uses Default or Hover styling.
+  - Size determines the tab's padding and typography.
+  - The intended default configuration is Active + Default + 2xl.
+  - The bare Specs 2 default is not an independent semantic state.
   - Active + Default → primary-background + inverse-text.
-  - Active + Hover → primary-background-hover.
+  - Active + Hover → primary-background-hover + inverse-text.
   - Inactive + Default → tertiary-background + secondary-text.
-  - Inactive + Hover → tertiary-background-hover (via Interaction variant).
+  - Inactive + Hover → tertiary-background-hover + secondary-text.
+  - Apply explicit State + Interaction combinations when resolving styles.
+  - The YAML defines no invalid prop combinations.
 
 implementation:
   - Preserve the exact prop names and enum values from the specification.
-  - Apply the Inactive + Hover styles when State="Inactive" and Interaction="Hover".
-  - Apply the Active + Hover styles when State="Active" and Interaction="Hover".
+  - Always resolve State and Interaction together.
+  - For State="Active" and Interaction="Default", use primary-background.
+  - For State="Active" and Interaction="Hover", use primary-background-hover.
+  - For State="Inactive" and Interaction="Default", use tertiary-background.
+  - For State="Inactive" and Interaction="Hover", use tertiary-background-hover.
+  - Do not use the bare Specs 2 default as a substitute for an explicit combination.
+  - Use Size="2xl" for the intended default configuration.
   - The specification defines visual styling only; it does not specify click behavior,
     selected-state management, keyboard navigation, or content switching.
-  - Do not infer additional states or styles that are not defined in the YAML.
   - Resolve design tokens at runtime / build time.
   - Prefer a children or label prop for the text content.
 
