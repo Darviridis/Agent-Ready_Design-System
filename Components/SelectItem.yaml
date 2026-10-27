@@ -1,0 +1,180 @@
+ components:
+  selectItem:
+    title: SelectItem
+    anatomy:
+      root:
+        type: container
+      Label:
+        type: text
+    props:
+      State:
+        type: string
+        default: Default
+        enum:
+          - Default
+          - Hover
+          - Selected
+          - Disabled
+        nullable: false
+    default:
+      layout:
+        - root:
+            - Label
+      elements:
+        root:
+          styles:
+            cornerRadius: 8
+            width: 308
+            height: 48
+            primaryAxisSizingMode: FIXED
+            crossAxisAlignment: CENTER
+            layoutMode: HORIZONTAL
+            itemSpacing: 8
+            padding:
+              top: 12
+              bottom: 12
+              start: 20
+              end: 20
+            backgroundColor:
+              colorSpace: srgb
+              components:
+                - 0.2745
+                - 0.3608
+                - 0.3216
+              hex: "#465C52"
+        Label:
+          styles:
+            layoutSizingHorizontal: FILL
+            layoutSizingVertical: HUG
+            textColor:
+              colorSpace: srgb
+              components:
+                - 0.7608
+                - 0.8314
+                - 0.8039
+              hex: "#C2D4CD"
+            typography:
+              fontFamily: Chirp
+              fontStyle: Regular
+              lineHeight: 18
+          content: Label
+    variants:
+      - configuration:
+          State: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.3608
+                  - 0.451
+                  - 0.4078
+                hex: "#5C7368"
+          Label:
+            styles:
+              textColor:
+                colorSpace: srgb
+                components:
+                  - 0.9098
+                  - 0.9569
+                  - 0.9412
+                hex: "#E8F4F0"
+      - configuration:
+          State: Selected
+        elements:
+          root:
+            styles:
+              strokes:
+                colorSpace: srgb
+                components:
+                  - 0.6667
+                  - 0.8863
+                  - 0.7843
+                hex: "#AAE2C8"
+              strokeAlign: INSIDE
+              strokeWeight: 1
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.3608
+                  - 0.451
+                  - 0.4078
+                hex: "#5C7368"
+          Label:
+            styles:
+              textColor:
+                colorSpace: srgb
+                components:
+                  - 0.9098
+                  - 0.9569
+                  - 0.9412
+                hex: "#E8F4F0"
+      - configuration:
+          State: Disabled
+        elements:
+          root:
+            styles:
+              backgroundColor:
+                colorSpace: srgb
+                components:
+                  - 0.1216
+                  - 0.1725
+                  - 0.1647
+                hex: "#1F2C2A"
+          Label:
+            styles:
+              opacity: 0.5
+              textColor:
+                colorSpace: srgb
+                components:
+                  - 0.6275
+                  - 0.6784
+                  - 0.6667
+                hex: "#A0ADAA"
+    invalidPropCombinations: []
+    metadata:
+      author: Mia
+      lastUpdated: 2026-10-27T16:28:05.720Z
+      generator:
+        url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
+        version: 1.25.0
+        name: Spectacular
+        license:
+          status: none
+          level: FREE
+      schema:
+        url: https://raw.githubusercontent.com/DirectedEdges/spectacular/specs-schema@0.38.0/packages/schema/schema/component.schema.json
+        version: 0.38.0
+        latest: https://raw.githubusercontent.com/DirectedEdges/spectacular/main/packages/schema/schema/component.schema.json
+      source:
+        pageId: 416:103
+        nodeId: 416:2541
+        nodeType: COMPONENT_SET
+      conventions:
+        platforms:
+          figma:
+            naming: NONE
+            slotConstraints: false
+            inferNumberProps: false
+      settings:
+        spec:
+          format: YAML
+          keys: SAFE
+          layout: LAYOUT
+          tokens: TOKEN
+          color: OBJECT
+          variantDepth: 9999
+          details: LAYERED
+          collapsePrimitiveWrapper: false
+          promotePrimitives: false
+          roles: false
+          roleValidation: warn
+          invalidVariants: false
+          invalidCombinations: true
+          emptyVariants: false
+          defaultSlotContent: false
+          splitComponents: true
+          splitConcerns: true
+          useSubfolders: true
+
