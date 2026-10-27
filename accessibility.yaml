@@ -98,6 +98,38 @@ components:
       - "Provide a visible focus indicator."
       - "Do not use tabs for navigation to different pages; use links instead."
 
+  link:
+    requirements:
+      - "Use a native anchor element with a valid href for navigation."
+      - "Provide descriptive link text that communicates the destination or purpose."
+      - "Do not use a link for actions that change application state; use a button."
+      - "Preserve the underline (or another non-color cue) so links are distinguishable from surrounding text."
+      - "Support keyboard navigation and activation."
+      - "Provide a visible keyboard focus indicator distinct from the hover appearance."
+      - "Communicate unexpected new-tab behavior when applicable (e.g. aria or visible text)."
+    contrast:
+      text: "Link text must meet at least 4.5:1 against its background in default and hover states."
+
+ tag:
+    requirements:
+      - "Use a non-interactive semantic element for informational tags (e.g. span)."
+      - "Do not make informational tags focusable without a functional reason."
+      - "If a tag becomes interactive, provide button or link semantics and keyboard support."
+      - "Do not rely on color or shape alone to communicate status (Native vs Verified)."
+      - "Ensure each label communicates meaningful information."
+    contrast:
+      text: "Tag label text must meet at least 4.5:1 against the tag background."
+
+  blockHeader:
+    requirements:
+      - "Use a semantic header element for the component container when appropriate."
+      - "Represent the heading as a real heading element; level follows page hierarchy."
+      - "Give each nested Button an accessible name that describes its action (e.g. Close)."
+      - "Preserve a visible keyboard focus indicator for interactive buttons."
+      - "Do not rely on alignment alone to communicate meaning."
+    contrast:
+      text: "Heading text must meet at least 4.5:1 against the header background."    
+
 color_contrast:
   rules:
     normal_text_minimum: "4.5:1"
