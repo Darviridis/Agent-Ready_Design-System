@@ -327,9 +327,11 @@ Document the hierarchy and build processes that enforce it. If tokens are the so
 
 The gap isn't technical. It's organisational. Most systems fail AI-readiness because no one owns the infrastructure layer between design and code.
 
-## 12. Create primitives.css и semantic.css
+## 12. Architecture Decision Records (ADRs)
 
-## 13. Built a React + Vite codebase, structured around three core folders:
+## 13. Create primitives.css и semantic.css
+
+## 14. Built a React + Vite codebase, structured around three core folders:
 - styles: with primitives.css, semantic.css, and components.css
 - components: where each component included its .tsx, .stories.tsx, and .css file
 - pages: a directory used for testing prototypes
