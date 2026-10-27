@@ -61,7 +61,7 @@ Establish a prop vocabulary. Intent: primary, secondary, tertiary, danger, succe
 
 ## 3. Create spec files: design.md, tokens.json, components (yaml - Spec2), assets (svg), agents.md
 
-## 4. Change your hex ang raw data to tokens in yaml
+## 4. Change your hex and raw data to tokens in tokens.json and components yaml
 
 ## 5. Design tokens are in a machine-readable format
 
