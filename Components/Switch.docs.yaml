@@ -1,0 +1,189 @@
+# Semantic documentation for Switch
+# Keep this file separate from the Specs 2 generated visual specification.
+component: switch
+title: Switch
+description: >
+  A binary toggle control with a sliding thumb. Supports Default (off), Active
+  (on), and Disabled states, plus a Hover interaction when Active. All visual
+  values are expressed via design tokens.
+purpose:
+  - Toggle a single boolean setting on or off.
+  - Provide clear visual feedback for off, on, hover-on, and disabled states.
+  - Offer a compact alternative to a checkbox for immediate on/off actions.
+rationale:
+  why_this_approach: >
+    A single Switch component with State (Default / Active / Disabled) and an
+    orthogonal Interaction (Default / Hover) keeps the control simple while
+    allowing a distinct glow treatment when the switch is on and hovered.
+    The thumb position and track color communicate the binary value; no text
+    label is part of the component itself (labels live outside).
+  trade_offs:
+    - Hover styles are defined only for the Active + Hover combination; Default
+      (off) has no separate hover variant in the current spec.
+    - Disabled only changes the thumb color; the track stays the same as Default.
+    - The control is purely visual for on/off; the consuming application must
+      manage the boolean value and any side effects.
+  alternatives:
+    - Use Checkbox when the choice is part of a form submission rather than an
+      immediate toggle.
+    - Use a segmented control when there are more than two mutually exclusive
+      options.
+props:
+  State:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Active
+      - Disabled
+    description: >
+      Controls the on/off and disabled appearance.
+      Default = off, Active = on, Disabled = non-interactive.
+  Interaction:
+    type: string
+    required: true
+    default: Default
+    enum:
+      - Default
+      - Hover
+    description: >
+      Defines the hover appearance. Currently only combined with State=Active
+      to show a glow effect and lighter thumb.
+anatomy:
+  root:
+    type: container
+    description: Track of the switch (rounded container).
+  thumb:
+    type: container
+    description: Sliding indicator that moves between start and end of the track.
+composition:
+  canContain:
+    - thumb
+  required:
+    - root
+    - thumb
+  optional: []
+  order: >
+    [thumb]
+  rules:
+    - Always render a single thumb inside the root.
+    - Do not place text or other icons inside the switch.
+  notes: >
+    The visual position of the thumb (start vs end) is controlled by State.
+    Prefer a checked / on prop when implementing.
+anti_patterns:
+  - Do not render multiple thumbs or additional children.
+  - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+  - Do not use Switch for multi-option selection; prefer radio or segmented control.
+layout:
+  root:
+    width: 48
+    height: 24
+    direction: HORIZONTAL
+    crossAxisAlignment: CENTER
+    primaryAxisSizingMode: FIXED
+    itemSpacing: "{semantic.spacing.inline.8}"
+    padding: "{primitive.spacing.4}"
+    cornerRadius: "{semantic.radius.2xl}"
+    strokes: "{semantic.color.border.secondary}"
+    strokeWeight: 1
+    backgroundColor: "{semantic.color.background.primary-bg}"
+  thumb:
+    width: 18
+    height: 18
+    clipsContent: true
+    cornerRadius: "{semantic.radius.full}"
+    backgroundColor: "{semantic.color.core.primary}"
+variants:
+  - name: Default
+    props:
+      State: Default
+      Interaction: Default
+    description: Off (unchecked) switch.
+    styles:
+      root:
+        backgroundColor: "{semantic.color.background.primary-bg}"
+        strokes: "{semantic.color.border.secondary}"
+      thumb:
+        backgroundColor: "{semantic.color.core.primary}"
+  - name: Active
+    props:
+      State: Active
+      Interaction: Default
+    description: On (checked) switch; thumb aligned to the end.
+    styles:
+      root:
+        mainAxisAlignment: END
+        backgroundColor: "{semantic.color.background.secondary-bg}"
+  - name: Disabled
+    props:
+      State: Disabled
+      Interaction: Default
+    description: Non-interactive switch.
+    styles:
+      thumb:
+        backgroundColor: "{semantic.color.core.secondary}"
+  - name: ActiveHover
+    props:
+      State: Active
+      Interaction: Hover
+    description: On switch with hover glow and lighter thumb.
+    styles:
+      root:
+        mainAxisAlignment: END
+        backgroundColor: "{semantic.color.background.secondary-bg}"
+        effects:
+          shadows:
+            - visible: true
+              offsetX: 0
+              offsetY: 0
+              blur: "{primitive.spacing.4}"
+              spread: 0
+              color: "{semantic.color.effect.glow}"
+      thumb:
+        backgroundColor: "{semantic.color.hover.primary-hover}"
+combinations:
+  - State: Default
+    Interaction: Default
+  - State: Active
+    Interaction: Default
+  - State: Disabled
+    Interaction: Default
+  - State: Active
+    Interaction: Hover
+behavior:
+  - State Default shows the thumb at the start with primary track border and primary thumb.
+  - State Active moves the thumb to the end and darkens the track background.
+  - State Disabled replaces the thumb color with secondary green; interaction is blocked.
+  - Interaction Hover on an Active switch adds a green glow and lightens the thumb.
+  - The consuming application owns the boolean value and click / keyboard handling.
+accessibility:
+  requirements:
+    - Use a native checkbox with role="switch" or the platform switch pattern.
+    - Expose the checked (Active) and disabled states to assistive technology.
+    - Provide an accessible name (external label or aria-label).
+    - Support Space / Enter to toggle when focused.
+    - Ensure sufficient contrast for the thumb against the track in all states.
+implementation:
+  component: Switch
+  suggestedFile: Switch.tsx
+  examplesFile: switch.examples.tsx
+  notes:
+    - Keep State and Interaction consistent with this specification.
+    - Prefer a controlled checked prop rather than internal state for form use.
+    - Apply the glow effect only for the Active + Hover combination.
+    - Resolve all design tokens; do not hardcode resolved color or spacing values.
+related_components: []
+design_tokens:
+  radius_2xl: "{semantic.radius.2xl}"
+  radius_full: "{semantic.radius.full}"
+  spacing_inline_8: "{semantic.spacing.inline.8}"
+  spacing_4: "{primitive.spacing.4}"
+  background_primary: "{semantic.color.background.primary-bg}"
+  background_secondary: "{semantic.color.background.secondary-bg}"
+  border_secondary: "{semantic.color.border.secondary}"
+  core_primary: "{semantic.color.core.primary}"
+  core_secondary: "{semantic.color.core.secondary}"
+  hover_primary: "{semantic.color.hover.primary-hover}"
+  effect_glow: "{semantic.color.effect.glow}"
