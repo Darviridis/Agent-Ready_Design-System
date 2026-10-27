@@ -21,7 +21,7 @@ components:
     props:
       State:
         type: string
-        default: Disabled
+        default: Default
         enum:
         - Default
         - Disabled
