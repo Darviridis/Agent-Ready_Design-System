@@ -20,10 +20,10 @@ components:
       options-list:
         type: container
         detectedIn: State=Open
-      Select item:
+      SelectItem:
         type: instance
         detectedIn: State=Open
-        instanceOf: Select item
+        instanceOf: SelectItem
       scrollbar:
         type: container
         detectedIn: State=Open
@@ -151,13 +151,13 @@ components:
             width: 24
             height: 24
           instanceOf: chevron-up
-        Select item:
+        SelectItem:
           styles:
             layoutSizingHorizontal: FILL
             height: 48
           propConfigurations:
             State: Default
-          instanceOf: Select item
+          instanceOf: SelectItem
     variants:
       - configuration:
           State: Hover
@@ -182,10 +182,10 @@ components:
                   - Selected value
                   - chevron-up
               - options-list:
-                  - Select item
-                  - Select item
-                  - Select item
-                  - Select item
+                  - SelectItem
+                  - SelectItem
+                  - SelectItem
+                  - SelectItem
                   - scrollbar
         elements:
           trigger:
