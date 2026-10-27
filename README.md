@@ -416,3 +416,11 @@ https://hvpandya.com/llm-design-systems
 https://uxdesign.cc/designing-with-claude-code-and-codex-cli-building-ai-driven-workflows-powered-by-code-connect-ui-f10c136ec11f
 
 https://nathanacurtis.substack.com/p/spec-driven-ui-component-development
+
+https://nathanacurtis.substack.com/p/component-contracts-and-schemas
+
+https://nathanacurtis.substack.com/p/what-component-specs-leave-behind
+
+https://nathanacurtis.substack.com/p/generating-code-from-specs
+
+https://nathanacurtis.substack.com/p/design-system-conventions-in-figma
