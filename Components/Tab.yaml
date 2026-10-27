@@ -6,35 +6,39 @@ components:
         type: container
       Tab:
         type: text
+
     props:
       State:
         type: string
         default: Active
         enum:
-        - Inactive
-        - Active
+          - Inactive
+          - Active
         nullable: false
+
       Size:
         type: string
         default: 2xl
         enum:
-        - 2xl
-        - xl
-        - lg
-        - md
-        - sm
+          - 2xl
+          - xl
+          - lg
+          - md
+          - sm
         nullable: false
+
       Interaction:
         type: string
         default: Default
         enum:
-        - Default
-        - Hover
+          - Default
+          - Hover
         nullable: false
+
     default:
       layout:
-      - root:
-        - Tab
+        - root:
+            - Tab
       elements:
         root:
           styles:
@@ -50,153 +54,187 @@ components:
               bottom: '{primitive.spacing.18}'
               start: '{primitive.spacing.32}'
               end: '{primitive.spacing.32}'
-            backgroundColor: '{component.color.action.tertiary-background-hover}'
+            backgroundColor: '{component.color.action.primary-background}'
         Tab:
           styles:
             layoutSizingHorizontal: HUG
             layoutSizingVertical: HUG
-            textColor: '{semantic.color.text.primary-text}'
+            textColor: '{semantic.color.text.inverse-text}'
             typography:
               fontSize: '{semantic.typography.body.lg.font-size}'
               fontFamily: '{semantic.typography.font-family.primary}'
               fontStyle: Medium
               lineHeight: '{semantic.typography.body.lg.line-height}'
           content: Tab
+
     variants:
-    - configuration:
-        Interaction: Default
-      elements:
-        root:
-          styles:
-            itemSpacing: 0
-            backgroundColor: '{component.color.action.tertiary-background}'
-        Tab:
-          styles:
-            textColor: '{semantic.color.text.secondary-text}'
-    - configuration:
-        Size: xl
-      elements:
-        root:
-          styles:
-            padding:
-              top: '{primitive.spacing.14}'
-              end: '{primitive.spacing.24}'
-              bottom: '{primitive.spacing.14}'
-              start: '{primitive.spacing.24}'
-        Tab:
-          styles:
-            typography:
-              fontSize: '{semantic.typography.body.md.font-size}'
-              fontFamily: '{semantic.typography.font-family.primary}'
-              fontStyle: Medium
-              lineHeight: '{semantic.typography.body.md.line-height}'
-              letterSpacing: '{semantic.typography.letter-spacing.default}'
-              textCase: ORIGINAL
-              textDecoration: NONE
-              paragraphIndent: 0
-              paragraphSpacing: 0
-              leadingTrim: NONE
-              listSpacing: 0
-              hangingPunctuation: false
-              hangingList: false
-    - configuration:
-        Size: lg
-      elements:
-        root:
-          styles:
-            padding:
-              top: '{primitive.spacing.12}'
-              end: '{primitive.spacing.16}'
-              bottom: '{primitive.spacing.12}'
-              start: '{primitive.spacing.16}'
-        Tab:
-          styles:
-            typography:
-              fontSize: '{semantic.typography.body.md.font-size}'
-              fontFamily: '{semantic.typography.font-family.primary}'
-              fontStyle: Medium
-              lineHeight: '{semantic.typography.body.md.line-height}'
-              letterSpacing: '{semantic.typography.letter-spacing.default}'
-              textCase: ORIGINAL
-              textDecoration: NONE
-              paragraphIndent: 0
-              paragraphSpacing: 0
-              leadingTrim: NONE
-              listSpacing: 0
-              hangingPunctuation: false
-              hangingList: false
-    - configuration:
-        Size: md
-      elements:
-        root:
-          styles:
-            padding:
-              top: '{primitive.spacing.8}'
-              end: '{primitive.spacing.16}'
-              bottom: '{primitive.spacing.8}'
-              start: '{primitive.spacing.16}'
-        Tab:
-          styles:
-            typography:
-              fontSize: '{semantic.typography.body.sm.font-size}'
-              fontFamily: '{semantic.typography.font-family.primary}'
-              fontStyle: Medium
-              lineHeight: '{semantic.typography.body.sm.line-height}'
-              letterSpacing: '{semantic.typography.letter-spacing.default}'
-              textCase: ORIGINAL
-              textDecoration: NONE
-              paragraphIndent: 0
-              paragraphSpacing: 0
-              leadingTrim: NONE
-              listSpacing: 0
-              hangingPunctuation: false
-              hangingList: false
-    - configuration:
-        Size: sm
-      elements:
-        root:
-          styles:
-            padding:
-              top: 5
-              end: '{primitive.spacing.16}'
-              bottom: 5
-              start: '{primitive.spacing.16}'
-        Tab:
-          styles:
-            typography:
-              fontSize: '{semantic.typography.body.xs.font-size}'
-              fontFamily: '{semantic.typography.font-family.primary}'
-              fontStyle: Medium
-              lineHeight: '{semantic.typography.body.xs.line-height}'
-              letterSpacing: '{semantic.typography.letter-spacing.default}'
-              textCase: ORIGINAL
-              textDecoration: NONE
-              paragraphIndent: 0
-              paragraphSpacing: 0
-              leadingTrim: NONE
-              listSpacing: 0
-              hangingPunctuation: false
-              hangingList: false
-    - configuration:
-        State: Active
-      elements:
-        root:
-          styles:
-            backgroundColor: '{component.color.action.primary-background-hover}'
-        Tab:
-          styles:
-            textColor: '{semantic.color.text.inverse-text}'
-    - configuration:
-        State: Active
-        Interaction: Default
-      elements:
-        root:
-          styles:
-            backgroundColor: '{component.color.action.primary-background}'
+      # Inactive + Default
+      - configuration:
+          State: Inactive
+          Interaction: Default
+        elements:
+          root:
+            styles:
+              itemSpacing: 0
+              backgroundColor: '{component.color.action.tertiary-background}'
+          Tab:
+            styles:
+              textColor: '{semantic.color.text.secondary-text}'
+
+      # Inactive + Hover
+      - configuration:
+          State: Inactive
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              itemSpacing: 0
+              backgroundColor: '{component.color.action.tertiary-background-hover}'
+          Tab:
+            styles:
+              textColor: '{semantic.color.text.secondary-text}'
+
+      # Active + Default
+      - configuration:
+          State: Active
+          Interaction: Default
+        elements:
+          root:
+            styles:
+              backgroundColor: '{component.color.action.primary-background}'
+          Tab:
+            styles:
+              textColor: '{semantic.color.text.inverse-text}'
+
+      # Active + Hover
+      - configuration:
+          State: Active
+          Interaction: Hover
+        elements:
+          root:
+            styles:
+              backgroundColor: '{component.color.action.primary-background-hover}'
+          Tab:
+            styles:
+              textColor: '{semantic.color.text.inverse-text}'
+
+      # Size: xl
+      - configuration:
+          Size: xl
+        elements:
+          root:
+            styles:
+              padding:
+                top: '{primitive.spacing.14}'
+                end: '{primitive.spacing.24}'
+                bottom: '{primitive.spacing.14}'
+                start: '{primitive.spacing.24}'
+          Tab:
+            styles:
+              typography:
+                fontSize: '{semantic.typography.body.md.font-size}'
+                fontFamily: '{semantic.typography.font-family.primary}'
+                fontStyle: Medium
+                lineHeight: '{semantic.typography.body.md.line-height}'
+                letterSpacing: '{semantic.typography.letter-spacing.default}'
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+
+      # Size: lg
+      - configuration:
+          Size: lg
+        elements:
+          root:
+            styles:
+              padding:
+                top: '{primitive.spacing.12}'
+                end: '{primitive.spacing.16}'
+                bottom: '{primitive.spacing.12}'
+                start: '{primitive.spacing.16}'
+          Tab:
+            styles:
+              typography:
+                fontSize: '{semantic.typography.body.md.font-size}'
+                fontFamily: '{semantic.typography.font-family.primary}'
+                fontStyle: Medium
+                lineHeight: '{semantic.typography.body.md.line-height}'
+                letterSpacing: '{semantic.typography.letter-spacing.default}'
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+
+      # Size: md
+      - configuration:
+          Size: md
+        elements:
+          root:
+            styles:
+              padding:
+                top: '{primitive.spacing.8}'
+                end: '{primitive.spacing.16}'
+                bottom: '{primitive.spacing.8}'
+                start: '{primitive.spacing.16}'
+          Tab:
+            styles:
+              typography:
+                fontSize: '{semantic.typography.body.sm.font-size}'
+                fontFamily: '{semantic.typography.font-family.primary}'
+                fontStyle: Medium
+                lineHeight: '{semantic.typography.body.sm.line-height}'
+                letterSpacing: '{semantic.typography.letter-spacing.default}'
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+
+      # Size: sm
+      - configuration:
+          Size: sm
+        elements:
+          root:
+            styles:
+              padding:
+                top: 5
+                end: '{primitive.spacing.16}'
+                bottom: 5
+                start: '{primitive.spacing.16}'
+          Tab:
+            styles:
+              typography:
+                fontSize: '{semantic.typography.body.xs.font-size}'
+                fontFamily: '{semantic.typography.font-family.primary}'
+                fontStyle: Medium
+                lineHeight: '{semantic.typography.body.xs.line-height}'
+                letterSpacing: '{semantic.typography.letter-spacing.default}'
+                textCase: ORIGINAL
+                textDecoration: NONE
+                paragraphIndent: 0
+                paragraphSpacing: 0
+                leadingTrim: NONE
+                listSpacing: 0
+                hangingPunctuation: false
+                hangingList: false
+
     invalidPropCombinations: []
+
     metadata:
       author: Mia
-      lastUpdated: 2026-10-19 21:26:09.374000+00:00
+      lastUpdated: 2026-10-27
       generator:
         url: https://www.figma.com/community/plugin/1549454283615386215/specs-2-formerly-anova
         version: 1.22.0
