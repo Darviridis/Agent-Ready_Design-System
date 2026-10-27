@@ -4,7 +4,7 @@ components:
     anatomy:
       root:
         type: container
-      "Frame ":
+      "thumb":
         type: container
     props:
       State:
@@ -25,7 +25,7 @@ components:
     default:
       layout:
         - root:
-            - "Frame "
+            - "thumb"
       elements:
         root:
           styles:
@@ -52,7 +52,7 @@ components:
                 - 0.0941
                 - 0.098
               hex: "#0B1819"
-        "Frame ":
+        "thumb":
           styles:
             clipsContent: true
             cornerRadius: 300
@@ -82,7 +82,7 @@ components:
       - configuration:
           State: Disabled
         elements:
-          "Frame ":
+          "thumb":
             styles:
               backgroundColor:
                 colorSpace: srgb
@@ -112,7 +112,7 @@ components:
                         - 0.9103
                       alpha: 0.800000011920929
                       hex: "#9DFFE8"
-          "Frame ":
+          "thumb":
             styles:
               backgroundColor:
                 colorSpace: srgb
