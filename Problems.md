@@ -1,0 +1,1 @@
+1. If your Figma file contains elements that include icon swaps, Spec 2 will not process them correctly; you will need to manually add these to the YAML file and the documentation. Otherwise, only the default icon will appear everywhere.
