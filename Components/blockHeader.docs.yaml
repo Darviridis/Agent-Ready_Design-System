@@ -6,23 +6,33 @@ title: BlockHeader
 
 description: >
   A header component for a content block or section. It can display a
-  heading with navigation or action buttons. Visual values use design tokens.
+  heading with navigation or action buttons. The buttons are icon-only Button
+  instances: a back button (arrow-left) on the left and a close button (close)
+  on the right. Visual values use design tokens.
 
 purpose:
   - Identify the current content block or section.
   - Provide a consistent header layout.
-  - Optionally provide an action such as closing the block.
+  - Optionally provide a back action and a close action.
 
 rationale:
   why_this_approach: >
-    BlockHeader provides a consistent section chrome (title + optional close)
-    without becoming a full application navigation bar. Align=Center places
-    actions on both sides of a centered title for modal-like blocks; Align=Left
-    prioritizes title scanning with a single trailing action. Nested Buttons
-    are constrained to Icon / md so the header stays compact and predictable.
+    BlockHeader provides a consistent section chrome (title + optional back
+    and close) without becoming a full application navigation bar. Align=Center
+    places a back button and a close button on both sides of a centered title
+    for modal-like blocks; Align=Left prioritizes title scanning with a single
+    trailing close action. Nested Buttons are constrained to Icon / md so the
+    header stays compact and predictable. Each button has a fixed role and a
+    fixed icon (arrow-left for back, close for close), so the same action looks
+    the same on every screen.
   trade_offs:
-    - Center variant always expects two Icon buttons; asymmetric actions need
-      careful visual balancing.
+    - Center variant always expects two Icon buttons (back and close); asymmetric
+      actions need careful visual balancing.
+    - Left variant has only the close button; there is no back button in this
+      variant.
+    - Icons are taken from Assets/Icons. The Button's icon is swappable, but
+      BlockHeader fixes which icon each slot uses; using a different icon
+      means changing this specification, not just the instance.
     - Fixed design width of 1200 is a source reference, not a hard runtime
       constraint; responsive behavior must be implemented by the consumer.
     - Does not include breadcrumbs, tabs, or secondary nav.
@@ -35,7 +45,7 @@ rationale:
 
 usage:
   use_when:
-    - A content block needs a title and optional action button.
+    - A content block needs a title and a close action, with an optional back action.
     - A section requires a consistent header across different screens.
   avoid_when:
     - The page requires a full application navigation bar.
@@ -53,71 +63,107 @@ props:
 
 composition:
   canContain:
-    - Button
+    - BackButton
     - Heading
+    - CloseButton
   required:
     - Heading
   optional:
-    - Button
+    - BackButton
+    - CloseButton
   order: >
-    Align=Center → Button, Heading, Button
-    Align=Left   → Heading, Button
+    Align=Center → BackButton, Heading, CloseButton
+    Align=Left   → Heading, CloseButton
   rules:
     - Heading is always required.
-    - Center variant renders two Button instances (typically both close icons).
-    - Left variant renders one Button instance after the Heading.
-    - Nested Button must be configured as Variant="Icon", State="Default",
-      Size="md", Instance="close" (or equivalent action icon).
+    - Center variant renders two Button instances (BackButton on the left,
+      CloseButton on the right).
+    - Left variant renders one Button instance (CloseButton) after the Heading.
+    - BackButton always shows the arrow-left icon (Instance="arrow-left").
+    - CloseButton always shows the close icon (Instance="close"), in both variants.
+    - Both buttons are instances of Button configured as Variant="Icon",
+      State="Default", Interaction="Default", Size="md".
+    - Icons come from Assets/Icons.
   notes: >
+    BackButton and CloseButton are two separate slots, not one repeated Button,
+    because they have different icons and different actions.
     Prefer a slot-based API in implementation:
-      header?: React.ReactNode   // left action(s)
+      header?: React.ReactNode   // left action (back)
       children: React.ReactNode  // heading content
-      footer?: React.ReactNode   // right action(s)
-    or explicit props: heading + onClose / actions.
+      footer?: React.ReactNode   // right action (close)
+    or explicit props: heading + onBack + onClose.
 
 anti_patterns:
   - Do not place arbitrary content (forms, lists, images) inside BlockHeader.
   - Do not use non-Icon Button variants inside the header.
   - Do not omit the Heading.
-  - Do not reverse the order of elements for Align=Center (Button must
-    flank the Heading).
+  - Do not reverse the order of elements for Align=Center (BackButton must
+    come first, CloseButton last, flanking the Heading).
+  - Do not show a BackButton in the Left variant.
+  - Do not use the close icon for the back action or arrow-left for the close
+    action; each slot has its own fixed icon.
+  - Do not use icons from outside Assets/Icons in the header buttons.
   - Do not treat BlockHeader as a page-level navigation bar.
   - Do not hardcode colors, spacing, or radii; always resolve design tokens.
 
 variants:
   Align:
     Center:
-      description: Displays a button, a centered heading, and a button.
+      description: >
+        Displays a back button (arrow-left), a centered heading, and a close
+        button (close).
       layout:
-        - Button
+        - BackButton
         - Heading
-        - Button
+        - CloseButton
       heading_alignment: center
 
     Left:
-      description: Displays the heading aligned to the start, followed by one button.
+      description: >
+        Displays the heading aligned to the start, followed by one close
+        button (close).
       layout:
         - Heading
-        - Button
+        - CloseButton
       heading_alignment: start
 
 anatomy:
   root:
     semantic_role: header
     description: Container for the heading and its associated actions.
+  BackButton:
+    component: Button
+    purpose: Back action. Left side of the header, Center variant only.
+    configuration:
+      Variant: Icon
+      State: Default
+      Interaction: Default
+      Size: md
+      Instance: arrow-left
+    icon_source: Assets/Icons
   Heading:
     semantic_role: heading
     default_level: 2
     content: Heading
-  Button:
+  CloseButton:
     component: Button
-    purpose: Header action, such as closing the block.
+    purpose: Close action. Right side of the header, in both variants.
+    configuration:
+      Variant: Icon
+      State: Default
+      Interaction: Default
+      Size: md
+      Instance: close
+    icon_source: Assets/Icons
 
 behavior:
-  - The Center variant contains two Button instances according to the source specification.
-  - The Left variant contains one Button instance according to the source specification.
+  - The Center variant contains two Button instances according to the source
+    specification, BackButton (arrow-left) and CloseButton (close).
+  - The Left variant contains one Button instance according to the source
+    specification, CloseButton (close).
   - The heading alignment and element arrangement change according to Align.
-  - Button actions must be defined by the consuming interface; the visual specification alone does not define their behavior.
+  - Button actions must be defined by the consuming interface; the visual
+    specification alone does not define their behavior.
 
 layout:
   source_width: 1200
@@ -150,7 +196,12 @@ typography:
 accessibility:
   - Use a semantic header element for the component container when appropriate.
   - Represent Heading as a real heading element, with its level determined by the page hierarchy.
-  - Give each Button an accessible name that describes its action.
+  - Give each Button an accessible name that describes its action. The buttons are
+    icon-only, so the name is required.
+  - BackButton (arrow-left) needs a name such as "Back"; CloseButton (close)
+    needs a name such as "Close".
+  - Mark the icons themselves as decorative (aria-hidden); the accessible name
+    comes from the button.
   - Preserve a visible keyboard focus indicator for interactive buttons.
   - Do not rely on alignment or visual appearance alone to communicate meaning.
 
@@ -161,15 +212,21 @@ implementation:
   - Use the existing Button component rather than creating a separate button implementation.
   - Keep the heading and buttons responsive to the available container width.
   - Ensure the Center variant remains visually centered when the left and right button widths differ.
-  - Implement actual button actions in the consuming interface.
+  - Implement actual button actions in the consuming interface (onBack, onClose).
   - Use Align with the values Center and Left; do not use Type or Property 1 for this property.
-  - Configure nested Button instances according to the source specification:
-      Variant="Icon", State="Default", Size="md", Instance="close".
+  - 'Configure BackButton as Button with Variant="Icon", State="Default",
+    Interaction="Default", Size="md", Instance="arrow-left".'
+  - 'Configure CloseButton as Button with Variant="Icon", State="Default",
+    Interaction="Default", Size="md", Instance="close".'
+  - Resolve the icons from Assets/Icons through the Button's Instance prop; do not
+    hardcode icon markup inside BlockHeader.
+  - Render BackButton only for Align=Center; render CloseButton for both values.
   - Resolve design tokens at runtime / build time.
   - Prefer a slot-based or explicit-prop API (heading + actions) over free children.
 
 related_components:
   - Button
+  - Assets/Icons   # source of the arrow-left and close icons
 
 design_tokens:
   background: "{semantic.color.background.primary-bg}"
