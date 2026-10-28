@@ -2,13 +2,18 @@
  * BlockHeader examples based on the Specs 2 YAML (token-based).
  *
  * Composition (from docs):
- *   canContain: Button, Heading
+ *   canContain: BackButton, Heading, CloseButton
  *   required: Heading
- *   optional: Button
- *   order: Center → Button, Heading, Button | Left → Heading, Button
+ *   optional: BackButton, CloseButton
+ *   order: Center → BackButton, Heading, CloseButton | Left → Heading, CloseButton
+ *
+ * Buttons (both are Button instances: Variant="Icon", State="Default",
+ * Interaction="Default", Size="md"; icons come from Assets/Icons):
+ *   BackButton  → Instance="arrow-left" (Center only)
+ *   CloseButton → Instance="close"      (Center and Left)
  *
  * Prefer a slot-based or explicit-prop API:
- *   heading + onClose / actions
+ *   heading + onBack / onClose
  */
 import type { ReactNode } from "react";
 import { Button } from "./Button";
@@ -18,7 +23,9 @@ type BlockHeaderProps = {
   Align?: "Center" | "Left";
   /** Required heading content */
   heading?: ReactNode;
-  /** Optional close handler → renders Icon Button(s) */
+  /** Back handler → renders the BackButton (arrow-left). Center variant only. */
+  onBack?: () => void;
+  /** Close handler → renders the CloseButton (close). Both variants. */
   onClose?: () => void;
 };
 
@@ -29,15 +36,31 @@ type BlockHeaderProps = {
 export function BlockHeaderComponent({
   Align = "Center",
   heading = "Heading",
+  onBack,
   onClose,
 }: BlockHeaderProps) {
   const isLeft = Align === "Left";
 
+  // BackButton: arrow-left icon, left side. Rendered only for Align="Center".
+  const backButton = (
+    <Button
+      Instance="arrow-left"
+      Variant="Icon"
+      State="Default"
+      Interaction="Default"
+      Size="md"
+      aria-label="Back"
+      onClick={onBack}
+    />
+  );
+
+  // CloseButton: close icon, right side. Rendered for both Align values.
   const closeButton = (
     <Button
       Instance="close"
       Variant="Icon"
       State="Default"
+      Interaction="Default"
       Size="md"
       aria-label="Close"
       onClick={onClose}
@@ -89,7 +112,7 @@ export function BlockHeaderComponent({
         </>
       ) : (
         <>
-          {closeButton}
+          {backButton}
           {headingElement}
           {closeButton}
         </>
@@ -114,18 +137,38 @@ export function BlockHeaderExamples() {
     >
       <section>
         <h2>Block header — Center</h2>
-        <BlockHeader Align="Center" heading="Heading" />
+        {/* BackButton (arrow-left) + Heading + CloseButton (close) */}
+        <BlockHeader
+          Align="Center"
+          heading="Heading"
+          onBack={() => console.log("back")}
+          onClose={() => console.log("close")}
+        />
       </section>
 
       <section>
         <h2>Block header — Left</h2>
-        <BlockHeader Align="Left" heading="Heading" />
+        {/* Heading + CloseButton (close). No back button in this variant. */}
+        <BlockHeader
+          Align="Left"
+          heading="Heading"
+          onClose={() => console.log("close")}
+        />
       </section>
 
       <section>
         <h2>Different heading text</h2>
-        <BlockHeader Align="Center" heading="Wallet settings" />
-        <BlockHeader Align="Left" heading="Transaction history" />
+        <BlockHeader
+          Align="Center"
+          heading="Wallet settings"
+          onBack={() => console.log("back")}
+          onClose={() => console.log("close")}
+        />
+        <BlockHeader
+          Align="Left"
+          heading="Transaction history"
+          onClose={() => console.log("close")}
+        />
       </section>
 
       {/* Anti-pattern illustration (commented — do not do this) */}
@@ -139,6 +182,12 @@ export function BlockHeaderExamples() {
         <BlockHeader Align="Center" heading="Title">
           <Button Variant="Primary">Save</Button>
         </BlockHeader>
+
+        ❌ Do not show a back button in the Left variant
+        <BlockHeader Align="Left" heading="Title" onBack={goBack} onClose={close} />
+
+        ❌ Do not swap the icons (close on the left, arrow-left on the right)
+        or use icons from outside Assets/Icons
       */}
     </main>
   );
