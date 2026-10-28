@@ -4,11 +4,14 @@ components:
     anatomy:
       root:
         type: container
-      Button:
+      BackButton:
         type: instance
         instanceOf: Button
       Heading:
         type: text
+      CloseButton:
+        type: instance
+        instanceOf: Button
     props:
       Align:
         type: string
@@ -20,9 +23,9 @@ components:
     default:
       layout:
       - root:
-        - Button
+        - BackButton
         - Heading
-        - Button
+        - CloseButton
       elements:
         root:
           styles:
@@ -43,12 +46,12 @@ components:
               start: '{primitive.spacing.24}'
               end: '{primitive.spacing.24}'
             backgroundColor: '{semantic.color.background.primary-bg}'
-        Button:
+        BackButton:
           styles:
             width: 48
             height: 48
           propConfigurations:
-            Instance: close
+            Instance: arrow-left
             State: Default
             Variant: Icon
             Interaction: Default
@@ -66,13 +69,24 @@ components:
               lineHeight: '{semantic.typography.heading.h4.line-height}'
             textAlignHorizontal: CENTER
           content: Heading
+        CloseButton:
+          styles:
+            width: 48
+            height: 48
+          propConfigurations:
+            Instance: close
+            State: Default
+            Variant: Icon
+            Interaction: Default
+            Size: md
+          instanceOf: Button
     variants:
     - configuration:
         Align: Left
       layout:
       - root:
         - Heading
-        - Button
+        - CloseButton
       elements:
         Heading:
           styles:
