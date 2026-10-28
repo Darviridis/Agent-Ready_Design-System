@@ -6,9 +6,22 @@
  *   - Variant: Primary | Secondary | Icon
  *   - Interaction: Default | Hover
  *   - Size: lg | md
- *   - Instance: (e.g. "icon")
+ *   - Instance: name of an icon from Assets/Icons (default "close").
+ *     Only used with Variant="Icon". The list is open: any icon from
+ *     Assets/Icons is valid, new icons are added to ICONS below.
  */
+import { useState } from "react";
 import { Button } from "./Button";
+
+/**
+ * Icons used in the examples. `name` is the value passed to the Instance prop,
+ * `label` is the accessible name for that icon. Add new icons from
+ * Assets/Icons here, no changes to the Button itself are needed.
+ */
+const ICONS = [
+  { name: "close", label: "Close" },
+  { name: "arrow-left", label: "Back" },
+];
 
 export function ButtonExamples() {
   return (
@@ -135,30 +148,105 @@ export function ButtonExamples() {
 
       <section>
         <h3>Icon</h3>
+        <p style={noteStyle}>
+          The icon is swappable. The Instance prop takes any icon name from
+          Assets/Icons (default: close). Button size, padding and colors stay
+          the same, only the icon changes.
+        </p>
+
+        <h4 style={subheadingStyle}>Same button, different icons (lg)</h4>
         <div style={rowStyle}>
-          <Example label="Large">
+          {ICONS.map((icon) => (
+            <Example key={icon.name} label={`Instance="${icon.name}"`}>
+              <Button
+                State="Default"
+                Variant="Icon"
+                Interaction="Default"
+                Size="lg"
+                Instance={icon.name}
+                aria-label={icon.label}
+              />
+            </Example>
+          ))}
+        </div>
+
+        <h4 style={subheadingStyle}>Same button, different icons (md)</h4>
+        <div style={rowStyle}>
+          {ICONS.map((icon) => (
+            <Example key={icon.name} label={`Instance="${icon.name}"`}>
+              <Button
+                State="Default"
+                Variant="Icon"
+                Interaction="Default"
+                Size="md"
+                Instance={icon.name}
+                aria-label={icon.label}
+              />
+            </Example>
+          ))}
+        </div>
+
+        <h4 style={subheadingStyle}>Default icon (no Instance passed)</h4>
+        <div style={rowStyle}>
+          <Example label="Instance omitted → close">
             <Button
               State="Default"
               Variant="Icon"
               Interaction="Default"
               Size="lg"
-              Instance="icon"
-              aria-label="Icon action"
-            />
-          </Example>
-
-          <Example label="Medium">
-            <Button
-              State="Default"
-              Variant="Icon"
-              Interaction="Default"
-              Size="md"
-              Instance="icon"
-              aria-label="Icon action"
+              aria-label="Close"
             />
           </Example>
         </div>
+
+        <h4 style={subheadingStyle}>Try swapping</h4>
+        <IconSwapDemo />
       </section>
+    </div>
+  );
+}
+
+/**
+ * Interactive demo: pick an icon and see it replaced in the same button.
+ * Note that the accessible name changes together with the icon.
+ */
+function IconSwapDemo() {
+  const [selected, setSelected] = useState(ICONS[0]);
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+      <Button
+        State="Default"
+        Variant="Icon"
+        Interaction="Default"
+        Size="lg"
+        Instance={selected.name}
+        aria-label={selected.label}
+      />
+
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }} role="group" aria-label="Choose icon">
+        {ICONS.map((icon) => (
+          <button
+            key={icon.name}
+            type="button"
+            onClick={() => setSelected(icon)}
+            aria-pressed={selected.name === icon.name}
+            style={{
+              ...pickerStyle,
+              borderColor:
+                selected.name === icon.name
+                  ? "var(--semantic-color-text-primary-text, #D1DEDF)"
+                  : "transparent",
+            }}
+          >
+            {icon.name}
+          </button>
+        ))}
+      </div>
+
+      <span style={{ fontSize: 14, color: "var(--semantic-color-text-secondary-text, #C2D4CD)" }}>
+        Instance="{selected.name}"
+      </span>
     </div>
   );
 }
@@ -168,6 +256,29 @@ const rowStyle: React.CSSProperties = {
   alignItems: "center",
   flexWrap: "wrap",
   gap: 24,
+};
+
+const noteStyle: React.CSSProperties = {
+  margin: "0 0 16px",
+  fontSize: 14,
+  color: "var(--semantic-color-text-secondary-text, #C2D4CD)",
+};
+
+const subheadingStyle: React.CSSProperties = {
+  margin: "16px 0 8px",
+  fontSize: 14,
+  fontWeight: 500,
+};
+
+const pickerStyle: React.CSSProperties = {
+  padding: "6px 12px",
+  borderRadius: 8,
+  border: "1px solid transparent",
+  background: "transparent",
+  color: "inherit",
+  font: "inherit",
+  fontSize: 14,
+  cursor: "pointer",
 };
 
 function Example({
