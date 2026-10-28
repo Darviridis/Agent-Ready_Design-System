@@ -7,7 +7,8 @@ title: Button
 description: >
   A reusable interactive component for triggering actions. Supports Primary,
   Secondary, and Icon variants, multiple states, hover interaction, and two sizes.
-  All visual values are expressed via design tokens.
+  The icon in the Icon variant is swappable: it can be replaced with any icon
+  from the Assets/Icons set. All visual values are expressed via design tokens.
 
 purpose:
   - Trigger actions in the interface.
@@ -22,12 +23,17 @@ rationale:
     across the product. Loading keeps the label visible so users know what is
     in progress; Waiting replaces content with an indicator when the outcome
     is not yet known. Icon variant is reserved for compact header/toolbar actions.
+    The icon slot is swappable, so one Icon variant covers every icon-only action
+    (close, back, etc.) instead of needing a separate variant per icon.
   trade_offs:
     - Loading and Waiting are separate states; implementers must choose the
       correct one rather than a single "busy" flag.
     - Default prop default is Disabled in the source spec; consumers should
       set State explicitly for interactive buttons.
     - Icon buttons require an accessible name; visual-only icons are insufficient.
+      Because the icon can change, the accessible name must change with it.
+    - The set of available icons is open and grows with Assets/Icons, so it is
+      not listed as a closed enum in this document.
   alternatives:
     - Use Link for pure navigation that does not change application state.
     - Use a dedicated IconButton only if the design system later splits Icon
@@ -78,10 +84,18 @@ props:
   Instance:
     type: string
     required: false
+    default: close
     examples:
-      - icon
+      - close
+      - arrow-left
+    source: Assets/Icons
+    open: true
     description: >
-      Identifies the icon instance used by the button when applicable.
+      Instance swap property for the icon slot. Selects which icon is shown
+      when Variant=Icon. The value can be any icon from the Assets/Icons set;
+      the examples are not an exhaustive list. New icons added to Assets/Icons
+      become valid values automatically, with no change to this specification.
+      Default is close.
 
 anatomy:
   root:
@@ -100,15 +114,20 @@ anatomy:
     description: Waiting indicator shown in the Waiting state.
   icon:
     type: instance
-    instanceOf: icon
-    description: Icon shown for the Icon variant.
+    instanceOf: close
+    swappable: true
+    swapSource: Assets/Icons
+    description: >
+      Icon slot shown for the Icon variant. Holds close by default and can be
+      swapped for any other icon from Assets/Icons via the Instance prop.
+      Size (24x24) stays the same regardless of which icon is used.
 
 composition:
   canContain:
     - "Connect wallet"   # text label
     - loading
     - waiting
-    - icon
+    - icon               # any icon from Assets/Icons
   required: []
   optional:
     - "Connect wallet"
@@ -124,9 +143,14 @@ composition:
     - State=Loading → text label + loading instance (side by side)
     - State=Waiting → waiting instance only (no text label)
     - Variant=Icon → icon instance only (no text label)
+    - The icon slot accepts any icon from Assets/Icons; the default is close.
+    - Swapping the icon changes only the glyph; size, padding, and colors of the
+      button are unchanged.
   notes: >
     Content is controlled by State + Variant. Do not pass arbitrary children.
     Prefer a label prop or children for the text slot when implementing.
+    For the icon slot, accept an icon by name (the Instance prop) and resolve it
+    from the Assets/Icons set.
 
 anti_patterns:
   - Do not render loading and waiting instances at the same time.
@@ -135,6 +159,9 @@ anti_patterns:
   - Do not nest other interactive components inside Button.
   - Do not use Button for pure navigation; prefer Link when the action is navigation-only.
   - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+  - Do not hardcode a single icon in the Icon variant; the icon must be swappable.
+  - Do not use icons from outside Assets/Icons (custom or one-off SVGs) in the icon slot.
+  - Do not reuse one accessible name for different icons; update it when the icon changes.
 
 layout:
   root:
@@ -301,7 +328,9 @@ variants:
       State: Default
       Variant: Icon
       Size: lg
-    description: Icon-only button.
+    description: >
+      Icon-only button. The icon is swappable via the Instance prop
+      (any icon from Assets/Icons, default close).
     layout:
       - root:
         - icon
@@ -320,7 +349,9 @@ variants:
       State: Default
       Variant: Icon
       Size: md
-    description: Medium icon-only button.
+    description: >
+      Medium icon-only button. The icon is swappable via the Instance prop
+      (any icon from Assets/Icons, default close).
     styles:
       root:
         width: 48
@@ -374,6 +405,8 @@ behavior:
   - Variant Primary uses the primary color palette.
   - Variant Secondary uses the secondary color palette.
   - Variant Icon displays only the icon instance.
+  - The icon instance can be swapped for any icon from Assets/Icons (default is close).
+  - Swapping the icon does not change the button's size, padding, or colors.
   - Interaction Hover applies the corresponding hover background when defined.
   - Size lg and Size md use different vertical padding and icon button dimensions.
   - The consuming application manages click handling and asynchronous action logic.
@@ -385,6 +418,10 @@ accessibility:
     - Use the disabled attribute when the button cannot be activated.
     - Expose loading or waiting status to assistive technology when applicable.
     - Icon-only buttons require an accessible name.
+    - When the icon is swapped, the accessible name must describe the new action
+      (for example "Close" for close, "Back" for arrow-left).
+    - Mark the icon itself as decorative (aria-hidden) so the accessible name
+      comes from the button, not the glyph.
 
 implementation:
   component: Button
@@ -395,6 +432,9 @@ implementation:
     - Preserve the distinction between loading and waiting indicators.
     - Do not display the text label in the Waiting state.
     - The Icon variant uses the icon instance instead of the text label.
+    - Accept the icon as a prop (by name or as a component) rather than hardcoding one icon.
+    - Resolve the icon from the Assets/Icons set; default to close when none is given.
+    - Do not restrict the icon prop to a fixed list; any icon in Assets/Icons is valid.
     - Resolve all design tokens; do not hardcode resolved color or spacing values.
     - Prefer a children or label prop for the text slot when implementing.
 
@@ -402,6 +442,7 @@ related_components:
   - loading
   - waiting
   - icon
+  - Assets/Icons   # source of swappable icons
 
 design_tokens:
   radius: "{semantic.radius.md}"
