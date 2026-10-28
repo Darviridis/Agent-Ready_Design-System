@@ -17,7 +17,7 @@ components:
       icon:
         type: instance
         detectedIn: State=Default, Variant=Icon, Interaction=Default, Size=lg
-        instanceOf: icon
+        instanceOf: close
     props:
       State:
         type: string
@@ -103,7 +103,7 @@ components:
           styles:
             width: 24
             height: 24
-          instanceOf: icon
+          instanceOf: close
     variants:
     - configuration:
         Size: md
