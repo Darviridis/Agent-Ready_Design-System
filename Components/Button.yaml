@@ -52,8 +52,10 @@ components:
         nullable: false
       Instance:
         type: string
+        default: close
         examples:
-        - icon
+        - close
+        - arrow-left
     default:
       layout:
       - root:
