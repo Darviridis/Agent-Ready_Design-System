@@ -275,7 +275,20 @@ components:
         Frame 1:
           styles:
             strokes: '{component.color.action.secondary-background}'
-    invalidPropCombinations: []
+    # Disabled, Focus, Readonly, Warning and Error have no hover: the generic
+    # Interaction=Hover variant above must not apply to them (they keep their
+    # own border, background and glow). Hover exists only for Default and Filled.
+    invalidPropCombinations:
+    - State: Disabled
+      Interaction: Hover
+    - State: Focus
+      Interaction: Hover
+    - State: Readonly
+      Interaction: Hover
+    - State: Warning
+      Interaction: Hover
+    - State: Error
+      Interaction: Hover
     metadata:
       author: Mia
       lastUpdated: 2026-10-19 21:25:06.104000+00:00
