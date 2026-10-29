@@ -264,6 +264,14 @@ components:
               fontStyle: Medium
               lineHeight: '{semantic.typography.body.lg.line-height}'
             textAlignHorizontal: CENTER
+    - configuration:
+        State: Default
+        Variant: Icon
+        Interaction: Hover
+      elements:
+        icon:
+          styles:
+            iconColor: '{component.color.Icon.hover}'
     invalidPropCombinations: []
     metadata:
       author: Mia
