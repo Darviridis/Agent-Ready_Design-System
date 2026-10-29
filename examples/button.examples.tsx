@@ -10,6 +10,10 @@
  *     Only used with Variant="Icon". Icon hover changes only the icon
  *     color (Interaction="Hover"). The list is open: any icon from
  *     Assets/Icons is valid, new icons are added to ICONS below.
+ *
+ * Loading / Waiting indicators come from Assets/Icons and are animated:
+ *   - Loading → loading.svg, spins continuously
+ *   - Waiting → waiting.svg, three dots appear and disappear in a loop
  */
 import { useState } from "react";
 import { Button } from "./Button";
@@ -117,6 +121,13 @@ export function ButtonExamples() {
 
       <section>
         <h3>Loading and waiting</h3>
+        <p style={noteStyle}>
+          Both indicators are animated icons from Assets/Icons. Loading shows
+          loading.svg spinning next to the label. Waiting shows waiting.svg
+          with three dots that appear and disappear in a loop, replacing the
+          label. The animation runs only while the state is active, and
+          respects prefers-reduced-motion.
+        </p>
         <div style={rowStyle}>
           <Example label="Loading">
             <Button
