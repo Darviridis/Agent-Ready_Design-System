@@ -275,7 +275,7 @@ components:
       elements:
         icon:
           styles:
-            iconColor: '{component.color.Icon.hover}'
+            iconColor: '{component.color.icon.hover}'
     invalidPropCombinations: []
     metadata:
       author: Mia
