@@ -109,11 +109,31 @@ anatomy:
   loading:
     type: instance
     instanceOf: loading
-    description: Loading indicator shown in the Loading state.
+    source: Assets/Icons/loading.svg
+    animation:
+      type: spin
+      description: >
+        The icon rotates continuously (a spinning loader) for as long as the
+        button is in the Loading state.
+    description: >
+      Loading indicator shown in the Loading state, next to the label. The
+      icon is loading.svg from Assets/Icons and it is animated: it spins
+      continuously. It is not swappable through the Instance prop.
   waiting:
     type: instance
     instanceOf: waiting
-    description: Waiting indicator shown in the Waiting state.
+    source: Assets/Icons/waiting.svg
+    animation:
+      type: pulsing-dots
+      description: >
+        Three dots appear and disappear in a repeating loop, like a typing or
+        waiting indicator: the dots appear one after another, then disappear,
+        and the cycle repeats for as long as the button is in the Waiting state.
+    description: >
+      Waiting indicator shown in the Waiting state, replacing the label. The
+      icon is waiting.svg from Assets/Icons and it is animated: three dots
+      appear and disappear in a loop. It is not swappable through the Instance
+      prop.
   icon:
     type: instance
     instanceOf: close
@@ -156,6 +176,10 @@ composition:
 
 anti_patterns:
   - Do not render loading and waiting instances at the same time.
+  - Do not show a static loading or waiting icon; both indicators must be animated.
+  - Do not use the spinning animation for Waiting or the three-dot animation for Loading.
+  - Do not replace the indicators with icons from outside Assets/Icons
+    (loading.svg for Loading, waiting.svg for Waiting).
   - Do not show the text label when State=Waiting.
   - Do not show the text label when Variant=Icon.
   - Do not nest other interactive components inside Button.
@@ -376,7 +400,7 @@ variants:
       both sizes and to any swapped icon.
     styles:
       icon:
-        iconColor: "{component.color.Icon.hover}"
+        iconColor: "{component.color.icon.hover}"
 
 combinations:
   - State: Default
@@ -421,7 +445,13 @@ behavior:
   - State Default displays the button's normal content.
   - State Disabled uses the disabled background and text colors.
   - State Loading displays the label and loading indicator.
+  - The loading indicator is Assets/Icons/loading.svg and spins continuously
+    while State is Loading.
   - State Waiting displays only the waiting indicator.
+  - The waiting indicator is Assets/Icons/waiting.svg and shows three dots that
+    appear and disappear in a loop while State is Waiting.
+  - The animations run only while the corresponding state is active and stop
+    when the state changes.
   - Variant Primary uses the primary color palette.
   - Variant Secondary uses the secondary color palette.
   - Variant Icon displays only the icon instance.
@@ -440,7 +470,13 @@ accessibility:
     - Use a native button element for interactive buttons.
     - Provide an accessible name for every button.
     - Use the disabled attribute when the button cannot be activated.
-    - Expose loading or waiting status to assistive technology when applicable.
+    - Expose loading or waiting status to assistive technology when applicable
+      (for example aria-busy on the button or a polite status announcement).
+    - Mark the loading and waiting indicators as decorative (aria-hidden); the
+      status comes from the button, not the animation.
+    - Respect prefers-reduced-motion. With reduced motion enabled, replace the
+      spin and the three-dot animation with a static or minimal-motion version
+      of the same icon.
     - Icon-only buttons require an accessible name.
     - When the icon is swapped, the accessible name must describe the new action
       (for example "Close" for close, "Back" for arrow-left).
@@ -456,6 +492,16 @@ implementation:
   notes:
     - Keep Variant, State, Interaction, Size, and Instance consistent with this specification.
     - Preserve the distinction between loading and waiting indicators.
+    - Use Assets/Icons/loading.svg for Loading and Assets/Icons/waiting.svg for
+      Waiting; do not hardcode other markup for the indicators.
+    - Animate loading.svg as a continuous rotation (for example a CSS rotate
+      keyframe animation). Do not wire it to the Instance prop.
+    - Animate waiting.svg as three dots that appear and disappear in a repeating
+      loop (for example opacity keyframes with a staggered delay per dot).
+    - Use the same animation timing for every Button; take durations from motion
+      tokens if the design system defines them, rather than hardcoding values.
+    - Start the animation when the state becomes Loading or Waiting and stop it
+      when the state changes.
     - Do not display the text label in the Waiting state.
     - The Icon variant uses the icon instance instead of the text label.
     - Accept the icon as a prop (by name or as a component) rather than hardcoding one icon.
@@ -490,7 +536,7 @@ design_tokens:
   inverse_text: "{semantic.color.text.inverse-text}"
   primary_text: "{semantic.color.text.primary-text}"
   tertiary_text: "{semantic.color.text.tertiary-text}"
-  icon_hover: "{component.color.Icon.hover}"
+  icon_hover: "{component.color.icon.hover}"
   body_lg_font_size: "{semantic.typography.body.lg.font-size}"
   body_lg_line_height: "{semantic.typography.body.lg.line-height}"
   font_family_primary: "{semantic.typography.font-family.primary}"
