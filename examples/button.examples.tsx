@@ -7,7 +7,8 @@
  *   - Interaction: Default | Hover
  *   - Size: lg | md
  *   - Instance: name of an icon from Assets/Icons (default "close").
- *     Only used with Variant="Icon". The list is open: any icon from
+ *     Only used with Variant="Icon". Icon hover changes only the icon
+ *     color (Interaction="Hover"). The list is open: any icon from
  *     Assets/Icons is valid, new icons are added to ICONS below.
  */
 import { useState } from "react";
@@ -197,6 +198,40 @@ export function ButtonExamples() {
               aria-label="Close"
             />
           </Example>
+        </div>
+
+        <h4 style={subheadingStyle}>Hover (only the icon color changes)</h4>
+        <p style={noteStyle}>
+          On hover the icon takes the icon hover color. Nothing else changes:
+          no background, size, or shape change. It works the same for every
+          icon and both sizes. Interaction="Hover" forces the hover look for
+          display; in real use it comes from CSS :hover.
+        </p>
+        <div style={rowStyle}>
+          {ICONS.map((icon) => (
+            <Example key={`${icon.name}-default`} label={`${icon.name} · Default`}>
+              <Button
+                State="Default"
+                Variant="Icon"
+                Interaction="Default"
+                Size="lg"
+                Instance={icon.name}
+                aria-label={icon.label}
+              />
+            </Example>
+          ))}
+          {ICONS.map((icon) => (
+            <Example key={`${icon.name}-hover`} label={`${icon.name} · Hover`}>
+              <Button
+                State="Default"
+                Variant="Icon"
+                Interaction="Hover"
+                Size="lg"
+                Instance={icon.name}
+                aria-label={icon.label}
+              />
+            </Example>
+          ))}
         </div>
 
         <h4 style={subheadingStyle}>Try swapping</h4>
