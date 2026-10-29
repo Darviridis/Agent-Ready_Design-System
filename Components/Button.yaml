@@ -10,10 +10,14 @@ components:
         type: instance
         detectedIn: State=Loading, Variant=Primary, Interaction=Default, Size=lg
         instanceOf: loading
+        # Icon: Assets/Icons/loading.svg. Animated: spins continuously.
+        # See Button.docs.yaml (anatomy.loading).
       waiting:
         type: instance
         detectedIn: State=Waiting, Variant=Primary, Interaction=Default, Size=lg
         instanceOf: waiting
+        # Icon: Assets/Icons/waiting.svg. Animated: three dots appear and
+        # disappear in a loop. See Button.docs.yaml (anatomy.waiting).
       icon:
         type: instance
         detectedIn: State=Default, Variant=Icon, Interaction=Default, Size=lg
