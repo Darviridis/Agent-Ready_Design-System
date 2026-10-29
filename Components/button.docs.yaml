@@ -70,7 +70,9 @@ props:
     enum:
       - Default
       - Hover
-    description: Defines the hover appearance.
+    description: >
+      Defines the hover appearance. For Primary and Secondary it changes the
+      background; for Icon it changes only the icon color.
 
   Size:
     type: string
@@ -162,6 +164,8 @@ anti_patterns:
   - Do not hardcode a single icon in the Icon variant; the icon must be swappable.
   - Do not use icons from outside Assets/Icons (custom or one-off SVGs) in the icon slot.
   - Do not reuse one accessible name for different icons; update it when the icon changes.
+  - Do not add a background, border, scale, or opacity change to the Icon variant
+    on hover; only the icon color changes.
 
 layout:
   root:
@@ -361,6 +365,19 @@ variants:
           bottom: "{primitive.spacing.20}"
         aspectRatio: null
 
+  - name: IconHover
+    props:
+      State: Default
+      Variant: Icon
+      Interaction: Hover
+    description: >
+      Icon-only button on hover. Only the icon color changes, to the icon hover
+      color. Background, size, padding, and radius stay the same. Applies to
+      both sizes and to any swapped icon.
+    styles:
+      icon:
+        iconColor: "{component.color.Icon.hover}"
+
 combinations:
   - State: Default
     Variant: Primary
@@ -383,6 +400,9 @@ combinations:
     Variant: Icon
     Interaction: Default
     Size: md
+  - State: Default
+    Variant: Icon
+    Interaction: Hover
   - State: Disabled
   - State: Loading
     Variant: Primary
@@ -408,6 +428,10 @@ behavior:
   - The icon instance can be swapped for any icon from Assets/Icons (default is close).
   - Swapping the icon does not change the button's size, padding, or colors.
   - Interaction Hover applies the corresponding hover background when defined.
+  - For Variant Icon, Interaction Hover changes only the icon color to the icon
+    hover color. The button background, size, and shape do not change.
+  - The hover icon color applies to whichever icon is in the slot (close,
+    arrow-left, or any other icon from Assets/Icons).
   - Size lg and Size md use different vertical padding and icon button dimensions.
   - The consuming application manages click handling and asynchronous action logic.
 
@@ -422,6 +446,8 @@ accessibility:
       (for example "Close" for close, "Back" for arrow-left).
     - Mark the icon itself as decorative (aria-hidden) so the accessible name
       comes from the button, not the glyph.
+    - The icon-only hover change is subtle (color only). Do not rely on it alone
+      to show interactivity; keep a visible keyboard focus indicator.
 
 implementation:
   component: Button
@@ -435,6 +461,9 @@ implementation:
     - Accept the icon as a prop (by name or as a component) rather than hardcoding one icon.
     - Resolve the icon from the Assets/Icons set; default to close when none is given.
     - Do not restrict the icon prop to a fixed list; any icon in Assets/Icons is valid.
+    - Implement the Icon hover with CSS :hover (and :focus-visible for keyboard
+      users) that sets only the icon color to the icon hover token. The icon
+      should inherit its color (currentColor) so the change works for any icon.
     - Resolve all design tokens; do not hardcode resolved color or spacing values.
     - Prefer a children or label prop for the text slot when implementing.
 
@@ -461,6 +490,7 @@ design_tokens:
   inverse_text: "{semantic.color.text.inverse-text}"
   primary_text: "{semantic.color.text.primary-text}"
   tertiary_text: "{semantic.color.text.tertiary-text}"
+  icon_hover: "{component.color.Icon.hover}"
   body_lg_font_size: "{semantic.typography.body.lg.font-size}"
   body_lg_line_height: "{semantic.typography.body.lg.line-height}"
   font_family_primary: "{semantic.typography.font-family.primary}"
