@@ -7,12 +7,14 @@ title: Input
 description: >
   A text input component for entering and displaying user-provided values.
   Supports default, filled, focus, disabled, readonly, warning, and error states.
-  Visual values use design tokens.
+  Hover feedback exists only for the Default and Filled states. Visual values
+  use design tokens.
 
 purpose:
   - Allow users to enter text values.
   - Display a label and input content.
-  - Provide visual feedback for focus, hover, disabled, warning, and error states.
+  - Provide visual feedback for focus, disabled, warning, and error states.
+  - Provide pointer hover feedback for editable, non-validation states (Default and Filled).
   - Display validation messages when needed.
 
 rationale:
@@ -20,10 +22,16 @@ rationale:
     Input centralizes text entry with explicit States for empty, filled, focus,
     disabled, readonly, warning, and error. Validation messages are part of the
     component layout so spacing and color stay consistent. Hover is a separate
-    Interaction so pointer feedback does not override validation borders.
+    Interaction, and it is available only for Default and Filled. States that
+    already carry their own strong visual meaning (Focus, Warning, Error) or
+    that are not editable (Disabled, Readonly) do not react to hover, so pointer
+    feedback never overrides validation borders and glows, the focus ring, or
+    the look of a field that cannot be edited.
   trade_offs:
     - Warning and Error both show helper text but different colors/glows;
       product copy must match the severity.
+    - Warning and Error do not change on hover. The user gets no pointer
+      feedback there, but the validation state stays unambiguous.
     - showErrorText is a boolean flag; more complex multi-message validation
       needs composition outside this component.
     - Caret is a visual affordance for Focus in the design spec; real caret
@@ -59,7 +67,9 @@ props:
       - Default
       - Hover
     description: >
-      Controls the hover appearance of the input frame.
+      Controls the hover appearance of the input frame. Hover is valid only
+      with State=Default and State=Filled. It is not available for Disabled,
+      Focus, Readonly, Warning, or Error.
 
   showErrorText:
     type: boolean
@@ -132,6 +142,7 @@ composition:
     - State=Focus → Frame shows Text + Caret
     - State=Warning → helper = "Please check this value"
     - State=Error → helper = "Enter a valid value"
+    - Interaction=Hover is allowed only with State=Default or State=Filled
   notes: >
     Prefer a slot-based or explicit-prop API:
       label?: React.ReactNode
@@ -145,7 +156,27 @@ anti_patterns:
   - Do not show Caret when State is not Focus.
   - Do not show both warning and error helper texts at the same time.
   - Do not invent additional states beyond those defined in the YAML.
+  - Do not apply hover styles to Warning or Error. They keep their own border
+    and glow while the pointer is over them.
+  - Do not apply hover styles to Disabled, Focus, or Readonly.
+  - Do not let a generic hover rule override validation or focus styles.
   - Do not hardcode colors, spacing, or radii; always resolve design tokens.
+
+invalid_combinations:
+  description: >
+    These State and Interaction pairs do not exist. Hover is defined only for
+    Default and Filled.
+  items:
+    - State: Disabled
+      Interaction: Hover
+    - State: Focus
+      Interaction: Hover
+    - State: Readonly
+      Interaction: Hover
+    - State: Warning
+      Interaction: Hover
+    - State: Error
+      Interaction: Hover
 
 layout:
   root:
@@ -217,7 +248,7 @@ variants:
       State: Default
       Interaction: Hover
     description: >
-      Default input while hovered.
+      Default input while hovered. One of only two hover variants (with FilledHover).
     styles:
       Frame 1:
         backgroundColor: "{component.color.action.tertiary-background-hover}"
@@ -252,6 +283,7 @@ variants:
       Interaction: Default
     description: >
       Disabled input with a muted heading and reduced frame opacity.
+      No hover.
     styles:
       Heading:
         textColor: "{semantic.color.text.tertiary-text}"
@@ -263,7 +295,7 @@ variants:
       State: Focus
       Interaction: Default
     description: >
-      Focused input displaying a caret and highlighted frame.
+      Focused input displaying a caret and highlighted frame. No hover.
     layout:
       - root:
         - Heading
@@ -297,7 +329,7 @@ variants:
       State: Readonly
       Interaction: Default
     description: >
-      Read-only input displaying text without allowing edits.
+      Read-only input displaying text without allowing edits. No hover.
     layout:
       - root:
         - Heading
@@ -316,7 +348,8 @@ variants:
       State: Warning
       Interaction: Default
     description: >
-      Input displaying a warning validation message.
+      Input displaying a warning validation message. No hover: the warning
+      border and glow stay as they are under the pointer.
     layout:
       - root:
         - Heading
@@ -344,7 +377,8 @@ variants:
       State: Error
       Interaction: Default
     description: >
-      Input displaying an error validation message.
+      Input displaying an error validation message. No hover: the error
+      border and glow stay as they are under the pointer.
     layout:
       - root:
         - Heading
@@ -371,7 +405,8 @@ variants:
     props:
       State: Filled
       Interaction: Hover
-    description: Filled input on hover.
+    description: >
+      Filled input on hover. One of only two hover variants (with Hover).
     styles:
       Frame 1:
         strokes: "{component.color.action.secondary-background}"
@@ -404,7 +439,10 @@ behavior:
   - State Readonly displays entered text with a primary background.
   - State Warning displays the warning message "Please check this value."
   - State Error displays the error message "Enter a valid value."
-  - Interaction Hover applies the hover styles to the input frame.
+  - Interaction Hover applies the hover styles to the input frame, but only
+    for State Default and State Filled.
+  - Disabled, Focus, Readonly, Warning, and Error do not change on hover. Their
+    appearance is the same with and without the pointer over them.
   - showErrorText controls the visibility of validation helper text in the implementation.
   - The consuming application manages the input value and validation logic.
 
@@ -417,6 +455,8 @@ accessibility:
     - Expose validation errors to assistive technology.
     - Connect helper text using aria-describedby when applicable.
     - Use aria-invalid for invalid input values when appropriate.
+    - Do not rely on hover to communicate meaning. Hover is only a pointer
+      affordance for Default and Filled.
 
 implementation:
   component: Input
@@ -426,6 +466,11 @@ implementation:
     - Keep State, Interaction, and showErrorText consistent with this specification.
     - Resolve design tokens at runtime / build time.
     - Do not invent additional states beyond those defined in the YAML.
+    - Apply hover styles (CSS :hover) only when State is Default or Filled.
+      For example, skip them when the input is disabled, readonly, focused,
+      or in the warning or error state.
+    - Do not pass Interaction="Hover" together with Disabled, Focus, Readonly,
+      Warning, or Error; these combinations are invalid.
     - Prefer explicit props (label, value, placeholder, helperText) over free children.
 
 design_tokens:
