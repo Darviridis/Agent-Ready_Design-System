@@ -73,7 +73,7 @@ components:
       elements:
         root:
           styles:
-            backgroundColor: '{semantic.color.background.secondary-bg}'
+            backgroundColor: '{semantic.color.background.tertiary-bg}'
         Label:
           styles:
             opacity: 0.5
