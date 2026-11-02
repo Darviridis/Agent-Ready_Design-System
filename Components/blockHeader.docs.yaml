@@ -183,7 +183,7 @@ layout:
     top_end: "{semantic.radius.xl}"
     bottom_end: "{semantic.radius.none}"
     bottom_start: "{semantic.radius.none}"
-  backgroundColor: "{semantic.color.background.primary-bg}"
+  backgroundColor: "{semantic.color.background.secondary-bg}"
 
 typography:
   Heading:
@@ -229,7 +229,7 @@ related_components:
   - Assets/Icons   # source of the arrow-left and close icons
 
 design_tokens:
-  background: "{semantic.color.background.primary-bg}"
+  background: "{semantic.color.background.secondary-bg}"
   heading_text: "{semantic.color.text.primary-text}"
   radius_xl: "{semantic.radius.xl}"
   radius_none: "{semantic.radius.none}"
