@@ -1,5 +1,6 @@
 # Semantic documentation for Input
 # Keep this file separate from the Specs 2 generated visual specification.
+# Synced with Specs 2 export "Input (9).yaml" (schema 0.35.0, lastUpdated 2026-10-19).
 
 component: input
 title: Input
@@ -197,6 +198,7 @@ layout:
     layoutSizingVertical: HUG
     direction: HORIZONTAL
     crossAxisAlignment: CENTER
+    clipsContent: true
     itemSpacing: 10
     padding:
       top: "{primitive.spacing.14}"
@@ -251,7 +253,7 @@ variants:
       Default input while hovered. One of only two hover variants (with FilledHover).
     styles:
       Frame 1:
-        backgroundColor: "{component.color.action.tertiary-background-hover}"
+        backgroundColor: "{component.color.action.tertiary-background}"
         strokes: "{component.color.action.secondary-background-hover}"
         strokeAlign: INSIDE
         strokeWeight: 1
@@ -307,7 +309,7 @@ variants:
       Frame 1:
         strokes: "{component.color.action.primary-background}"
         strokeAlign: INSIDE
-        strokeWeight: 2
+        strokeWeight: 1
         effects:
           shadows:
             - visible: true
@@ -329,7 +331,8 @@ variants:
       State: Readonly
       Interaction: Default
     description: >
-      Read-only input displaying text without allowing edits. No hover.
+      Read-only input displaying text without allowing edits. It has a
+      secondary border and no background fill. No hover.
     layout:
       - root:
         - Heading
@@ -338,10 +341,10 @@ variants:
         - Error text
     styles:
       Frame 1:
-        strokes: "{component.color.action.tertiary-background-hover}"
+        strokes: "{component.color.border.secondary}"
         strokeAlign: INSIDE
         strokeWeight: 1
-        backgroundColor: "{semantic.color.background.primary-bg}"
+        backgroundColor: null
 
   - name: Warning
     props:
@@ -435,8 +438,8 @@ behavior:
   - State Default displays the Text placeholder.
   - State Filled displays Entered text.
   - State Disabled applies 0.5 opacity to the input frame and changes the heading color.
-  - State Focus displays the caret and highlighted frame.
-  - State Readonly displays entered text with a primary background.
+  - State Focus displays the caret and a 1px primary border with a glow.
+  - State Readonly displays entered text with a secondary border and no background fill.
   - State Warning displays the warning message "Please check this value."
   - State Error displays the error message "Enter a valid value."
   - Interaction Hover applies the hover styles to the input frame, but only
@@ -479,11 +482,10 @@ design_tokens:
   spacing_14: "{primitive.spacing.14}"
   spacing_20: "{primitive.spacing.20}"
   tertiary_background: "{component.color.action.tertiary-background}"
-  tertiary_background_hover: "{component.color.action.tertiary-background-hover}"
   secondary_background: "{component.color.action.secondary-background}"
   secondary_background_hover: "{component.color.action.secondary-background-hover}"
   primary_background: "{component.color.action.primary-background}"
-  primary_bg: "{semantic.color.background.primary-bg}"
+  border_secondary: "{component.color.border.secondary}"
   secondary_text: "{semantic.color.text.secondary-text}"
   tertiary_text: "{semantic.color.text.tertiary-text}"
   primary_text: "{semantic.color.text.primary-text}"
