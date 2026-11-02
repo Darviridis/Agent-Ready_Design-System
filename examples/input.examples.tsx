@@ -5,6 +5,10 @@
  *   - State: Default | Filled | Disabled | Focus | Readonly | Warning | Error
  *   - Interaction: Default | Hover
  *   - showErrorText: boolean
+ *
+ * Hover exists only for State=Default and State=Filled. These pairs are
+ * invalid and must not be rendered: Disabled/Focus/Readonly/Warning/Error
+ * combined with Interaction=Hover.
  */
 import { Input } from "./Input";
 
@@ -74,6 +78,14 @@ export function InputExamples() {
           <InputExample label="Default hover">
             <Input
               State="Default"
+              Interaction="Hover"
+              showErrorText={false}
+            />
+          </InputExample>
+
+          <InputExample label="Filled hover">
+            <Input
+              State="Filled"
               Interaction="Hover"
               showErrorText={false}
             />
