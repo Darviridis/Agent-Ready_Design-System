@@ -168,7 +168,7 @@ components:
                 blur: 4
                 spread: 0
                 color: '{semantic.color.effect.glow}'
-            backgroundColor: '{component.color.action.tertiary-background-hover}'
+            backgroundColor: '{component.color.action.tertiary-background}'
     - configuration:
         State: Filled
       layout:
@@ -200,7 +200,7 @@ components:
           styles:
             strokes: '{component.color.action.primary-background}'
             strokeAlign: INSIDE
-            strokeWeight: 2
+            strokeWeight: 1
             effects:
               shadows:
               - visible: true
@@ -209,6 +209,7 @@ components:
                 blur: 4
                 spread: 0
                 color: '{semantic.color.effect.glow}'
+                backgroundColor: '{component.color.action.tertiary-background}'
     - configuration:
         State: Readonly
       layout:
@@ -220,10 +221,10 @@ components:
       elements:
         Frame 1:
           styles:
-            strokes: '{component.color.action.tertiary-background-hover}'
+            strokes: '{component.color.border.secondary}'
             strokeAlign: INSIDE
             strokeWeight: 1
-            backgroundColor: '{semantic.color.background.primary-bg}'
+            backgroundColor: null
     - configuration:
         State: Warning
       layout:
