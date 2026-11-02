@@ -45,7 +45,7 @@ components:
               bottom: '{primitive.spacing.8}'
               start: '{primitive.spacing.24}'
               end: '{primitive.spacing.24}'
-            backgroundColor: '{semantic.color.background.primary-bg}'
+            backgroundColor: '{semantic.color.background.secondary-bg}'
         BackButton:
           styles:
             width: 48
