@@ -76,7 +76,7 @@ components:
               bottom: 12
               start: 16
               end: 12
-            backgroundColor: '{semantic.color.background.secondary-bg}'
+            backgroundColor: '{component.color.action.tertiary-background}'
         Selected value:
           styles:
             layoutSizingHorizontal: HUG
@@ -136,7 +136,7 @@ components:
           styles:
             padding:
               end: 8
-            backgroundColor: '{semantic.color.background.tertiary-bg}'
+            backgroundColor: '{component.color.action.tertiary-background-hover}'
     - configuration:
         State: Open
       layout:
@@ -159,7 +159,7 @@ components:
             strokeWeight: 1
             padding:
               end: 8
-            backgroundColor: '{semantic.color.background.tertiary-bg}'
+            backgroundColor: '{component.color.action.tertiary-background-hover}'
     - configuration:
         State: Disabled
       elements:
