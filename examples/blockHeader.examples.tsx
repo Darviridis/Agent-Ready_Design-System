@@ -101,7 +101,7 @@ export function BlockHeaderComponent({
         borderRadius:
           "var(--semantic-radius-xl, 20px) var(--semantic-radius-xl, 20px) var(--semantic-radius-none, 0) var(--semantic-radius-none, 0)",
         backgroundColor:
-          "var(--semantic-color-background-primary-bg, #0B1819)",
+          "var(--semantic-color-background-secondary-bg, #171818)",
       }}
     >
       {/* Order is intentional and documented in composition.order */}
@@ -129,7 +129,7 @@ export function BlockHeaderExamples() {
         flexDirection: "column",
         gap: 32,
         padding: 24,
-        background: "var(--semantic-color-background-primary-bg, #0B1819)",
+        background: "var(--semantic-color-background-secondary-bg, #171818)",
         color: "var(--semantic-color-text-primary-text, #D1DEDF)",
         fontFamily:
           "var(--semantic-typography-font-family-primary, Chirp), sans-serif",
