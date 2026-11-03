@@ -6,14 +6,14 @@
 
 :root {
   --semantic-color-core-primary: var(--primitive-color-green-400);
-  --semantic-color-core-secondary: var(--primitive-color-green-700);
-  --semantic-color-core-tertiary: var(--primitive-color-neutral-600);
-  --semantic-color-core-tertiary-hover: var(--primitive-color-neutral-500);
+  --semantic-color-core-secondary: var(--primitive-color-green-600);
+  --semantic-color-core-tertiary: var(--primitive-color-green-800);
+  --semantic-color-core-tertiary-hover: var(--primitive-color-green-700);
   --semantic-color-hover-primary-hover: var(--primitive-color-green-200);
-  --semantic-color-hover-secondary-hover: var(--primitive-color-green-600);
-  --semantic-color-background-primary-bg: var(--primitive-color-neutral-800);
-  --semantic-color-background-secondary-bg: var(--primitive-color-neutral-600);
-  --semantic-color-background-tertiary-bg: var(--primitive-color-neutral-500);
+  --semantic-color-hover-secondary-hover: var(--primitive-color-green-500);
+  --semantic-color-background-primary-bg: var(--primitive-color-neutral-900);
+  --semantic-color-background-secondary-bg: var(--primitive-color-neutral-700);
+  --semantic-color-background-tertiary-bg: var(--primitive-color-neutral-600);
   --semantic-color-text-primary-text: var(--primitive-color-neutral-100);
   --semantic-color-text-secondary-text: var(--primitive-color-neutral-200);
   --semantic-color-text-tertiary-text: var(--primitive-color-neutral-300);
