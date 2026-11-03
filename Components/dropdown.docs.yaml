@@ -142,7 +142,7 @@ layout:
       start: "{primitive.spacing.16}"
       end: "{primitive.spacing.12}"
     cornerRadius: "{semantic.radius.sm}"
-    backgroundColor: "{semantic.color.background.secondary-bg}"
+    backgroundColor: "{component.color.action.tertiary-background}"
   Selected value:
     layoutSizingHorizontal: HUG
     layoutSizingVertical: HUG
@@ -186,14 +186,14 @@ variants:
     description: Closed dropdown with default trigger appearance.
     styles:
       trigger:
-        backgroundColor: "{semantic.color.background.secondary-bg}"
+        backgroundColor: "{component.color.action.tertiary-background}"
   - name: Hover
     props:
       State: Hover
     description: Closed dropdown with hover styles on the trigger.
     styles:
       trigger:
-        backgroundColor: "{semantic.color.background.tertiary-bg}"
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
         padding:
           end: "{primitive.spacing.8}"
   - name: Open
@@ -214,7 +214,7 @@ variants:
           - scrollbar
     styles:
       trigger:
-        backgroundColor: "{semantic.color.background.tertiary-bg}"
+        backgroundColor: "{component.color.action.tertiary-background-hover}"
         strokes: "{semantic.color.border.primary}"
         strokeAlign: INSIDE
         strokeWeight: 1
@@ -233,9 +233,9 @@ combinations:
   - State: Open
   - State: Disabled
 behavior:
-  - State Default shows the closed trigger with chevron-down.
-  - State Hover applies tertiary background to the trigger.
-  - State Open shows the options-list, flips to chevron-up, and adds a primary border to the trigger.
+  - State Default shows the closed trigger with chevron-down and tertiary-background.
+  - State Hover applies tertiary-background-hover to the trigger.
+  - State Open shows the options-list, flips to chevron-up, applies tertiary-background-hover, and adds a primary border to the trigger.
   - State Disabled reduces trigger opacity and prevents opening.
   - Selecting a SelectItem updates the Selected value and typically closes the list.
   - The consuming application owns open/close state and the list of options.
@@ -270,6 +270,8 @@ design_tokens:
   spacing_8: "{primitive.spacing.8}"
   spacing_12: "{primitive.spacing.12}"
   spacing_16: "{primitive.spacing.16}"
+  action_tertiary_background: "{component.color.action.tertiary-background}"
+  action_tertiary_background_hover: "{component.color.action.tertiary-background-hover}"
   background_secondary: "{semantic.color.background.secondary-bg}"
   background_tertiary: "{semantic.color.background.tertiary-bg}"
   border_primary: "{semantic.color.border.primary}"
