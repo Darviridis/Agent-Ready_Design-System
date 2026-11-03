@@ -424,3 +424,6 @@ https://nathanacurtis.substack.com/p/what-component-specs-leave-behind
 https://nathanacurtis.substack.com/p/generating-code-from-specs
 
 https://nathanacurtis.substack.com/p/design-system-conventions-in-figma
+
+Notes:
+Figma Console MCP Server https://github.com/southleft/figma-console-mcp#for-contributors-local-git-mode (I want to try)
