@@ -10,6 +10,7 @@
   --primitive-color-green-500: #83AA98;
   --primitive-color-green-600: #5C7368;
   --primitive-color-green-700: #465C52;
+   --primitive-color-green-800: #313E38;
   --primitive-color-green-glow: rgba(157, 255, 232, 0.8);
   --primitive-color-neutral-100: #E8F4F0;
   --primitive-color-neutral-200: #C2D4CD;
@@ -19,6 +20,7 @@
   --primitive-color-neutral-600: #1F2C2A;
   --primitive-color-neutral-700: #171818;
   --primitive-color-neutral-800: #0B1819;
+  --primitive-color-neutral-900: #020202;
   --primitive-color-red-500: #DB9A9A;
   --primitive-color-red-glow: rgba(255, 172, 172, 0.25);
   --primitive-color-yellow-500: #D3B685;
