@@ -407,6 +407,9 @@ For major migrations, consider building codemods with jscodeshift. Track migrati
 
 Without migration paths, teams ignore breaking changes. They stay on old versions because upgrading is too painful. Your design system stagnates.
 
+### 6. Test your design system
+https://christophhellmuth.com/open-design-system-bench/ 
+
 Source: 
 
 https://designsystemsforai.com
